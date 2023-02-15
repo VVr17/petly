@@ -48,5 +48,8 @@ export const theme = {
     desktop: `@media screen and (min-width: ${breakpoints[2]}px)`,
   },
 
-  boxShadow: '7px 4px 14px rgba(49, 21, 4, 0.07)',
+  boxShadow: {
+    main: '7px 4px 14px rgba(49, 21, 4, 0.07)',
+    second: '7px 4px 14px rgba(0, 0, 0, 0.11)',
+  },
 };
