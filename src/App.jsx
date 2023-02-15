@@ -1,8 +1,11 @@
+import { GlobalStyle } from 'App.styled';
+
 const App = () => {
   return (
-    <div>
+    <>
+      <GlobalStyle />
       <p>App</p>
-    </div>
+    </>
   );
 };
 
