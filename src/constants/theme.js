@@ -4,6 +4,7 @@ export const theme = {
   colors: {
     lightText: '#FFFFFF', // white
     mainText: '#111111', // black
+    secondText: "#181C27", //black
     secondaryText: 'rgba(17, 17, 17, 0.6)', // grey
     accent: '#F59256', // orange
     mainBackground: '#FDF7F2', // light orange
@@ -33,8 +34,9 @@ export const theme = {
     m: '20px',
     l: '24px',
     xl: '28px',
-    xxl: '48px',
-    xxxl: '68px',
+    xxl: '32px',
+    xxxl: '48px',
+    xxxxl: '68px',
   },
 
   transitionTiming: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
