@@ -1,5 +1,7 @@
+import { theme } from 'constants/theme';
+import styled from 'styled-components';
+
 export const SectionStyled = styled.section`
-  margin: 0 auto;
   padding-top: 42px;
   padding-bottom: 100px;
 
