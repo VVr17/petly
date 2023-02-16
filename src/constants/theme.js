@@ -4,7 +4,7 @@ export const theme = {
   colors: {
     lightText: '#FFFFFF', // white
     mainText: '#111111', // black
-    secondText: "#181C27", //black
+    secondText: '#181C27', //black
     secondaryText: 'rgba(17, 17, 17, 0.6)', // grey
     accent: '#F59256', // orange
     mainBackground: '#FDF7F2', // light orange
@@ -40,6 +40,12 @@ export const theme = {
   },
 
   transitionTiming: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
+
+  breakpoints: [
+    `${breakpoints[0]}px`,
+    `${breakpoints[1]}px`,
+    `${breakpoints[2]}px`,
+  ],
 
   mq: {
     mobileOnly: `@media screen and (max-width: ${+breakpoints[1] - 0.02}px)`,
