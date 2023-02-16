@@ -13,9 +13,11 @@ const Header = () => {
   return (
     <>
       <Container>
-          <Link to="/" end>pe<Span>t</Span>ly</Link>
-          <Nav />
-          {isAuth ? <UserNav />:<AuthNav />}
+        <Link to="/" end>
+          pe<Span>t</Span>ly
+        </Link>
+        <Nav />
+        {isAuth ? <UserNav /> : <AuthNav />}
       </Container>
 
       <Suspense fallback="Loading...">
