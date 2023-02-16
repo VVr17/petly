@@ -2,8 +2,10 @@ import { theme } from 'constants/theme';
 import styled from 'styled-components';
 import waveMobile from 'assets/images/mobile/wave.svg';
 import waveTablet from 'assets/images/tablet/wave.svg';
+import waveDesktop from 'assets/images/desktop/wave-bubbel-heart.svg';
 import portraitMobile from 'assets/images/mobile/portrait-and-favorite-pet.png';
 import portraitTablet from 'assets/images/tablet/portrait-and-favorite-pet.png';
+import portraitDesktop from 'assets/images/desktop/portrait-and-favorite-pet.png';
 
 export const Title = styled.h1`
   font-family: ${theme.fontFamily.manrope};
@@ -15,6 +17,10 @@ export const Title = styled.h1`
   ${theme.mq.tablet} {
     font-size: ${theme.fontSizes.xxxxl};
     line-height: 1.47;
+  }
+
+  ${theme.mq.desktop} {
+    padding-top: 32px;
   }
 `;
 
@@ -28,5 +34,11 @@ export const WrapContainer = styled.div`
     margin-top: 88px;
     background: url(${portraitTablet}) no-repeat top 316px left 60px,
       url(${waveTablet}) no-repeat top -50px left 0px;
+  }
+
+  ${theme.mq.desktop} {
+    margin-top: 60px;
+    background: url(${portraitDesktop}) no-repeat top 0px left 742px,
+      url(${waveDesktop}) no-repeat top 40px left 67px;
   }
 `;
