@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename="/pet-support-front/">
+      <BrowserRouter basename="/pet-support-front">
         <ThemeProvider theme={theme}>
           <App />
         </ThemeProvider>

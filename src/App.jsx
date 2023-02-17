@@ -7,13 +7,13 @@ import Login from 'pages/Login';
 import Friends from 'pages/Friends';
 import News from 'pages/News';
 import Notices from 'pages/Notices';
-import Header from 'components/Header';
+import SharedLayout from 'components/SharedLayout/SharedLayout';
 
 const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Header />}>
+        <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
