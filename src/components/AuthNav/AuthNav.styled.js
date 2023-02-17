@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { theme } from '../../constants/theme';
 
 export const Container = styled.div`
-    margin-left: 500px;
+    margin-left: auto;
 `;
 
 export const Link = styled(NavLink)`
