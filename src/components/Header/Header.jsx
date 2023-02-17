@@ -13,7 +13,7 @@ const Header = () => {
       <Container>
         <Navigation>
           <Link to="/" end>
-          pe<Span>t</Span>ly
+            pe<Span>t</Span>ly
           </Link>
           <Nav />
           {isAuth ? <UserNav /> : <AuthNav />}
