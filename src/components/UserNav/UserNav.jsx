@@ -1,23 +1,14 @@
 import React from 'react';
-import { Container, Link } from './UserNav.styled';
+import { Container, Link, iconStyle } from './UserNav.styled';
 import { BsFillPersonFill } from 'react-icons/bs';
-import { theme } from '../../constants/theme';
-import { borderRadius } from 'styled-system';
+import PropTypes from 'prop-types';
 
-const UserNav = () => {
+const UserNav = ({closeMenu}) => {
   return (
     <Container>
-      <Link to="/user">
+      <Link to="/user" onClick={closeMenu}>
         <BsFillPersonFill
-          style={{
-            height: '24px',
-            width: '24px',
-            padding: '2px',
-            marginRight: '14px',
-            backgroundColor: theme.colors.lightText,
-            fill: theme.colors.accent,
-            borderRadius: '50%',
-          }}
+          style={iconStyle}
         />
         Account
       </Link>
@@ -26,3 +17,7 @@ const UserNav = () => {
 };
 
 export default UserNav;
+
+UserNav.propTypes = {
+    closeMenu: PropTypes.func,
+};
