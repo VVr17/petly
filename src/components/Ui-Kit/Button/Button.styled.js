@@ -7,7 +7,9 @@ export const ButtonStyled = styled.button`
   font-size: inherit;
   font-weight: inherit;
   cursor: pointer;
-  width: ${({ theme, width }) => (width ? width : '160px')};
+  width: ${({ theme, width }) => (width ? width : 'auto')};
+  padding-left: 28px;
+  padding-right: 28px;
   padding-top: 9px;
   padding-bottom: 9px;
   border-radius: 40px;
