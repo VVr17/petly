@@ -7,6 +7,7 @@ export const theme = {
     secondText: '#181C27', //black
     secondaryText: 'rgba(17, 17, 17, 0.6)', // grey
     accent: '#F59256', // orange
+    hover: '#db793d',
     mainBackground: '#FDF7F2', // light orange
     cardBackground: '#FFFFFF', // white
   },
