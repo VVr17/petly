@@ -3,11 +3,15 @@ import { NavLink } from 'react-router-dom';
 import { theme } from '../../constants/theme';
 
 export const Container = styled.div`
+  display: block;
+  box-sizing: border-box;
+  padding: 20px 15px 0 15px;
+`;
+
+export const Navigation = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 15px 0 15px;
-  margin-top: 20px;
 `;
 
 export const Link = styled(NavLink)`

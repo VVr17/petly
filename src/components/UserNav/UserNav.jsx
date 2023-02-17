@@ -7,7 +7,6 @@ import { borderRadius } from "styled-system";
 const UserNav = () => {
     return (
         <Container>
-            <nav>
                 <Link to="/user"><BsFillPersonFill style={{
                     height: "24px",
                     width: "24px",
@@ -16,7 +15,6 @@ const UserNav = () => {
                     backgroundColor: theme.colors.lightText,
                     fill: theme.colors.accent,
                     borderRadius: "50%"}} />Account</Link>
-            </nav>
         </Container>
     );
 };

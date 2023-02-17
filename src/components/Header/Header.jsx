@@ -1,8 +1,6 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import { Suspense } from 'react';
 import { useState } from 'react';
-import { Container, Link, Span } from './Header.styled';
+import { Container, Navigation, Link, Span } from './Header.styled';
 import Nav from 'components/Nav/Nav';
 import AuthNav from 'components/AuthNav/AuthNav';
 import UserNav from 'components/UserNav/UserNav';
@@ -11,19 +9,17 @@ const Header = () => {
   const [isAuth, setIsAuth] = useState(false);
 
   return (
-    <>
+    <header>
       <Container>
-        <Link to="/" end>
+        <Navigation>
+          <Link to="/" end>
           pe<Span>t</Span>ly
-        </Link>
-        <Nav />
-        {isAuth ? <UserNav /> : <AuthNav />}
+          </Link>
+          <Nav />
+          {isAuth ? <UserNav /> : <AuthNav />}
+        </Navigation>
       </Container>
-
-      <Suspense fallback="Loading...">
-        <Outlet />
-      </Suspense>
-    </>
+    </header>
   );
 };
 
