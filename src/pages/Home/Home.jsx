@@ -1,12 +1,17 @@
-import Section from 'components/Section';
+import { ContainerStyled } from 'components/Container/Container.styled';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Title, WrapContainer } from './Home.styled';
 
 const Home = () => {
   return (
-    <Section>
-      <div>Home</div>
-    </Section>
+    <WrapContainer>
+      <ContainerStyled>
+        <Title>
+          Take good care of <br />
+          your small pets
+        </Title>
+      </ContainerStyled>
+    </WrapContainer>
   );
 };
 
