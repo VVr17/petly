@@ -9,10 +9,12 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { persistedUserReducer } from './api/userSlice';
 
 export const store = configureStore({
   reducer: {
     [userApi.reducerPath]: userApi.reducer,
+    user: persistedUserReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

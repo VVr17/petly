@@ -1,5 +1,5 @@
-import React from "react";
-import { Field, ErrorMessage } from "formik";
+import React from 'react';
+import { Field, ErrorMessage } from 'formik';
 import PropTypes from 'prop-types';
 
 const InputField = ({ label, name, type, placeholder, id }) => {
@@ -14,9 +14,8 @@ const InputField = ({ label, name, type, placeholder, id }) => {
 
 export default InputField;
 
-
 InputField.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   placeholder: PropTypes.string,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
