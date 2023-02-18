@@ -2,12 +2,11 @@ import React from 'react';
 import RegistrationForm from 'components/RegisterForm/RegisterForm';
 
 const Register = () => {
-  return (<div>
-      
+  return (
+    <div>
       <RegistrationForm />
-    </div>)
+    </div>
+  );
 };
 
 export default Register;
-
-

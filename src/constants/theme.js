@@ -7,11 +7,12 @@ export const theme = {
     secondText: '#181C27', //black
     secondaryText: 'rgba(17, 17, 17, 0.6)', // grey
     accent: '#F59256', // orange
+    hover: '#db793d',
     mainBackground: '#FDF7F2', // light orange
     cardBackground: '#FFFFFF', // white
   },
 
-  space: ['0', '4px', '8px', '16px', '32px', '64px', '128px', '256px', '512px'],
+  space: ['0', '4px', '8px', '16px', '20px', '24px', '32px', '64px', '128px', '256px', '512px'],
 
   fontFamily: {
     manrope: "'Manrope', sans-serif",
@@ -28,7 +29,8 @@ export const theme = {
   },
 
   fontSizes: {
-    xxs: '12px',
+    xxxs: '12px',
+    xxs: '14px',
     xs: '16px',
     s: '18px',
     m: '20px',
