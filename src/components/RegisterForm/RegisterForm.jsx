@@ -59,8 +59,8 @@ const RegistrationForm = () => {
 const [signupUser, { isError }] = useSignupUserMutation();
   const navigate = useNavigate();
     const { isLoggedIn } = useSelector(state => state.user);
-    console.log(isLoggedIn);
-
+    const data = useSelector(state => state);
+    console.log("data of state before:", data)
     const handleSubmit = (values) => {
         
         console.log(values);
@@ -73,7 +73,8 @@ const [signupUser, { isError }] = useSignupUserMutation();
         };
 
         signupUser(credentials);
-        console.log(isLoggedIn);
+        console.log("data of state after:", data)
+     
     };
 
     useEffect(() => {

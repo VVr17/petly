@@ -6,12 +6,12 @@ import baseQuery from 'redux/baseQuery';
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://pet-support.up.railway.app/',
+    baseUrl: 'https://pet-support.up.railway.app',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().user.token;
-      console.log("token:", token);
+    
       if (token) {
-        console.log(token);
+      
         headers.set('Authorization', `Bearer ${token}`);
       }
 
