@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { userApi } from './api/userApi';
+import { newsApi } from './api/newsApi';
 import {
   persistStore,
   FLUSH,
@@ -15,13 +16,14 @@ export const store = configureStore({
   reducer: {
     [userApi.reducerPath]: userApi.reducer,
     user: persistedUserReducer,
+    [newsApi.reducerPath]: newsApi.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(userApi.middleware),
+    }).concat(userApi.middleware, newsApi.middleware),
 });
 
 export const persistor = persistStore(store);

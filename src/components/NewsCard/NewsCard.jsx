@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Date,
   LinearGradient,
@@ -10,25 +11,27 @@ import {
   WrapperSignature,
 } from './NewsCard.styled';
 
-const NewsCard = () => {
+const NewsCard = ({ title, url, description, date }) => {
   return (
     <WrapperCard>
       <LinearGradient></LinearGradient>
-      <Title>Обережно, кліщі! Як уберегти улюбленця </Title>
-      <Text>
-        Травневі прогулянки з улюбленцем не лише приємні, але й потребують
-        пильності. З початком теплої пори року активізуються кліщі, і треба бути
-        уважним, щоб уберегти свого песика чи котика від дуже серйозних
-        неприємностей зі здоров`ям.
-      </Text>
+      <Title>{title}</Title>
+      <Text>{description}</Text>
       <WrapperSignature>
-        <Date>20/02/2021</Date>
-        <Link to="/" end>
+        <Date>{date}</Date>
+        <Link to={url} end>
           Read more
         </Link>
       </WrapperSignature>
     </WrapperCard>
   );
+};
+
+NewsCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  date: PropTypes.string,
 };
 
 export default NewsCard;
