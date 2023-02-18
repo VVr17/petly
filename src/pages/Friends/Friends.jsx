@@ -1,7 +1,8 @@
+import Section from 'components/Section';
 import React from 'react';
 
 const Friends = () => {
-  return <div>Friends</div>;
+  return <Section>Friends</Section>;
 };
 
 export default Friends;

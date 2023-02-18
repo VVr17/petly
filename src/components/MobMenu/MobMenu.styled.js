@@ -3,12 +3,16 @@ import { theme, breakpoints } from '../../constants/theme';
 import { NavLink } from "react-router-dom";
 
 export const Modal = styled.div`
+    z-index: 99;
     width: 100vw;
     height: 100vh;
     top: 0px;
     left: 0px;
     position: fixed;
     background-color: ${theme.colors.mainBackground};
+    @media(min-width: ${breakpoints[2]}px) {
+       display: none;
+    ;
 `;
 
 export const Container = styled.div`

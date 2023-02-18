@@ -24,6 +24,10 @@ export const Link = styled(NavLink)`
     color: ${theme.colors.lightText};
     background-color: ${theme.colors.accent};
     border-radius: 40px;
+    transition: background-color ${theme.transitionTiming};
+    &:hover, :focus {
+       background-color: ${theme.colors.hover};
+    }
     @media(min-width: ${breakpoints[1]}px) {
        font-size: ${theme.fontSizes.xs};
     ;

@@ -1,13 +1,13 @@
 import React from 'react';
 import RegistrationForm from 'components/RegisterForm/RegisterForm';
+import Section from 'components/Section';
 
 const Register = () => {
-  return (<div>
-      
+  return (
+    <Section>
       <RegistrationForm />
-    </div>)
+    </Section>
+  );
 };
 
 export default Register;
-
-
