@@ -1,9 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { userApi } from './api/userApi';
-
 import {
   persistStore,
-  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,

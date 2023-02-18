@@ -9,17 +9,16 @@ export const userApi = createApi({
     baseUrl: 'https://pet-support.up.railway.app',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().user.token;
-    
+
       if (token) {
-      
         headers.set('Authorization', `Bearer ${token}`);
       }
-
       return headers;
     },
   }),
   tagTypes: [TAGS_TYPES.user],
-  endpoints: builder => ({getCurrentUser: builder.query({
+  endpoints: builder => ({
+    getCurrentUser: builder.query({
       query: () => '/api/auth/current',
       method: 'GET',
       invalidatesTags: ['User'],
@@ -50,12 +49,13 @@ export const userApi = createApi({
         body: credentials,
       }),
       invalidatesTags: ['User'],
-    })
+    }),
   }),
 });
 
-export const { useGetCurrentUserQuery,
+export const {
+  useGetCurrentUserQuery,
   useSignupUserMutation,
   useLoginUserMutation,
-  useLogoutUserMutation, } = userApi;
-
+  useLogoutUserMutation,
+} = userApi;
