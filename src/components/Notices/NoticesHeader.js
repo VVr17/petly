@@ -26,50 +26,23 @@ export const Title = styled.h1`
   } ;
 `;
 
-export const FormWrapper = styled.form`
-position: relative;
-width: 608px;
-  margin-bottom: 40px;
-  margin-left: auto;
-  margin-right: auto;
- 
-  } ;
-`;
-
-export const FormField = styled.input`
-  width: 608px;
-  height: 44px;
-  padding: 20px;
-  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-  border-radius: 40px;
-  border-color: transparent;
- 
-  } ;
-`;
-
-export const Button = styled.button`
-border: none;
-position: absolute;
-background-color: ${theme.colors.lightText};
-bottom: 7px;
-right: 15px;
-cursor: pointer;
-&:hover, &:focus {
-    color: ${theme.colors.accent};
-}
- 
-  } ;
-`;
-
-export const NavContainer = styled.nav`
+export const NavContainer = styled.div`
   display: flex;
   justify-content: space-between;
   height: 44px;
+  margin-top: 50px;
 `;
 
-export const Navigation = styled.nav`
+export const NavDiv = styled.div`
   display: flex;
 `;
+
+export const Navigation = styled.ul`
+  list-style: none;
+  display: flex;
+`;
+
+export const NavItem = styled.li``;
 
 export const Navlink = styled(NavLink)`
   color: ${theme.colors.mainText};
@@ -91,3 +64,35 @@ export const Navlink = styled(NavLink)`
     border: 2px solid ${theme.colors.hover};
   }
 `;
+
+export const Button = styled.button`
+  // position: relative;
+  display: flex;
+  color: ${theme.colors.mainText};
+  font-family: ${theme.fontFamily.manrope};
+  font-weight: ${theme.fontWeight.medium};
+  font-size: ${theme.fontSizes.m};
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+    align-items: center;
+  text-align: center;
+  }
+
+`;
+
+export const ButtonTitle = styled.span`
+  display: inline-block;
+  margin-right: 12px;
+`;
+
+export const ReactIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    color: ${({ color }) => color ?? '#F59256'};
+  }
+  svg:hover {
+    color: ${({ hoverColor }) => hoverColor ?? '#db793d'};
+  `;

@@ -1,11 +1,12 @@
 import React from 'react';
-import FindPetHeader from 'components/FindPet/FindPetHeader';
+import NoticesHeader from 'components/Notices/NoticesHeader.jsx';
+
 import Container from 'components/Container';
 
 const Notices = () => {
   return (
     <Container>
-      <FindPetHeader />
+      <NoticesHeader />
     </Container>
   );
 };

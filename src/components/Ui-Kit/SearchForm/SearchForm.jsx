@@ -4,7 +4,6 @@ import { FormWrapper, FormField, Button } from './SearchForm.styled';
 import PropTypes from 'prop-types';
 
 const SearchForm = ({ handleSubmit }) => {
-  console.log('handleSubmit', handleSubmit);
   return (
     <FormWrapper onSubmit={handleSubmit}>
       <FormField name="search" type="text" placeholder="Search" />
