@@ -1,7 +1,8 @@
+import Section from 'components/Section';
 import React from 'react';
 
 const NotFound = () => {
-  return <div>NotFound</div>;
+  return <Section>NotFound</Section>;
 };
 
 export default NotFound;

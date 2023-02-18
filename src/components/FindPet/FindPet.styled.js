@@ -5,8 +5,6 @@ import { theme, breakpoints } from '../../constants/theme';
 
 export const Container = styled.div`
   text-align: center;
-  padding-top: 70px;
-  padding-bottom: 60px;
   background-color: ${theme.colors.mainBackground};
   (min-width: ${breakpoints[1]}px) {
     font-size: ${theme.fontSizes.xxl};
