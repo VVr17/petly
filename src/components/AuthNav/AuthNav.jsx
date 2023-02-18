@@ -1,11 +1,11 @@
 import React from "react";
-import { Container, Link } from "./AuthNav.styled";
+import { Container, AuthLink, Link } from "./AuthNav.styled";
 import PropTypes from 'prop-types';
 
 const AuthNav = ({closeMenu}) => {
     return (
         <Container>
-                <Link to="/login" onClick={closeMenu}>Login</Link>
+                <AuthLink to="/login" onClick={closeMenu}>Login</AuthLink>
                 <Link to="/register" onClick={closeMenu}>Registration</Link>
         </Container>
     );

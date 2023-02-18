@@ -25,8 +25,6 @@ const initialValues = {
     confirmPassword: "",
 };
 
-
-
 // Yup validation
 
 const validationSchema = Yup.object().shape({
@@ -58,12 +56,9 @@ const RegistrationForm = () => {
 
 const [signupUser, { isError }] = useSignupUserMutation();
   const navigate = useNavigate();
-    const { isLoggedIn } = useSelector(state => state.user);
-    const data = useSelector(state => state);
-    console.log("data of state before:", data)
+    const { isAuth } = useSelector(state => state.user);
     const handleSubmit = (values) => {
         
-        console.log(values);
         const credentials = {
             name: values.name,
             city: values.city,
@@ -73,12 +68,11 @@ const [signupUser, { isError }] = useSignupUserMutation();
         };
 
         signupUser(credentials);
-        console.log("data of state after:", data)
      
     };
 
     useEffect(() => {
-    if (isLoggedIn) {
+    if (isAuth) {
       console.log('Congratulations! You are successfully signed up!');
       navigate('/');
     }

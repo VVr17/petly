@@ -1,9 +1,13 @@
 import React from "react";
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Formik } from "formik";
 import { ModalContent, ModalWrapper, FormWrapper } from "./LoginForm.styled";
 import * as Yup from "yup";
 import InputField from "../Ui-Kit/Input/Input";
 import { NavLink } from "react-router-dom";
+import { useLoginUserMutation } from "redux/api/userApi";
+import { useSelector } from "react-redux";
 
 const initialValues = {
     email: "",
@@ -23,9 +27,25 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginForm = () => {
+
+    const [loginUser, { isError }] = useLoginUserMutation();
+    const navigate = useNavigate();
+    const { isAuth } = useSelector(state => state.user);
     const handleSubmit = (values) => {
-        console.log(values);
+
+        const credentials = {
+            email: values.email,
+            password: values.password,
+        };
+        loginUser(credentials);
     };
+
+    useEffect(() => {
+    if (isAuth) {
+      console.log('Congratulations! You are successfully signed up!');
+      navigate('/');
+    }
+  });
 
     return (
         <ModalWrapper>
@@ -41,7 +61,7 @@ const LoginForm = () => {
              
                             <InputField name="email" type="email" placeholder="Email" />
                             <InputField name="password" type="password" placeholder="Password" />
-                            <button type="submit" disabled={isSubmitting}>
+                            <button type="submit">
                                 Submit
                             </button>
                         </FormWrapper>
