@@ -31,8 +31,8 @@ const App = () => {
             <Route path="sell" element={<Sell />} />
             <Route path="in-good-hands" element={<InGoodHands />} />
             <Route path="lost-found" element={<LostFound />} />
-            <Route path="favorite-aids" element={<FavoriteAids />} />
-            <Route path="my-aids" element={<MyAids />} />
+            <Route path="favorite-ads" element={<FavoriteAids />} />
+            <Route path="my-ads" element={<MyAids />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Route>

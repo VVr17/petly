@@ -45,11 +45,11 @@ const NoticesHeader = () => {
             </Navigation>
             <Navigation>
               <NavItem>
-                <Navlink to="favorite-aids">favorite ads</Navlink>
+                <Navlink to="favorite-ads">favorite ads</Navlink>
               </NavItem>
 
               <NavItem>
-                <Navlink to="my-aids">my ads</Navlink>
+                <Navlink to="my-ads">my ads</Navlink>
               </NavItem>
             </Navigation>
           </NavDiv>
