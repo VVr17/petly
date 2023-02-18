@@ -9,9 +9,9 @@ import {
   Link,
   Span,
   MenuButton,
-  iconStyle
+  iconStyle,
 } from './Header.styled';
-import { VscMenu } from "react-icons/vsc";
+import { VscMenu } from 'react-icons/vsc';
 
 import Nav from 'components/Nav/Nav';
 import AuthNav from 'components/AuthNav/AuthNav';
@@ -21,13 +21,13 @@ import { MobMenu } from 'components/ModalMenu/MobMenu';
 const Header = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [menuIsActive, setMenuIsActive] = useState(false);
-  
+
   const openMenu = () => {
     setMenuIsActive(true);
   };
 
   const closeMenu = () => {
-    setMenuIsActive(false)
+    setMenuIsActive(false);
   };
 
   return (
@@ -41,11 +41,11 @@ const Header = () => {
             <PagesBox>
               <Nav />
             </PagesBox>
-            <AuthBox>
-              {isAuth ? <UserNav /> : <AuthNav />}
-            </AuthBox>
+            <AuthBox>{isAuth ? <UserNav /> : <AuthNav />}</AuthBox>
             <MenuBox>
-              <MenuButton onClick={openMenu}><VscMenu style={iconStyle} /></MenuButton>
+              <MenuButton onClick={openMenu}>
+                <VscMenu style={iconStyle} />
+              </MenuButton>
             </MenuBox>
           </Navigation>
         </Container>
