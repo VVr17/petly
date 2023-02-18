@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { TAGS_TYPES, USER_URL } from 'constants/api';
 import baseQuery from 'redux/baseQuery';
-import { setUser } from './userSlice';
+import { setUser, setToken, logout } from './userSlice';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
@@ -13,6 +13,14 @@ export const userApi = createApi({
       query: () => '/api/auth/current',
       method: 'GET',
       invalidatesTags: ['User'],
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          const {
+            data: { data },
+          } = await queryFulfilled;
+          dispatch(setUser(data.user));
+        } catch (error) {}
+      },
     }),
 
     signupUser: builder.mutation({
@@ -27,7 +35,9 @@ export const userApi = createApi({
           const {
             data: { data },
           } = await queryFulfilled;
-          dispatch(setUser(data));
+          console.log("userAPI signup:", data)
+          dispatch(setUser(data.user));
+          dispatch(setToken(data.token));
         } catch (error) {}
       },
     }),
@@ -39,6 +49,15 @@ export const userApi = createApi({
         body: credentials,
       }),
       invalidatesTags: ['User'],
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          const {
+            data: { data },
+          } = await queryFulfilled;
+          dispatch(setUser(data.user));
+          dispatch(setToken(data.token));
+        } catch (error) {}
+      },
     }),
 
     logoutUser: builder.mutation({
@@ -48,6 +67,11 @@ export const userApi = createApi({
         body: credentials,
       }),
       invalidatesTags: ['User'],
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          dispatch(logout());
+        } catch (error) {}
+      },
     }),
   }),
 });
