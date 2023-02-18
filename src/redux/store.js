@@ -9,31 +9,19 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
-
-import { authReducer } from './api/userSlice';
-
-const persistConfig = {
-  key: 'user',
-  storage,
-  whitelist: ['token'],
-};
-
-const persistedUserReducer = persistReducer(persistConfig, authReducer);
+import { persistedUserReducer } from './api/userSlice';
 
 export const store = configureStore({
   reducer: {
-    user: persistedUserReducer,
     [userApi.reducerPath]: userApi.reducer,
+    user: persistedUserReducer,
   },
-  middleware: getDefaultMiddleware => [
-    ...getDefaultMiddleware({
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
-    userApi.middleware,
-  ],
+    }).concat(userApi.middleware),
 });
 
 export const persistor = persistStore(store);

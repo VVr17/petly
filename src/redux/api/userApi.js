@@ -1,21 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { TAGS_TYPES } from 'constants/api';
+import { TAGS_TYPES, USER_URL } from 'constants/api';
 import baseQuery from 'redux/baseQuery';
+import { setUser } from './userSlice';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://pet-support.up.railway.app',
-    prepareHeaders: (headers, { getState }) => {
-      const token = getState().user.token;
-
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
+  baseQuery,
   tagTypes: [TAGS_TYPES.user],
   endpoints: builder => ({
     getCurrentUser: builder.query({
@@ -26,11 +17,19 @@ export const userApi = createApi({
 
     signupUser: builder.mutation({
       query: credentials => ({
-        url: 'api/auth/signup',
+        url: `${USER_URL}/signup`,
         method: 'POST',
         body: credentials,
       }),
       invalidatesTags: ['User'],
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          const {
+            data: { data },
+          } = await queryFulfilled;
+          dispatch(setUser(data));
+        } catch (error) {}
+      },
     }),
 
     loginUser: builder.mutation({
