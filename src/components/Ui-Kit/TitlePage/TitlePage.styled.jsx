@@ -8,8 +8,10 @@ export const Title = styled.h2`
   line-height: 1.37;
   color: ${theme.colors.mainText};
   text-align: center;
+  margin-bottom: 28px;
 
   ${theme.mq.tablet} {
     font-size: ${theme.fontSizes.xxxl};
+    margin-bottom: 40px;
   }
 `;
