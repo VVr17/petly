@@ -1,0 +1,1 @@
+export { OurFriendItem } from './OurFriendItem';
