@@ -28,7 +28,7 @@ const initialValues = {
 const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email address')
-    .regex(
+    .matches(
       /^([a-zA-Z][\w+-]+(?:\.\w+)?)@([\w-]+(?:\.[a-zA-Z]{2,10})+)$/,
       'Please enter a valid email address, example: "mail@mail.com"'
     )
@@ -48,7 +48,7 @@ const validationSchema = Yup.object().shape({
     .required('Please confirm your password'),
   name: Yup.string().required('Name is required'),
   city: Yup.string()
-    .regex(
+    .matches(
       /^\s*(?:\w+\s*,\s*){1,}(?:\w+\s*)$/,
       'Should be at least two words separated by string'
     )
