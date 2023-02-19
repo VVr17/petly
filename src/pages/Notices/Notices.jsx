@@ -11,8 +11,6 @@ const Notices = () => {
     <Section>
       <TitlePage name={'Find your favorite pet'} />
       <SearchForm />
-      {/* TODO: choose what is right */}
-      <NoticesHeader />
       <FindPetFilter />
       <NoticesCategoryList />
     </Section>
