@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { TAGS_TYPES, USER_URL } from 'constants/api';
 import baseQuery from 'redux/baseQuery';
-import { setUser, setToken, logout } from '../userSlice';
+import { setUser, setToken, logout, setIsAuth } from '../userSlice';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
@@ -17,7 +17,8 @@ export const userApi = createApi({
           const {
             data: { data },
           } = await queryFulfilled;
-          dispatch(setUser(data.user));
+          dispatch(setUser(data));
+          dispatch(setIsAuth(true));
         } catch (error) {}
       },
     }),
@@ -34,7 +35,6 @@ export const userApi = createApi({
           const {
             data: { data },
           } = await queryFulfilled;
-          console.log('userAPI signup:', data);
           dispatch(setUser(data.user));
           dispatch(setToken(data.token));
         } catch (error) {}

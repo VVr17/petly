@@ -25,6 +25,12 @@ export const authSlice = createSlice({
         isAuth: true,
       };
     },
+    setIsAuth: (state, { payload }) => {
+      return {
+        ...state,
+        isAuth: payload,
+      };
+    },
     logout: () => initialState,
   },
 });
@@ -37,6 +43,6 @@ const persistConfig = {
 
 export const authReducer = authSlice.reducer;
 
-export const { logout, setUser, setToken } = authSlice.actions;
+export const { logout, setUser, setToken, setIsAuth } = authSlice.actions;
 
 export const persistedUserReducer = persistReducer(persistConfig, authReducer);

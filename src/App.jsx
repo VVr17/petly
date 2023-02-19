@@ -15,8 +15,15 @@ import InGoodHands from 'components/Notices/InGoodHands';
 import LostFound from 'components/Notices/LostFound';
 import FavoriteAids from 'components/Notices/FaoriteAids';
 import MyAids from 'components/Notices/MyAids';
+import { useGetCurrentUserQuery } from 'redux/api/userApi';
+import { useSelector } from 'react-redux';
 
 const App = () => {
+  const { token, isAuth, user } = useSelector(state => state.user);
+  useGetCurrentUserQuery(undefined, {
+    skip: token === null,
+  });
+
   return (
     <>
       <Routes>
