@@ -15,9 +15,19 @@ export const ButtonStyled = styled.button`
   border-radius: 40px;
   border: 2px solid ${({ theme }) => theme.colors.accent};
   background-color: ${({ theme, name }) =>
-    name === 'transparent' ? 'transparent' : theme.colors.accent};
-  color: ${({ theme, name }) =>
-    name === 'transparent' ? theme.colors.mainText : theme.colors.lightText};
+    name === 'filled' ? theme.colors.accent : 'transparent'};
+  color: ${({ theme, name }) => {
+    switch (name) {
+      case 'transparent':
+        return theme.colors.mainText;
+      case 'filled':
+        return theme.colors.lightText;
+      case 'learnMore':
+        return theme.colors.accent;
+      default:
+        return theme.colors.lightText;
+    }
+  }};
 
   transition: color ${({ theme }) => theme.transitionTiming},
     background-color ${({ theme }) => theme.transitionTiming},
@@ -25,7 +35,13 @@ export const ButtonStyled = styled.button`
 
   &:hover,
   &:focus {
-    background-color: ${({ theme }) => theme.colors.hover};
-    border-color: ${({ theme }) => theme.colors.hover};
+    background-color: ${({ theme, name }) =>
+      name === 'learnMore' ? 'transparent' : theme.colors.hover};
+    border-color: ${({ theme, name }) =>
+      name === 'learnMore' ? theme.colors.secondaryHover : theme.colors.hover};
+    color: ${({ theme, name }) =>
+      name === 'learnMore'
+        ? theme.colors.secondaryHover
+        : theme.colors.lightText};
   }
 `;
