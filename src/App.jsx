@@ -20,9 +20,13 @@ import { useSelector } from 'react-redux';
 
 const App = () => {
   const { token, isAuth, user } = useSelector(state => state.user);
-  useGetCurrentUserQuery(undefined, {
+  const { data, isLoading } = useGetCurrentUserQuery(undefined, {
     skip: token === null,
   });
+
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
 
   return (
     <>
