@@ -7,15 +7,15 @@ import { Title, WrapContainer } from './Home.styled';
 
 const Home = () => {
   return (
-    <WrapContainer>
-      <Container>
+    <Container>
+      <WrapContainer>
         <Title>
           Take good care of <br />
           your small pets
         </Title>
         {/* <Button>button</Button> */}
-      </Container>
-    </WrapContainer>
+      </WrapContainer>
+    </Container>
   );
 };
 
