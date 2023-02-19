@@ -12,7 +12,18 @@ import {
 } from './NewsCard.styled';
 
 const NewsCard = ({ title, url, description, date }) => {
-  const trimTitle = title.length > 38 ? title.slice(0, 34) + '...' : title;
+  function truncateString(str) {
+    if (str.length > 38) {
+      if (str.charAt(37) === ' ') {
+        return str.slice(0, 38) + '...';
+      } else {
+        return str.slice(0, str.lastIndexOf(' ', 38)) + '...';
+      }
+    } else {
+      return str;
+    }
+  }
+  const trimTitle = truncateString(title);
 
   return (
     <WrapperCard>

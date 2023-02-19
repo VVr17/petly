@@ -8,7 +8,6 @@ import TitlePage from 'components/Ui-Kit/TitlePage';
 
 const News = () => {
   const { data, error, isLoading } = useGetNewsQuery();
-  console.log(data);
   let news = data ? data.data : [];
   const [filteredNews, setFilteredNews] = useState([]);
 
@@ -18,8 +17,6 @@ const News = () => {
       el.title.concat(el.description).toLowerCase().includes(e.target[0].value)
     );
     setFilteredNews(newsFilter);
-    console.log(newsFilter);
-    console.dir(e.target);
   };
 
   useEffect(() => {
