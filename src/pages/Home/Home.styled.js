@@ -23,11 +23,14 @@ export const Title = styled.h1`
 `;
 
 export const WrapContainer = styled.div`
+  margin: 0 auto;
+  width: 320px;
   min-height: 532px;
   background: url(${portraitMobile}) no-repeat bottom 0 left 0,
     url(${waveMobile}) no-repeat bottom 0 left 0;
 
   ${theme.mq.tablet} {
+    width: 100%;
     min-height: 1127px;
     background: url(${portraitTablet}) no-repeat bottom 0 left 60px,
       url(${waveTablet}) no-repeat bottom 0 left 0px;

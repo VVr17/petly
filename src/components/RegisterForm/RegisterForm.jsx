@@ -1,110 +1,130 @@
-import React from "react";
+import React from 'react';
 import { useEffect } from 'react';
 
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { NavLink } from "react-router-dom"; 
+import { NavLink } from 'react-router-dom';
 
-import { Formik } from "formik";
-import * as Yup from "yup";
-import { ModalContent, ModalWrapper, FormWrapper } from "./RegisterForm.styled";
-import InputField from "../Ui-Kit/Input/Input";
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { ModalContent, ModalWrapper, FormWrapper } from './RegisterForm.styled';
+import InputField from '../Ui-Kit/Input/Input';
 
-import { useSignupUserMutation } from "redux/api/userApi";
-
-
+import { useSignupUserMutation } from 'redux/api/userApi';
 
 // Values for Formik
 
 const initialValues = {
-    name: "",
-    city: "",
-    phone: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+  name: '',
+  city: '',
+  phone: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
 };
 
 // Yup validation
 
 const validationSchema = Yup.object().shape({
-
-    email: Yup.string()
-        .email("Invalid email address")
-        .required("Email is required"),
-    password: Yup.string()
-        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/, "minimum seven characters, at least one uppercase letter, one lowercase letter and one number")
-        .min(8, "Password must be at least 8 characters long")
-        .required("Password is required"),
-    confirmPassword: Yup.string()
-        .oneOf([Yup.ref("password"), null], "Passwords must match")
-        .required("Please confirm your password"),
-    name: Yup.string().required("Name is required"),
-    city: Yup.string().required("City is required"),
-    phone: Yup.string()
-        .matches(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/, "Invalid phone number")
-        .min(13, "Phone number must be at least 10 digits")
-        .max(13, "Phone number must be at most 10 digits")
-        .required("Phone number is required"),
+  email: Yup.string()
+    .email('Invalid email address')
+    .regex(
+      /^([a-zA-Z][\w+-]+(?:\.\w+)?)@([\w-]+(?:\.[a-zA-Z]{2,10})+)$/,
+      'Please enter a valid email address, example: "mail@mail.com"'
+    )
+    .required('Email is required')
+    .min(12, 'Email should be at least 12 characters long')
+    .max(63, 'Email should be up to 63 characters long'),
+  password: Yup.string()
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{7,}$/,
+      'Minimum seven characters, at least one uppercase letter, one lowercase letter and one number'
+    )
+    .min(7, 'Password should be at least 7 characters long')
+    .max(32, 'Password should be up to 32 characters long')
+    .required('Password is required'),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .required('Please confirm your password'),
+  name: Yup.string().required('Name is required'),
+  city: Yup.string()
+    .regex(
+      /^\s*(?:\w+\s*,\s*){1,}(?:\w+\s*)$/,
+      'Should be at least two words separated by string'
+    )
+    .required('City is required'),
+  phone: Yup.string()
+    .matches(
+      /^\+380\d{9}$/,
+      'Phone number should begin with +380 and contain 13 digits'
+    )
+    .min(13, 'Phone number should be 13 digits')
+    .max(13, 'Phone number should be 13 digits')
+    .required('Phone number is required'),
 });
-
-
 
 // main function
 
 const RegistrationForm = () => {
-
-const [signupUser, { isError }] = useSignupUserMutation();
+  const [signupUser, { isError }] = useSignupUserMutation();
   const navigate = useNavigate();
-    const { isAuth } = useSelector(state => state.user);
-    const handleSubmit = (values) => {
-        
-        const credentials = {
-            name: values.name,
-            city: values.city,
-            phone: values.phone,
-            email: values.email,
-            password: values.password,
-        };
-
-        signupUser(credentials);
-     
+  const { isAuth } = useSelector(state => state.user);
+  const handleSubmit = values => {
+    const credentials = {
+      name: values.name,
+      city: values.city,
+      phone: values.phone,
+      email: values.email,
+      password: values.password,
     };
 
-    useEffect(() => {
+    signupUser(credentials);
+  };
+
+  useEffect(() => {
     if (isAuth) {
       console.log('Congratulations! You are successfully signed up!');
       navigate('/');
     }
   });
 
-    return (
-        <ModalWrapper>
-            <ModalContent>
-                <h1>Registration form</h1>
-                <Formik
-                    initialValues={initialValues}
-                    validationSchema={validationSchema}
-                    onSubmit={handleSubmit}
-                >
-                    {({ isSubmitting }) => (
-                        <FormWrapper>
-                            <InputField name="name" type="name" placeholder="Name" />
-                            <InputField name="city" type="city" placeholder="City" />
-                            <InputField name="phone" type="phone" placeholder="Phone" />
-                            <InputField name="email" type="email" placeholder="Email" />
-                            <InputField name="password" type="password" placeholder="Password" autocomplete="new-password"/>
-                            <InputField name="confirmPassword" type="password" placeholder="Confirm Password" autocomplete="new-password"/>
-                            <button type="submit" >
-                                Submit
-                            </button>
-                        </FormWrapper>
-                    )}
-                </Formik>
-                <p>Already have an account?<NavLink to="/login">Login</NavLink></p>
-            </ModalContent>
-        </ModalWrapper>
-    );
+  return (
+    <ModalWrapper>
+      <ModalContent>
+        <h1>Registration form</h1>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ isSubmitting }) => (
+            <FormWrapper>
+              <InputField name="name" type="name" placeholder="Name" />
+              <InputField name="city" type="city" placeholder="City" />
+              <InputField name="phone" type="phone" placeholder="Phone" />
+              <InputField name="email" type="email" placeholder="Email" />
+              <InputField
+                name="password"
+                type="password"
+                placeholder="Password"
+                autocomplete="new-password"
+              />
+              <InputField
+                name="confirmPassword"
+                type="password"
+                placeholder="Confirm Password"
+                autocomplete="new-password"
+              />
+              <button type="submit">Submit</button>
+            </FormWrapper>
+          )}
+        </Formik>
+        <p>
+          Already have an account?<NavLink to="/login">Login</NavLink>
+        </p>
+      </ModalContent>
+    </ModalWrapper>
+  );
 };
 
 export default RegistrationForm;

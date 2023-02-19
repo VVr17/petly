@@ -10,8 +10,19 @@ import Notices from 'pages/Notices';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 import User from 'pages/User';
 import NotFound from 'pages/NotFound';
+import { useGetCurrentUserQuery } from 'redux/api/userApi';
+import { useSelector } from 'react-redux';
 
 const App = () => {
+  const { token, isAuth, user } = useSelector(state => state.user);
+  const { data, isLoading } = useGetCurrentUserQuery(undefined, {
+    skip: token === null,
+  });
+
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
+
   return (
     <>
       <Routes>

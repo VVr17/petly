@@ -1,8 +1,7 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
+import { createApi } from '@reduxjs/toolkit/query/react';
 import { TAGS_TYPES, USER_URL } from 'constants/api';
 import baseQuery from 'redux/baseQuery';
-import { setUser, setToken, logout } from './userSlice';
+import { setUser, setToken, logout, setIsAuth } from '../userSlice';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
@@ -10,7 +9,7 @@ export const userApi = createApi({
   tagTypes: [TAGS_TYPES.user],
   endpoints: builder => ({
     getCurrentUser: builder.query({
-      query: () => '/api/auth/current',
+      query: () => `${USER_URL}/current`,
       method: 'GET',
       invalidatesTags: ['User'],
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
@@ -18,7 +17,8 @@ export const userApi = createApi({
           const {
             data: { data },
           } = await queryFulfilled;
-          dispatch(setUser(data.user));
+          dispatch(setUser(data));
+          dispatch(setIsAuth(true));
         } catch (error) {}
       },
     }),
@@ -35,7 +35,6 @@ export const userApi = createApi({
           const {
             data: { data },
           } = await queryFulfilled;
-          console.log("userAPI signup:", data)
           dispatch(setUser(data.user));
           dispatch(setToken(data.token));
         } catch (error) {}
@@ -44,7 +43,7 @@ export const userApi = createApi({
 
     loginUser: builder.mutation({
       query: credentials => ({
-        url: '/api/auth/login',
+        url: `${USER_URL}/login`,
         method: 'POST',
         body: credentials,
       }),
@@ -62,7 +61,7 @@ export const userApi = createApi({
 
     logoutUser: builder.mutation({
       query: credentials => ({
-        url: '/api/auth/logout',
+        url: `${USER_URL}/logout`,
         method: 'POST',
         body: credentials,
       }),
@@ -82,3 +81,5 @@ export const {
   useLoginUserMutation,
   useLogoutUserMutation,
 } = userApi;
+
+
