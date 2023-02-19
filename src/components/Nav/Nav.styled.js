@@ -24,6 +24,7 @@ export const Link = styled(NavLink)`
    font-size: ${theme.fontSizes.xxl};
    line-height: 1.37;
    color: ${theme.colors.secondText};
+   transition: color ${theme.transitionTiming};
    &:hover, :focus {
     color: ${theme.colors.accent};
    };

@@ -2,17 +2,19 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import Header from '../Header/Header';
+import { Box } from 'components/Box/Box';
 
 const SharedLayout = () => {
-
-    return (
-        <>
-            <Header />
-            <Suspense fallback="Loading...">
-                <Outlet />
-            </Suspense>
-        </>
-    );
+  return (
+    <>
+      <Header />
+      <Box as="main">
+        <Suspense fallback="Loading...">
+          <Outlet />
+        </Suspense>
+      </Box>
+    </>
+  );
 };
 
 export default SharedLayout;

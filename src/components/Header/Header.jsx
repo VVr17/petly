@@ -16,7 +16,7 @@ import { VscMenu } from 'react-icons/vsc';
 import Nav from 'components/Nav/Nav';
 import AuthNav from 'components/AuthNav/AuthNav';
 import UserNav from 'components/UserNav/UserNav';
-import { MobMenu } from 'components/ModalMenu/MobMenu';
+import { MobMenu } from 'components/MobMenu/MobMenu';
 
 const Header = () => {
   const [isAuth, setIsAuth] = useState(false);

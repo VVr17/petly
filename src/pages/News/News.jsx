@@ -1,7 +1,8 @@
+import Section from 'components/Section';
 import React from 'react';
 
 const News = () => {
-  return <div>News</div>;
+  return <Section>News</Section>;
 };
 
 export default News;

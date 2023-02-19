@@ -1,7 +1,8 @@
+import Section from 'components/Section';
 import React from 'react';
 
 const User = () => {
-  return <div>User</div>;
+  return <Section>User</Section>;
 };
 
 export default User;

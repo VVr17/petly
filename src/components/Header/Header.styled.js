@@ -4,6 +4,9 @@ import { theme, breakpoints } from '../../constants/theme';
 
 export const Container = styled.div`
   display: block;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
   box-sizing: border-box;
   padding: ${theme.space[3]} ${theme.space[4]} 0 ${theme.space[4]};
   @media(min-width: ${breakpoints[1]}px) {
