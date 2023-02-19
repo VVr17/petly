@@ -8,10 +8,8 @@ import TitlePage from 'components/Ui-Kit/TitlePage';
 const FriendsPage = () => {
   return (
     <Section>
-      <Container>
-        <TitlePage name={'Our friends'} />
-        <FriendsList />
-      </Container>
+      <TitlePage name={'Our friends'} />
+      <FriendsList />
     </Section>
   );
 };
