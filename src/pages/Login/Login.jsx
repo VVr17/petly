@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from 'components/LoginForm/LoginForm';
-import { logout } from '../../redux/api/userSlice';
+import { logout } from '../../redux/userSlice';
 import Section from 'components/Section';
 
 const Login = () => {

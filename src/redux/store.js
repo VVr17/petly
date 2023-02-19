@@ -8,7 +8,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { persistedUserReducer } from './api/userSlice';
+import { persistedUserReducer } from './userSlice';
 import { userApi } from './api/userApi';
 import { newsApi } from './api/newsApi';
 import { noticesApi } from './api/noticesApi';
