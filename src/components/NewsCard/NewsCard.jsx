@@ -12,10 +12,12 @@ import {
 } from './NewsCard.styled';
 
 const NewsCard = ({ title, url, description, date }) => {
+  const trimTitle = title.length > 38 ? title.slice(0, 34) + '...' : title;
+
   return (
     <WrapperCard>
       <LinearGradient></LinearGradient>
-      <Title>{title}</Title>
+      <Title>{trimTitle}</Title>
       <Text>{description}</Text>
       <WrapperSignature>
         <Date>{date}</Date>
