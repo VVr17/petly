@@ -5,14 +5,29 @@ export const theme = {
     lightText: '#FFFFFF', // white
     mainText: '#111111', // black
     secondText: '#181C27', //black
+    thirdText: '#111321', //black
     secondaryText: 'rgba(17, 17, 17, 0.6)', // grey
     accent: '#F59256', // orange
     hover: '#db793d',
     mainBackground: '#FDF7F2', // light orange
     cardBackground: '#FFFFFF', // white
+    secondaryBackground: 'rgba(255, 255, 255, 0.6)', //transparent white
+    secondaryHover: "rgba(255, 97, 1, 1)", //hover for button LearnMore
   },
 
-  space: ['0', '4px', '8px', '16px', '20px', '24px', '32px', '64px', '128px', '256px', '512px'],
+  space: [
+    '0',
+    '4px',
+    '8px',
+    '16px',
+    '20px',
+    '24px',
+    '32px',
+    '64px',
+    '128px',
+    '256px',
+    '512px',
+  ],
 
   fontFamily: {
     manrope: "'Manrope', sans-serif",
@@ -61,5 +76,6 @@ export const theme = {
   boxShadow: {
     main: '7px 4px 14px rgba(49, 21, 4, 0.07)',
     second: '7px 4px 14px rgba(0, 0, 0, 0.11)',
+    notice: '0px 4px 4px rgba(0, 0, 0, 0.25)' //for card notice
   },
 };

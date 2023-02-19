@@ -2,7 +2,7 @@ import React from 'react';
 import { ButtonStyled } from './Button.styled';
 import PropTypes from 'prop-types';
 
-// name: 'transparent' | 'filled'
+// name: 'transparent' | 'filled' | 'learnMore'
 const Button = ({ type = 'button', onClick, children, name, width }) => {
   return (
     <ButtonStyled name={name} type={type} onClick={onClick} width={width}>
