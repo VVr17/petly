@@ -28,29 +28,38 @@ const initialValues = {
 const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email address')
+    .regex(
+      /^([a-zA-Z][\w+-]+(?:\.\w+)?)@([\w-]+(?:\.[a-zA-Z]{2,10})+)$/,
+      'Please enter a valid email address, example: "mail@mail.com"'
+    )
     .required('Email is required')
-    .min(12)
-    .max(63),
+    .min(12, 'Email should be at least 12 characters long')
+    .max(63, 'Email should be up to 63 characters long'),
   password: Yup.string()
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{7,}$/,
-      'minimum seven characters, at least one uppercase letter, one lowercase letter and one number'
+      'Minimum seven characters, at least one uppercase letter, one lowercase letter and one number'
     )
-    .min(7, 'Password must be at least 7 characters long')
-    .max(32, 'Password must be up to 32 characters long')
+    .min(7, 'Password should be at least 7 characters long')
+    .max(32, 'Password should be up to 32 characters long')
     .required('Password is required'),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Please confirm your password'),
   name: Yup.string().required('Name is required'),
-  city: Yup.string().required('City is required'),
+  city: Yup.string()
+    .regex(
+      /^\s*(?:\w+\s*,\s*){1,}(?:\w+\s*)$/,
+      'Should be at least two words separated by string'
+    )
+    .required('City is required'),
   phone: Yup.string()
     .matches(
       /^\+380\d{9}$/,
       'Phone number should begin with +380 and contain 13 digits'
     )
-    .min(13, 'Phone number must be at least 10 digits')
-    .max(13, 'Phone number must be at most 10 digits')
+    .min(13, 'Phone number should be 13 digits')
+    .max(13, 'Phone number should be 13 digits')
     .required('Phone number is required'),
 });
 
