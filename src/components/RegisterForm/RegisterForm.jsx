@@ -46,8 +46,8 @@ const validationSchema = Yup.object().shape({
   city: Yup.string().required('City is required'),
   phone: Yup.string()
     .matches(
-      /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
-      'Invalid phone number'
+      /^\+380\d{9}$/,
+      'Phone number should begin with +380 and contain 13 digits'
     )
     .min(13, 'Phone number must be at least 10 digits')
     .max(13, 'Phone number must be at most 10 digits')
