@@ -2,7 +2,7 @@ import { theme } from 'constants/theme';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const WrapperCard = styled.div`
+export const WrapperCard = styled.li`
   width: 280px;
 
   ${theme.mq.tablet} {

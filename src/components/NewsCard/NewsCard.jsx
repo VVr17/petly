@@ -32,7 +32,7 @@ const NewsCard = ({ title, url, description, date }) => {
       <Text>{description}</Text>
       <WrapperSignature>
         <Date>{date}</Date>
-        <Link to={url} end>
+        <Link to={url} target="_blank" rel="noopener noreferrer">
           Read more
         </Link>
       </WrapperSignature>

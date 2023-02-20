@@ -24,11 +24,13 @@ export const WrapperTitle = styled.div`
   }
 `;
 
-export const CardList = styled.div`
+export const CardList = styled.ul`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 40px;
   align-items: center;
+  justify-content: center;
 
   ${theme.mq.tablet} {
     flex-wrap: wrap;
