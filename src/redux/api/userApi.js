@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { TAGS_TYPES, USER_URL } from 'constants/api';
 import baseQuery from 'redux/baseQuery';
-import { setUser, setToken, logout, setIsAuth } from '../userSlice';
+import { setUser, setToken, logout, setIsAuth } from '../user/userSlice';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
@@ -10,13 +10,11 @@ export const userApi = createApi({
   endpoints: builder => ({
     getCurrentUser: builder.query({
       query: () => `${USER_URL}/current`,
-      method: 'GET',
-      invalidatesTags: ['User'],
+      transformResponse: response => response.data,
+      providesTags: ['User'],
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
-          const {
-            data: { data },
-          } = await queryFulfilled;
+          const { data } = await queryFulfilled;
           dispatch(setUser(data));
           dispatch(setIsAuth(true));
         } catch (error) {}
@@ -72,6 +70,23 @@ export const userApi = createApi({
         } catch (error) {}
       },
     }),
+
+    updateUser: builder.mutation({
+      query: userData => ({
+        url: `${USER_URL}/current`,
+        method: 'PUT',
+        body: userData,
+      }),
+      invalidatesTags: ['User'],
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          const {
+            data: { data },
+          } = await queryFulfilled;
+          dispatch(setUser(data));
+        } catch (error) {}
+      },
+    }),
   }),
 });
 
@@ -81,5 +96,3 @@ export const {
   useLoginUserMutation,
   useLogoutUserMutation,
 } = userApi;
-
-

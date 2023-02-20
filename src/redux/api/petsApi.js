@@ -12,6 +12,19 @@ export const petsApi = createApi({
         method: 'POST',
         body: newPetData,
       }),
+      transformResponse: response => response.data,
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          // TODO: check if need to trigger user data to update
+        } catch (error) {}
+      },
+    }),
+    deletePet: builder.mutation({
+      query: petId => ({
+        url: `${PETS_URL}/${petId}`,
+        method: 'DELETE',
+      }),
+      transformResponse: response => response.data,
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           // TODO: check if need to trigger user data to update
@@ -21,4 +34,4 @@ export const petsApi = createApi({
   }),
 });
 
-export const { useAddPetMutation } = petsApi;
+export const { useAddPetMutation, useDeletePetMutation } = petsApi;

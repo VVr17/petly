@@ -12,10 +12,23 @@ import {
 } from './NewsCard.styled';
 
 const NewsCard = ({ title, url, description, date }) => {
+  function truncateString(str) {
+    if (str.length > 38) {
+      if (str.charAt(37) === ' ') {
+        return str.slice(0, 38) + '...';
+      } else {
+        return str.slice(0, str.lastIndexOf(' ', 38)) + '...';
+      }
+    } else {
+      return str;
+    }
+  }
+  const trimTitle = truncateString(title);
+
   return (
     <WrapperCard>
       <LinearGradient></LinearGradient>
-      <Title>{title}</Title>
+      <Title>{trimTitle}</Title>
       <Text>{description}</Text>
       <WrapperSignature>
         <Date>{date}</Date>

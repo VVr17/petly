@@ -30,22 +30,23 @@ export const Link = styled(NavLink)`
   &:hover,
   :focus {
     color: ${theme.colors.accent};
-  }
-  &:not(:last-child) {
-    margin-bottom: 40px;
-  }
-  @media (min-width: ${breakpoints[1]}px) {
-    font-size: ${theme.fontSizes.xxxl};
-    &:not(:last-child) {
-      margin-bottom: 60px;
-    }
-  }
-  @media (min-width: ${breakpoints[2]}px) {
-    margin-left: 80px;
-    font-size: ${theme.fontSizes.m};
-    line-height: 1.35;
-    &:not(:last-child) {
-      margin-bottom: 0;
-    }
-  } ;
+    text-decoration: underline;
+   };
+   &:not(:last-child) {
+      margin-bottom: 40px;
+   }
+   @media(min-width: ${breakpoints[1]}px) {
+      font-size: ${theme.fontSizes.xxxl};
+      &:not(:last-child) {
+         margin-bottom: 60px;
+      }
+   }
+   @media(min-width: ${breakpoints[2]}px) {
+     margin-left: 80px;
+     font-size: ${theme.fontSizes.m};
+     line-height: 1.35;
+     &:not(:last-child) {
+         margin-bottom: 0;
+      }
+   };
 `;
