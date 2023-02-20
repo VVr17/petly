@@ -27,6 +27,7 @@ export const Link = styled(NavLink)`
    transition: color ${theme.transitionTiming};
    &:hover, :focus {
     color: ${theme.colors.accent};
+    text-decoration: underline;
    };
    &:not(:last-child) {
       margin-bottom: 40px;
