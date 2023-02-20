@@ -34,8 +34,8 @@ export const WrapContainer = styled.div`
   ${theme.mq.tablet} {
     width: ${theme.breakpoints[1]};
     min-height: 1127px;
-    padding-right: ${({ theme }) => theme.space[4]};
-    padding-left: ${({ theme }) => theme.space[4]};
+    padding-right: ${({ theme }) => theme.space[6]};
+    padding-left: ${({ theme }) => theme.space[6]};
     background: url(${portraitTablet}) no-repeat bottom 0 left 60px,
       url(${waveTablet}) no-repeat bottom 0 left 0px;
   }

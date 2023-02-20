@@ -9,8 +9,8 @@ export const ContainerStyled = styled.div`
 
   ${theme.mq.tablet} {
     width: ${({ theme }) => theme.breakpoints[1]};
-    padding-right: ${({ theme }) => theme.space[4]};
-    padding-left: ${({ theme }) => theme.space[4]};
+    padding-right: ${({ theme }) => theme.space[6]};
+    padding-left: ${({ theme }) => theme.space[6]};
   }
 
   ${theme.mq.desktop} {
