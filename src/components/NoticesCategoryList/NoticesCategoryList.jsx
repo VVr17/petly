@@ -12,9 +12,9 @@ const NoticesCategoryList = () => {
   if(!data) {
     return
   } 
-  const  noticesByCategory = data.data; 
+  const  noticesByCategory = data; 
   const showNotices = data && !error && !isLoading; 
-  console.log(noticesByCategory)
+  console.log(noticesByCategory)  
 
   return (
     <GalleryNotices>
