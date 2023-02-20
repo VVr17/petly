@@ -5,16 +5,17 @@ import { GalleryNotices } from './NoticesCategoryList.styled';
 import { useSelector } from 'react-redux';
 
 const NoticesCategoryList = () => {
-  const category = "sell"
-  const { data, error, isLoading } = useGetNoticeByCategoryQuery(category, {skip: !category});
+  const category = 'sell';
+  const {
+    data: noticesByCategory,
+    error,
+    isLoading,
+  } = useGetNoticeByCategoryQuery(category, { skip: !category });
   const { isAuth } = useSelector(state => state.user);
 
-  if(!data) {
-    return
-  } 
-  const  noticesByCategory = data.data; 
-  const showNotices = data && !error && !isLoading; 
-  console.log(noticesByCategory)
+  if (!noticesByCategory) return;
+  const showNotices = noticesByCategory && !error && !isLoading;
+  console.log(noticesByCategory);
 
   return (
     <GalleryNotices>

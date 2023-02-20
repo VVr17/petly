@@ -28,13 +28,12 @@ const Notices = () => {
         <FindPetFilter />
         <AddPetButton handleClick={handleClick} />
       </NavContainer>
+      <NoticesCategoryList />
       {isOpen && (
         <ModalComponent closeModal={closeModal}>
           <AddNoticeFormFirst />
         </ModalComponent>
       )}
-
-      <NoticesCategoryList />
     </Section>
   );
 };
