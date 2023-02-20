@@ -23,17 +23,27 @@ export const Title = styled.h1`
 `;
 
 export const WrapContainer = styled.div`
+  margin: 0 auto;
+  padding-right: 20px;
+  padding-left: 20px;
+  width: ${theme.breakpoints[0]};
   min-height: 532px;
   background: url(${portraitMobile}) no-repeat bottom 0 left 0,
     url(${waveMobile}) no-repeat bottom 0 left 0;
 
   ${theme.mq.tablet} {
+    width: ${theme.breakpoints[1]};
     min-height: 1127px;
+    padding-right: ${({ theme }) => theme.space[4]};
+    padding-left: ${({ theme }) => theme.space[4]};
     background: url(${portraitTablet}) no-repeat bottom 0 left 60px,
       url(${waveTablet}) no-repeat bottom 0 left 0px;
   }
 
   ${theme.mq.desktop} {
+    width: ${theme.breakpoints[2]};
+    padding-right: ${({ theme }) => theme.space[3]};
+    padding-left: ${({ theme }) => theme.space[3]};
     min-height: 702px;
     background: url(${portraitDesktop}) no-repeat bottom 0 left 736px,
       url(${waveDesktop}) no-repeat bottom 0 left 62px;
