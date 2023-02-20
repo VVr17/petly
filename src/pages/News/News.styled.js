@@ -30,6 +30,7 @@ export const CardList = styled.ul`
   flex-direction: column;
   gap: 40px;
   align-items: center;
+  justify-content: center;
 
   ${theme.mq.tablet} {
     flex-wrap: wrap;
