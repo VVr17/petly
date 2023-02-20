@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import { breakpoints } from 'constants/theme';
 
-export const FriendLink = styled.a`
+//============================= LINKS (a) ===========================
+
+export const FriendLinkTitle = styled.a`
   display: inline-block;
   margin-bottom: 12px;
   font-family: ${p => p.theme.fontFamily.manrope};
@@ -26,10 +27,10 @@ export const FriendLink = styled.a`
   }
 
   ${p => p.theme.mq.tablet} {
-    margin-bottom: 16px;
+    margin-bottom: ${p => p.theme.space[3]};
   }
   ${p => p.theme.mq.desktop} {
-    font-size: 20px;
+    font-size: ${p => p.theme.fontSizes.m};
     line-height: 27px;
   }
 
@@ -38,108 +39,25 @@ export const FriendLink = styled.a`
   }
 `;
 
-export const FriendListItem = styled.li`
-  width: 280px;
-  min-height: 192px;
+export const FriendLink = styled.a`
+  font-weight: ${p => p.theme.fontWeight.medium};
+  font-size: ${p => p.theme.fontSizes.xxxs};
+  line-height: 16px;
+  transition: color ${p => p.theme.transitionTiming};
+  :hover,
+  :focus {
+    color: ${p => p.theme.colors.accent};
+  }
+`;
+
+// ========================= LIST (ul) ===========================
+
+export const FriendContentList = styled.ul`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 12px;
-  padding: 12px;
-  background-color: ${p => p.theme.colors.cardBackground};
-  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-  border-radius: 20px;
-
-  @media screen and (min-width: 768px) {
-    /* margin-right: 32px; */
-    margin-bottom: 32px;
-    padding: 16px;
-    border-radius: 40px;
-  }
-  ${p => p.theme.mq.desktop} {
-    flex-basis: calc((100% - 16px * 4) / 3);
-
-    /* min-height: 287px; */
-  }
-`;
-
-export const FriendTitle = styled.h3`
-  text-align: center;
-  padding: 0 4px;
-`;
-
-export const FriendContentWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  gap: 12px;
-  width: 100%;
-
-  @media screen and (max-width: 768px) {
-    gap: 14px;
-  }
-
-  @media screen and (max-width: 1024px) {
-    gap: 16px;
-  }
-`;
-
-export const ImgWrapper = styled.div`
-  width: 110px;
-  height: 78px;
-  flex: 0 0 auto;
-
-  @media screen and (max-width: 768px) {
-    width: 120px;
-    height: 85px;
-  }
-
-  @media screen and (max-width: 1024px) {
-    width: 158px;
-    height: 112px;
-  }
-`;
-
-export const FriendImg = styled.img`
-  display: block;
-  object-fit: contain;
-  object-position: 50% 50%;
-`;
-
-export const TextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-export const HoursWrapper = styled.div`
+  align-items: flex-start;
+  justify-content: center;
   position: relative;
-`;
-
-export const FriendText = styled.p`
-  margin-top: 4px;
-
-  font-family: inherit;
-  font-size: 12px;
-  line-height: 1.35;
-
-  font-weight: 500;
-  color: #606060;
-
-  @media screen and (max-width: 768px) {
-    margin-top: 8px;
-    font-size: 14px;
-  }
-
-  @media screen and (max-width: 1024px) {
-    margin-top: 12px;
-    font-size: 16px;
-  }
-`;
-
-export const FriendTime = styled(FriendText)`
-  &:hover {
-    cursor: red;
-    color: #606060;
-  }
 `;
 
 export const HoursOfWeek = styled.ul`
@@ -153,14 +71,66 @@ export const HoursOfWeek = styled.ul`
       gap: 4px;`
       : `display: none;`}
   padding: 12px;
-  background-color: #606060;
+  background-color: ${p => p.theme.colors.secondaryText};
   border: 1px solid black;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+  box-shadow: ${p => p.theme.boxShadow.notice};
   border-radius: 8px;
 
   @media screen and (max-width: 768px) {
     top: calc(100% + 4px);
   }
+`;
+
+export const TimeList = styled.ul`
+  position: absolute;
+  top: 25px;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  background-color: ${p => p.theme.colors.lightText};
+  border: ${p => `2px solid ${p.theme.colors.accent}`};
+  box-shadow: ${p => p.theme.boxShadow.notice};
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: -4px;
+`;
+
+//=================== LIST ITEMS (li) ============================
+
+export const FriendListItem = styled.li`
+  width: 280px;
+  min-height: 192px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 12px;
+  padding: 12px;
+  background-color: ${p => p.theme.colors.cardBackground};
+  box-shadow: ${p => p.theme.boxShadow.main};
+  border-radius: 20px;
+
+  ${p => p.theme.mq.tablet} {
+    margin-bottom: 32px;
+    padding: 16px;
+    border-radius: 40px;
+  }
+
+  ${p => p.theme.mq.desktop} {
+    flex-basis: calc((100% - 16px * 4) / 3);
+  }
+`;
+
+export const TextWrapper = styled.li`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  padding-left: 5px;
 `;
 
 export const HoursItem = styled.li`
@@ -170,17 +140,103 @@ export const HoursItem = styled.li`
   gap: 12px;
 
   font-family: inherit;
-  font-size: 12px;
+  font-size: ${p => p.theme.fontSizes.xxxs};
   line-height: 1.35;
 
-  font-weight: 500;
-  color: #606060;
+  font-weight: ${p => p.theme.fontWeight.medium};
+  color: ${p => p.theme.colors.secondaryText};
 
   @media screen and (max-width: 768px) {
-    font-size: 14px;
+    font-size: ${p => p.theme.fontSizes.xxs};
   }
 
   @media screen and (max-width: 768px) {
-    font-size: 16px;
+    font-size: ${p => p.theme.fontSizes.xs};
+  }
+`;
+
+export const TimeItem = styled.li`
+  margin-bottom: 4px;
+  width: 100px;
+  @media screen and (min-width: 768px) {
+    width: 120px;
+  }
+`;
+
+// ======================= TEXT, TITLE (p, h3) ======================
+
+export const FriendTitle = styled.h3`
+  text-align: center;
+  padding: 0 4px;
+`;
+
+export const FriendTime = styled(FriendText)`
+  &:hover {
+    color: ${p => p.theme.colors.secondaryText};
+  }
+`;
+
+export const FriendText = styled.p`
+  font-weight: ${p => p.theme.fontWeight.medium};
+  font-size: ${p => p.theme.fontSizes.xxxs};
+  line-height: 1.35;
+
+  @media screen and (min-width: 768px) {
+    font-size: ${p => p.theme.fontSizes.xxs};
+    line-height: 19px;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: ${p => p.theme.fontSizes.xs};
+    line-height: 22px;
+  }
+`;
+
+// ============= DIV, IMG, BUTTON =========================
+export const FriendContentWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+`;
+
+export const FriendImg = styled.img`
+  max-width: 110px;
+  @media screen and (min-width: 768px) {
+    max-width: 120px;
+    margin-right: 14px;
+  }
+  @media screen and (min-width: 1280px) {
+    max-width: 158px;
+    margin-right: 16px;
+  }
+`;
+
+export const TimeBtn = styled.button`
+  font-weight: ${p => p.theme.fontWeight.medium};
+  font-size: ${p => p.theme.fontSizes.xxxs};
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  background-color: inherit;
+  transition: color ${p => p.theme.transitionTiming};
+  &.active {
+    color: ${p => p.theme.colors.accent};
+  }
+  :hover:not(.active),
+  :focus-visible:not(.active) {
+    color: ${p => p.theme.colors.accent};
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: ${p => p.theme.fontSizes.xxs};
+    line-height: 19px;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: ${p => p.theme.fontSizes.xs};
+    line-height: 22px;
   }
 `;

@@ -1,6 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { userApi } from './api/userApi';
 import { newsApi } from './api/newsApi';
+import { friendsApi } from './api/friendsApi';
+import FriendsReducer from './api/friendsSlice';
 import {
   persistStore,
   FLUSH,
@@ -17,13 +19,14 @@ export const store = configureStore({
     [userApi.reducerPath]: userApi.reducer,
     user: persistedUserReducer,
     [newsApi.reducerPath]: newsApi.reducer,
+    [friendsApi.reducerPath]: friendsApi.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(userApi.middleware, newsApi.middleware),
+    }).concat(userApi.middleware, newsApi.middleware, friendsApi.middleware),
 });
 
 export const persistor = persistStore(store);
