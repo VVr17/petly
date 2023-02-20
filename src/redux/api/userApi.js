@@ -11,7 +11,7 @@ export const userApi = createApi({
     getCurrentUser: builder.query({
       query: () => `${USER_URL}/current`,
       method: 'GET',
-      invalidatesTags: ['User'],
+      providesTags: ['User'],
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const {
@@ -69,6 +69,23 @@ export const userApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           dispatch(logout());
+        } catch (error) {}
+      },
+    }),
+
+    updateUser: builder.mutation({
+      query: userData => ({
+        url: `${USER_URL}/current`,
+        method: 'PUT',
+        body: userData,
+      }),
+      invalidatesTags: ['User'],
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          const {
+            data: { data },
+          } = await queryFulfilled;
+          dispatch(setUser(data));
         } catch (error) {}
       },
     }),
