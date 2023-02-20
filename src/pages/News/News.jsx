@@ -8,7 +8,7 @@ import TitlePage from 'components/Ui-Kit/TitlePage';
 
 const News = () => {
   const { data, error, isLoading } = useGetNewsQuery();
-  let news = data ? data.data : [];
+  let news = data ? data : [];
   const [filteredNews, setFilteredNews] = useState([]);
 
   const searchQuery = e => {
@@ -21,7 +21,7 @@ const News = () => {
 
   useEffect(() => {
     if (data) {
-      setFilteredNews(data.data);
+      setFilteredNews(data);
     }
   }, [data]);
 
