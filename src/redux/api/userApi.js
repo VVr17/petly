@@ -14,9 +14,7 @@ export const userApi = createApi({
       providesTags: ['User'],
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
-          const {
-            data: { data },
-          } = await queryFulfilled;
+          const { data } = await queryFulfilled;
           dispatch(setUser(data));
           dispatch(setIsAuth(true));
         } catch (error) {}
