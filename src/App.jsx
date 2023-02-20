@@ -12,9 +12,10 @@ import User from 'pages/User';
 import NotFound from 'pages/NotFound';
 import { useGetCurrentUserQuery } from 'redux/api/userApi';
 import { useSelector } from 'react-redux';
+import { selectTokenState } from 'redux/user/userSelectors';
 
 const App = () => {
-  const { token, isAuth, user } = useSelector(state => state.user);
+  const token = useSelector(selectTokenState);
   const { data, isLoading } = useGetCurrentUserQuery(null, {
     skip: token === null,
   });
