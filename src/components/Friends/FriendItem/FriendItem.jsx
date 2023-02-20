@@ -7,6 +7,7 @@ import {
   FriendListItem,
   FriendLinkTitle,
   FriendLink,
+  FriendTime,
   TextWrapper,
   FriendImg,
   FriendContentList,
@@ -26,6 +27,7 @@ export const FriendItem = ({
   phone,
 }) => {
   const [isVisible, setIsVisible] = useState(true);
+
   const weekDays = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
   const newWorkDays =
     workDays &&
@@ -40,8 +42,10 @@ export const FriendItem = ({
           {title}
         </FriendLinkTitle>
       </FriendTitle>
+
       <FriendContentWrapper>
         <FriendImg src={imageUrl ?? defaultImage} alt={title} loading="lazy" />
+
         <FriendContentList>
           <TextWrapper
             onClick={() => {
@@ -53,27 +57,26 @@ export const FriendItem = ({
               }, 3000);
             }}
           >
-            {workDays === null || workDays === undefined ? (
+            {workDays === undefined || workDays === null ? (
               <>
-                <FriendText>Time: </FriendText>
+                <FriendText>Time:</FriendText>
                 <FriendText>------------</FriendText>
               </>
             ) : (
               <>
-                {' '}
-                {/* {workDays[0].isOpen ? (
+                {workDays[0] && workDays[0].isOpen ? (
+                  <>
+                    <FriendTime>Time:</FriendTime>
+                    <TimeBtn>
+                      {workDays[0].from}-{workDays[0].to}
+                    </TimeBtn>
+                  </>
+                ) : (
                   <>
                     <FriendText>Time:</FriendText>
-                    <Time>
-                      {workDays[0].from}-{workDays[0].to}
-                    </Time>
+                    <FriendText>Closed</FriendText>
                   </>
-                ) : ( */}
-                <>
-                  <FriendText>Time:</FriendText>
-                  <TimeBtn>Closed</TimeBtn>
-                </>
-                {/* )} */}
+                )}
                 {isVisible || <TimeTable shedule={newWorkDays} />}
               </>
             )}

@@ -48,6 +48,12 @@ export const FriendLink = styled.a`
   :focus {
     color: ${p => p.theme.colors.accent};
   }
+  ${p => p.theme.mq.tablet} {
+    font-size: ${p => p.theme.fontSizes.xxs};
+  }
+  ${p => p.theme.mq.desktop} {
+    font-size: ${p => p.theme.fontSizes.xs};
+  } ;
 `;
 
 // ========================= LIST (ul) ===========================
@@ -76,7 +82,7 @@ export const HoursOfWeek = styled.ul`
   box-shadow: ${p => p.theme.boxShadow.notice};
   border-radius: 8px;
 
-  @media screen and (max-width: 768px) {
+  ${p => p.theme.mq.tablet} {
     top: calc(100% + 4px);
   }
 `;
@@ -92,7 +98,7 @@ export const TimeList = styled.ul`
   justify-content: center;
 
   background-color: ${p => p.theme.colors.lightText};
-  border: ${p => `2px solid ${p.theme.colors.accent}`};
+  border: ${p => `1px solid ${p.theme.colors.accent}`};
   box-shadow: ${p => p.theme.boxShadow.notice};
   border-radius: 8px;
   padding: 12px;
@@ -146,20 +152,20 @@ export const HoursItem = styled.li`
   font-weight: ${p => p.theme.fontWeight.medium};
   color: ${p => p.theme.colors.secondaryText};
 
-  @media screen and (max-width: 768px) {
+  ${p => p.theme.mq.tablet} {
     font-size: ${p => p.theme.fontSizes.xxs};
   }
 
-  @media screen and (max-width: 768px) {
+  ${p => p.theme.mq.desktop} {
     font-size: ${p => p.theme.fontSizes.xs};
   }
 `;
 
 export const TimeItem = styled.li`
   margin-bottom: 4px;
-  width: 100px;
-  @media screen and (min-width: 768px) {
-    width: 120px;
+  /* width: 100px; */
+  ${p => p.theme.mq.tablet} {
+    /* width: 120px; */
   }
 `;
 
@@ -170,24 +176,25 @@ export const FriendTitle = styled.h3`
   padding: 0 4px;
 `;
 
-export const FriendTime = styled(FriendText)`
-  &:hover {
-    color: ${p => p.theme.colors.secondaryText};
-  }
-`;
-
 export const FriendText = styled.p`
   font-weight: ${p => p.theme.fontWeight.medium};
   font-size: ${p => p.theme.fontSizes.xxxs};
   line-height: 1.35;
 
-  @media screen and (min-width: 768px) {
+  ${p => p.theme.mq.tablet} {
     font-size: ${p => p.theme.fontSizes.xxs};
     line-height: 19px;
   }
-  @media screen and (min-width: 1280px) {
+  ${p => p.theme.mq.desktop} {
     font-size: ${p => p.theme.fontSizes.xs};
     line-height: 22px;
+  }
+`;
+
+export const FriendTime = styled(FriendText)`
+  transition: color ${p => p.theme.transitionTiming};
+  &:hover {
+    color: ${p => p.theme.colors.secondaryText};
   }
 `;
 
@@ -202,11 +209,11 @@ export const FriendContentWrapper = styled.div`
 
 export const FriendImg = styled.img`
   max-width: 110px;
-  @media screen and (min-width: 768px) {
+  ${p => p.theme.mq.tablet} {
     max-width: 120px;
     margin-right: 14px;
   }
-  @media screen and (min-width: 1280px) {
+  ${p => p.theme.mq.desktop} {
     max-width: 158px;
     margin-right: 16px;
   }
@@ -231,11 +238,11 @@ export const TimeBtn = styled.button`
     color: ${p => p.theme.colors.accent};
   }
 
-  @media screen and (min-width: 768px) {
+  ${p => p.theme.mq.tablet} {
     font-size: ${p => p.theme.fontSizes.xxs};
     line-height: 19px;
   }
-  @media screen and (min-width: 1280px) {
+  ${p => p.theme.mq.desktop} {
     font-size: ${p => p.theme.fontSizes.xs};
     line-height: 22px;
   }

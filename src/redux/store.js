@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import { userApi } from './api/userApi';
 import { newsApi } from './api/newsApi';
 import { friendsApi } from './api/friendsApi';
-import FriendsReducer from './api/friendsSlice';
 import {
   persistStore,
   FLUSH,

@@ -1,13 +1,13 @@
 import { React } from 'react';
 import PropTypes from 'prop-types';
+
 import { FriendsUl } from './FriendsList.styled.jsx';
 import { FriendItem } from '../FriendItem/FriendItem';
-// import JSONfriends from '../data/friends';
 
 const FriendsList = ({ friends }) => {
   return (
     <FriendsUl>
-      {friends.data.map(
+      {friends.map(
         ({
           title,
           url,
@@ -36,7 +36,7 @@ const FriendsList = ({ friends }) => {
 };
 
 FriendsList.propTypes = {
-  friends: PropTypes.object,
+  friends: PropTypes.array,
 };
 
 export default FriendsList;

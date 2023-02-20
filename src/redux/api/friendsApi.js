@@ -6,11 +6,9 @@ export const friendsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
   }),
-  tagTypes: ['Friends'],
   endpoints: builder => ({
     getFriends: builder.query({
       query: () => `/api/services`,
-      providesTags: ['Friends'],
     }),
   }),
 });
