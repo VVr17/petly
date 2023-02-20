@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { CardList, Title, WrapperTitle } from './News.styled';
 import { useGetNewsQuery } from '../../redux/api/newsApi';
 import TitlePage from 'components/Ui-Kit/TitlePage';
+import Loader from 'components/Loader/loader';
 
 const News = () => {
   const { data, error, isLoading } = useGetNewsQuery();
@@ -32,7 +33,7 @@ const News = () => {
         <SearchForm handleSubmit={searchQuery} />
       </WrapperTitle>
       <CardList>
-        {isLoading && <p>Loading...</p>}
+        {isLoading && <Loader />}
         {error && <div>{error.message}</div>}
         {filteredNews &&
           filteredNews.map(item => (
