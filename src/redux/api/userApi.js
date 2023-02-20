@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { TAGS_TYPES, USER_URL } from 'constants/api';
 import baseQuery from 'redux/baseQuery';
-import { setUser, setToken, logout, setIsAuth } from '../userSlice';
+import { setUser, setToken, logout, setIsAuth } from '../user/userSlice';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
@@ -81,5 +81,3 @@ export const {
   useLoginUserMutation,
   useLogoutUserMutation,
 } = userApi;
-
-
