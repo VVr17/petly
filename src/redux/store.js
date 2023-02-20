@@ -14,6 +14,7 @@ import { newsApi } from './api/newsApi';
 import { noticesApi } from './api/noticesApi';
 import { petsApi } from './api/petsApi';
 import { servicesApi } from './api/servicesApi';
+import { filterReducer } from './filter/filterSlice';
 
 export const store = configureStore({
   reducer: {
@@ -23,6 +24,7 @@ export const store = configureStore({
     [petsApi.reducerPath]: petsApi.reducer,
     [servicesApi.reducerPath]: servicesApi.reducer,
     user: persistedUserReducer,
+    noticesFilter: filterReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
