@@ -17,7 +17,7 @@ const Notices = () => {
   const closeModal = () => {
     setIsOpen(false);
   };
-  // function toggleModal(e) {
+  // function toggleModal(e) {z
   //   setIsOpen(!isOpen);
   // }
   return (

@@ -9,7 +9,10 @@ export const noticesApi = createApi({
     getNoticeByCategory: builder.query({
       query: categoryName => `${NOTICES_URL}/category/${categoryName}`,
     }),
+    getFavorite: builder.query({
+      query: () => `${NOTICES_URL}/category/favorites`,
+    }),
   }),
 });
 
-export const { useGetNoticeByCategoryQuery } = noticesApi;
+export const { useGetNoticeByCategoryQuery, useGetFavoriteQuery } = noticesApi;
