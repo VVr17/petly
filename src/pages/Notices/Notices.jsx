@@ -7,7 +7,8 @@ import SearchForm from 'components/Ui-Kit/SearchForm/SearchForm';
 import { NavContainer } from './Notices.styled';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
 import ModalComponent from 'components/Modal';
-import AddNoticeFormFirst from 'components/AddNoticeForm';
+import AddNoticeFormHeader from 'components/AddNoticeForm';
+import AddPetForm from 'components/AddNoticeForm/AddPetForm/index.js';
 
 const Notices = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +31,8 @@ const Notices = () => {
       </NavContainer>
       {isOpen && (
         <ModalComponent closeModal={closeModal}>
-          <AddNoticeFormFirst />
+          <AddNoticeFormHeader />
+          <AddPetForm onClose={closeModal} />
         </ModalComponent>
       )}
 
