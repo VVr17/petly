@@ -54,12 +54,12 @@ const StepOne = () => {
         label="Date of birth*"
         placeholder="Type date of birth"
       />
-      <InputField
+      {/* <InputField
         name="birthDate"
         type="text"
         placeholder="Type date of birth"
         label="Date of birth*"
-      />
+      /> */}
       <InputField
         name="breed"
         type="text"

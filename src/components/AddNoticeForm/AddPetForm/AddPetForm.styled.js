@@ -39,7 +39,20 @@ export const ButtonFilterItem = styled.li`
   margin-bottom: 28px;
 `;
 
+export const RadioContainer = styled.div`
+  display: flex;
+`;
+
+export const RadioLabel = styled.label`
+  cursor: pointer;
+  font-family: ${theme.fontFamily.manrope};
+  font-weight: ${theme.fontWeight.medium};
+  font-size: ${theme.fontSizes.m};
+`;
+
 export const RadioButton = styled(Field)`
-  margin-right: 15px;
-  margin-bottom: 28px;
+  // display: none;
+  &:checked + ${RadioLabel} {
+    color: ${theme.colors.accent};
+  }
 `;
