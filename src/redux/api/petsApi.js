@@ -12,6 +12,7 @@ export const petsApi = createApi({
         method: 'POST',
         body: newPetData,
       }),
+      transformResponse: response => response.data,
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           // TODO: check if need to trigger user data to update
@@ -23,6 +24,7 @@ export const petsApi = createApi({
         url: `${PETS_URL}/${petId}`,
         method: 'DELETE',
       }),
+      transformResponse: response => response.data,
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           // TODO: check if need to trigger user data to update

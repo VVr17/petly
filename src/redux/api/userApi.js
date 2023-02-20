@@ -11,7 +11,6 @@ export const userApi = createApi({
     getCurrentUser: builder.query({
       query: () => `${USER_URL}/current`,
       transformResponse: response => response.data,
-      method: 'GET',
       providesTags: ['User'],
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
