@@ -1,6 +1,10 @@
 import React from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
-import { FormWrapper, FormField, Button } from './SearchForm.styled';
+import {
+  FormWrapper,
+  FormField,
+  Button,
+  AiOutlineSearch,
+} from './SearchForm.styled';
 import PropTypes from 'prop-types';
 
 const SearchForm = ({ handleSubmit }) => {
