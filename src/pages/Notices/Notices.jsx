@@ -8,7 +8,7 @@ import { NavContainer } from './Notices.styled';
 import AddPetButton from 'components/AddPetButton';
 import ModalComponent from 'components/Modal';
 import AddNoticeFormHeader from 'components/AddNoticeForm';
-import AddPetForm from 'components/AddNoticeForm';
+import AddPetForm from 'components/AddPetForm';
 
 const Notices = () => {
   const [isOpen, setIsOpen] = useState(false);
