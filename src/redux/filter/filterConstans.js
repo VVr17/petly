@@ -1,7 +1,7 @@
 export const statusFilter = Object.freeze({
    sell: 'sell',
-   lostAndFound: 'lostAndFound',
-   inGoodHands: 'inGoodHands',
-   favoriteAds: 'favoriteAds',
+   lostAndFound: 'lost-found',
+   inGoodHands: 'in-good-hands',
+   favoriteAds: 'favorites',
    myAds: 'myAds',
  });

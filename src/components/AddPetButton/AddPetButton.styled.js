@@ -14,7 +14,6 @@ export const Button = styled.button`
     align-items: center;
   text-align: center;
   }
-
 `;
 
 export const ButtonTitle = styled.span`
