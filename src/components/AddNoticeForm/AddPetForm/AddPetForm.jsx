@@ -13,8 +13,8 @@ import {
   RadioLabel,
   RadioItem,
 } from './AddPetForm.styled';
-import Male from '../../assets/images/desktop/male.svg';
-import Female from '../../assets/images/desktop/female.svg';
+import Male from '../../../assets/images/desktop/male.svg';
+import Female from '../../../assets/images/desktop/female.svg';
 
 // Values for Formik
 

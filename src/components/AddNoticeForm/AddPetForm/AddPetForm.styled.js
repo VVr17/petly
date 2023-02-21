@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
 import { theme, breakpoints } from 'constants/theme';
-import Plus from '../../assets/images/desktop/plus.svg';
+import Plus from '../../../assets/images/desktop/plus.svg';
 import { useDropzone } from 'react-dropzone';
 
 export const FormWrapper = styled(Form)`
