@@ -4,6 +4,7 @@ import {
   FormField,
   Button,
   AiOutlineSearch,
+  AiOutlineCloseCircle,
 } from './SearchForm.styled';
 import PropTypes from 'prop-types';
 
@@ -14,6 +15,9 @@ const SearchForm = ({ handleSubmit }) => {
 
       <Button type="submit">
         <AiOutlineSearch />
+      </Button>
+      <Button type="button">
+        <AiOutlineCloseCircle />
       </Button>
     </FormWrapper>
   );
