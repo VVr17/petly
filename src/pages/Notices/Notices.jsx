@@ -9,6 +9,8 @@ import AddPetButton from 'components/AddPetButton';
 import ModalComponent from 'components/Modal';
 import AddNoticeFormHeader from 'components/AddNoticeForm';
 import AddPetForm from 'components/AddPetForm';
+// import AddPetForm from 'components/AddNoticeForm/AddPetForm';
+import { AnimatePresence } from 'framer-motion';
 
 const Notices = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,12 +32,15 @@ const Notices = () => {
         <AddPetButton handleClick={handleClick} />
       </NavContainer>
       <NoticesCategoryList />
-      {isOpen && (
-        <ModalComponent closeModal={closeModal}>
-          <AddNoticeFormHeader />
-          <AddPetForm onClose={closeModal} />
-        </ModalComponent>
-      )}
+
+      <AnimatePresence>
+        {isOpen && (
+          <ModalComponent closeModal={closeModal} key="popUp">
+            <AddNoticeFormHeader />
+            <AddPetForm onClose={closeModal} />
+          </ModalComponent>
+        )}
+      </AnimatePresence>
     </Section>
   );
 };

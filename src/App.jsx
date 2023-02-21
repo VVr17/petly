@@ -1,43 +1,54 @@
-import React from 'react';
-import { GlobalStyle } from 'App.styled';
-import { Route, Routes } from 'react-router-dom';
-import Home from 'pages/Home';
-import Register from 'pages/Register';
-import Login from 'pages/Login';
-import Friends from 'pages/FriendsPage';
-import News from 'pages/News';
-import Notices from 'pages/Notices';
-import SharedLayout from 'components/SharedLayout/SharedLayout';
-import User from 'pages/User';
-import NotFound from 'pages/NotFound';
-import { useGetCurrentUserQuery } from 'redux/api/userApi';
+import React, { Suspense } from 'react';
 import { useSelector } from 'react-redux';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { GlobalStyle } from 'App.styled';
+import { useGetCurrentUserQuery } from 'redux/api/userApi';
 import { selectTokenState } from 'redux/user/userSelectors';
+import Loader from 'components/Loader';
+import {
+  Friends,
+  Home,
+  Login,
+  News,
+  NotFound,
+  Notices,
+  Register,
+  SharedLayout,
+  User,
+} from 'lazyLoading';
+import { AnimatePresence } from 'framer-motion';
 
 const App = () => {
+  const location = useLocation();
   const token = useSelector(selectTokenState);
-  const { data, isLoading } = useGetCurrentUserQuery(null, {
+  const { data, isFetching } = useGetCurrentUserQuery(null, {
     skip: token === null,
   });
 
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
+  if (isFetching) return <Loader />;
 
   return (
     <>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Home />} />
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={<Login />} />
-          <Route path="user" element={<User />} />
-          <Route path="friends" element={<Friends />} />
-          <Route path="news" element={<News />} />
-          <Route path="notices" element={<Notices />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+      <AnimatePresence>
+        <Suspense fallback={<Loader />}>
+          <Routes location={location}>
+            <Route path="/" element={<SharedLayout />} key={location.key}>
+              <Route index element={<Home />} key={location.key} />
+              <Route
+                path="register"
+                element={<Register />}
+                key={location.key}
+              />
+              <Route path="login" element={<Login />} key={location.key} />
+              <Route path="user" element={<User />} key={location.key} />
+              <Route path="friends" element={<Friends />} key={location.key} />
+              <Route path="news" element={<News />} key={location.key} />
+              <Route path="notices" element={<Notices />} key={location.key} />
+              <Route path="*" element={<NotFound />} key={location.key} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </AnimatePresence>
       <GlobalStyle />
     </>
   );

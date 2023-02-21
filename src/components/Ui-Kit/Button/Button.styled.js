@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-export const ButtonStyled = styled.button`
+export const ButtonStyled = styled(motion.button)`
   display: block;
   border: none;
   font-family: inherit;
@@ -17,9 +18,10 @@ export const ButtonStyled = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme, name }) =>
-    name === 'filled' ? theme.colors.accent : 'transparent'};
-  color: ${({ theme, name }) => {
+  background-color: ${({ theme, name, selected }) =>
+    name === 'filled' || selected ? theme.colors.accent : 'transparent'};
+
+  color: ${({ theme, name, selected }) => {
     switch (name) {
       case 'transparent':
         return theme.colors.mainText;
@@ -27,6 +29,8 @@ export const ButtonStyled = styled.button`
         return theme.colors.lightText;
       case 'learnMore':
         return theme.colors.accent;
+      case 'filter':
+        return selected ? theme.colors.lightText : theme.colors.mainText;
       default:
         return theme.colors.lightText;
     }
