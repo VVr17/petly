@@ -12,6 +12,7 @@ import {
 import { VscAdd } from 'react-icons/vsc';
 import { useGetCurrentUserQuery } from "redux/api/userApi";
 import { petsApi } from 'redux/api/petsApi';
+import UserAddPetForm from 'components/UserAddPetForm';
 
 import UserPetsListItem from './UserPetsListItem';
 import Modal from 'components/Modal';
@@ -50,6 +51,10 @@ const UserPetsList = () => {
     setIsOpen(false);
   };
 
+  const handleSubmit = () => {
+    console.log("Completed!");
+  };
+
   return (
     <Container>
       <Box>
@@ -66,7 +71,11 @@ const UserPetsList = () => {
           })}
         </List>
       )}
-      {isOpen?<Modal closeModal={closeModal}/>:null}
+      {isOpen ?
+      <Modal closeModal={closeModal}>
+          <UserAddPetForm closeModal={closeModal}/>
+      </Modal>
+      : null}
     </Container>
   );
 };

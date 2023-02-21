@@ -18,18 +18,18 @@ export const Overlay = styled.div`
 
 export const StyledModal = styled.div`
   position: relative;
-  min-width: 280px;
-  max-width: 440px;
+  width: 280px;
   padding: 20px 20px 40px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 40px;
+  border-radius: 20px;
   background-color: ${theme.colors.lightText};
   @media(min-width: ${breakpoints[1]}px) {
     width: 608px;
     padding: 20px 20px 40px 20px;
+    border-radius: 40px;
   }
 `;
 
