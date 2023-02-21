@@ -6,6 +6,7 @@ import waveDesktop from 'assets/images/desktop/wave-bubbel-heart.svg';
 import portraitMobile from 'assets/images/mobile/portrait-and-favorite-pet.png';
 import portraitTablet from 'assets/images/tablet/portrait-and-favorite-pet.png';
 import portraitDesktop from 'assets/images/desktop/portrait-and-favorite-pet.png';
+import { motion } from 'framer-motion';
 
 export const Title = styled.h1`
   padding-top: 50px;
@@ -22,7 +23,7 @@ export const Title = styled.h1`
   }
 `;
 
-export const WrapContainer = styled.div`
+export const WrapContainer = styled(motion.div)`
   margin: 0 auto;
   padding-right: 20px;
   padding-left: 20px;

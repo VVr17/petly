@@ -20,6 +20,8 @@ import AuthNav from 'components/AuthNav';
 import UserNav from 'components/UserNav';
 import MobMenu from 'components/MobMenu';
 import Container from 'components/Container';
+import { pageAnimation } from 'constants/animation';
+import { AnimatePresence } from 'framer-motion';
 
 const Header = () => {
   const [menuIsActive, setMenuIsActive] = useState(false);
@@ -35,7 +37,7 @@ const Header = () => {
 
   return (
     <>
-      <HeaderStyled>
+      <HeaderStyled {...pageAnimation} transition={{ duration: 0.3 }}>
         <Container>
           <Navigation>
             <Link to="/" end>
@@ -53,7 +55,12 @@ const Header = () => {
           </Navigation>
         </Container>
       </HeaderStyled>
-      {menuIsActive ? <MobMenu closeMenu={closeMenu} isAuth={isAuth} /> : null}
+
+      <AnimatePresence>
+        {menuIsActive ? (
+          <MobMenu closeMenu={closeMenu} isAuth={isAuth} key="mobile" />
+        ) : null}
+      </AnimatePresence>
     </>
   );
 };
