@@ -1,10 +1,11 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { PETS_URL } from 'constants/api';
+import { PETS_URL, TAGS_TYPES } from 'constants/api';
 import baseQuery from 'redux/baseQuery';
 
 export const petsApi = createApi({
   reducerPath: 'petsApi',
   baseQuery,
+  tagTypes: [TAGS_TYPES.pet],
   endpoints: builder => ({
     addPet: builder.mutation({
       query: newPetData => ({
@@ -12,6 +13,7 @@ export const petsApi = createApi({
         method: 'POST',
         body: newPetData,
       }),
+      invalidatesTags: [TAGS_TYPES.pet],
       transformResponse: response => response.data,
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
@@ -24,6 +26,7 @@ export const petsApi = createApi({
         url: `${PETS_URL}/${petId}`,
         method: 'DELETE',
       }),
+      invalidatesTags: [TAGS_TYPES.pet],
       transformResponse: response => response.data,
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
