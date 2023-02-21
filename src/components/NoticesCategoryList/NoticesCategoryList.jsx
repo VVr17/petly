@@ -1,6 +1,6 @@
 import React from 'react';
 import { useGetNoticeByCategoryQuery } from 'redux/api/noticesApi';
-import NoticeCategoryItem from 'components/NoticeCategoryItem';
+import NoticeCategoryItem from './NoticeCategoryItem';
 import { GalleryNotices } from './NoticesCategoryList.styled';
 import { useSelector } from 'react-redux';
 

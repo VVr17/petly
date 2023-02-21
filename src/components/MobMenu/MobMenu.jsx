@@ -11,10 +11,10 @@ import {
 import PropTypes from 'prop-types';
 import { VscChromeClose } from 'react-icons/vsc';
 import Nav from 'components/Nav/Nav';
-import AuthNav from 'components/AuthNav/AuthNav';
-import UserNav from 'components/UserNav/UserNav';
+import AuthNav from 'components/AuthNav';
+import UserNav from 'components/UserNav';
 
-export const MobMenu = ({ closeMenu, isAuth }) => {
+const MobMenu = ({ closeMenu, isAuth }) => {
   return (
     <Modal>
       <Container>
@@ -41,3 +41,5 @@ MobMenu.propTypes = {
   closeMenu: PropTypes.func.isRequired,
   isAuth: PropTypes.bool.isRequired,
 };
+
+export default MobMenu;
