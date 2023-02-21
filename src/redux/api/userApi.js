@@ -11,7 +11,7 @@ export const userApi = createApi({
     getCurrentUser: builder.query({
       query: () => `${USER_URL}/current`,
       transformResponse: response => response.data,
-      providesTags: ['User'],
+      providesTags: [TAGS_TYPES.user],
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
@@ -27,7 +27,7 @@ export const userApi = createApi({
         method: 'POST',
         body: credentials,
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: [TAGS_TYPES.user],
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const {
@@ -45,7 +45,7 @@ export const userApi = createApi({
         method: 'POST',
         body: credentials,
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: [TAGS_TYPES.user],
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const {
@@ -63,7 +63,7 @@ export const userApi = createApi({
         method: 'POST',
         body: credentials,
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: [TAGS_TYPES.user],
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           dispatch(logout());
@@ -77,7 +77,7 @@ export const userApi = createApi({
         method: 'PUT',
         body: userData,
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: [TAGS_TYPES.user],
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const {

@@ -15,11 +15,6 @@ export const petsApi = createApi({
       }),
       invalidatesTags: [TAGS_TYPES.pet],
       transformResponse: response => response.data,
-      async onQueryStarted(args, { dispatch, queryFulfilled }) {
-        try {
-          // TODO: check if need to trigger user data to update
-        } catch (error) {}
-      },
     }),
     deletePet: builder.mutation({
       query: petId => ({
@@ -28,11 +23,6 @@ export const petsApi = createApi({
       }),
       invalidatesTags: [TAGS_TYPES.pet],
       transformResponse: response => response.data,
-      async onQueryStarted(args, { dispatch, queryFulfilled }) {
-        try {
-          // TODO: check if need to trigger user data to update
-        } catch (error) {}
-      },
     }),
   }),
 });

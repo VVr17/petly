@@ -11,4 +11,5 @@ export const SERVICES_URL = '/api/services';
 export const TAGS_TYPES = {
   user: 'User',
   pet: 'Pet',
+  notice: 'Notice',
 };
