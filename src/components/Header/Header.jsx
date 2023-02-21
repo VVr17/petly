@@ -15,10 +15,10 @@ import { VscMenu } from 'react-icons/vsc';
 import { useSelector } from 'react-redux';
 import { selectIsAuthState } from 'redux/user/userSelectors';
 
-import Nav from 'components/Nav/Nav';
-import AuthNav from 'components/AuthNav/AuthNav';
-import UserNav from 'components/UserNav/UserNav';
-import { MobMenu } from 'components/MobMenu/MobMenu';
+import Nav from 'components/Nav';
+import AuthNav from 'components/AuthNav';
+import UserNav from 'components/UserNav';
+import MobMenu from 'components/MobMenu';
 import Container from 'components/Container';
 
 const Header = () => {

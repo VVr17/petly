@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { UserPetsList } from 'components/UserPetsList/UserPetsList';
+import UserPetsList from 'components/UserPetsList';
 import { Section, Container } from './User.styled';
 
 const User = () => {
@@ -9,8 +8,8 @@ const User = () => {
       <Container>
         <UserPetsList />
       </Container>
-    </Section>  
-    );
+    </Section>
+  );
 };
 
 export default User;

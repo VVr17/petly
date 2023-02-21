@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { CardList, Title, WrapperTitle } from './News.styled';
 import { useGetNewsQuery } from '../../redux/api/newsApi';
 import TitlePage from 'components/Ui-Kit/TitlePage';
-import Loader from 'components/Loader/loader';
+import Loader from 'components/Loader';
 
 const News = () => {
   const { data, error, isLoading } = useGetNewsQuery();

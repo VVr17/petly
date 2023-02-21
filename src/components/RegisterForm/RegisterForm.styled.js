@@ -1,15 +1,13 @@
-import styled from "styled-components";
-import { Form } from "formik";
-import StepOne from "components/AddNoticeForm/AddPetForm/StepOne";
+import styled from 'styled-components';
+import { Form } from 'formik';
+import StepOne from 'components/AddPetForm/StepOne';
 
 export const ModalWrapper = styled.div`
-
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 10vh;
 `;
-
 
 export const ModalContent = styled.div`
   background-color: white;
@@ -20,12 +18,12 @@ export const ModalContent = styled.div`
 `;
 
 export const FormWrapper = styled(Form)`
-    display:flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
 export const FieldWrapperOne = styled(StepOne)`
-    display:flex;
-    flex-direction: column;
-    gap: 10px;
-`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;

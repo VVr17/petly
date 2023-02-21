@@ -1,4 +1,4 @@
-import { theme } from '../../constants/theme';
+import { theme } from '../../../constants/theme';
 import styled from 'styled-components';
 
 export const CardNotice = styled.div`
@@ -68,6 +68,4 @@ export const ContainerButton = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(336px, 1fr));
     padding: 0 44px 12px;
   }
-
-  
 `;
