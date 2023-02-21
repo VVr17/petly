@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { theme, breakpoints } from '../../constants/theme';
 import Modal from 'styled-react-modal';
+import { motion } from 'framer-motion';
 
-export const Overlay = styled.div`
+export const Overlay = styled(motion.div)`
   display: flex;
   position: fixed;
   top: 0;
@@ -16,7 +17,7 @@ export const Overlay = styled.div`
   background-color: ${theme.colors.secondaryText};
 `;
 
-export const StyledModal = styled.div`
+export const StyledModal = styled(motion.div)`
   position: relative;
   width: 608px;
 

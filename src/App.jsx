@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react';
-import { GlobalStyle } from 'App.styled';
-import { Route, Routes } from 'react-router-dom';
-import { useGetCurrentUserQuery } from 'redux/api/userApi';
 import { useSelector } from 'react-redux';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { GlobalStyle } from 'App.styled';
+import { useGetCurrentUserQuery } from 'redux/api/userApi';
 import { selectTokenState } from 'redux/user/userSelectors';
 import Loader from 'components/Loader';
 import {
@@ -16,8 +16,10 @@ import {
   SharedLayout,
   User,
 } from 'lazyLoading';
+import { AnimatePresence } from 'framer-motion';
 
 const App = () => {
+  const location = useLocation();
   const token = useSelector(selectTokenState);
   const { data, isLoading } = useGetCurrentUserQuery(null, {
     skip: token === null,
@@ -27,20 +29,26 @@ const App = () => {
 
   return (
     <>
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<Home />} />
-            <Route path="register" element={<Register />} />
-            <Route path="login" element={<Login />} />
-            <Route path="user" element={<User />} />
-            <Route path="friends" element={<Friends />} />
-            <Route path="news" element={<News />} />
-            <Route path="notices" element={<Notices />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </Suspense>
+      <AnimatePresence>
+        <Suspense fallback={<Loader />}>
+          <Routes location={location}>
+            <Route path="/" element={<SharedLayout />} key={location.key}>
+              <Route index element={<Home />} key={location.key} />
+              <Route
+                path="register"
+                element={<Register />}
+                key={location.key}
+              />
+              <Route path="login" element={<Login />} key={location.key} />
+              <Route path="user" element={<User />} key={location.key} />
+              <Route path="friends" element={<Friends />} key={location.key} />
+              <Route path="news" element={<News />} key={location.key} />
+              <Route path="notices" element={<Notices />} key={location.key} />
+              <Route path="*" element={<NotFound />} key={location.key} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </AnimatePresence>
       <GlobalStyle />
     </>
   );

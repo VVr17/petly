@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Form } from 'formik';
-import StepOne from 'components/AddPetForm/StepOne';
+import StepOne from 'components/AddNoticeForm/AddPetForm/StepOne';
 
 export const ModalWrapper = styled.div`
   display: flex;

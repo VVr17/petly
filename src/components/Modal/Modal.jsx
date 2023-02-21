@@ -3,6 +3,7 @@ import { StyledModal, ButtonCloseModal, Overlay } from './Modal.styled';
 import { AiOutlineClose } from 'react-icons/ai';
 import AddNoticeFormFirst from 'components/AddNoticeForm';
 import PropTypes from 'prop-types';
+import { pageAnimation, popUpMenuAnimation } from 'constants/animation';
 
 const ModalComponent = ({ closeModal, children }) => {
   useEffect(() => {
@@ -24,8 +25,16 @@ const ModalComponent = ({ closeModal, children }) => {
   };
 
   return (
-    <Overlay onClick={handleBackdropClick}>
-      <StyledModal>
+    <Overlay
+      onClick={handleBackdropClick}
+      {...pageAnimation}
+      transition={{ duration: 0.3 }}
+    >
+      <StyledModal
+        key="popUp"
+        {...popUpMenuAnimation}
+        transition={{ duration: 0.3 }}
+      >
         <ButtonCloseModal onClick={closeModal}>
           <AiOutlineClose size={36} />
         </ButtonCloseModal>

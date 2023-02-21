@@ -1,7 +1,8 @@
 import { theme } from 'constants/theme';
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-export const SectionStyled = styled.section`
+export const SectionStyled = styled(motion.section)`
   margin: 0 auto;
   padding-top: 42px;
   padding-bottom: 100px;

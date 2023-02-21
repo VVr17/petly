@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { theme, breakpoints } from '../../constants/theme';
+import { motion } from 'framer-motion';
 
-export const HeaderStyled = styled.header`
+export const HeaderStyled = styled(motion.header)`
   padding-top: ${theme.space[3]};
   @media (min-width: ${breakpoints[1]}px) {
     padding-top: ${theme.space[5]};

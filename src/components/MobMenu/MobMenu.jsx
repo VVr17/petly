@@ -13,10 +13,11 @@ import { VscChromeClose } from 'react-icons/vsc';
 import Nav from 'components/Nav/Nav';
 import AuthNav from 'components/AuthNav';
 import UserNav from 'components/UserNav';
+import { mobileMenuAnimation } from 'constants/animation';
 
 const MobMenu = ({ closeMenu, isAuth }) => {
   return (
-    <Modal>
+    <Modal key="mobile" {...mobileMenuAnimation} transition={{ duration: 0.3 }}>
       <Container>
         <Link to="/" end onClick={closeMenu}>
           pe<Span>t</Span>ly
