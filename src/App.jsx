@@ -21,11 +21,11 @@ import { AnimatePresence } from 'framer-motion';
 const App = () => {
   const location = useLocation();
   const token = useSelector(selectTokenState);
-  const { data, isLoading } = useGetCurrentUserQuery(null, {
+  const { data, isFetching } = useGetCurrentUserQuery(null, {
     skip: token === null,
   });
 
-  if (isLoading) return <Loader />;
+  if (isFetching) return <Loader />;
 
   return (
     <>
