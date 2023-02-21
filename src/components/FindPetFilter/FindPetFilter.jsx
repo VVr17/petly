@@ -17,18 +17,21 @@ const FindPetFilter = () => {
     <Navigation>
       <Navigation>
         <Button
+          name="filter"
           selected={filter === statusFilter.sell}
           onClick={() => handleStatusFilterChange(statusFilter.sell)}
         >
           sell
         </Button>
         <Button
+          name="filter"
           selected={filter === statusFilter.lostAndFound}
           onClick={() => handleStatusFilterChange(statusFilter.lostAndFound)}
         >
           lost/found
         </Button>
         <Button
+          name="filter"
           selected={filter === statusFilter.inGoodHands}
           onClick={() => handleStatusFilterChange(statusFilter.inGoodHands)}
         >
@@ -39,12 +42,14 @@ const FindPetFilter = () => {
       {isAuth && (
         <Navigation>
           <Button
+            name="filter"
             selected={filter === statusFilter.favoriteAds}
             onClick={() => handleStatusFilterChange(statusFilter.favoriteAds)}
           >
             favorite ads
           </Button>
           <Button
+            name="filter"
             selected={filter === statusFilter.myAds}
             onClick={() => handleStatusFilterChange(statusFilter.myAds)}
           >
