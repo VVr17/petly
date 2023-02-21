@@ -8,6 +8,7 @@ import InputField from "../Ui-Kit/Input/Input";
 import { NavLink } from "react-router-dom";
 import { useLoginUserMutation } from "redux/api/userApi";
 import { useSelector } from "react-redux";
+import Button from 'components/Ui-Kit/Button';
 
 const initialValues = {
     email: "",
@@ -61,9 +62,9 @@ const LoginForm = () => {
              
                             <InputField name="email" type="email" placeholder="Email" />
                             <InputField name="password" type="password" placeholder="Password" />
-                            <button type="submit">
+                            <Button name="filled" type="submit" disabled={isSubmitting}>
                                 Submit
-                            </button>
+                            </Button>
                         </FormWrapper>
                     )}
                 </Formik>
