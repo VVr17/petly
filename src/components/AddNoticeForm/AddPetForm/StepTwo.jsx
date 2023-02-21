@@ -1,19 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InputField from 'components/Ui-Kit/Input';
 import { Field, Formik } from 'formik';
+import { RadioContainer, RadioButton, RadioLabel } from './AddPetForm.styled';
+import PropTypes from 'prop-types';
 
-const StepTwo = () => {
+const StepTwo = ({ value }) => {
   return (
     <>
-      <div>The sex*</div>
-      <label>
-        <Field checked type="radio" name="picked" value="male" />
-        Male
-      </label>
-      <label>
-        <Field type="radio" name="picked" value="female" />
-        Female
-      </label>
+      <p>The sex*</p>
+      <RadioContainer>
+        <RadioLabel id="male">
+          <RadioButton
+            checked={value === 'male'}
+            type="radio"
+            name="sex"
+            value="male"
+            id="male"
+          />
+          Male
+        </RadioLabel>
+        <RadioLabel id="female">
+          <RadioButton
+            checked={value === 'female'}
+            type="radio"
+            name="sex"
+            value="female"
+            id="female"
+          />
+          Female
+        </RadioLabel>
+      </RadioContainer>
       <InputField
         name="location"
         type="text"
@@ -26,12 +42,7 @@ const StepTwo = () => {
         placeholder="Type price"
         label="Price*"
       />
-      <InputField
-        name="photoURL"
-        type="file"
-        label="Load the pet’s image:*"
-        // onChange={Formik.handleChange}
-      />
+      <InputField name="photoURL" type="file" label="Load the pet’s image:*" />
       <InputField
         name="comment"
         type="text"
@@ -40,6 +51,9 @@ const StepTwo = () => {
       />
     </>
   );
+};
+StepTwo.propTypes = {
+  value: PropTypes.any,
 };
 
 export default StepTwo;

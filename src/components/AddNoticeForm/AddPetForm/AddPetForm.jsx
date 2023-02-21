@@ -41,19 +41,17 @@ const validationSchema = Yup.object().shape({
     )
     .required('City is required'),
   price: Yup.number().required('Name is required').min(1, 'Price can not be 0'),
+  photoURL: Yup.mixed().required(),
   comment: Yup.string()
     .required('Comment is required')
     .min(8, 'Title should be at least 8 characters long')
     .max(120, 'Title should be up to 120 characters long'),
 });
 
-function formatDate() {
-  return new Date().toLocaleDateString();
-}
-
 // Main function
 
 const AddPetForm = ({ onClose }) => {
+  const [isChecked, setIsChecked] = useState('male');
   const [currentStep, setCurrentStep] = useState(1);
 
   const handleSubmit = (values, { setSubmitting }) => {
@@ -69,16 +67,22 @@ const AddPetForm = ({ onClose }) => {
     setCurrentStep(1);
   };
 
+  const handleChange = e => {
+    const value = e.currentTarget.value;
+    setIsChecked(value);
+    console.log(value);
+  };
+
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={validationSchema}
+      // validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting, values }) => (
         <FormWrapper>
           {currentStep === 1 && <StepOne />}
-          {currentStep === 2 && <StepTwo />}
+          {currentStep === 2 && <StepTwo value={values.sex} />}
           <ButtonsContainer>
             {currentStep === 1 && (
               <Button name="transparent" onClick={onClose}>
