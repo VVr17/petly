@@ -7,6 +7,14 @@ import Button from 'components/Ui-Kit/Button';
 import { FormWrapper, ButtonsContainer } from './AddPetForm.styled';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
+import {
+  RadioContainer,
+  RadioButton,
+  RadioLabel,
+  RadioItem,
+} from './AddPetForm.styled';
+import Male from '../../assets/images/desktop/male.svg';
+import Female from '../../assets/images/desktop/female.svg';
 
 // Values for Formik
 
@@ -15,6 +23,11 @@ const initialValues = {
   name: '',
   birthDate: '',
   breed: '',
+  sex: 'male',
+  location: '',
+  comment: '',
+  price: '',
+  photoURL: null,
 };
 
 // Yup validation
@@ -45,13 +58,12 @@ const validationSchema = Yup.object().shape({
   comment: Yup.string()
     .required('Comment is required')
     .min(8, 'Title should be at least 8 characters long')
-    .max(120, 'Title should be up to 120 characters long'),
+    .max(200, 'Title should be up to 120 characters long'),
 });
 
 // Main function
 
 const AddPetForm = ({ onClose }) => {
-  const [isChecked, setIsChecked] = useState('male');
   const [currentStep, setCurrentStep] = useState(1);
 
   const handleSubmit = (values, { setSubmitting }) => {
@@ -67,22 +79,63 @@ const AddPetForm = ({ onClose }) => {
     setCurrentStep(1);
   };
 
-  const handleChange = e => {
-    const value = e.currentTarget.value;
-    setIsChecked(value);
-    console.log(value);
-  };
-
   return (
     <Formik
       initialValues={initialValues}
       // validationSchema={validationSchema}
+
       onSubmit={handleSubmit}
+      // setFieldValue
     >
       {({ isSubmitting, values }) => (
         <FormWrapper>
           {currentStep === 1 && <StepOne />}
-          {currentStep === 2 && <StepTwo value={values.sex} />}
+          {currentStep === 2 && (
+            <StepTwo
+              name="photoURL"
+              // handleChange={e => {
+              //   setFieldValue('photoURL', e.target.files[0]);
+              //   // setFile(URL.createObjectURL(e.target.files[0]));
+              // }}
+            >
+              <RadioContainer>
+                <li>
+                  <RadioLabel isSelected={values.sex === 'male'}>
+                    <RadioButton
+                      type="radio"
+                      name="sex"
+                      value="male"
+                      checked={values.sex === 'male'}
+                    />
+                    <RadioItem>
+                      <img src={Male} alt="Male" />
+                    </RadioItem>
+                    Male
+                  </RadioLabel>
+                </li>
+
+                <li>
+                  <RadioLabel isSelected={values.sex === 'female'}>
+                    <RadioButton
+                      type="radio"
+                      name="sex"
+                      value="female"
+                      checked={values.sex === 'female'}
+                    />
+                    <RadioItem>
+                      <img
+                        src={Female}
+                        alt="Female"
+                        width="60px"
+                        height="60px"
+                      />
+                    </RadioItem>
+                    Female
+                  </RadioLabel>
+                </li>
+              </RadioContainer>
+            </StepTwo>
+          )}
           <ButtonsContainer>
             {currentStep === 1 && (
               <Button name="transparent" onClick={onClose}>
