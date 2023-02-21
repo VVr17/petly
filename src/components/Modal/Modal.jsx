@@ -27,7 +27,7 @@ const ModalComponent = ({ closeModal, children }) => {
     <Overlay onClick={handleBackdropClick}>
       <StyledModal>
         <ButtonCloseModal onClick={closeModal}>
-          <AiOutlineClose size={36} />
+          <AiOutlineClose size={24} />
         </ButtonCloseModal>
         {children}
       </StyledModal>

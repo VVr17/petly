@@ -18,16 +18,44 @@ export const Overlay = styled.div`
 
 export const StyledModal = styled.div`
   position: relative;
-  width: 608px;
-
+  min-width: 280px;
+  max-width: 440px;
+  padding: 20px 20px 40px 20px;
   display: flex;
   flex-direction: column;
-  padding: 40px 80px;
-  margin-top: 40ox;
   align-items: center;
   justify-content: center;
   border-radius: 40px;
   background-color: ${theme.colors.lightText};
+  @media(min-width: ${breakpoints[1]}px) {
+    width: 608px;
+    padding: 20px 20px 40px 20px;
+  }
+`;
+
+export const ButtonCloseModal = styled.button`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  top: 20px;
+  right: 20px;
+  border: none;
+  border-radius: 50%;
+  background-color: ${theme.colors.mainBackground};
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    color: ${theme.colors.accent};
+  }
+  @media(min-width: ${breakpoints[1]}px) {
+    width: 44px;
+    height: 44px;
+    top: 28px;
+    right: 28px;
+  }
 `;
 
 // export const StyledModal = Modal.styled`
@@ -57,23 +85,3 @@ export const StyledModal = styled.div`
 //   opacity: ${theme.colors.secondaryText};
 //   background-color: ${theme.colors.secondaryText};
 // `;
-
-export const ButtonCloseModal = styled.button`
-  position: absolute;
-  width: 44px;
-  height: 44px;
-  top: 28px;
-  right: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  border-radius: 100%;
-  background-color: mainBackground;
-  cursor: pointer;
-
-  &:hover,
-  &:focus {
-    color: ${theme.colors.accent};
-  }
-`;
