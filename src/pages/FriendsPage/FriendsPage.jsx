@@ -15,7 +15,8 @@ const FriendsPage = () => {
       {!isFetching && isError && (
         <h2>Server error. Please, try again later.</h2>
       )}
-      {!isFetching && !isError && <FriendsList friends={data.data} />}
+      {!isFetching && !isError && <FriendsList />}
+      <FriendsList />
     </Section>
   );
 };

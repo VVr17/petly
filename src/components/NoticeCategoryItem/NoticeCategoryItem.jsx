@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'components/Ui-Kit/Button';
+import { IoTrashSharp } from 'react-icons/io5';
 import {
   CardNotice,
+  ImageBox,
+  Image,
   Title,
   Thead,
   Text,
@@ -25,18 +28,43 @@ const NoticeCategoryItem = ({
   birthDate,
   price,
 }) => {
-  const age = 25 - 22;
+  const place = location.split(',');
+  const city = place[0];
+
+  const age = birthDate => {
+    let today = new Date();
+    let d = birthDate.split('.');
+    let date = d[2] + '.' + d[1] + '.' + d[0];
+    let birthDateFormat = new Date(date);
+    let age = today.getFullYear() - birthDateFormat.getFullYear();
+    let m = today.getMonth() - birthDateFormat.getMonth();
+
+    if (m < 0 || (m === 0 && today.getDate() < birthDateFormat.getDate())) {
+      age--;
+    }
+    if (age === 0 && m < 0) {
+      m = 12 + m;
+      if (d < 0 || (d === 0 && today.getDate() < birthDateFormat.getDate())) {
+        m--;
+      }
+    }
+
+    return age ? age + ' ' + 'years' : m + ' ' + 'months';
+  };
+
   const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
   return (
     <CardNotice>
-      <img
-        src={photoURL ? photoURL : altPosterUrl}
-        alt={title}
-        loading="lazy"
-      />
+      <ImageBox>
+        <Image
+          src={photoURL ? photoURL : altPosterUrl}
+          alt={title}
+          loading="lazy"
+        />
+      </ImageBox>
       <CategoryBox>
         <CategoryName>{category}</CategoryName>
-      </CategoryBox>      
+      </CategoryBox>
       <ContainerInfo>
         <Title>{title}</Title>
         <table>
@@ -47,11 +75,11 @@ const NoticeCategoryItem = ({
             </tr>
             <tr>
               <Thead>Place:</Thead>
-              <Text>{location}</Text>
+              <Text>{city}</Text>
             </tr>
             <tr>
               <Thead>Age:</Thead>
-              <Text>{age}</Text>
+              <Text>{age(birthDate)}</Text>
             </tr>
 
             {category === 'sell' && (
@@ -62,11 +90,12 @@ const NoticeCategoryItem = ({
             )}
           </tbody>
         </table>
-        <ContainerButton>
+      </ContainerInfo>
+      <ContainerButton>
         <Button
           name="learnMore"
           type="button"
-          width="100%"
+          width="248px"
           onClick={onOpenModal}
         >
           Learn more
@@ -74,14 +103,13 @@ const NoticeCategoryItem = ({
         <Button
           name="learnMore"
           type="button"
-          width="100%"
+          width="248px"
           onClick={deleteNotice}
         >
           Delete
+          <IoTrashSharp style={{ marginLeft: '15px' }} />
         </Button>
       </ContainerButton>
-      </ContainerInfo>
-      
     </CardNotice>
   );
 };

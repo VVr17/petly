@@ -1,42 +1,40 @@
 import { React } from 'react';
-import PropTypes from 'prop-types';
-
 import { FriendsUl } from './FriendsList.styled.jsx';
 import { FriendItem } from '../FriendItem/FriendItem';
+import { useGetFriendsQuery } from 'redux/api/friendsApi.js';
 
-const FriendsList = ({ friends }) => {
+const FriendsList = () => {
+  const { data: friends, isFetching, isError } = useGetFriendsQuery();
+
   return (
     <FriendsUl>
-      {friends.map(
-        ({
-          title,
-          url,
-          addressUrl,
-          imageUrl,
-          address,
-          workDays,
-          phone,
-          email,
-        }) => (
-          <FriendItem
-            key={title}
-            title={title}
-            siteUrl={url}
-            addressUrl={addressUrl}
-            imageUrl={imageUrl}
-            address={address}
-            workDays={workDays}
-            phone={phone}
-            email={email}
-          />
-        )
-      )}
+      {friends &&
+        friends.map(
+          ({
+            title,
+            url,
+            addressUrl,
+            imageUrl,
+            address,
+            workDays,
+            phone,
+            email,
+          }) => (
+            <FriendItem
+              key={title}
+              title={title}
+              siteUrl={url}
+              addressUrl={addressUrl}
+              imageUrl={imageUrl}
+              address={address}
+              workDays={workDays}
+              phone={phone}
+              email={email}
+            />
+          )
+        )}
     </FriendsUl>
   );
-};
-
-FriendsList.propTypes = {
-  friends: PropTypes.array,
 };
 
 export default FriendsList;

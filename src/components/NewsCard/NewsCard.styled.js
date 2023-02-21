@@ -2,7 +2,7 @@ import { theme } from 'constants/theme';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const WrapperCard = styled.div`
+export const WrapperCard = styled.li`
   width: 280px;
 
   ${theme.mq.tablet} {
@@ -10,7 +10,7 @@ export const WrapperCard = styled.div`
   }
 
   ${theme.mq.desktop} {
-    width: 395px;
+    width: 394px;
   }
 `;
 
@@ -41,6 +41,8 @@ export const Title = styled.h3`
 `;
 
 export const Text = styled.p`
+  height: 176px;
+  overflow: hidden;
   margin-bottom: 20px;
   font-family: ${theme.fontFamily.manrope};
   font-size: ${theme.fontSizes.xs};

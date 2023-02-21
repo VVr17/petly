@@ -1,7 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { userApi } from './api/userApi';
-import { newsApi } from './api/newsApi';
-import { friendsApi } from './api/friendsApi';
 import {
   persistStore,
   FLUSH,
@@ -11,21 +8,36 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { persistedUserReducer } from './api/userSlice';
+import { persistedUserReducer } from './user/userSlice';
+import { userApi } from './api/userApi';
+import { newsApi } from './api/newsApi';
+import { noticesApi } from './api/noticesApi';
+import { petsApi } from './api/petsApi';
+import { friendsApi } from './api/friendsApi';
+import { filterReducer } from './filter/filterSlice';
 
 export const store = configureStore({
   reducer: {
     [userApi.reducerPath]: userApi.reducer,
-    user: persistedUserReducer,
     [newsApi.reducerPath]: newsApi.reducer,
     [friendsApi.reducerPath]: friendsApi.reducer,
+    [noticesApi.reducerPath]: noticesApi.reducer,
+    [petsApi.reducerPath]: petsApi.reducer,
+    user: persistedUserReducer,
+    noticesFilter: filterReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(userApi.middleware, newsApi.middleware, friendsApi.middleware),
+    }).concat(
+      userApi.middleware,
+      newsApi.middleware,
+      noticesApi.middleware,
+      petsApi.middleware,
+      friendsApi.middleware
+    ),
 });
 
 export const persistor = persistStore(store);

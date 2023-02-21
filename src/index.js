@@ -7,6 +7,9 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'styled-components';
 import { persistor, store } from 'redux/store';
+// import { ModalProvider } from 'styled-react-modal';
+// import { SpecialModalBackground } from './components/Modal/Modal.styled';
+
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -16,7 +19,9 @@ root.render(
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="/pet-support-front">
           <ThemeProvider theme={theme}>
+            {/* <ModalProvider backgroundComponent={SpecialModalBackground}> */}
             <App />
+            {/* </ModalProvider> */}
           </ThemeProvider>
         </BrowserRouter>
       </PersistGate>

@@ -14,6 +14,9 @@ export const ButtonStyled = styled.button`
   padding-bottom: 9px;
   border-radius: 40px;
   border: 2px solid ${({ theme }) => theme.colors.accent};
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: ${({ theme, name }) =>
     name === 'filled' ? theme.colors.accent : 'transparent'};
   color: ${({ theme, name }) => {

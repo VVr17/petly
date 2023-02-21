@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { BASE_URL } from 'constants/api';
+import { BASE_URL, SERVICES_URL } from 'constants/api';
 
 export const friendsApi = createApi({
   reducerPath: 'friendsApi',
@@ -8,7 +8,8 @@ export const friendsApi = createApi({
   }),
   endpoints: builder => ({
     getFriends: builder.query({
-      query: () => `/api/services`,
+      query: () => `${SERVICES_URL}`,
+      transformResponse: response => response.data,
     }),
   }),
 });

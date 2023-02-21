@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { theme } from '../../constants/theme';
 
-
-
 export const Button = styled.button`
   border: none;
   position: absolute;
@@ -17,13 +15,7 @@ export const Button = styled.button`
   }
 `;
 
-export const NavContainer = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  height: 44px;
-`;
-
-export const Navigation = styled.nav`
+export const Navigation = styled.div`
   display: flex;
 `;
 

@@ -10,13 +10,20 @@ import Notices from 'pages/Notices';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 import User from 'pages/User';
 import NotFound from 'pages/NotFound';
-import Sell from 'components/Notices/Sell';
-import InGoodHands from 'components/Notices/InGoodHands';
-import LostFound from 'components/Notices/LostFound';
-import FavoriteAids from 'components/Notices/FaoriteAids';
-import MyAids from 'components/Notices/MyAids';
+import { useGetCurrentUserQuery } from 'redux/api/userApi';
+import { useSelector } from 'react-redux';
+import { selectTokenState } from 'redux/user/userSelectors';
 
 const App = () => {
+  const token = useSelector(selectTokenState);
+  const { data, isLoading } = useGetCurrentUserQuery(null, {
+    skip: token === null,
+  });
+
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
+
   return (
     <>
       <Routes>
@@ -27,13 +34,7 @@ const App = () => {
           <Route path="user" element={<User />} />
           <Route path="friends" element={<Friends />} />
           <Route path="news" element={<News />} />
-          <Route path="notices" element={<Notices />}>
-            <Route path="sell" element={<Sell />} />
-            <Route path="in-good-hands" element={<InGoodHands />} />
-            <Route path="lost-found" element={<LostFound />} />
-            <Route path="favorite-ads" element={<FavoriteAids />} />
-            <Route path="my-ads" element={<MyAids />} />
-          </Route>
+          <Route path="notices" element={<Notices />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

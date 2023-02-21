@@ -23,3 +23,18 @@ export const WrapperTitle = styled.div`
     margin-bottom: 60px;
   }
 `;
+
+export const CardList = styled.ul`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+
+  ${theme.mq.tablet} {
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 60px 32px;
+  }
+`;

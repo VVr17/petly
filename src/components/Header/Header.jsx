@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
 import {
-  Container,
   Navigation,
   PagesBox,
   AuthBox,
@@ -10,17 +9,21 @@ import {
   Span,
   MenuButton,
   iconStyle,
+  HeaderStyled,
 } from './Header.styled';
 import { VscMenu } from 'react-icons/vsc';
+import { useSelector } from 'react-redux';
+import { selectIsAuthState } from 'redux/user/userSelectors';
 
 import Nav from 'components/Nav/Nav';
 import AuthNav from 'components/AuthNav/AuthNav';
 import UserNav from 'components/UserNav/UserNav';
 import { MobMenu } from 'components/MobMenu/MobMenu';
+import Container from 'components/Container';
 
 const Header = () => {
-  const [isAuth, setIsAuth] = useState(false);
   const [menuIsActive, setMenuIsActive] = useState(false);
+  const isAuth = useSelector(selectIsAuthState);
 
   const openMenu = () => {
     setMenuIsActive(true);
@@ -31,8 +34,8 @@ const Header = () => {
   };
 
   return (
-    <div>
-      <header>
+    <>
+      <HeaderStyled>
         <Container>
           <Navigation>
             <Link to="/" end>
@@ -49,9 +52,9 @@ const Header = () => {
             </MenuBox>
           </Navigation>
         </Container>
-      </header>
+      </HeaderStyled>
       {menuIsActive ? <MobMenu closeMenu={closeMenu} isAuth={isAuth} /> : null}
-    </div>
+    </>
   );
 };
 
