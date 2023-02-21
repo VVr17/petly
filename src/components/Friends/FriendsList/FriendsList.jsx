@@ -1,14 +1,38 @@
-import { React, useEffect, useState } from 'react';
+import { React } from 'react';
 import { FriendsUl } from './FriendsList.styled.jsx';
 import { FriendItem } from '../FriendItem/FriendItem';
-import JSONfriends from '../data/friends';
+import { useGetFriendsQuery } from 'redux/api/friendsApi.js';
 
 const FriendsList = () => {
+  const { data: friends, isFetching, isError } = useGetFriendsQuery();
+
   return (
     <FriendsUl>
-      {JSONfriends.map(friend => (
-        <FriendItem key={friend._id} {...friend} />
-      ))}
+      {friends &&
+        friends.map(
+          ({
+            title,
+            url,
+            addressUrl,
+            imageUrl,
+            address,
+            workDays,
+            phone,
+            email,
+          }) => (
+            <FriendItem
+              key={title}
+              title={title}
+              siteUrl={url}
+              addressUrl={addressUrl}
+              imageUrl={imageUrl}
+              address={address}
+              workDays={workDays}
+              phone={phone}
+              email={email}
+            />
+          )
+        )}
     </FriendsUl>
   );
 };

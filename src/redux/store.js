@@ -13,16 +13,16 @@ import { userApi } from './api/userApi';
 import { newsApi } from './api/newsApi';
 import { noticesApi } from './api/noticesApi';
 import { petsApi } from './api/petsApi';
-import { servicesApi } from './api/servicesApi';
+import { friendsApi } from './api/friendsApi';
 import { filterReducer } from './filter/filterSlice';
 
 export const store = configureStore({
   reducer: {
     [userApi.reducerPath]: userApi.reducer,
     [newsApi.reducerPath]: newsApi.reducer,
+    [friendsApi.reducerPath]: friendsApi.reducer,
     [noticesApi.reducerPath]: noticesApi.reducer,
     [petsApi.reducerPath]: petsApi.reducer,
-    [servicesApi.reducerPath]: servicesApi.reducer,
     user: persistedUserReducer,
     noticesFilter: filterReducer,
   },
@@ -36,7 +36,7 @@ export const store = configureStore({
       newsApi.middleware,
       noticesApi.middleware,
       petsApi.middleware,
-      servicesApi.middleware
+      friendsApi.middleware
     ),
 });
 

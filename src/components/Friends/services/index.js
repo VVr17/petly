@@ -1,1 +1,0 @@
-export { getHours } from './getHours';

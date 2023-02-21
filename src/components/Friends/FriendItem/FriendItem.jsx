@@ -4,76 +4,111 @@ import {
   FriendTitle,
   FriendContentWrapper,
   FriendText,
-  FriendTime,
   FriendListItem,
+  FriendLinkTitle,
   FriendLink,
+  FriendTime,
   TextWrapper,
   FriendImg,
-  ImgWrapper,
-  HoursOfWeek,
-  HoursWrapper,
+  FriendContentList,
+  TimeBtn,
 } from './FriendItem.styled.jsx';
-import { getHours } from 'components/Friends/services';
+import TimeTable from './TimeTable';
 import defaultImage from '../data/friend-default-image.png';
-
-const NO_INFO_STRING = '---------------';
 
 export const FriendItem = ({
   title,
   url,
   imageUrl,
+  addressUrl,
   workDays,
   address,
   email,
   phone,
 }) => {
-  const [isHours, setIsHours] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
-  const handleClick = () => {
-    setIsHours(!isHours);
-  };
+  const weekDays = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+  const newWorkDays =
+    workDays &&
+    workDays.map((day, index) => {
+      return { day: weekDays[index], ...day };
+    });
 
-  const { hoursToday, hoursOfWeek } = getHours(workDays, NO_INFO_STRING);
   return (
     <FriendListItem>
       <FriendTitle>
-        <FriendLink href={url}>{title}</FriendLink>
+        <FriendLinkTitle href={url} target="_blank">
+          {title}
+        </FriendLinkTitle>
       </FriendTitle>
+
       <FriendContentWrapper>
-        <ImgWrapper>
-          <FriendImg
-            src={imageUrl ?? defaultImage}
-            alt={title}
-            loading="lazy"
-          />
-        </ImgWrapper>
-        <TextWrapper>
-          <HoursWrapper>
-            <FriendTime isHours={!!hoursOfWeek} onClick={() => handleClick()}>
-              Time:
-              <br />
-              {hoursToday}
-            </FriendTime>
-            {hoursOfWeek && (
-              <HoursOfWeek isOpen={isHours}>{hoursOfWeek}</HoursOfWeek>
+        <FriendImg src={imageUrl ?? defaultImage} alt={title} loading="lazy" />
+
+        <FriendContentList>
+          <TextWrapper
+            onClick={() => {
+              setIsVisible(!isVisible);
+            }}
+            onMouseLeave={() => {
+              setTimeout(() => {
+                setIsVisible(true);
+              }, 3000);
+            }}
+          >
+            {workDays === undefined || workDays === null ? (
+              <>
+                <FriendText>Time:</FriendText>
+                <FriendText>------------</FriendText>
+              </>
+            ) : (
+              <>
+                {workDays[0] && workDays[0].isOpen ? (
+                  <>
+                    <FriendTime>Time:</FriendTime>
+                    <TimeBtn>
+                      {workDays[0].from}-{workDays[0].to}
+                    </TimeBtn>
+                  </>
+                ) : (
+                  <>
+                    <FriendText>Time:</FriendText>
+                    <FriendText>Closed</FriendText>
+                  </>
+                )}
+                {isVisible || <TimeTable shedule={newWorkDays} />}
+              </>
             )}
-          </HoursWrapper>
-          <FriendText>
-            Address:
-            <br />
-            {address ?? NO_INFO_STRING}
-          </FriendText>
-          <FriendText>
-            Email:
-            <br />
-            {email ?? NO_INFO_STRING}
-          </FriendText>
-          <FriendText>
-            Phone:
-            <br />
-            {phone ?? NO_INFO_STRING}
-          </FriendText>
-        </TextWrapper>
+          </TextWrapper>
+          <TextWrapper>
+            <FriendText>Address:</FriendText>
+            {addressUrl ? (
+              <FriendLink href={addressUrl} target="_blank">
+                {address}
+              </FriendLink>
+            ) : (
+              <FriendText>------------</FriendText>
+            )}
+          </TextWrapper>
+
+          <TextWrapper>
+            <FriendText>Email:</FriendText>
+            {email ? (
+              <FriendLink href={`mailto:${email}`}>{email}</FriendLink>
+            ) : (
+              <FriendText>------------</FriendText>
+            )}
+          </TextWrapper>
+          <TextWrapper>
+            <FriendText>Phone:</FriendText>
+            {phone ? (
+              <FriendLink href={`tel:${phone}`}>{phone}</FriendLink>
+            ) : (
+              <FriendText>------------</FriendText>
+            )}
+          </TextWrapper>
+        </FriendContentList>
       </FriendContentWrapper>
     </FriendListItem>
   );
@@ -87,4 +122,7 @@ FriendItem.propTypes = {
   address: PropTypes.string,
   email: PropTypes.string,
   phone: PropTypes.string,
+  addressUrl: PropTypes.string,
 };
+
+export default FriendItem;
