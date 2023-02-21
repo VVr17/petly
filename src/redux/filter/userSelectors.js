@@ -1,1 +1,1 @@
-export const selectStatusFilter = state => state.filters.status;
+export const selectStatusFilter = state => state.noticesFilter.status;
