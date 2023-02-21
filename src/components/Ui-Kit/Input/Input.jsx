@@ -1,13 +1,15 @@
 import React from 'react';
 import { Field, ErrorMessage } from 'formik';
 import PropTypes from 'prop-types';
+import { ErrorStyle, FieldStyle } from './Input.styled';
+
 
 const InputField = ({ label, name, type, placeholder, id }) => {
   return (
     <>
       <label htmlFor={name}>{label}</label>
-      <Field type={type} name={name} id={id} placeholder={placeholder} />
-      <ErrorMessage name={name} component="div" />
+      <FieldStyle type={type} name={name} id={id} placeholder={placeholder} />
+      <ErrorStyle name={name} component="div" />
     </>
   );
 };
