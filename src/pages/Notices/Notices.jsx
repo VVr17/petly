@@ -13,7 +13,6 @@ import AddPetButton from 'components/AddPetButton';
 import ModalComponent from 'components/Modal';
 import AddNoticeFormHeader from 'components/AddNoticeForm';
 
-
 import AddPetForm from 'components/AddNoticeForm/AddPetForm';
 
 import { AnimatePresence } from 'framer-motion';
@@ -40,7 +39,7 @@ const Notices = () => {
   } = useGetNoticeByCategoryQuery(category, { skip: !category });
 
   if (!notices) return;
-  const showNotices = notices && !error && !isLoading;
+  const showNotices = notices && !error && !isFetching;
 
   return (
     <Section>
