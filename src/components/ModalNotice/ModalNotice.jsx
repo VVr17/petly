@@ -1,14 +1,15 @@
 import Container from 'components/Container';
 import React from 'react';
+import { useGetNoticeByIdQuery } from 'redux/api/noticesApi';
 import {
-   ImgWrapper,
-   PetsImg,
-   Category,
-   CategoryName,
-   TextContent,
-   PetInfo,
-   Title,
-   PetData,
+  ImgWrapper,
+  PetsImg,
+  Category,
+  CategoryName,
+  TextContent,
+  PetInfo,
+  Title,
+  PetData,
   CategoryData,
   DataItem,
   CategoryText,
@@ -22,9 +23,29 @@ import {
 import Button from 'components/Ui-Kit/Button';
 
 const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
+
 const ModalNotice = () => {
+  // const {
+  //    _id,
+  //    avatarURL,
+  //    favorite,
+  //    title,
+  //    category,
+  //    name,
+  //    birthday,
+  //    breed,
+  //    location,
+  //    sex,
+  //    owner,
+  //    comments,
+  //    price,
+  //    own,
+  //  } = notice;
 
-
+  const { data } = useGetNoticeByIdQuery(_id);
+  console.log(data);
+  const noItem = '-------------';
+  const noPrice = '0';
 
   const onRedirect = () => {
     window.location = `tel:+380971234567`;
@@ -109,12 +130,10 @@ const ModalNotice = () => {
         <Button name="addToFavorite" type="button">
           Add to favorite
         </Button>
-        
+
         <Button onClick={onRedirect} name="contacts" type="button">
           Contacts
         </Button>
-
-
       </Buttons>
     </NoticeContainer>
   );
