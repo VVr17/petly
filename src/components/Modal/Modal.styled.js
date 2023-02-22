@@ -20,15 +20,20 @@ export const Overlay = styled(motion.div)`
 export const StyledModal = styled(motion.div)`
   position: relative;
   width: 608px;
-
+  max-height: 85%;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
-  padding: 40px 80px;
-  margin-top: 40ox;
   align-items: center;
   justify-content: center;
   border-radius: 40px;
   background-color: ${theme.colors.lightText};
+`;
+
+export const StyledModalInternalDiv = styled(motion.div)`
+  width: 608px;
+  padding: 40px 80px;
+  overflow-y: scroll;
 `;
 
 // export const StyledModal = Modal.styled`

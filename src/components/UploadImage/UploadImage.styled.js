@@ -29,6 +29,7 @@ export const DropZoneWrapper = styled.div`
   width: 140px;
   height: 140px;
   border-radius: 20px;
+  margin-bottom: 12px;
   background: ${theme.colors.mainBackground};
   object-fit: cover;
   display: flex;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, useFormik } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
@@ -12,9 +12,20 @@ import {
   RadioButton,
   RadioLabel,
   RadioItem,
+  RadioTitle,
+  LoadImageCont,
+  LoadImgLabel,
+  LoadImgPlus,
+  LoadImgInput,
+  ImagePreview,
 } from './AddPetForm.styled';
-import Male from '../../assets/images/desktop/male.svg';
-import Female from '../../assets/images/desktop/female.svg';
+import Male from '../../../assets/images/desktop/male.svg';
+import Female from '../../../assets/images/desktop/female.svg';
+import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
+import Plus from '../../../assets/images/desktop/plus.svg';
+import LocationField from './Location';
+import PriceField from './PriceField';
+import CommentField from './CommentField';
 
 // Values for Formik
 
@@ -27,7 +38,7 @@ const initialValues = {
   location: '',
   comment: '',
   price: '',
-  photoURL: null,
+  imageFile: null,
 };
 
 // Yup validation
@@ -54,7 +65,7 @@ const validationSchema = Yup.object().shape({
     )
     .required('City is required'),
   price: Yup.number().required('Name is required').min(1, 'Price can not be 0'),
-  photoURL: Yup.mixed().required(),
+  imageFile: Yup.mixed().required(),
   comment: Yup.string()
     .required('Comment is required')
     .min(8, 'Title should be at least 8 characters long')
@@ -65,6 +76,36 @@ const validationSchema = Yup.object().shape({
 
 const AddPetForm = ({ onClose }) => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [image, setImage] = useState(null);
+
+  const [file, setFile] = useState(null);
+  const [fileDataURL, setFileDataURL] = useState(null);
+
+  const changeHandler = e => {
+    const file = e.target.files[0];
+
+    setFile(file);
+  };
+  useEffect(() => {
+    let fileReader,
+      isCancel = false;
+    if (file) {
+      fileReader = new FileReader();
+      fileReader.onload = e => {
+        const { result } = e.target;
+        if (result && !isCancel) {
+          setFileDataURL(result);
+        }
+      };
+      fileReader.readAsDataURL(file);
+    }
+    return () => {
+      isCancel = true;
+      if (fileReader && fileReader.readyState === 1) {
+        fileReader.abort();
+      }
+    };
+  }, [file]);
 
   const handleSubmit = (values, { setSubmitting }) => {
     if (currentStep < 2) {
@@ -85,19 +126,26 @@ const AddPetForm = ({ onClose }) => {
       // validationSchema={validationSchema}
 
       onSubmit={handleSubmit}
+      encType="multipart/form-data"
       // setFieldValue
     >
-      {({ isSubmitting, values }) => (
+      {({ isSubmitting, values, setFieldValue }) => (
         <FormWrapper>
           {currentStep === 1 && <StepOne />}
           {currentStep === 2 && (
             <StepTwo
-              name="photoURL"
-              // handleChange={e => {
-              //   setFieldValue('photoURL', e.target.files[0]);
-              //   // setFile(URL.createObjectURL(e.target.files[0]));
-              // }}
+            // name="imageFile"
+            // setFieldValue={setFieldValue}
+            // handleChange={e => {
+            //   setFieldValue('imageFile', e.target.files[0]);
+            // }}
+
+            //   // setFile(URL.createObjectURL(e.target.files[0]));
+            // }}
             >
+              <RadioTitle>
+                The sex<StyledSpan>*</StyledSpan>
+              </RadioTitle>
               <RadioContainer>
                 <li>
                   <RadioLabel isSelected={values.sex === 'male'}>
@@ -134,8 +182,46 @@ const AddPetForm = ({ onClose }) => {
                   </RadioLabel>
                 </li>
               </RadioContainer>
+              <LocationField />
+              <PriceField />
+              <LoadImgLabel>
+                Load the pet’s image:<StyledSpan>*</StyledSpan>
+                {fileDataURL ? (
+                  <LoadImageCont>
+                    <ImagePreview
+                      src={fileDataURL}
+                      alt="Preview"
+                      width="47px"
+                      height="47px"
+                    />
+                  </LoadImageCont>
+                ) : (
+                  <>
+                    <LoadImageCont>
+                      <LoadImgPlus
+                        src={Plus}
+                        alt="upload"
+                        width="47px"
+                        height="47px"
+                      />
+                    </LoadImageCont>
+                    <LoadImgInput
+                      name="imageFile"
+                      type="file"
+                      accept="image/*"
+                      onChange={e => {
+                        setFile(e.currentTarget.files[0]);
+                        setFieldValue('imageFile', e.currentTarget.files[0]);
+                      }}
+                    />
+                  </>
+                )}
+              </LoadImgLabel>
+
+              <CommentField />
             </StepTwo>
           )}
+
           <ButtonsContainer>
             {currentStep === 1 && (
               <Button name="transparent" onClick={onClose}>

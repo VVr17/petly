@@ -1,19 +1,24 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
 import { theme, breakpoints } from 'constants/theme';
-import Plus from '../../assets/images/desktop/plus.svg';
+import Plus from '../../../assets/images/desktop/plus.svg';
 import { useDropzone } from 'react-dropzone';
+import MyDatePicker from './DatePicker';
 
 export const FormWrapper = styled(Form)`
   display: flex;
   flex-direction: column;
+
   gap: 10px;
+  width: 100%;
 `;
 
 export const ButtonsContainer = styled.div`
   margin-top: 40px;
   display: flex;
   gap: 20px;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const FormTitle = styled.h3`
@@ -41,9 +46,34 @@ export const ButtonFilterItem = styled.li`
   margin-bottom: 28px;
 `;
 
+export const DatePickerInput = styled.input`
+  position: relative;
+  width: 100%;
+  border-radius: 40px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  background-color: ${theme.colors.mainBackground};
+  font-family: ${theme.fontFamily.manrope};
+  font-size: ${theme.fontSizes.s};
+  font-weight: ${theme.fontWeight.normal};
+  color: ${theme.colors.primaryText};
+
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+`;
+
 export const RadioContainer = styled.ul`
   display: flex;
   gap: 90px;
+  margin-top: 31px;
+  margin-bottom: 40px;
+`;
+
+export const RadioTitle = styled.p`
+  margin-top: 40px;
 `;
 
 export const RadioItem = styled.div`
@@ -67,6 +97,7 @@ export const LoadImageCont = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   width: 140px;
   height: 140px;
   border-radius: 20px;
@@ -81,15 +112,16 @@ export const LoadImgLabel = styled.label`
 `;
 
 export const LoadImgInput = styled.input`
-  cursor: pointer;
-  display: block;
-  width: 140px;
-  height: 140px;
-  border-radius: 20px;
-  background: ${theme.colors.mainBackground};
-  margin-top: 12px;
-  margin-bottom: 28px;
-  color: ${theme.colors.mainText};
+  display: none;
+
+  // display: block;
+  // width: 140px;
+  // height: 140px;
+  // border-radius: 20px;
+  // background: ${theme.colors.mainBackground};
+  // margin-top: 12px;
+  // margin-bottom: 28px;
+  // color: ${theme.colors.mainText};
 `;
 
 export const LoadImgPlus = styled.img`
@@ -120,4 +152,27 @@ export const ImagePreview = styled.img`
   border-radius: 20px;
   background: ${theme.colors.mainBackground};
   object-fit: cover;
+`;
+
+export const TextareaLabel = styled.label`
+  margin-top: 20px;
+`;
+
+export const Textarea = styled(Field)`
+  position: relative;
+  width: 100%;
+  border-radius: 40px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  background-color: ${theme.colors.mainBackground};
+  font-family: ${theme.fontFamily.manrope};
+  font-size: ${theme.fontSizes.s};
+  font-weight: ${theme.fontWeight.normal};
+  color: ${theme.colors.primaryText};
+
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-top: 9px;
+  padding-bottom: 9px;
 `;

@@ -7,6 +7,7 @@ export const FieldStyle = styled(Field)`
   width: 100%;
   border-radius: 40px;
   margin-bottom: 12px;
+  cursor: pointer;
   border: 1px solid rgba(245, 146, 86, 0.5);
   background-color: ${theme.colors.mainBackground};
   font-family: ${theme.fontFamily.manrope};
@@ -25,4 +26,8 @@ export const ErrorStyle = styled(ErrorMessage)`
   transform: translate(16px, -11px);
   font-size: ${theme.fontSizes.xxxxs};
   color: red;
+`;
+
+export const StyledSpan = styled.span`
+  color: ${theme.colors.accent};
 `;

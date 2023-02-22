@@ -10,15 +10,22 @@ import {
 import { useDropzone } from 'react-dropzone';
 import Plus from '../../assets/images/desktop/plus.svg';
 
-const ImageField = ({ name }) => {
+const ImageField = ({ name, setFieldValue }) => {
   const [image, setImage] = useState(null);
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/*',
     multiple: false,
     onDrop: ([file]) => {
       setImage(URL.createObjectURL(file));
+      // setFieldValue(name, file);
+      // onDrop: acceptedFiles => {
+      // setFieldValue("files", acceptedFiles);
     },
   });
+  console.log(image);
+  const handleChange = () => {
+    setFieldValue(name, image);
+  };
 
   return (
     <>
@@ -29,7 +36,7 @@ const ImageField = ({ name }) => {
           {({ field, form }) => (
             <DropZoneWrapper {...getRootProps()}>
               <LoadImgPlus src={Plus} alt="upload" width="47px" height="47px" />
-              <DropZoneInput {...getInputProps()} />
+              <DropZoneInput {...getInputProps()} onChange={handleChange} />
             </DropZoneWrapper>
           )}
         </Field>
@@ -40,6 +47,8 @@ const ImageField = ({ name }) => {
 
 ImageField.propTypes = {
   name: PropTypes.string,
+  setFieldValue: PropTypes.any,
+  handleChange: PropTypes.any,
 };
 
 export default ImageField;

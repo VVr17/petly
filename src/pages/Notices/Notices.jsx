@@ -8,7 +8,7 @@ import { NavContainer } from './Notices.styled';
 import AddPetButton from 'components/AddPetButton';
 import ModalComponent from 'components/Modal';
 import AddNoticeFormHeader from 'components/AddNoticeForm';
-import AddPetForm from 'components/AddPetForm';
+import AddPetForm from 'components/AddNoticeForm/AddPetForm';
 // import AddPetForm from 'components/AddNoticeForm/AddPetForm';
 import { AnimatePresence } from 'framer-motion';
 
