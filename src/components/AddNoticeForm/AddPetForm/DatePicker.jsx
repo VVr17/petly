@@ -2,7 +2,9 @@ import React from 'react';
 import { Formik, Form, useField } from 'formik';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import InputField from 'components/Ui-Kit/Input';
 import PropTypes from 'prop-types';
+import { DatePickerInput } from './AddPetForm.styled';
 
 const MyDatePicker = ({ name }) => {
   const [field, meta, helpers] = useField(name);
@@ -18,6 +20,7 @@ const MyDatePicker = ({ name }) => {
       placeholderText="Select the date"
       dateFormat="dd.MM.yyyy"
       maxDate={new Date()}
+      customInput={<DatePickerInput />}
     />
   );
 };

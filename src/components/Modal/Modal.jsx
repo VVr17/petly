@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { StyledModal, ButtonCloseModal, Overlay } from './Modal.styled';
+import {
+  StyledModal,
+  ButtonCloseModal,
+  Overlay,
+  StyledModalInternalDiv,
+} from './Modal.styled';
 import { AiOutlineClose } from 'react-icons/ai';
 import AddNoticeFormFirst from 'components/AddNoticeForm';
 import PropTypes from 'prop-types';
@@ -35,10 +40,12 @@ const ModalComponent = ({ closeModal, children }) => {
         {...popUpMenuAnimation}
         transition={{ duration: 0.3 }}
       >
+        {/* <StyledModalInternalDiv> */}
         <ButtonCloseModal onClick={closeModal}>
           <AiOutlineClose size={24} />
         </ButtonCloseModal>
         {children}
+        {/* </StyledModalInternalDiv> */}
       </StyledModal>
     </Overlay>
   );
