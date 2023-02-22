@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { theme, breakpoints } from '../../constants/theme';
 
 export const Container = styled.div`
-  max-width: ${breakpoints[0]}px;
+  /* max-width: ${breakpoints[0]}px; */
   box-sizing: border-box;
   padding: 40px ${theme.space[4]} ${theme.space[4]} ${theme.space[4]};
   margin-right: auto;
@@ -50,7 +50,7 @@ export const Button = styled.button`
   width: 40px;
   height: 40px;
   padding: 10px 10px 10px 10px;
-  border: none; 
+  border: none;
   outline: none;
   background-color: ${theme.colors.accent};
   border-radius: 50%;
@@ -58,7 +58,7 @@ export const Button = styled.button`
 
 export const List = styled.ul`
   list-style-type: none;
-`
+`;
 
 export const iconStyle = {
   height: '20px',

@@ -11,7 +11,11 @@ export const Modal = styled(motion.div)`
   left: 0px;
   position: fixed;
   background-color: ${theme.colors.mainBackground};
-  @media (min-width: ${breakpoints[2]}px) {
+
+  /* ${theme.mq.tablet} {
+    width: 70%;
+  } */
+  ${theme.mq.desktop} {
     display: none;
   }
 `;

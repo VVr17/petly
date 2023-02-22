@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const WrapperCard = styled.li`
-  width: 280px;
+  width: 100%;
 
   ${theme.mq.tablet} {
     width: 336px;

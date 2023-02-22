@@ -7,7 +7,6 @@ import { theme, breakpoints } from '../../../constants/theme';
 
 export const FormWrapper = styled.form`
   position: relative;
-  width: 280px;
   margin-bottom: 40px;
   margin-left: auto;
   margin-right: auto;
