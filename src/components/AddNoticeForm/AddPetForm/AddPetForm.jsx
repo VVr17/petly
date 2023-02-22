@@ -1,39 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Formik, Form, Field, useFormik } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
-import InputField from 'components/Ui-Kit/Input';
 import Button from 'components/Ui-Kit/Button';
 import { FormWrapper, ButtonsContainer } from './AddPetForm.styled';
-import StepOne from './StepOne';
-import StepTwo from './StepTwo';
-import {
-  RadioContainer,
-  RadioButton,
-  RadioLabel,
-  RadioItem,
-  RadioTitle,
-  LoadImageCont,
-  LoadImgLabel,
-  LoadImgPlus,
-  LoadImgInput,
-  ImagePreview,
-} from './AddPetForm.styled';
-import Male from '../../../assets/images/desktop/male.svg';
-import Female from '../../../assets/images/desktop/female.svg';
-
-import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
-import Plus from '../../../assets/images/desktop/plus.svg';
-import LocationField from './Location';
-import PriceField from './PriceField';
-import CommentField from './CommentField';
+import StepOne from './StepOne/StepOne';
+import StepTwo from './StepTwo/StepTwo';
+import LocationField from './StepTwo/Location';
+import PriceField from './StepTwo/PriceField';
+import CommentField from './StepTwo/CommentField';
 import UploadImageField from 'components/UploadImage';
-
-
+import FilterCategory from './FilterCategory';
+import SexField from './StepTwo/Sex';
+import { useAddNoticeMutation } from 'redux/api/noticesApi';
 
 // Values for Formik
 
 const initialValues = {
+  category: 'sell',
   title: '',
   name: '',
   birthDate: '',
@@ -69,7 +53,7 @@ const validationSchema = Yup.object().shape({
     )
     .required('City is required'),
   price: Yup.number().required('Name is required').min(1, 'Price can not be 0'),
-  imageFile: Yup.mixed().required(),
+  petImage: Yup.mixed().required(),
   comment: Yup.string()
     .required('Comment is required')
     .min(8, 'Title should be at least 8 characters long')
@@ -80,16 +64,17 @@ const validationSchema = Yup.object().shape({
 
 const AddPetForm = ({ onClose }) => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [image, setImage] = useState(null);
 
   const [file, setFile] = useState(null);
   const [fileDataURL, setFileDataURL] = useState(null);
 
-  const changeHandler = e => {
-    const file = e.target.files[0];
+  const [addNotice] = useAddNoticeMutation();
 
-    setFile(file);
-  };
+  // const changeHandler = e => {
+  //   const file = e.target.files[0];
+
+  //   setFile(file);
+  // };
   useEffect(() => {
     let fileReader,
       isCancel = false;
@@ -115,6 +100,19 @@ const AddPetForm = ({ onClose }) => {
     if (currentStep < 2) {
       setCurrentStep(currentStep + 1);
     } else {
+      const categoryName = values.category;
+      const credentials = {
+        title: values.title,
+        name: values.name,
+        birthDate: values.birthDate,
+        breed: values.breed,
+        sex: values.sex,
+        location: values.location,
+        price: parseInt(values.price),
+        petImage: values.imageFile,
+        comment: values.comment,
+      };
+      addNotice({ categoryName, credentials });
       console.log(values);
     }
     setSubmitting(false);
@@ -128,62 +126,29 @@ const AddPetForm = ({ onClose }) => {
     <Formik
       initialValues={initialValues}
       // validationSchema={validationSchema}
-
       onSubmit={handleSubmit}
       encType="multipart/form-data"
       // setFieldValue
     >
       {({ isSubmitting, values, setFieldValue }) => (
         <FormWrapper>
-          {currentStep === 1 && <StepOne />}
+          {currentStep === 1 && (
+            <StepOne>
+              <FilterCategory value={values.category} />
+            </StepOne>
+          )}
           {currentStep === 2 && (
             <StepTwo>
-              <RadioTitle>
-                The sex<StyledSpan>*</StyledSpan>
-              </RadioTitle>
-              <RadioContainer>
-                <li>
-                  <RadioLabel isSelected={values.sex === 'male'}>
-                    <RadioButton
-                      type="radio"
-                      name="sex"
-                      value="male"
-                      checked={values.sex === 'male'}
-                    />
-                    <RadioItem>
-                      <img src={Male} alt="Male" />
-                    </RadioItem>
-                    Male
-                  </RadioLabel>
-                </li>
-
-                <li>
-                  <RadioLabel isSelected={values.sex === 'female'}>
-                    <RadioButton
-                      type="radio"
-                      name="sex"
-                      value="female"
-                      checked={values.sex === 'female'}
-                    />
-                    <RadioItem>
-                      <img
-                        src={Female}
-                        alt="Female"
-                        width="60px"
-                        height="60px"
-                      />
-                    </RadioItem>
-                    Female
-                  </RadioLabel>
-                </li>
-              </RadioContainer>
+              <SexField value={values.sex} />
               <LocationField />
-              <PriceField />
+
+              {values.category === 'sell' && <PriceField />}
+
               <UploadImageField
                 fileDataURL={fileDataURL}
                 handleChange={e => {
                   setFile(e.currentTarget.files[0]);
-                  setFieldValue('imageFile', e.currentTarget.files[0]);
+                  setFieldValue('petImage', e.currentTarget.files[0]);
                 }}
               />
 

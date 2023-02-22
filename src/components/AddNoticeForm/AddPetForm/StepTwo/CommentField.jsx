@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextareaLabel, Textarea } from './AddPetForm.styled';
+import { TextareaLabel, Textarea } from '../AddPetForm.styled';
 import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
 
 const CommentField = () => {

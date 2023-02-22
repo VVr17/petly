@@ -13,12 +13,16 @@ import AddPetButton from 'components/AddPetButton';
 import ModalComponent from 'components/Modal';
 import AddNoticeFormHeader from 'components/AddNoticeForm';
 
+import NotificationAddNotice from 'components/NotificationAddNotice';
+
+
 import AddPetForm from 'components/AddNoticeForm/AddPetForm';
 
 import { AnimatePresence } from 'framer-motion';
 
 const Notices = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuth } = useSelector(state => state.user);
   const handleClick = () => {
     setIsOpen(true);
   };
@@ -58,8 +62,18 @@ const Notices = () => {
       <AnimatePresence>
         {isOpen && (
           <ModalComponent closeModal={closeModal} key="popUp">
-            <AddNoticeFormHeader />
-            <AddPetForm onClose={closeModal} />
+            {isAuth ? (
+              <>
+                <AddNoticeFormHeader />
+                <AddPetForm onClose={closeModal} />
+              </>
+            ) : (
+              <>
+                <ModalComponent closeModal={closeModal} key="popUp">
+                  <NotificationAddNotice />
+                </ModalComponent>
+              </>
+            )}
           </ModalComponent>
         )}
       </AnimatePresence>

@@ -9,12 +9,13 @@ import {
   RadioButton,
   DatePickerInput,
   Asterisk,
-} from './AddPetForm.styled';
+} from '../AddPetForm.styled';
 import Button from 'components/Ui-Kit/Button';
 import MyDatePicker from './DatePicker';
 import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
+import PropTypes from 'prop-types';
 
-const StepOne = () => {
+const StepOne = ({ children }) => {
   // const Example = () => {
   //   const [startDate, setStartDate] = useState(new Date());
   //   return (
@@ -27,7 +28,8 @@ const StepOne = () => {
         Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
         consectetur
       </Text>
-      <ButtonFilterList>
+      {children}
+      {/* <ButtonFilterList>
         <ButtonFilterItem>
           <Button name="transparent">lost/found</Button>
         </ButtonFilterItem>
@@ -37,7 +39,7 @@ const StepOne = () => {
         <ButtonFilterItem>
           <Button name="transparent">sell</Button>
         </ButtonFilterItem>
-      </ButtonFilterList>
+      </ButtonFilterList> */}
       <InputField
         name="title"
         type="text"
@@ -70,5 +72,7 @@ const StepOne = () => {
     </>
   );
 };
-
+StepOne.propTypes = {
+  children: PropTypes.node,
+};
 export default StepOne;

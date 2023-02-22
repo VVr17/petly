@@ -7,7 +7,7 @@ const PriceField = () => {
       name="price"
       type="text"
       placeholder="Type price"
-      label="Location"
+      label="Price"
       span="*"
     />
   );
