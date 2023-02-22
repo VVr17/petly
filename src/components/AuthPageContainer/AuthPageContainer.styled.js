@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   background: bottom -150px left 0 / contain no-repeat url(${waveMobile});
   background-size: 100% 456px;
   width: 100%;
+  min-height: 500px;
 
   ${theme.mq.tablet} {
     background: bottom 0 left 0 / contain no-repeat url(${waveTablet});
