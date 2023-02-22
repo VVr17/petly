@@ -5,7 +5,7 @@ import { pageAnimation } from 'constants/animation';
 
 const AuthPageContainer = ({ children }) => {
   return (
-    <Wrapper {...pageAnimation} transition={{ duration: 2.0 }}>
+    <Wrapper {...pageAnimation} transition={{ duration: 0.3 }}>
       {children}
     </Wrapper>
   );
