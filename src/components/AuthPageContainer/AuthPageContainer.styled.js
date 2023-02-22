@@ -8,17 +8,18 @@ export const Wrapper = styled.div`
   background: bottom -150px left 0 / contain no-repeat url(${waveMobile});
   background-size: 100% 456px;
   width: 100%;
-  min-height: 500px;
+  /* min-height: 500px; */
+  height: 100%;
 
   ${theme.mq.tablet} {
     background: bottom 0 left 0 / contain no-repeat url(${waveTablet});
     background-size: 100%;
-    min-height: 1024px;
+    /* min-height: 1024px; */
   }
 
   ${theme.mq.desktop} {
     position: fixed;
     background: bottom -10px center no-repeat url(${waveDesktop});
-    min-height: 768px;
+    /* min-height: 768px; */
   }
 `;
