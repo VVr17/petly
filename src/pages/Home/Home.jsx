@@ -10,8 +10,8 @@ import portraitDesktop from 'assets/images/desktop/portrait-and-favorite-pet.png
 
 const Home = () => {
   return (
-    <Background>
-      <WrapContainer {...pageAnimation} transition={{ duration: 0.3 }}>
+    <Background {...pageAnimation} transition={{ duration: 0.3 }}>
+      <WrapContainer>
         <Title>
           Take good care of <br />
           your small pets

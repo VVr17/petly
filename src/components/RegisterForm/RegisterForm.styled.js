@@ -16,6 +16,12 @@ export const ModalContent = styled.div`
   width: 618px;
   max-height: 605px;
   box-shadow: ${theme.boxShadow.second};
+  ${theme.mq.mobileOnly} {
+    background-color: transparent;
+    box-shadow: none;
+    width: 100%;
+    padding: 0 0 20px 0;
+  }
 `;
 
 export const FormTitle = styled.h1`
@@ -26,6 +32,10 @@ export const FormTitle = styled.h1`
   text-align: center;
   align-items: center;
   color: ${theme.colors.mainText};
+  ${theme.mq.mobileOnly} {
+    font-size: ${theme.fontSizes.l};
+    line-height: 32px;
+  }
 `;
 export const FormWrapper = styled(Form)`
   display: flex;

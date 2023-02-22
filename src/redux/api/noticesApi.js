@@ -14,7 +14,7 @@ export const noticesApi = createApi({
   tagTypes: [TAGS_TYPES.notice],
   endpoints: builder => ({
     getNoticeByCategory: builder.query({
-      query: categoryName => `${NOTICES_URL}${CATEGORY_URL}/${categoryName}`,
+      query: categoryName => `${NOTICES_URL}/${categoryName}`,
       transformResponse: response => response.data,
       providesTags: [TAGS_TYPES.notice],
     }),

@@ -1,12 +1,16 @@
-import React from 'react';
+import { useState, React } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   useDeleteNoticeMutation,
   useAddNoticeToFavoriteMutation,
 } from 'redux/api/noticesApi';
+import { selectStatusFilter } from 'redux/filter/filterSelectors';
 import getAge from '../../../js';
 import Button from 'components/Ui-Kit/Button';
+import ModalNotice from 'components/ModalNotice';
+import ModalComponent from 'components/Modal';
+import { AnimatePresence } from 'framer-motion';
 import { IoTrashSharp } from 'react-icons/io5';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import {
@@ -23,8 +27,6 @@ import {
   AddToFavoriteButton,
 } from './NoticeCategoryItem.styled';
 
-const onOpenModal = () => {};
-
 const NoticeCategoryItem = ({
   _id,
   photoURL,
@@ -34,13 +36,29 @@ const NoticeCategoryItem = ({
   location,
   birthDate,
   price,
-}) => {
-  const { isAuth } = useSelector(state => state.user);
+}) => {  
+  
+  const status = useSelector(selectStatusFilter);
+  const showButtonDelete = status === 'user';
+
   const [deleteNotice] = useDeleteNoticeMutation();
   const [addNoticeToFavorite] = useAddNoticeToFavoriteMutation();
 
   const place = location.split(',');
   const city = place[0];
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = () => {
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+  const openModal = e => {
+    handleClick();
+    console.log({ _id });
+  };
 
   const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
   return (
@@ -90,14 +108,15 @@ const NoticeCategoryItem = ({
       </ContainerInfo>
       <ContainerButton>
         <Button
+          id={_id}
           name="learnMore"
           type="button"
           width="248px"
-          onClick={onOpenModal}
+          onClick={() => openModal(_id)}
         >
           Learn more
         </Button>
-        {isAuth && (
+        {showButtonDelete && (
           <Button
             name="learnMore"
             type="button"
@@ -109,6 +128,14 @@ const NoticeCategoryItem = ({
           </Button>
         )}
       </ContainerButton>
+
+      <AnimatePresence>
+        {isOpen && (
+          <ModalComponent closeModal={closeModal} key="popUp">
+            <ModalNotice id={_id} onClose={closeModal} />
+          </ModalComponent>
+        )}
+      </AnimatePresence>
     </CardNotice>
   );
 };

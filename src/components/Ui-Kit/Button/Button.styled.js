@@ -19,22 +19,24 @@ export const ButtonStyled = styled(motion.button)`
   align-items: center;
   justify-content: center;
   background-color: ${({ theme, name, selected }) =>
-    name === 'filled' || selected ? theme.colors.accent : 'transparent'};
+      name === 'filled' || selected ? theme.colors.accent : 'transparent'};
 
   color: ${({ theme, name, selected }) => {
-    switch (name) {
-      case 'transparent':
-        return theme.colors.mainText;
-      case 'filled':
-        return theme.colors.lightText;
-      case 'learnMore':
-        return theme.colors.accent;
-      case 'filter':
-        return selected ? theme.colors.lightText : theme.colors.mainText;
-      default:
-        return theme.colors.lightText;
-    }
-  }};
+      switch (name) {
+         case 'transparent':
+            return theme.colors.mainText;
+         case 'filled':
+            return theme.colors.lightText;
+         case 'learnMore':
+            return theme.colors.accent;
+         case 'filter':
+            return selected ? theme.colors.lightText : theme.colors.mainText;
+         case 'addToFavorite':
+            return theme.colors.mainText;
+         default:
+            return theme.colors.lightText;
+      }
+   }};
 
   transition: color ${({ theme }) => theme.transitionTiming},
     background-color ${({ theme }) => theme.transitionTiming},
@@ -48,7 +50,7 @@ export const ButtonStyled = styled(motion.button)`
       name === 'learnMore' ? theme.colors.secondaryHover : theme.colors.hover};
     color: ${({ theme, name }) =>
       name === 'learnMore'
-        ? theme.colors.secondaryHover
-        : theme.colors.lightText};
+         ? theme.colors.secondaryHover
+         : theme.colors.lightText};
   }
 `;

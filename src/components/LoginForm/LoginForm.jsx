@@ -9,7 +9,8 @@ import { useLoginUserMutation } from "redux/api/userApi";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import LoginInputs from "./LoginInputs";
-import { ModalContent, ModalWrapper, FormWrapper, ButtonWrapper, FormTitle, LoginLink, Paragraph } from "./LoginForm.styled";
+// styles from RegisterForm
+import { ModalContent, ModalWrapper, FormWrapper, ButtonWrapper, FormTitle, LoginLink, Paragraph } from "../RegisterForm/RegisterForm.styled";
 
 import Button from 'components/Ui-Kit/Button';
 

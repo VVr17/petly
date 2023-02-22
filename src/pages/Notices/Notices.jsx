@@ -12,7 +12,9 @@ import { NavContainer } from './Notices.styled';
 import AddPetButton from 'components/AddPetButton';
 import ModalComponent from 'components/Modal';
 import AddNoticeFormHeader from 'components/AddNoticeForm';
+
 import NotificationAddNotice from 'components/NotificationAddNotice';
+
 
 import AddPetForm from 'components/AddNoticeForm/AddPetForm';
 
@@ -32,16 +34,16 @@ const Notices = () => {
   // }
 
   const category = useSelector(selectStatusFilter);
+
   const {
-    data: noticesByCategory,
+    data: notices,
     error,
     isLoading,
     isFetching,
   } = useGetNoticeByCategoryQuery(category, { skip: !category });
 
-  if (!noticesByCategory) return;
-  const showNotices = noticesByCategory && !error && !isLoading;
-  console.log(noticesByCategory);
+  if (!notices) return;
+  const showNotices = notices && !error && !isFetching;
 
   return (
     <Section>
@@ -55,7 +57,7 @@ const Notices = () => {
       </NavContainer>
 
       {isFetching && <Loader />}
-      {showNotices && <NoticesCategoryList notices={noticesByCategory} />}
+      {showNotices && <NoticesCategoryList notices={notices} />}
 
       <AnimatePresence>
         {isOpen && (
