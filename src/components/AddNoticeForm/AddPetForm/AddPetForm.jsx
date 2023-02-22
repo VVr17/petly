@@ -26,6 +26,7 @@ import Plus from '../../../assets/images/desktop/plus.svg';
 import LocationField from './Location';
 import PriceField from './PriceField';
 import CommentField from './CommentField';
+import UploadImageField from 'components/UploadImage';
 
 // Values for Formik
 
@@ -133,16 +134,7 @@ const AddPetForm = ({ onClose }) => {
         <FormWrapper>
           {currentStep === 1 && <StepOne />}
           {currentStep === 2 && (
-            <StepTwo
-            // name="imageFile"
-            // setFieldValue={setFieldValue}
-            // handleChange={e => {
-            //   setFieldValue('imageFile', e.target.files[0]);
-            // }}
-
-            //   // setFile(URL.createObjectURL(e.target.files[0]));
-            // }}
-            >
+            <StepTwo>
               <RadioTitle>
                 The sex<StyledSpan>*</StyledSpan>
               </RadioTitle>
@@ -184,39 +176,13 @@ const AddPetForm = ({ onClose }) => {
               </RadioContainer>
               <LocationField />
               <PriceField />
-              <LoadImgLabel>
-                Load the pet’s image:<StyledSpan>*</StyledSpan>
-                {fileDataURL ? (
-                  <LoadImageCont>
-                    <ImagePreview
-                      src={fileDataURL}
-                      alt="Preview"
-                      width="47px"
-                      height="47px"
-                    />
-                  </LoadImageCont>
-                ) : (
-                  <>
-                    <LoadImageCont>
-                      <LoadImgPlus
-                        src={Plus}
-                        alt="upload"
-                        width="47px"
-                        height="47px"
-                      />
-                    </LoadImageCont>
-                    <LoadImgInput
-                      name="imageFile"
-                      type="file"
-                      accept="image/*"
-                      onChange={e => {
-                        setFile(e.currentTarget.files[0]);
-                        setFieldValue('imageFile', e.currentTarget.files[0]);
-                      }}
-                    />
-                  </>
-                )}
-              </LoadImgLabel>
+              <UploadImageField
+                fileDataURL={fileDataURL}
+                handleChange={e => {
+                  setFile(e.currentTarget.files[0]);
+                  setFieldValue('imageFile', e.currentTarget.files[0]);
+                }}
+              />
 
               <CommentField />
             </StepTwo>

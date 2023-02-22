@@ -40,12 +40,12 @@ const ModalComponent = ({ closeModal, children }) => {
         {...popUpMenuAnimation}
         transition={{ duration: 0.3 }}
       >
-        <StyledModalInternalDiv>
-          <ButtonCloseModal onClick={closeModal}>
-            <AiOutlineClose size={36} />
-          </ButtonCloseModal>
-          {children}
-        </StyledModalInternalDiv>
+        {/* <StyledModalInternalDiv> */}
+        <ButtonCloseModal onClick={closeModal}>
+          <AiOutlineClose size={36} />
+        </ButtonCloseModal>
+        {children}
+        {/* </StyledModalInternalDiv> */}
       </StyledModal>
     </Overlay>
   );

@@ -1,54 +1,48 @@
-import React, { useState } from 'react';
-import { Field } from 'formik';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
 import {
-  DropZoneWrapper,
-  DropZoneInput,
+  LoadImgLabel,
+  LoadImageCont,
   ImagePreview,
   LoadImgPlus,
+  LoadImgInput,
 } from './UploadImage.styled';
-import { useDropzone } from 'react-dropzone';
 import Plus from '../../assets/images/desktop/plus.svg';
+import PropTypes from 'prop-types';
 
-const ImageField = ({ name, setFieldValue }) => {
-  const [image, setImage] = useState(null);
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: 'image/*',
-    multiple: false,
-    onDrop: ([file]) => {
-      setImage(URL.createObjectURL(file));
-      // setFieldValue(name, file);
-      // onDrop: acceptedFiles => {
-      // setFieldValue("files", acceptedFiles);
-    },
-  });
-  console.log(image);
-  const handleChange = () => {
-    setFieldValue(name, image);
-  };
-
+const UploadImageField = ({ handleChange, fileDataURL }) => {
   return (
-    <>
-      {image ? (
-        <ImagePreview src={image} alt="Preview" />
+    <LoadImgLabel>
+      Load the pet’s image:<StyledSpan>*</StyledSpan>
+      {fileDataURL ? (
+        <LoadImageCont>
+          <ImagePreview
+            src={fileDataURL}
+            alt="Preview"
+            width="47px"
+            height="47px"
+          />
+        </LoadImageCont>
       ) : (
-        <Field name={name}>
-          {({ field, form }) => (
-            <DropZoneWrapper {...getRootProps()}>
-              <LoadImgPlus src={Plus} alt="upload" width="47px" height="47px" />
-              <DropZoneInput {...getInputProps()} onChange={handleChange} />
-            </DropZoneWrapper>
-          )}
-        </Field>
+        <>
+          <LoadImageCont>
+            <LoadImgPlus src={Plus} alt="upload" width="47px" height="47px" />
+          </LoadImageCont>
+          <LoadImgInput
+            name="imageFile"
+            type="file"
+            accept="image/*"
+            onChange={handleChange}
+          />
+        </>
       )}
-    </>
+    </LoadImgLabel>
   );
 };
 
-ImageField.propTypes = {
-  name: PropTypes.string,
-  setFieldValue: PropTypes.any,
-  handleChange: PropTypes.any,
+UploadImageField.propTypes = {
+  handleChange: PropTypes.func,
+  fileDataURL: PropTypes.string,
 };
 
-export default ImageField;
+export default UploadImageField;

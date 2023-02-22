@@ -20,7 +20,8 @@ export const Overlay = styled(motion.div)`
 export const StyledModal = styled(motion.div)`
   position: relative;
   width: 608px;
-  max-height: 85%;
+  padding: 40px 80px;
+  // max-height: 85%;
   margin-top: 40px;
   display: flex;
   flex-direction: column;
