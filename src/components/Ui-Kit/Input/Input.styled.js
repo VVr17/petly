@@ -22,6 +22,10 @@ export const FieldStyle = styled(Field)`
   padding-right: 28px;
   padding-top: 9px;
   padding-bottom: 9px;
+  ${theme.mq.mobileOnly} {
+    font-size: ${theme.fontSizes.xxs};
+    padding: 12px 14px;
+  }
 `;
 
 export const ErrorStyle = styled(ErrorMessage)`
@@ -29,6 +33,9 @@ export const ErrorStyle = styled(ErrorMessage)`
   transform: translate(20px, -15px);
   font-size: ${theme.fontSizes.xxxs};
   color: red;
+   ${theme.mq.mobileOnly} {
+    transform: translate(0px, -15px);
+  }
 `;
 
 export const StyledSpan = styled.span`
