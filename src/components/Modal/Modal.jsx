@@ -36,7 +36,7 @@ const ModalComponent = ({ closeModal, children }) => {
         transition={{ duration: 0.3 }}
       >
         <ButtonCloseModal onClick={closeModal}>
-          <AiOutlineClose size={36} />
+          <AiOutlineClose size={24} />
         </ButtonCloseModal>
         {children}
       </StyledModal>
