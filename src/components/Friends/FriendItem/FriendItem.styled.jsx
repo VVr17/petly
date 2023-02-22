@@ -88,12 +88,12 @@ export const TimeList = styled.ul`
 
   ${p => p.theme.mq.tablet} {
     top: 40px;
-    width: 135px;
+    width: 140px;
   }
 
   ${p => p.theme.mq.desktop} {
-    top: 40px;
-    width: 140px;
+    top: 50px;
+    width: 160px;
   }
 `;
 
@@ -103,7 +103,7 @@ export const FriendListItem = styled.li`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;  
+  align-items: center;
 
   margin-bottom: 12px;
   padding: 12px;
