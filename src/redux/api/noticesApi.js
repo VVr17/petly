@@ -37,6 +37,9 @@ export const noticesApi = createApi({
       query: ({ categoryName, noticeData }) => ({
         url: `${NOTICES_URL}${CATEGORY_URL}/${categoryName}`,
         method: 'POST',
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
         body: noticeData,
       }),
       transformResponse: response => response.data,
