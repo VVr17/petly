@@ -85,11 +85,6 @@ const AddPetForm = ({ onClose }) => {
   const [file, setFile] = useState(null);
   const [fileDataURL, setFileDataURL] = useState(null);
 
-  const changeHandler = e => {
-    const file = e.target.files[0];
-
-    setFile(file);
-  };
   useEffect(() => {
     let fileReader,
       isCancel = false;
