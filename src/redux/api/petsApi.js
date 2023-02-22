@@ -11,6 +11,9 @@ export const petsApi = createApi({
       query: newPetData => ({
         url: `${PETS_URL}`,
         method: 'POST',
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
         body: newPetData,
       }),
       invalidatesTags: [TAGS_TYPES.pet],

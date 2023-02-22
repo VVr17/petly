@@ -32,9 +32,9 @@ const News = () => {
         <TitlePage name={'News'} />
         <SearchForm handleSubmit={searchQuery} />
       </WrapperTitle>
+      {isLoading && <Loader />}
+      {error && <div>{error.message}</div>}
       <CardList>
-        {isLoading && <Loader />}
-        {error && <div>{error.message}</div>}
         {filteredNews &&
           filteredNews.map(item => (
             <NewsCard

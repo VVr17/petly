@@ -26,12 +26,12 @@ export const WrapContainer = styled.div`
   padding-right: 20px;
   padding-left: 20px;
   width: ${theme.breakpoints[0]};
-  /* min-height: 532px; */
+  min-height: 532px;
   height: 100%;
 
   ${theme.mq.tablet} {
     width: ${theme.breakpoints[1]};
-    /* min-height: 1127px; */
+    min-height: 1127px;
     padding-right: ${({ theme }) => theme.space[6]};
     padding-left: ${({ theme }) => theme.space[6]};
   }
@@ -40,7 +40,7 @@ export const WrapContainer = styled.div`
     width: ${theme.breakpoints[2]};
     padding-right: ${({ theme }) => theme.space[3]};
     padding-left: ${({ theme }) => theme.space[3]};
-    /* min-height: 702px; */
+    min-height: 702px;
   }
 `;
 
