@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   FormWrapper,
   FormField,
@@ -9,16 +9,40 @@ import {
 import PropTypes from 'prop-types';
 
 const SearchForm = ({ handleSubmit }) => {
-  return (
-    <FormWrapper onSubmit={handleSubmit}>
-      <FormField name="search" type="text" placeholder="Search" />
+  const [isSearch, setIsSearch] = useState(false);
+  const [value, setValue] = useState('');
 
-      <Button type="submit">
-        <AiOutlineSearch />
-      </Button>
-      <Button type="button">
-        <AiOutlineCloseCircle />
-      </Button>
+  const submitForm = e => {
+    e.preventDefault();
+    setIsSearch(true);
+    handleSubmit(e, value);
+  };
+
+  const handleClick = e => {
+    setIsSearch(false);
+    e.preventDefault();
+    setValue('');
+    handleSubmit(e, '');
+  };
+
+  return (
+    <FormWrapper onSubmit={submitForm}>
+      <FormField
+        name="search"
+        type="text"
+        placeholder="Search"
+        value={value}
+        onChange={e => setValue(e.target.value)}
+      />
+      {!isSearch ? (
+        <Button type="submit">
+          <AiOutlineSearch />
+        </Button>
+      ) : (
+        <Button type="button" name="clear" onClick={handleClick}>
+          <AiOutlineCloseCircle />
+        </Button>
+      )}
     </FormWrapper>
   );
 };
