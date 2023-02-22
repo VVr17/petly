@@ -1,7 +1,8 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { theme, breakpoints } from '../../constants/theme';
 
-export const Button = styled.button`
+export const Button = styled(motion.button)`
   // position: relative;
   display: flex;
   color: ${theme.colors.mainText};
@@ -11,14 +12,14 @@ export const Button = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
-    align-items: center;
+  align-items: center;
   text-align: center;
-  }
 `;
 
 export const ButtonTitle = styled.span`
   display: inline-block;
   margin-right: 12px;
+  min-width: 73px;
 `;
 
 export const ReactIcon = styled.div`
@@ -30,4 +31,5 @@ export const ReactIcon = styled.div`
   }
   svg:hover {
     color: ${({ hoverColor }) => hoverColor ?? '#db793d'};
-  `;
+  }
+`;
