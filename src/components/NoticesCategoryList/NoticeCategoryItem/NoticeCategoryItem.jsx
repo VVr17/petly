@@ -5,6 +5,7 @@ import {
   useDeleteNoticeMutation,
   useAddNoticeToFavoriteMutation,
 } from 'redux/api/noticesApi';
+import { selectStatusFilter } from 'redux/filter/filterSelectors';
 import getAge from '../../../js';
 import Button from 'components/Ui-Kit/Button';
 import { IoTrashSharp } from 'react-icons/io5';
@@ -34,8 +35,11 @@ const NoticeCategoryItem = ({
   location,
   birthDate,
   price,
-}) => {
-  const { isAuth } = useSelector(state => state.user);
+}) => {  
+  
+  const status = useSelector(selectStatusFilter);
+  const showButtonDelete = status === 'user';
+
   const [deleteNotice] = useDeleteNoticeMutation();
   const [addNoticeToFavorite] = useAddNoticeToFavoriteMutation();
 
@@ -97,7 +101,7 @@ const NoticeCategoryItem = ({
         >
           Learn more
         </Button>
-        {isAuth && (
+        {showButtonDelete && (
           <Button
             name="learnMore"
             type="button"
