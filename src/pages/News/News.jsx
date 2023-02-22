@@ -12,10 +12,10 @@ const News = () => {
   let news = data ? data : [];
   const [filteredNews, setFilteredNews] = useState([]);
 
-  const searchQuery = e => {
+  const searchQuery = (e, value) => {
     e.preventDefault();
     const newsFilter = news.filter(el =>
-      el.title.concat(el.description).toLowerCase().includes(e.target[0].value)
+      el.title.concat(el.description).toLowerCase().includes(value)
     );
     setFilteredNews(newsFilter);
   };

@@ -44,7 +44,13 @@ export const FriendItem = ({
       </FriendTitle>
 
       <FriendContentWrapper>
-        <FriendImg src={imageUrl ?? defaultImage} alt={title} loading="lazy" />
+        <FriendLink href={addressUrl} target="_blank">
+          <FriendImg
+            src={imageUrl ?? defaultImage}
+            alt={title}
+            loading="lazy"
+          />
+        </FriendLink>
 
         <FriendContentList>
           <TextWrapper
@@ -60,7 +66,7 @@ export const FriendItem = ({
             {workDays === undefined || workDays === null ? (
               <>
                 <FriendText>Time:</FriendText>
-                <FriendText>------------</FriendText>
+                <p>--------------</p>
               </>
             ) : (
               <>
@@ -73,8 +79,8 @@ export const FriendItem = ({
                   </>
                 ) : (
                   <>
-                    <FriendText>Time:</FriendText>
-                    <FriendText>Closed</FriendText>
+                    <FriendTime>Time:</FriendTime>
+                    <TimeBtn>Closed</TimeBtn>
                   </>
                 )}
                 {isVisible || <TimeTable shedule={newWorkDays} />}
@@ -88,7 +94,7 @@ export const FriendItem = ({
                 {address}
               </FriendLink>
             ) : (
-              <FriendText>------------</FriendText>
+              <p>------------</p>
             )}
           </TextWrapper>
 
@@ -97,7 +103,7 @@ export const FriendItem = ({
             {email ? (
               <FriendLink href={`mailto:${email}`}>{email}</FriendLink>
             ) : (
-              <FriendText>------------</FriendText>
+              <p>------------</p>
             )}
           </TextWrapper>
           <TextWrapper>
@@ -105,7 +111,7 @@ export const FriendItem = ({
             {phone ? (
               <FriendLink href={`tel:${phone}`}>{phone}</FriendLink>
             ) : (
-              <FriendText>------------</FriendText>
+              <p>------------</p>
             )}
           </TextWrapper>
         </FriendContentList>

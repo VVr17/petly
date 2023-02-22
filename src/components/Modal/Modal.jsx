@@ -42,7 +42,7 @@ const ModalComponent = ({ closeModal, children }) => {
       >
         {/* <StyledModalInternalDiv> */}
         <ButtonCloseModal onClick={closeModal}>
-          <AiOutlineClose size={36} />
+          <AiOutlineClose size={24} />
         </ButtonCloseModal>
         {children}
         {/* </StyledModalInternalDiv> */}

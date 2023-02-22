@@ -12,14 +12,14 @@ import {
 } from './UserPetsListItem.styled';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
 
-const UserPetsListItem = ({ pet }) => {
-  const { name, dateOfBirth, breed, comments } = pet;
+const UserPetsListItem = ({ pet, handleDelete }) => {
+  const { name, birthDate, breed, comments, photoURL } = pet;
 
   return (
     <Item>
-      <Image></Image>
+      <Image src={photoURL} alt="photo"/>
       <InfoBox>
-        <Button>
+        <Button onClick={()=>handleDelete(pet._id)}>
           <RiDeleteBin6Fill style={iconStyle} />
         </Button>
         <Text>
@@ -28,7 +28,7 @@ const UserPetsListItem = ({ pet }) => {
         </Text>
         <Text>
           <Span>Date of birth: </Span>
-          {dateOfBirth}
+          {birthDate}
         </Text>
         <Text>
           <Span>Breed: </Span>
@@ -45,6 +45,7 @@ const UserPetsListItem = ({ pet }) => {
 
 UserPetsListItem.propTypes = {
   pet: PropTypes.object.isRequired,
+  handleDelete: PropTypes.func.isRequired
 };
 
 export default UserPetsListItem;

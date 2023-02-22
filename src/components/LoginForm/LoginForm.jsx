@@ -1,14 +1,20 @@
 import React from "react";
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Formik } from "formik";
-import { ModalContent, ModalWrapper, FormWrapper } from "./LoginForm.styled";
-import * as Yup from "yup";
-import InputField from "../Ui-Kit/Input/Input";
-import { NavLink } from "react-router-dom";
-import { useLoginUserMutation } from "redux/api/userApi";
+
 import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
+
+import { useLoginUserMutation } from "redux/api/userApi";
+
+import { Formik } from "formik";
+import * as Yup from "yup";
+import LoginInputs from "./LoginInputs";
+import { ModalContent, ModalWrapper, FormWrapper, ButtonWrapper, FormTitle, LoginLink, Paragraph } from "./LoginForm.styled";
+
 import Button from 'components/Ui-Kit/Button';
+
+
+// Values for Formik
 
 const initialValues = {
     email: "",
@@ -17,21 +23,29 @@ const initialValues = {
 
 };
 
+
+// Yup validation
+
 const validationSchema = Yup.object().shape({
 
     email: Yup.string()
         .email("Invalid email address")
         .required("Email is required"),
     password: Yup.string()
-        .min(8, "Password must be at least 8 characters long")
+        .min(7, "Password must be at least 7 characters long")
         .required("Password is required"),
 });
+
+
+
+// main function
 
 const LoginForm = () => {
 
     const [loginUser, { isError }] = useLoginUserMutation();
     const navigate = useNavigate();
     const { isAuth } = useSelector(state => state.user);
+
     const handleSubmit = (values) => {
 
         const credentials = {
@@ -42,33 +56,34 @@ const LoginForm = () => {
     };
 
     useEffect(() => {
-    if (isAuth) {
-      console.log('Congratulations! You are successfully signed up!');
-      navigate('/');
-    }
-  });
+        if (isAuth) {
+            console.log('Congratulations! You are successfully signed up!');
+            navigate('/');
+        }
+    });
 
     return (
         <ModalWrapper>
             <ModalContent>
-                <h1>Login</h1>
+                <FormTitle>Login</FormTitle>
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
                     onSubmit={handleSubmit}
                 >
-                    {({ isSubmitting }) => (
-                        <FormWrapper>
-             
-                            <InputField name="email" type="email" placeholder="Email" />
-                            <InputField name="password" type="password" placeholder="Password" />
-                            <Button name="filled" type="submit" disabled={isSubmitting}>
-                                Submit
-                            </Button>
-                        </FormWrapper>
-                    )}
+                    {({ isSubmitting }) => {
+                        return (
+                            <FormWrapper>
+                                <LoginInputs />
+                                <ButtonWrapper>
+                                    <Button name="filled" type="submit" disabled={isSubmitting}>
+                                        Submit
+                                    </Button>
+                                </ButtonWrapper>
+                            </FormWrapper>);
+                    }}
                 </Formik>
-                <p>Don&apos;t have an account? <NavLink to="/register">Regiser</NavLink></p>
+                <Paragraph>Don&apos;t have an account? <LoginLink to="/register">Regiser</LoginLink></Paragraph>
             </ModalContent>
         </ModalWrapper>
     );

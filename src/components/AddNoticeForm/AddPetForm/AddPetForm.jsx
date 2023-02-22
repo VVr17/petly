@@ -21,12 +21,15 @@ import {
 } from './AddPetForm.styled';
 import Male from '../../../assets/images/desktop/male.svg';
 import Female from '../../../assets/images/desktop/female.svg';
+
 import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
 import Plus from '../../../assets/images/desktop/plus.svg';
 import LocationField from './Location';
 import PriceField from './PriceField';
 import CommentField from './CommentField';
 import UploadImageField from 'components/UploadImage';
+
+
 
 // Values for Formik
 

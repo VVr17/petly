@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { statusFilter } from '../../redux/filter/filterConstans.js';
 import { setStatusFilter } from '../../redux/filter/filterSlice.js';
-import { selectStatusFilter } from '../../redux/filter/userSelectors.js';
+import { selectStatusFilter } from '../../redux/filter/filterSelectors.js';
 import Button from 'components/Ui-Kit/Button';
 import { Navigation, NavComponent } from './FindPetFilter.styled';
 

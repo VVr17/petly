@@ -32,7 +32,7 @@ export const InfoBox = styled.div`
   }
 `;
 
-export const Image = styled.div`
+export const Image = styled.img`
   width: 240px;
   height: 240px;
   background-color: grey;
