@@ -45,7 +45,7 @@ const validationSchemaStepOne = Yup.object().shape({
   password: Yup.string()
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-      'Minimum 7 characters, 1 uppercase, 1 lowercase, 1 number'
+      '7 characters, 1 uppercase, 1 lowercase, 1 number'
     )
     .min(7, 'Password should be at least 7 characters long')
     .max(32, 'Password should be up to 32 characters long')
@@ -61,14 +61,14 @@ const validationSchemaStepTwo = Yup.object().shape({
   city: Yup.string()
     .matches(
       /^\s*(?:\w+\s*,\s*){1,}(?:\w+\s*)$/,
-      'Should be at least two words separated by string'
+      'Should be at least 2 words separated by comma'
      )
-    .min(4, 'City should have at least 4 characters')
+    .min(3, 'City should have at least 3 characters')
     .required('City is required'),
   phone: Yup.string()
     .matches(
       /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
-      'Phone number should begin with +380 and contain 13 digits (+380123456789)'
+      'Number should begin with +380 and contain 13 digits'
     )
     .min(13, 'Phone number should be 13 digits')
     .max(13, 'Phone number should be 13 digits')
