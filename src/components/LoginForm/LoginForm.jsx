@@ -7,35 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import { useLoginUserMutation } from "redux/api/userApi";
 
 import { Formik } from "formik";
-import * as Yup from "yup";
 import LoginInputs from "./LoginInputs";
+import { loginInitialValues as initialValues, loginValidationSchema as validationSchema} from "./LoginValidation";
 // styles from RegisterForm
-import { ModalContent, ModalWrapper, FormWrapper, ButtonWrapper, FormTitle, LoginLink, Paragraph } from "../RegisterForm/RegisterForm.styled";
+import { ModalContent, ModalWrapper, FormWrapper, ButtonWrapper, FormTitle, LoginLink, Paragraph, ErrorMessage } from "../RegisterForm/RegisterForm.styled";
 
 import Button from 'components/Ui-Kit/Button';
 
-
-// Values for Formik
-
-const initialValues = {
-    email: "",
-    password: "",
-    confirmPassword: "",
-
-};
-
-
-// Yup validation
-
-const validationSchema = Yup.object().shape({
-
-    email: Yup.string()
-        .email("Invalid email address")
-        .required("Email is required"),
-    password: Yup.string()
-        .min(7, "Password must be at least 7 characters long")
-        .required("Password is required"),
-});
 
 
 
@@ -43,9 +21,10 @@ const validationSchema = Yup.object().shape({
 
 const LoginForm = () => {
 
-    const [loginUser, { isError }] = useLoginUserMutation();
+    const [loginUser, { isError, error }] = useLoginUserMutation();
     const navigate = useNavigate();
     const { isAuth } = useSelector(state => state.user);
+
 
     const handleSubmit = (values) => {
 
@@ -85,6 +64,7 @@ const LoginForm = () => {
                     }}
                 </Formik>
                 <Paragraph>Don&apos;t have an account? <LoginLink to="/register">Regiser</LoginLink></Paragraph>
+                {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
             </ModalContent>
         </ModalWrapper>
     );

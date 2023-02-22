@@ -10,12 +10,19 @@ export const ModalWrapper = styled.div`
 `;
 
 export const ModalContent = styled.div`
+  position:relative;
   background-color: ${theme.colors.cardBackground};
   border-radius: 40px;
   padding: 60px 80px 40px 80px;
   width: 618px;
   max-height: 605px;
   box-shadow: ${theme.boxShadow.second};
+   ${theme.mq.desktop} {
+    margin-top: 0;
+  }
+  ${theme.mq.tabletOnly} {
+    margin-top: 110px;
+  }
   ${theme.mq.mobileOnly} {
     background-color: transparent;
     box-shadow: none;
@@ -67,3 +74,18 @@ export const LoginLink = styled(NavLink)`
   text-decoration: none;
 `;
 
+export const ErrorMessage = styled.div`
+  position: absolute;
+  color: red;
+  font-size: 14px;
+  text-align: center;
+  width: 100%;
+  left: 50%;
+  transform:translateX(-50%);
+  top: 120px;
+  ${theme.mq.mobileOnly} {
+   top: 50px;
+   font-size: 12px;
+  }
+
+`;
