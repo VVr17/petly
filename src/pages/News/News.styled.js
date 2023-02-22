@@ -36,5 +36,6 @@ export const CardList = styled.ul`
     flex-wrap: wrap;
     flex-direction: row;
     gap: 60px 32px;
+    justify-content: unset;
   }
 `;
