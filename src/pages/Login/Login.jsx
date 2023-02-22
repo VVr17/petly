@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from 'components/LoginForm/LoginForm';
 import { logout } from '../../redux/user/userSlice';
 import Section from 'components/Section';
+import { Wrapper } from './Login.styled';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -13,9 +14,11 @@ const Login = () => {
   };
 
   return (
-    <Section>
-      {isAuth ? <button onClick={handleLogout}>Logout</button> : <LoginForm />}
-    </Section>
+    <Wrapper>
+      <Section>
+        {isAuth ? <button onClick={handleLogout}>Logout</button> : <LoginForm />}
+      </Section>
+    </Wrapper>
   );
 };
 

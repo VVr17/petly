@@ -1,12 +1,15 @@
 import React from 'react';
 import RegistrationForm from 'components/RegisterForm/RegisterForm';
 import Section from 'components/Section';
+import { Wrapper } from './Register.styled';
 
 const Register = () => {
   return (
-    <Section>
-      <RegistrationForm />
-    </Section>
+    <Wrapper>
+      <Section>
+         <RegistrationForm />
+      </Section>
+    </Wrapper>
   );
 };
 

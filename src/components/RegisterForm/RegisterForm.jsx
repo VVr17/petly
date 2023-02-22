@@ -4,16 +4,16 @@ import { useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+
+import { useSignupUserMutation } from 'redux/api/userApi';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import RegStepOne from './RegStepOne';
 import RegStepTwo from './RegStepTwo';
-import { ModalContent, ModalWrapper, FormWrapper } from './RegisterForm.styled';
+import { ModalContent, ModalWrapper, FormWrapper, ButtonWrapper, FormTitle, Paragraph, LoginLink } from './RegisterForm.styled';
 
 import Button from 'components/Ui-Kit/Button';
-import { useSignupUserMutation } from 'redux/api/userApi';
 
 
 
@@ -45,7 +45,7 @@ const validationSchemaStepOne = Yup.object().shape({
   password: Yup.string()
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-      'Minimum seven characters, at least one uppercase letter, one lowercase letter and one number'
+      'Minimum 7 characters, 1 uppercase, 1 lowercase, 1 number'
     )
     .min(7, 'Password should be at least 7 characters long')
     .max(32, 'Password should be up to 32 characters long')
@@ -81,6 +81,7 @@ const validationSchemaStepTwo = Yup.object().shape({
 // main function
 
 const RegistrationForm = () => {
+
   const [currentStep, setCurrentStep] = useState(1);
   const [signupUser, { isError }] = useSignupUserMutation();
   const navigate = useNavigate();
@@ -119,39 +120,40 @@ const RegistrationForm = () => {
     }
   });
 
-    return (
-        <ModalWrapper>
-            <ModalContent>
-                <h1>Registration form</h1>
-                <Formik
-                    initialValues={initialValues}
-                    validationSchema={currentStep === 1 ? validationSchemaStepOne : validationSchemaStepTwo}
-                    onSubmit={handleSubmit}
-                >
-                    {({ isSubmitting }) => {
+  return (
+    <ModalWrapper>
+      <ModalContent>
+        <FormTitle>Registration</FormTitle>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={currentStep === 1 ? validationSchemaStepOne : validationSchemaStepTwo}
+          onSubmit={handleSubmit}
+        >
+          {({ isSubmitting }) => {
                         
-                        return (
-                            <FormWrapper>
-                                {currentStep === 1 && <RegStepOne />}
-                                {currentStep === 2 && <RegStepTwo />}
-              
-                                <Button name="filled" type="submit" disabled={isSubmitting}>
-                                    {currentStep < 2 ? 'Next' : 'Register'}
-                                </Button>
-                                {currentStep > 1 && (
-                                <Button name="transparent" onClick={handleBackClick}>
-                                   Back
-                                </Button>
-                )}
-                            </FormWrapper>);
-                    }}
-                </Formik>
-                <p>
-                    Already have an account?<NavLink to="/login">Login</NavLink>
-                </p>
-            </ModalContent>
-        </ModalWrapper>
-    );
+            return (
+              <FormWrapper>
+                {currentStep === 1 && <RegStepOne />}
+                {currentStep === 2 && <RegStepTwo />}
+                <ButtonWrapper>
+                  <Button name="filled" type="submit" disabled={isSubmitting}>
+                    {currentStep < 2 ? 'Next' : 'Register'}
+                  </Button>
+                  {currentStep > 1 && (
+                    <Button name="transparent" onClick={handleBackClick}>
+                      Back
+                    </Button>
+                  )}
+                </ButtonWrapper>
+              </FormWrapper>);
+          }}
+        </Formik>
+        <Paragraph>
+          Already have an account?{' '}<LoginLink to="/login">Login</LoginLink>
+        </Paragraph>
+      </ModalContent>
+    </ModalWrapper>
+  );
 };
 
 export default RegistrationForm;
