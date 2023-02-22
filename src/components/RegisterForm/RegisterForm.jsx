@@ -47,7 +47,7 @@ const validationSchemaStepOne = Yup.object().shape({
     .max(63, 'Email should be up to 63 characters long'),
   password: Yup.string()
     .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{7,}$/,
       '7 characters, 1 uppercase, 1 lowercase, 1 number'
     )
     .min(7, 'Password should be at least 7 characters long')
