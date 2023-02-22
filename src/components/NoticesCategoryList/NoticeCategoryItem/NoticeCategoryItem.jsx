@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, React } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -8,6 +8,9 @@ import {
 import { selectStatusFilter } from 'redux/filter/filterSelectors';
 import getAge from '../../../js';
 import Button from 'components/Ui-Kit/Button';
+import ModalNotice from 'components/ModalNotice';
+import ModalComponent from 'components/Modal';
+import { AnimatePresence } from 'framer-motion';
 import { IoTrashSharp } from 'react-icons/io5';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import {
@@ -23,8 +26,6 @@ import {
   ContainerButton,
   AddToFavoriteButton,
 } from './NoticeCategoryItem.styled';
-
-const onOpenModal = () => {};
 
 const NoticeCategoryItem = ({
   _id,
@@ -45,6 +46,19 @@ const NoticeCategoryItem = ({
 
   const place = location.split(',');
   const city = place[0];
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = () => {
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+  const openModal = e => {
+    handleClick();
+    console.log({ _id });
+  };
 
   const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
   return (
@@ -94,10 +108,11 @@ const NoticeCategoryItem = ({
       </ContainerInfo>
       <ContainerButton>
         <Button
+          id={_id}
           name="learnMore"
           type="button"
           width="248px"
-          onClick={onOpenModal}
+          onClick={() => openModal(_id)}
         >
           Learn more
         </Button>
@@ -113,6 +128,14 @@ const NoticeCategoryItem = ({
           </Button>
         )}
       </ContainerButton>
+
+      <AnimatePresence>
+        {isOpen && (
+          <ModalComponent closeModal={closeModal} key="popUp">
+            <ModalNotice id={_id} onClose={closeModal} />
+          </ModalComponent>
+        )}
+      </AnimatePresence>
     </CardNotice>
   );
 };
