@@ -20,7 +20,7 @@ export const Title = styled.h1`
   }
 `;
 
-export const WrapContainer = styled(motion.div)`
+export const WrapContainer = styled.div`
   position: relative;
   margin: 0 auto;
   padding-right: 20px;
@@ -65,7 +65,7 @@ export const Images = styled.img`
   }
 `;
 
-export const Background = styled.div`
+export const Background = styled(motion.div)`
   background: bottom 0 left 0 / contain no-repeat url(${waveMobile});
   background-size: 100% 456px;
   width: 100%;

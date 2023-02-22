@@ -1,15 +1,15 @@
 import React from 'react';
 import RegistrationForm from 'components/RegisterForm/RegisterForm';
+import AuthPageContainer from 'components/AuthPageContainer';
 import Section from 'components/Section';
-import { Wrapper } from './Register.styled';
 
 const Register = () => {
   return (
-    <Wrapper>
+    <AuthPageContainer>
       <Section>
-         <RegistrationForm />
+        <RegistrationForm />
       </Section>
-    </Wrapper>
+    </AuthPageContainer>
   );
 };
 
