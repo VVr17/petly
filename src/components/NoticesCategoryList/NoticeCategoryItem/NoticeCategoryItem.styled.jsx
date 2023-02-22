@@ -59,13 +59,33 @@ export const CategoryName = styled.p`
 `;
 
 export const ContainerButton = styled.div`
-  min-height: 100px;
   display: grid;
   gap: 12px;
+  margin: auto 0;
   padding: 0 16px 12px;
 
   ${theme.mq.tabletOnly} {
     grid-template-columns: repeat(auto-fill, minmax(336px, 1fr));
     padding: 0 44px 12px;
+  }
+`;
+
+export const AddToFavoriteButton = styled.button`
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: flex;
+  border: none;
+  border-radius: 50%;
+  background-color: ${theme.colors.secondaryBackground};
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    color: ${theme.colors.accent};
   }
 `;

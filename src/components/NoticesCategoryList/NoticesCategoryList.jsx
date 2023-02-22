@@ -1,33 +1,20 @@
 import React from 'react';
-import { useGetNoticeByCategoryQuery } from 'redux/api/noticesApi';
+import PropTypes from 'prop-types';
 import NoticeCategoryItem from './NoticeCategoryItem';
 import { GalleryNotices } from './NoticesCategoryList.styled';
-import { useSelector } from 'react-redux';
 
-const NoticesCategoryList = () => {
-  const category = 'sell';
-  const {
-    data: noticesByCategory,
-    error,
-    isLoading,
-  } = useGetNoticeByCategoryQuery(category, { skip: !category });
-  const { isAuth } = useSelector(state => state.user);
-
-  if (!noticesByCategory) return;
-  const showNotices = noticesByCategory && !error && !isLoading;
-  console.log(noticesByCategory);
-
+const NoticesCategoryList = ({ notices }) => {
   return (
-    <GalleryNotices>
-      {showNotices &&
-        noticesByCategory.map(noticeByCategory => (
-          <NoticeCategoryItem
-            key={noticeByCategory._id}
-            {...noticeByCategory}
-          />
-        ))}
+    <GalleryNotices>      
+      {notices.map(notice => (
+        <NoticeCategoryItem key={notice._id} {...notice} />
+      ))}      
     </GalleryNotices>
   );
+};
+
+NoticesCategoryList.propTypes = {
+  notices: PropTypes.array.isRequired,  
 };
 
 export default NoticesCategoryList;
