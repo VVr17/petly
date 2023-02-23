@@ -5,7 +5,7 @@ import waveTablet from 'assets/images/tablet/waves-bubbles-login-register.svg';
 import waveDesktop from 'assets/images/desktop/waves-bubbles-login-register.svg';
 
 export const Wrapper = styled.div`
-  background: bottom -150px left 0 / contain no-repeat url(${waveMobile});
+  background: bottom -130px left 0 / contain no-repeat url(${waveMobile});
   background-size: 100% 456px;
   width: 100%;
   /* min-height: 500px; */
@@ -19,7 +19,7 @@ export const Wrapper = styled.div`
 
   ${theme.mq.desktop} {
     position: fixed;
-    background: bottom -10px center no-repeat url(${waveDesktop});
+    background: bottom 65px center no-repeat url(${waveDesktop});
     /* min-height: 768px; */
   }
 `;
