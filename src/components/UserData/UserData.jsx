@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Formik, ErrorMessage } from 'formik';
-import { Container, UserCard, ImageBox, DataBox, FormStyled, Title, Button, LogoutBtn, UploadField, iconStyle } from "./UserData.styled";
+import { Container, UserCard, ImageBox, DataBox, FormStyled, Title, Button, editBtn, LogoutBtn, UploadField, iconStyle } from "./UserData.styled";
 import { LoadImgPlus, LoadImgInput } from "components/UploadImage/UploadImage.styled";
 import Plus from '../../assets/images/desktop/plus.svg';
 import { HiCamera } from "react-icons/hi2";
@@ -32,7 +32,7 @@ const [user, setUser] = useState({
                         type="file"
                         accept="image/*"/>
                       </UploadField>
-                        <Button type="button">
+                        <Button style={editBtn} type="button">
                         <HiCamera style={iconStyle}/>
                         Edit photo
                         </Button>

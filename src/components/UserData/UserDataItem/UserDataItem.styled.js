@@ -7,7 +7,7 @@ export const Label = styled.label`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-rigtn: 25px;
+  margin-bottom: 8px;
   font-family: ${theme.fontFamily.manrope};
   font-style: normal;
   font-weight: ${theme.fontWeight.medium};
@@ -21,12 +21,23 @@ export const Label = styled.label`
     width: 100%;
     margin-right: 30px;
   }
+
+  &:last-of-type  {
+    margin-bottom: 40px;
+
+    @media(min-width: ${breakpoints[1]}px) {
+      margin-bottom: 30px;
+    }
+
+    @media(min-width: ${breakpoints[1]}px) {
+      margin-bottom: 24px;
+    }
+  }
 `
 
 export const Input = styled(Field)`
   width: 160px;
   height: 24px;
-  margin-bottom: 8px;
   margin-right: 13px;
   margin-left: auto;
   padding-left: 15px;

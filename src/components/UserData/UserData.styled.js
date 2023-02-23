@@ -14,7 +14,7 @@ export const Container = styled.div`
   @media(min-width: ${breakpoints[2]}px) {
     max-width: 820px;
     margin-left: 0;
-    padding: 0 0 0 0;
+    padding: 0;
   ;
 `
 
@@ -50,39 +50,57 @@ export const UserCard = styled.div`
     border-radius: 0 40px 40px 0;
     }
    @media(min-width: ${breakpoints[2]}px) {
-      width: 820px;
+      width: 410px;
+      margin-top: 24px;
+      margin-left: -16px;
+      padding: 20px 16px;
    }
 `
 
 
 export const FormStyled = styled(Form)`
-  margin-bottom: 42px;
 
   @media(min-width: ${breakpoints[1]}px) {
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
-    margin-bottom: 0;
 }
+  @media(min-width: ${breakpoints[2]}px) {
+    flex-direction: column;
+  }
 `
 
 export const ImageBox = styled.div`
-margin-bottom: 32px;
+position: relative;
+padding: 0 12px 32px 12px;
 
-@media(min-width: ${breakpoints[1]}px) {
-  margin-right: 40px;
-  margin-bottom: 0;
-}
+  @media(min-width: ${breakpoints[1]}px) {
+    margin-right: 40px;
+    padding: 0;
+  } 
+  @media(min-width: ${breakpoints[2]}px) {
+    margin: 0 auto;
+
+    & button{
+      position: absolute;
+      right: -74px;
+      bottom: 0;
+    }
+  }
 `
 
 export const UploadField = styled(LoadImageCont)`
   width: 233px;
   height: 233px;
   border-radius: 50%;
-  margin: 0 12px 12px;
+
 
   @media(min-width: ${breakpoints[1]}px) {
     margin: 0 0 8px;
+  }
+
+  @media(min-width: ${breakpoints[2]}px) {
+    margin: 0;
   }
 `
 
@@ -91,7 +109,11 @@ export const DataBox = styled.div`
   @media(min-width: ${breakpoints[1]}px) {
     margin-top: 40px;
     margin-right: 52px;
-}
+  }
+  @media(min-width: ${breakpoints[2]}px) {
+    margin-top: 32px;
+    margin-right: 0;
+  }
 `
 
 export const Text = styled.p`
@@ -105,14 +127,12 @@ export const Text = styled.p`
 `
 
 export const Button = styled.button`
-display: flex;
-align-items: flex-end;
-gap: 4px;
-margin-left: auto;
-margin-right: 12px;
-padding: 0;
-border: none;
-background-color: white;
+  display: flex;
+  align-items: flex-end;
+  padding: 0;
+  border: none;
+  background-color: white;
+  cursor: pointer;
 `
 
 export const iconStyle = {
@@ -120,6 +140,11 @@ export const iconStyle = {
   width: '20px',
   fill: theme.colors.accent,
   color: theme.colors.accent,
+}
+
+export const editBtn = {
+  gap: '4px',
+  marginLeft: 'auto',
 }
 
 export const LogoutBtn = {
