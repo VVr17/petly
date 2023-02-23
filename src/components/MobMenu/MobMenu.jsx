@@ -15,17 +15,17 @@ import Nav from 'components/Nav/Nav';
 import AuthNav from 'components/AuthNav';
 import UserNav from 'components/UserNav';
 import Overlay from 'components/Overlay';
-import { mobileMenuAnimation, pageAnimation } from 'constants/animation';
+import { mobileMenuAnimation } from 'constants/animation';
 
 const MobMenu = ({ closeMenu, isAuth, loginIsActive, closeMenuRegister }) => {
-  const backdropCloseMenu = e => {
+  const handleBackdropClick = e => {
     if (e.currentTarget === e.target) {
       closeMenu();
     }
   };
 
   return (
-    <Overlay closeHandler={backdropCloseMenu} {...pageAnimation}>
+    <Overlay closeHandler={handleBackdropClick}>
       <Modal
         key="mobile"
         {...mobileMenuAnimation}
@@ -61,7 +61,6 @@ MobMenu.propTypes = {
   isAuth: PropTypes.bool.isRequired,
   loginIsActive: PropTypes.bool.isRequired,
   closeMenuRegister: PropTypes.func.isRequired,
-  handleClick: PropTypes.func,
 };
 
 export default MobMenu;

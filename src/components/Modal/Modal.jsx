@@ -26,11 +26,7 @@ const ModalComponent = ({ closeModal, children }) => {
   };
 
   return (
-    <Overlay
-      onClick={handleBackdropClick}
-      {...pageAnimation}
-      transition={{ duration: 0.3 }}
-    >
+    <Overlay closeHandler={handleBackdropClick}>
       <StyledModal
         key="popUp"
         {...popUpMenuAnimation}
