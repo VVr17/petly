@@ -9,7 +9,7 @@ import { ThemeProvider } from 'styled-components';
 import { persistor, store } from 'redux/store';
 // import { ModalProvider } from 'styled-react-modal';
 // import { SpecialModalBackground } from './components/Modal/Modal.styled';
-
+import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { selectIsAuthState } from 'redux/user/userSelectors';
 import { selectStatusFilter } from 'redux/filter/filterSelectors';
@@ -74,7 +73,6 @@ const Notices = () => {
           </>
         )}
       </AnimatePresence>
-      <ToastContainer />
     </Section>
   );
 };

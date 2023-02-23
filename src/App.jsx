@@ -5,6 +5,7 @@ import { GlobalStyle } from 'App.styled';
 import { useGetCurrentUserQuery } from 'redux/api/userApi';
 import { selectTokenState } from 'redux/user/userSelectors';
 import Loader from 'components/Loader';
+import { ToastContainer } from 'react-toastify';
 import {
   Friends,
   Home,
@@ -50,6 +51,7 @@ const App = () => {
         </Suspense>
       </AnimatePresence>
       <GlobalStyle />
+      <ToastContainer />
     </>
   );
 };

@@ -15,6 +15,7 @@ import { noticesApi } from './api/noticesApi';
 import { petsApi } from './api/petsApi';
 import { friendsApi } from './api/friendsApi';
 import { filterReducer } from './filter/filterSlice';
+import { favoritesReducer } from './favorites/favoritesSlice';
 
 export const store = configureStore({
   reducer: {
@@ -25,6 +26,7 @@ export const store = configureStore({
     [petsApi.reducerPath]: petsApi.reducer,
     user: persistedUserReducer,
     noticesFilter: filterReducer,
+    favorites: favoritesReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

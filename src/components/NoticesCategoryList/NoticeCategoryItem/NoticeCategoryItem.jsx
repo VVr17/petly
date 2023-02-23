@@ -34,6 +34,7 @@ import {
 import { useGetCurrentUserQuery } from 'redux/api/userApi';
 import { theme } from 'constants/theme';
 import Loader from 'components/Loader';
+import { selectFavoritesState } from 'redux/favorites/favoritesSelector';
 
 const NoticeCategoryItem = ({
   _id,
@@ -48,16 +49,11 @@ const NoticeCategoryItem = ({
   const isAuth = useSelector(selectIsAuthState);
   const status = useSelector(selectStatusFilter);
   const showButtonDelete = status === 'user';
-  const { data: user, refetch: refetchCurrentUser } = useGetCurrentUserQuery();
-  const { data: favorites } = useGetFavoritesNoticesQuery();
+  const favorites = useSelector(selectFavoritesState);
   const place = location.split(',');
   const city = place[0];
   const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
-  const isFavorite = user?.favoriteNotices.includes(_id);
-  // console.log(' user?.favoriteNotices', user?.favoriteNotices);
-  // console.log('isFavorite', isFavorite);
-  // console.log('favorites', favorites);
-
+  const isFavorite = favorites.includes(_id);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [deleteNotice, { isLoading: deleting }] = useDeleteNoticeMutation();
   const [addNoticeToFavorite, { isLoading: adding }] =
@@ -69,20 +65,19 @@ const NoticeCategoryItem = ({
     setModalIsOpen(false);
   };
 
-  const toggleFavorite = noticeId => {
+  const toggleFavorite = async noticeId => {
     if (!isAuth) {
       toast.info('Please, register or login to add notice to favorite');
       return;
     }
-    console.log('noticeId', noticeId);
 
     if (isFavorite) {
-      deleteNoticeFromFavorite(noticeId);
-      refetchCurrentUser();
+      await deleteNoticeFromFavorite(noticeId);
+      // toast.info(`Notice with ID ${_id} has been remove from favorites`);
       return;
     }
-    addNoticeToFavorite(noticeId);
-    refetchCurrentUser();
+    await addNoticeToFavorite(noticeId);
+    // toast.info(`Notice with ID ${_id} has been added to favorites`);
   };
 
   const isLoading = deleting || adding || removing;

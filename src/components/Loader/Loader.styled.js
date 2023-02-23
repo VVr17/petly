@@ -14,7 +14,7 @@ const pawAnimation = keyframes`
 `;
 
 export const LoaderContainer = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 5;
   top: 25%;
   left: 50%;
