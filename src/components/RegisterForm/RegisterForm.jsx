@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useEffect, useState } from 'react';
 
@@ -9,21 +8,106 @@ import { useSignupUserMutation } from 'redux/api/userApi';
 
 import { Formik } from 'formik';
 
-import { initialValues, validationSchemaStepOne, validationSchemaStepTwo } from './Validation';
+import {
+  initialValues,
+  validationSchemaStepOne,
+  validationSchemaStepTwo,
+} from './Validation';
 import RegStepOne from './RegStepOne';
 import RegStepTwo from './RegStepTwo';
-import { ModalContent, ModalWrapper, FormWrapper, ButtonWrapper, FormTitle, Paragraph, LoginLink } from './RegisterForm.styled';
+import {
+  ModalContent,
+  ModalWrapper,
+  FormWrapper,
+  ButtonWrapper,
+  FormTitle,
+  Paragraph,
+  LoginLink,
+} from './RegisterForm.styled';
 import Button from 'components/Ui-Kit/Button';
 
+import {
+  ModalContent,
+  ModalWrapper,
+  FormWrapper,
+  ButtonWrapper,
+  FormTitle,
+  Paragraph,
+  LoginLink,
+} from './RegisterForm.styled';
+
+import Button from 'components/Ui-Kit/Button';
+
+// Values for Formik
+
+const initialValues = {
+  name: '',
+  city: '',
+  phone: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
+
+// Yup validation
+
+const validationSchemaStepOne = Yup.object().shape({
+  email: Yup.string()
+    .email('Invalid email address')
+    .matches(
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      'Please enter a valid email address, example: "mail@mail.com"'
+    )
+    .required('Email is required')
+    .min(12, 'Email should be at least 10 characters long')
+    .max(63, 'Email should be up to 63 characters long'),
+  password: Yup.string()
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{7,}$/,
+      '7 characters, 1 uppercase, 1 lowercase, 1 number'
+    )
+    .min(7, 'Password should be at least 7 characters long')
+    .max(32, 'Password should be up to 32 characters long')
+    .required('Password is required'),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .required('Please confirm your password'),
+});
+
+const validationSchemaStepTwo = Yup.object().shape({
+  name: Yup.string()
+    .min(3, 'Name should have at least 3 characters')
+    .matches(
+      /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      'Only letters can be accepted'
+    )
+    .required('Name is required'),
+  city: Yup.string()
+    .matches(
+      /^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*,\s*[a-zA-Zа-яА-Я\s]+$/,
+      'Should be at least 2 words separated by comma'
+    )
+    .min(4, 'City should have at least 3 characters')
+    .required('City is required'),
+  phone: Yup.string()
+    .matches(
+      /^\+380\d{9}$/,
+      'Number should begin with +380 and contain 13 digits'
+    )
+    .min(13, 'Phone number should be 13 digits')
+    .max(13, 'Phone number should be 13 digits')
+    .required('Phone number is required'),
+});
+
+// main function
 
 const RegistrationForm = () => {
-
   const [currentStep, setCurrentStep] = useState(1);
   const [signupUser, { isError }] = useSignupUserMutation();
   const navigate = useNavigate();
   const { isAuth } = useSelector(state => state.user);
-    
-    const handleNextClick = () => {
+
+  const handleNextClick = () => {
     setCurrentStep(currentStep + 1);
   };
 
@@ -31,23 +115,23 @@ const RegistrationForm = () => {
     setCurrentStep(currentStep - 1);
   };
 
-    const handleSubmit = (values, { setSubmitting }) => {
-      setSubmitting(false);
+  const handleSubmit = (values, { setSubmitting }) => {
+    setSubmitting(false);
 
     if (currentStep < 2) {
-        handleNextClick();
+      handleNextClick();
     } else {
-        const credentials = {
-            name: values.name,
-            city: values.city,
-            phone: values.phone,
-            email: values.email,
-            password: values.password,
-        };
+      const credentials = {
+        name: values.name,
+        city: values.city,
+        phone: values.phone,
+        email: values.email,
+        password: values.password,
+      };
 
-        signupUser(credentials);
+      signupUser(credentials);
     }
-    };
+  };
 
   useEffect(() => {
     if (isAuth) {
@@ -62,11 +146,14 @@ const RegistrationForm = () => {
         <FormTitle>Registration</FormTitle>
         <Formik
           initialValues={initialValues}
-          validationSchema={currentStep === 1 ? validationSchemaStepOne : validationSchemaStepTwo}
+          validationSchema={
+            currentStep === 1
+              ? validationSchemaStepOne
+              : validationSchemaStepTwo
+          }
           onSubmit={handleSubmit}
         >
           {({ isSubmitting }) => {
-                        
             return (
               <FormWrapper>
                 {currentStep === 1 && <RegStepOne />}
@@ -81,11 +168,12 @@ const RegistrationForm = () => {
                     </Button>
                   )}
                 </ButtonWrapper>
-              </FormWrapper>);
+              </FormWrapper>
+            );
           }}
         </Formik>
         <Paragraph>
-          Already have an account?{' '}<LoginLink to="/login">Login</LoginLink>
+          Already have an account? <LoginLink to="/login">Login</LoginLink>
         </Paragraph>
       </ModalContent>
     </ModalWrapper>
@@ -93,5 +181,3 @@ const RegistrationForm = () => {
 };
 
 export default RegistrationForm;
-
-

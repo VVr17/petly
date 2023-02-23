@@ -1,23 +1,61 @@
-import React, { useState } from "react";
-import { Formik,  } from "formik";
-import { Container, Title, FormStyled } from "./UserAddPetForm.styled";
+import React, { useState, useEffect } from "react";
+import { Formik  } from "formik";
+import {
+    Container,
+    Title,
+    FormStyled,
+    Label,
+    FieldStyled,
+    InputFile,
+    LabelStyled,
+    Button,
+    ControlBox
+} from "./UserAddPetForm.styled";
 import PropTypes from 'prop-types';
 import PartFirst from "./PartFirst";
 import PartSecond from "./PartSecond";
+import UserUploadImg from "components/UserUploadImg";
 
 const initialValues = {
     name: "",
     birthDate: "",
     breed: "",
-    photoURL: "",
+    imageFile: null,
     comments: ""
 }
 
-const UserAddPetForm = ({closeModal}) => {
+const UserAddPetForm = ({closeModal, onSubmit}) => {
     const [currentPart, setCurrentPart] = useState(1);
 
-    const handleSubmit = (values) => {
-        console.log(values);
+    const [image, setImage] = useState(null);
+    const [file, setFile] = useState(null);
+    const [fileDataURL, setFileDataURL] = useState(null);
+
+    useEffect(() => {
+        let fileReader,
+          isCancel = false;
+        if (file) {
+          fileReader = new FileReader();
+         fileReader.onload = e => {
+            const { result } = e.target;
+            if (result && !isCancel) {
+              setFileDataURL(result);
+            }
+          };
+          fileReader.readAsDataURL(file);
+        }
+        return () => {
+          isCancel = true;
+          if (fileReader && fileReader.readyState === 1) {
+            fileReader.abort();
+          }
+        };
+    }, [file]);
+
+    const handleSubmit = (values, { setSubmitting }) => {
+        setSubmitting(false);
+        onSubmit(values);
+        closeModal();
     };
 
     const handleNext = () => {
@@ -35,17 +73,48 @@ const UserAddPetForm = ({closeModal}) => {
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
             >
-                <FormStyled>
-                    {currentPart === 1 && <PartFirst handleNext={handleNext} closeModal={closeModal} />}
-                    {currentPart===2 && <PartSecond handleBack={handleBack}/>}
-                </FormStyled>
+                {({ isSubmitting, values, setFieldValue }) => (
+                    <FormStyled>
+                        {currentPart === 1 && <PartFirst handleNext={handleNext} closeModal={closeModal} />}
+                        {currentPart === 2 &&
+                            <PartSecond>
+                                <>
+                                    <LabelStyled htmlFor="photoURL">Add photo and some comments</LabelStyled>
+                                    <InputFile hidden id="photoURL" name="photoURL" type="file" />
+                                    <UserUploadImg
+                                        fileDataURL={fileDataURL}
+                                        handleChange={e => {
+                                        setFile(e.currentTarget.files[0]);
+                                        setFieldValue('imageFile', e.currentTarget.files[0]);
+                                        }}
+                                    />
+                                    <Label htmlFor="comments">Comments</Label>
+                                    <FieldStyled
+                                        id="comments"
+                                        name="comments"
+                                        as="textarea"
+                                        placeholder="Type comments"
+                                        style={{ minHeight: "100px", borderRadius: "20px" }}
+                                        onChange={e => {
+                                            setFieldValue('comments', e.target.value);
+                                        }}
+                                    />
+                                    <ControlBox>
+                                        <Button type="submit" disabled={isSubmitting} >Done</Button>
+                                        <Button type="button" onClick={handleBack}>Back</Button>
+                                    </ControlBox>
+                                </>
+                            </PartSecond>}
+                    </FormStyled>
+                )}
             </Formik>
         </Container>
     );
 };
 
 UserAddPetForm.propTypes = {
-  closeModal: PropTypes.func.isRequired
+    closeModal: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired
 };
 
 export default UserAddPetForm;

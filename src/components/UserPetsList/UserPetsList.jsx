@@ -21,6 +21,7 @@ const UserPetsList = () => {
   const { useAddPetMutation, useDeletePetMutation } = petsApi;
   const [deletePetMutation] = useDeletePetMutation();
   const { data: currentUserData, refetch: refetchCurrentUser } = useGetCurrentUserQuery();
+  const [addPetMutation] = useAddPetMutation();
 
   let dataPets = currentUserData ? currentUserData : [];
   const [pets, setPets] = useState();
@@ -29,7 +30,6 @@ const UserPetsList = () => {
   useEffect(() => {
     if (dataPets) {
       setPets(dataPets.pets);
-      console.log(dataPets);
     }
   }, [dataPets]);
 
@@ -51,8 +51,14 @@ const UserPetsList = () => {
     setIsOpen(false);
   };
 
-  const handleSubmit = () => {
-    console.log("Completed!");
+  const handleSubmit = async (data) => {
+    console.log("Completed!", data);
+    try {
+      const response = await addPetMutation(data);
+      await refetchCurrentUser();
+    } catch (error) {
+      console.error('Failed to add pet:', error);
+    }
   };
 
   return (
@@ -73,7 +79,7 @@ const UserPetsList = () => {
       )}
       {isOpen ?
       <Modal closeModal={closeModal}>
-          <UserAddPetForm closeModal={closeModal}/>
+          <UserAddPetForm closeModal={closeModal} onSubmit={handleSubmit} />
       </Modal>
       : null}
     </Container>
