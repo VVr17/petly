@@ -29,17 +29,7 @@ const StepOne = ({ children }) => {
         consectetur
       </Text>
       {children}
-      {/* <ButtonFilterList>
-        <ButtonFilterItem>
-          <Button name="transparent">lost/found</Button>
-        </ButtonFilterItem>
-        <ButtonFilterItem>
-          <Button name="transparent">in good hands</Button>
-        </ButtonFilterItem>
-        <ButtonFilterItem>
-          <Button name="transparent">sell</Button>
-        </ButtonFilterItem>
-      </ButtonFilterList> */}
+
       <InputField
         name="title"
         type="text"

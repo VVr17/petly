@@ -13,6 +13,7 @@ import UploadImageField from 'components/UploadImage';
 import FilterCategory from './FilterCategory';
 import SexField from './StepTwo/Sex';
 import { useAddNoticeMutation } from 'redux/api/noticesApi';
+import FormData from 'form-data';
 
 // Values for Formik
 
@@ -26,7 +27,7 @@ const initialValues = {
   location: '',
   comment: '',
   price: '',
-  imageFile: null,
+  petImage: null,
 };
 
 // Yup validation
@@ -100,20 +101,33 @@ const AddPetForm = ({ onClose }) => {
     if (currentStep < 2) {
       setCurrentStep(currentStep + 1);
     } else {
+      const priceVal = parseInt(values.price);
       const categoryName = values.category;
-      const credentials = {
-        title: values.title,
-        name: values.name,
-        birthDate: values.birthDate,
-        breed: values.breed,
-        sex: values.sex,
-        location: values.location,
-        price: parseInt(values.price),
-        petImage: values.imageFile,
-        comment: values.comment,
-      };
-      addNotice({ categoryName, credentials });
-      console.log(values);
+
+      const data = new FormData();
+      data.append('title', values.title);
+      data.append('name', values.name);
+      data.append('birthDate', values.birthDate);
+      data.append('breed', values.birthDate);
+      data.append('sex', values.sex);
+      data.append('price', priceVal);
+      data.append('location', values.location);
+      data.append('petImage', values.imageFile);
+      data.append('comment', values.comment);
+
+      // {
+      //   title: values.title,
+      //   name: values.name,
+      //   birthDate: values.birthDate,
+      //   breed: values.breed,
+      //   sex: values.sex,
+      //   location: values.location,
+      //   price: parseInt(values.price),
+      //   petImage: values.imageFile,
+      //   comment: values.comment,
+      // };
+      addNotice({ categoryName, data });
+      console.log(data);
     }
     setSubmitting(false);
   };
@@ -152,7 +166,7 @@ const AddPetForm = ({ onClose }) => {
                 }}
               />
 
-              <CommentField />
+              <CommentField name="comment" />
             </StepTwo>
           )}
 

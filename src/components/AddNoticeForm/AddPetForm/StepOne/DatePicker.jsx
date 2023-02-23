@@ -19,7 +19,6 @@ const MyDatePicker = ({ name }) => {
       onChange={date => setValue(date)}
       placeholderText="Select the date"
       dateFormat="dd.MM.yyyy"
-      // format="dd.MM.yyyy"
       maxDate={new Date()}
       customInput={<DatePickerInput />}
     />
