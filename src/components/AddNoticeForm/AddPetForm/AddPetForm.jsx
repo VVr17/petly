@@ -16,7 +16,6 @@ import {
   initialValues,
   validationSchemaStepOne,
   validationSchemaStepTwo,
-  validationSchemaSellStepTwo,
 } from './Validation';
 
 // Main function
@@ -26,7 +25,7 @@ const AddPetForm = ({ onClose }) => {
 
   const [file, setFile] = useState(null);
   const [fileDataURL, setFileDataURL] = useState(null);
-  const [addNotice] = useAddNoticeMutation();
+  const [addNotice, { isLoading }] = useAddNoticeMutation();
 
   // effect to make an url from file to render in preview
   useEffect(() => {

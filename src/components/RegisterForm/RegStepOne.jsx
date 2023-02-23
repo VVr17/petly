@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import InputField from 'components/Ui-Kit/Input';
 import { PasswordToggle, PasswordWrapper } from './RegStepOne.styled';
-import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
+import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
 
 const RegStepOne = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,8 +13,13 @@ const RegStepOne = () => {
   const passwordInputType = showPassword ? 'text' : 'password';
 
   return (
-    <div>
-      <InputField name="email" type="email" placeholder="Email" autocomplete="email"/>
+    <>
+      <InputField
+        name="email"
+        type="email"
+        placeholder="Email"
+        autocomplete="email"
+      />
       <PasswordWrapper>
         <InputField
           name="password"
@@ -23,8 +28,8 @@ const RegStepOne = () => {
           autocomplete="new-password"
         />
         <PasswordToggle type="button" onClick={toggleShowPassword}>
-        {showPassword ? <RxEyeOpen /> : <RxEyeClosed />}
-      </PasswordToggle>
+          {showPassword ? <RxEyeOpen /> : <RxEyeClosed />}
+        </PasswordToggle>
       </PasswordWrapper>
       <InputField
         name="confirmPassword"
@@ -32,7 +37,7 @@ const RegStepOne = () => {
         placeholder="Confirm Password"
         autocomplete="new-password"
       />
-    </div>
+    </>
   );
 };
 

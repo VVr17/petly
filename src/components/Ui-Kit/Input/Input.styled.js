@@ -45,7 +45,6 @@ export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
   top: 75px;
   left: 30px;
-  // transform: translate(10px, 40px);
   font-size: ${theme.fontSizes.xxxs};
   color: red;
   ${theme.mq.mobileOnly} {

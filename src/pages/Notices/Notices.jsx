@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import { selectIsAuthState } from 'redux/user/userSelectors';
@@ -31,9 +31,6 @@ const Notices = () => {
     setIsOpen(false);
     document.body.classList.remove('modal-open');
   };
-  // function toggleModal(e) {
-  //   setIsOpen(!isOpen);
-  // }
 
   const category = useSelector(selectStatusFilter);
 
@@ -63,18 +60,18 @@ const Notices = () => {
 
       <AnimatePresence>
         {isOpen && (
-          <ModalComponent closeModal={closeModal} key="popUp">
+          <>
+            (
             {isAuth ? (
-              <>
+              <ModalComponent closeModal={closeModal} key="popUp">
                 <AddNoticeFormHeader />
                 <AddPetForm onClose={closeModal} />
-              </>
+              </ModalComponent>
             ) : (
-              <>
-                <NotificationAddNotice />
-              </>
+              <>{toast('You have to register or login to add Pet')}</>
             )}
-          </ModalComponent>
+            )
+          </>
         )}
       </AnimatePresence>
       <ToastContainer />

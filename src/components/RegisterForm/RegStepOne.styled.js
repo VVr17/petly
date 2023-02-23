@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { theme } from 'constants/theme';
 
-
 export const PasswordWrapper = styled.div`
   position: relative;
+  padding: 0;
 `;
 
 export const PasswordToggle = styled.button`

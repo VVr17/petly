@@ -34,27 +34,23 @@ export const validationSchemaStepOne = Yup.object().shape({
 });
 
 export const validationSchemaStepTwo = Yup.object().shape({
+  sex: Yup.string().required(),
   location: Yup.string()
     .matches(
       /^\s*(?:\w+\s*,\s*){1,}(?:\w+\s*)$/,
       'Should be at least two words separated by coma'
     )
     .required('City is required'),
-  petImage: Yup.mixed().required(),
-  comments: Yup.string()
-    .required('Comment is required')
-    .min(8, 'Title should be at least 8 characters long')
-    .max(200, 'Title should be up to 120 characters long'),
-});
+  price: Yup.number()
+    .typeError('Price must be a number')
+    .min(1, 'Price can not be 0')
+    .when('category', (category, schema) => {
+      if (category === 'sell') {
+        return schema.required('Price is required');
+      }
+      return schema;
+    }),
 
-export const validationSchemaSellStepTwo = Yup.object().shape({
-  location: Yup.string()
-    .matches(
-      /^\s*(?:\w+\s*,\s*){1,}(?:\w+\s*)$/,
-      'Should be at least two words separated by string'
-    )
-    .required('City is required'),
-  price: Yup.number().required('Name is required').min(1, 'Price can not be 0'),
   petImage: Yup.mixed().required(),
   comments: Yup.string()
     .required('Comment is required')
