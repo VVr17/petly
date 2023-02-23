@@ -113,6 +113,7 @@ margin-right: 12px;
 padding: 0;
 border: none;
 background-color: white;
+cursor: pointer;
 `
 
 export const iconStyle = {
