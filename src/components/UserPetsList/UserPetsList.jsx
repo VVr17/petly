@@ -10,37 +10,39 @@ import {
   iconStyle,
 } from './UserPetsList.styled';
 import { VscAdd } from 'react-icons/vsc';
-import { useGetCurrentUserQuery } from "redux/api/userApi";
+import { useGetCurrentUserQuery } from 'redux/api/userApi';
 import { petsApi } from 'redux/api/petsApi';
 import UserAddPetForm from 'components/UserAddPetForm';
 
 import UserPetsListItem from './UserPetsListItem';
 import Modal from 'components/Modal';
+import { AnimatePresence } from 'framer-motion';
 
 const UserPetsList = () => {
   const { useAddPetMutation, useDeletePetMutation } = petsApi;
   const [deletePetMutation] = useDeletePetMutation();
-  const { data: currentUserData, refetch: refetchCurrentUser } = useGetCurrentUserQuery();
+  const { data: currentUserData, refetch: refetchCurrentUser } =
+    useGetCurrentUserQuery();
   const [addPetMutation] = useAddPetMutation();
 
   let dataPets = currentUserData ? currentUserData : [];
   const [pets, setPets] = useState();
   const [isOpen, setIsOpen] = useState(false);
-  
+
   useEffect(() => {
     if (dataPets) {
       setPets(dataPets.pets);
     }
   }, [dataPets]);
 
-  const handleDelete = async (petId) => {
+  const handleDelete = async petId => {
     try {
       const response = await deletePetMutation(petId);
       await refetchCurrentUser();
-      console.log("Pet deleted!")
+      console.log('Pet deleted!');
     } catch (error) {
       console.log(error);
-    };
+    }
   };
 
   const handleIsOpen = () => {
@@ -51,8 +53,8 @@ const UserPetsList = () => {
     setIsOpen(false);
   };
 
-  const handleSubmit = async (data) => {
-    console.log("Completed!", data);
+  const handleSubmit = async data => {
+    console.log('Completed!', data);
     try {
       const response = await addPetMutation(data);
       await refetchCurrentUser();
@@ -73,15 +75,23 @@ const UserPetsList = () => {
       {pets && (
         <List>
           {pets.map(pet => {
-            return <UserPetsListItem key={pet._id} pet={pet} handleDelete={handleDelete} />;
+            return (
+              <UserPetsListItem
+                key={pet._id}
+                pet={pet}
+                handleDelete={handleDelete}
+              />
+            );
           })}
         </List>
       )}
-      {isOpen ?
-      <Modal closeModal={closeModal}>
-          <UserAddPetForm closeModal={closeModal} onSubmit={handleSubmit} />
-      </Modal>
-      : null}
+      <AnimatePresence>
+        {isOpen && (
+          <Modal closeModal={closeModal} key="popUp">
+            <UserAddPetForm closeModal={closeModal} onSubmit={handleSubmit} />
+          </Modal>
+        )}
+      </AnimatePresence>
     </Container>
   );
 };
