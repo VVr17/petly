@@ -1,10 +1,12 @@
 import { useState, React } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { ToastContainer, toast } from 'react-toastify';
 import {
   useDeleteNoticeMutation,
   useAddNoticeToFavoriteMutation,
 } from 'redux/api/noticesApi';
+import { selectIsAuthState } from 'redux/user/userSelectors';
 import { selectStatusFilter } from 'redux/filter/filterSelectors';
 import getAge from '../../../js';
 import Button from 'components/Ui-Kit/Button';
@@ -12,7 +14,7 @@ import ModalNotice from 'components/ModalNotice';
 import ModalComponent from 'components/Modal';
 import { AnimatePresence } from 'framer-motion';
 import { IoTrashSharp } from 'react-icons/io5';
-import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
+import { IoIosHeart } from 'react-icons/io';
 import {
   CardNotice,
   ImageBox,
@@ -37,6 +39,7 @@ const NoticeCategoryItem = ({
   birthDate,
   price,
 }) => {
+  const isAuth = useSelector(selectIsAuthState);
   const status = useSelector(selectStatusFilter);
   const showButtonDelete = status === 'user';
 
@@ -54,7 +57,6 @@ const NoticeCategoryItem = ({
   const closeModal = () => {
     setIsOpen(false);
   };
- 
 
   const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
   return (
@@ -68,10 +70,16 @@ const NoticeCategoryItem = ({
       </ImageBox>
       <AddToFavoriteButton
         type="button"
-        onClick={() => addNoticeToFavorite(_id)}
+        onClick={
+          isAuth
+            ? () => addNoticeToFavorite(_id)
+            : () =>
+                toast.info(
+                  'Please, register or login to add notice to favorite'
+                )
+        }
       >
-        <IoIosHeartEmpty size="28px" />
-        {/* {<IoIosHeart size="28px" />} */}
+        {<IoIosHeart size="28px" />}
       </AddToFavoriteButton>
       <CategoryBox>
         <CategoryName>{category}</CategoryName>
