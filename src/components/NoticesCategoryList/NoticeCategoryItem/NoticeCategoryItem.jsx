@@ -78,11 +78,11 @@ const NoticeCategoryItem = ({
 
     if (isFavorite) {
       deleteNoticeFromFavorite(noticeId);
-      refetchCurrentUser();
+      // refetchCurrentUser();
       return;
     }
     addNoticeToFavorite(noticeId);
-    refetchCurrentUser();
+    // refetchCurrentUser();
   };
 
   const isLoading = deleting || adding || removing;

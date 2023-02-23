@@ -7,6 +7,7 @@ import {
   TAGS_TYPES,
 } from 'constants/api';
 import baseQuery from 'redux/baseQuery';
+import { userApi } from './userApi';
 
 export const noticesApi = createApi({
   reducerPath: 'noticesApi',
@@ -21,7 +22,7 @@ export const noticesApi = createApi({
     getFavoritesNotices: builder.query({
       query: () => `${NOTICES_URL}/favorites`,
       transformResponse: response => response.data,
-      providesTags: [TAGS_TYPES.favorites],
+      providesTags: [TAGS_TYPES.notice],
     }),
     getUserNotices: builder.query({
       query: () => `${NOTICES_URL}/user`,
@@ -56,7 +57,16 @@ export const noticesApi = createApi({
         method: 'POST',
       }),
       transformResponse: response => response.data,
-      invalidatesTags: [TAGS_TYPES.favorites],
+      invalidatesTags: [TAGS_TYPES.notice],
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        // console.log('starting!');
+        try {
+          await queryFulfilled;
+          dispatch(userApi.util.invalidateTags([TAGS_TYPES.user]));
+        } catch (err) {
+          console.log('error... ', err);
+        }
+      },
     }),
     removeNoticeFromFavorite: builder.mutation({
       query: noticeId => ({
@@ -64,7 +74,16 @@ export const noticesApi = createApi({
         method: 'DELETE',
       }),
       transformResponse: response => response.data,
-      invalidatesTags: [TAGS_TYPES.favorites],
+      invalidatesTags: [TAGS_TYPES.notice],
+      async onQueryStarted(id, { dispatch, queryFulfilled, getState }) {
+        // console.log('starting!');
+        try {
+          await queryFulfilled;
+          dispatch(userApi.util.invalidateTags([TAGS_TYPES.user]));
+        } catch (err) {
+          console.log('error... ', err);
+        }
+      },
     }),
   }),
 });
