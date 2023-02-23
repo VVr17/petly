@@ -7,24 +7,25 @@ import {
   Button,
   Link,
   Span,
-  Overlay,
+  // Overlay,
 } from './MobMenu.styled';
 import PropTypes from 'prop-types';
 import { VscChromeClose } from 'react-icons/vsc';
 import Nav from 'components/Nav/Nav';
 import AuthNav from 'components/AuthNav';
 import UserNav from 'components/UserNav';
+import Overlay from 'components/Overlay';
 import { mobileMenuAnimation, pageAnimation } from 'constants/animation';
 
 const MobMenu = ({ closeMenu, isAuth, loginIsActive, closeMenuRegister }) => {
-  const backdropClickCloseMenu = e => {
+  const backdropCloseMenu = e => {
     if (e.currentTarget === e.target) {
       closeMenu();
     }
   };
 
   return (
-    <Overlay onClick={backdropClickCloseMenu} {...pageAnimation}>
+    <Overlay closeHandler={backdropCloseMenu} {...pageAnimation}>
       <Modal
         key="mobile"
         {...mobileMenuAnimation}
@@ -60,6 +61,7 @@ MobMenu.propTypes = {
   isAuth: PropTypes.bool.isRequired,
   loginIsActive: PropTypes.bool.isRequired,
   closeMenuRegister: PropTypes.func.isRequired,
+  handleClick: PropTypes.func,
 };
 
 export default MobMenu;
