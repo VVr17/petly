@@ -34,16 +34,11 @@ export const noticesApi = createApi({
       providesTags: [TAGS_TYPES.notice],
     }),
     addNotice: builder.mutation({
-      query: ({ categoryName, noticeData }) => {
-        console.log('noticeData', noticeData);
-
-        return {
-          url: `${NOTICES_URL}${CATEGORY_URL}/${categoryName}`,
-
-          method: 'POST',
-          body: noticeData,
-        };
-      },
+      query: ({ categoryName, noticeData }) => ({
+        url: `${NOTICES_URL}${CATEGORY_URL}/${categoryName}`,
+        method: 'POST',
+        body: noticeData,
+      }),
       transformResponse: response => response.data,
       invalidatesTags: [TAGS_TYPES.notice],
     }),
