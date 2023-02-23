@@ -27,10 +27,15 @@ export const Link = styled(NavLink)`
     &:not(:last-child) {
         margin-right: 20px;
     };
+    &.active {
+        color: ${theme.colors.lightText};
+        background-color: ${theme.colors.accent};
+        border: 2px solid ${theme.colors.accent};
+    }
     &:hover, :focus {
         color: ${theme.colors.lightText};
-        background-color: ${theme.colors.hover};
-        border: 2px solid ${theme.colors.hover};
+        background-color: ${theme.colors.accent};
+        border: 2px solid ${theme.colors.accent};
     };
     @media(min-width: ${breakpoints[1]}px) {
         padding: 10px 28px 10px 28px;
@@ -54,6 +59,10 @@ export const AuthLink = styled(NavLink)`
     border-radius: 40px;
     transition: background-color ${theme.transitionTiming};
     transition: border-color ${theme.transitionTiming};
+    &.active {
+        background-color: ${theme.colors.hover};
+        border: 2px solid ${theme.colors.hover};
+    };
     &:not(:last-child) {
         margin-right: 20px;
     };

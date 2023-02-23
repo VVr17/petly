@@ -54,8 +54,14 @@ const UserAddPetForm = ({closeModal, onSubmit}) => {
 
     const handleSubmit = (values, { setSubmitting }) => {
         setSubmitting(false);
-        onSubmit(values);
         closeModal();
+        const data = new FormData();
+        data.append('name', values.name);
+        data.append('birthDate', values.birthDate);
+        data.append('breed', values.breed);
+        data.append('petImage', values.imageFile);
+        data.append('comments', values.comments);
+        onSubmit(data); 
     };
 
     const handleNext = () => {
@@ -72,6 +78,7 @@ const UserAddPetForm = ({closeModal, onSubmit}) => {
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
+                encType="multipart/form-data"
             >
                 {({ isSubmitting, values, setFieldValue }) => (
                     <FormStyled>
@@ -92,6 +99,7 @@ const UserAddPetForm = ({closeModal, onSubmit}) => {
                                     <FieldStyled
                                         id="comments"
                                         name="comments"
+                                        type="text"
                                         as="textarea"
                                         placeholder="Type comments"
                                         style={{ minHeight: "100px", borderRadius: "20px" }}

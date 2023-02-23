@@ -117,7 +117,7 @@ const AddPetForm = ({ onClose }) => {
 
       data.append('location', values.location);
       data.append('petImage', values.petImage);
-      data.append('comments', values.comment);
+      data.append('comments', values.comments);
 
       addNotice({ categoryName, noticeData: data });
     }
