@@ -54,3 +54,17 @@ export const ButtonStyled = styled(motion.button)`
          : theme.colors.lightText};
   }
 `;
+
+
+// background-color: ${({ theme, name, selected }) => {
+//    switch (name) {
+//       case 'contacts':
+//          return theme.colors.accent;
+
+//       case 'filled':
+//          return selected ? theme.colors.lightText : theme.colors.mainText;
+
+//       default:
+//          return 'transparent'
+//    }
+// }}

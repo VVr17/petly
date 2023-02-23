@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useGetNoticeByIdQuery } from 'redux/api/noticesApi';
 import Loader from 'components/Loader';
+import { IoIosHeart } from 'react-icons/io';
 import {
   ImgWrapper,
   PetsImg,
@@ -21,32 +22,15 @@ import {
   CommentsTitle,
   NoticeContainer,
   Buttons,
+  ButtonDiv,
 } from './ModalNotice.styled';
 import Button from 'components/Ui-Kit/Button';
 
 const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
 
 const ModalNotice = ({ id }) => {
-  // const {
-  //    _id,
-  //    avatarURL,
-  //    favorite,
-  //    title,
-  //    category,
-  //    name,
-  //    birthday,
-  //    breed,
-  //    location,
-  //    sex,
-  //    owner,
-  //    comments,
-  //    price,
-  //    own,
-  //  } = notice;
-
-  const { data, isFetching, isLoading, isError } = useGetNoticeByIdQuery(id);
+  const { data, isFetching, isError } = useGetNoticeByIdQuery(id);
   console.log(data);
-  //   console.log(data.price);
   const noItem = '-----------';
   const noPrice = '0';
 
@@ -94,9 +78,11 @@ const ModalNotice = ({ id }) => {
                     <DataItem>
                       <CategoryText>Phone:</CategoryText>
                     </DataItem>
-                    <DataItem>
-                      <CategoryText>Price:</CategoryText>
-                    </DataItem>
+                    {data.category === 'sell' && (
+                      <DataItem>
+                        <CategoryText>Price:</CategoryText>
+                      </DataItem>
+                    )}
                   </CategoryData>
                   <ValueData>
                     <DataItem>
@@ -124,9 +110,12 @@ const ModalNotice = ({ id }) => {
                     <DataItem>
                       <ValueText>{data.owner.phone}</ValueText>
                     </DataItem>
-                    <DataItem>
-                      <ValueText>{data.price || noPrice} $</ValueText>
-                    </DataItem>
+
+                    {data.category === 'sell' && (
+                      <DataItem>
+                        <ValueText>{data.price} $</ValueText>
+                      </DataItem>
+                    )}
                   </ValueData>
                 </PetData>
               </TextContent>
@@ -138,7 +127,7 @@ const ModalNotice = ({ id }) => {
 
             <Buttons>
               <Button name="addToFavorite" type="button">
-                Add to favorite
+                Add to {<IoIosHeart fill="#F59256" size="20px" />}
               </Button>
 
               <Button onClick={onRedirect} name="contacts" type="button">

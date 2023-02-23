@@ -128,7 +128,7 @@ export const ValueText = styled.p`
     font-weight: 500;
     font-size: 14px;
     line-height: 19px;
-
+    white-space: nowrap;
     @media (min-width: ${breakpoints[1]}px) {
         font-size: 16px;
         line-height: 22px;
@@ -154,9 +154,16 @@ export const CommentsTitle = styled.span`
 
 
 export const Buttons = styled.div`
+&:not(:last-child) {
+   margin-left: 20px;
+};
     @media (min-width: ${breakpoints[1]}px) {
         display: flex;
         justify-content: end;
         padding-right: 16px;
     }
 `;
+
+export const ButtonDiv = styled.div`
+// background-color: blue;
+`
