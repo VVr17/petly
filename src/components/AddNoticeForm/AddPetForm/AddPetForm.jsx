@@ -13,7 +13,7 @@ import UploadImageField from 'components/UploadImage';
 import FilterCategory from './FilterCategory';
 import SexField from './StepTwo/Sex';
 import { useAddNoticeMutation } from 'redux/api/noticesApi';
-import FormData from 'form-data';
+// import FormData from 'form-data';
 
 // Values for Formik
 
@@ -105,15 +105,16 @@ const AddPetForm = ({ onClose }) => {
       const categoryName = values.category;
 
       const data = new FormData();
+
       data.append('title', values.title);
       data.append('name', values.name);
       data.append('birthDate', values.birthDate);
-      data.append('breed', values.birthDate);
+      data.append('breed', values.breed);
       data.append('sex', values.sex);
-      data.append('price', priceVal);
+      // data.append('price', values.price);
       data.append('location', values.location);
-      data.append('petImage', values.imageFile);
-      data.append('comment', values.comment);
+      data.append('petImage', values.petImage);
+      data.append('comments', values.comment);
 
       // {
       //   title: values.title,
@@ -126,8 +127,8 @@ const AddPetForm = ({ onClose }) => {
       //   petImage: values.imageFile,
       //   comment: values.comment,
       // };
-      addNotice({ categoryName, data });
-      console.log(data);
+      addNotice({ categoryName, noticeData: data });
+      // console.log(data);
     }
     setSubmitting(false);
   };
