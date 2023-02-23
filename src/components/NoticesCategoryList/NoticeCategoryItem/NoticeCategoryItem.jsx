@@ -1,7 +1,7 @@
 import { useState, React } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import {  ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import {
   useDeleteNoticeMutation,
   useAddNoticeToFavoriteMutation,
@@ -57,12 +57,6 @@ const NoticeCategoryItem = ({
   const closeModal = () => {
     setIsOpen(false);
   };
-  const openModal = e => {
-    handleClick();
-    console.log({ _id });
-  };
-
-  
 
   const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
   return (
@@ -77,7 +71,12 @@ const NoticeCategoryItem = ({
       <AddToFavoriteButton
         type="button"
         onClick={
-          isAuth ? () => addNoticeToFavorite(_id) : () => toast.info('Please, register or login to add notice to favorite')
+          isAuth
+            ? () => addNoticeToFavorite(_id)
+            : () =>
+                toast.info(
+                  'Please, register or login to add notice to favorite'
+                )
         }
       >
         {<IoIosHeart size="28px" />}
@@ -117,7 +116,7 @@ const NoticeCategoryItem = ({
           name="learnMore"
           type="button"
           width="248px"
-          onClick={() => openModal(_id)}
+          onClick={() => handleClick(_id)}
         >
           Learn more
         </Button>
@@ -140,7 +139,7 @@ const NoticeCategoryItem = ({
             <ModalNotice id={_id} onClose={closeModal} />
           </ModalComponent>
         )}
-      </AnimatePresence>      
+      </AnimatePresence>
     </CardNotice>
   );
 };

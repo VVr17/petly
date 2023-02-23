@@ -8,6 +8,7 @@ export const NoticeContainer = styled.div`
 `;
 
 export const PetInfo = styled.div`
+margin-bottom: 20px;
     @media (min-width: ${breakpoints[1]}px) {
         display: flex;
     }
@@ -153,10 +154,6 @@ export const CommentsTitle = styled.span`
 
 
 export const Buttons = styled.div`
-&:not(:last-child) {
-   margin-bottom: 32px;
-};
-
     @media (min-width: ${breakpoints[1]}px) {
         display: flex;
         justify-content: end;
