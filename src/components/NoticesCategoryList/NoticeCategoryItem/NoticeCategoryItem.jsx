@@ -36,8 +36,7 @@ const NoticeCategoryItem = ({
   location,
   birthDate,
   price,
-}) => {  
-  
+}) => {
   const status = useSelector(selectStatusFilter);
   const showButtonDelete = status === 'user';
 
@@ -148,7 +147,7 @@ NoticeCategoryItem.propTypes = {
   breed: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   birthDate: PropTypes.string.isRequired,
-  price: PropTypes.number,
+  price: PropTypes.string,
 };
 
 export default NoticeCategoryItem;

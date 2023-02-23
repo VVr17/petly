@@ -25,7 +25,7 @@ const initialValues = {
   breed: '',
   sex: 'male',
   location: '',
-  comment: '',
+  comments: '',
   price: '',
   petImage: null,
 };
@@ -55,7 +55,7 @@ const validationSchema = Yup.object().shape({
     .required('City is required'),
   price: Yup.number().required('Name is required').min(1, 'Price can not be 0'),
   petImage: Yup.mixed().required(),
-  comment: Yup.string()
+  comments: Yup.string()
     .required('Comment is required')
     .min(8, 'Title should be at least 8 characters long')
     .max(200, 'Title should be up to 120 characters long'),
@@ -96,39 +96,37 @@ const AddPetForm = ({ onClose }) => {
       }
     };
   }, [file]);
+  function getFullMonth(date) {
+    return date < 10 ? '0' + date : date;
+  }
 
   const handleSubmit = (values, { setSubmitting }) => {
     if (currentStep < 2) {
       setCurrentStep(currentStep + 1);
     } else {
-      const priceVal = parseInt(values.price);
+      const dateMDY = `${getFullMonth(
+        values.birthDate.getDate()
+      )}.${getFullMonth(
+        values.birthDate.getMonth() + 1
+      )}.${values.birthDate.getFullYear()}`;
       const categoryName = values.category;
 
       const data = new FormData();
 
       data.append('title', values.title);
       data.append('name', values.name);
-      data.append('birthDate', values.birthDate);
+      data.append('birthDate', dateMDY);
       data.append('breed', values.breed);
       data.append('sex', values.sex);
-      // data.append('price', values.price);
+      if (categoryName === 'sell') {
+        data.append('price', values.price);
+      }
+
       data.append('location', values.location);
       data.append('petImage', values.petImage);
       data.append('comments', values.comment);
 
-      // {
-      //   title: values.title,
-      //   name: values.name,
-      //   birthDate: values.birthDate,
-      //   breed: values.breed,
-      //   sex: values.sex,
-      //   location: values.location,
-      //   price: parseInt(values.price),
-      //   petImage: values.imageFile,
-      //   comment: values.comment,
-      // };
       addNotice({ categoryName, noticeData: data });
-      // console.log(data);
     }
     setSubmitting(false);
   };
