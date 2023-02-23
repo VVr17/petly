@@ -5,19 +5,36 @@ import {
   ErrorStyle,
   FieldStyle,
   StyledSpan,
-  StyledLabel,
+  Label,
+  FieldWrapper,
 } from './Input.styled';
 
-const InputField = ({ label, name, type, placeholder, id, span, autocomplete }) => {
+const InputField = ({
+  label,
+  name,
+  type,
+  placeholder,
+  id,
+  span,
+  autocomplete,
+  children,
+}) => {
   return (
-    <>
-      <label htmlFor={name}>
+    <FieldWrapper>
+      <Label htmlFor={name}>
         {label}
         <StyledSpan>{span}</StyledSpan>
-      </label>
-      <FieldStyle type={type} name={name} id={id} placeholder={placeholder} autoComplete={autocomplete} />
+      </Label>
+      <FieldStyle
+        type={type}
+        name={name}
+        id={id}
+        placeholder={placeholder}
+        autoComplete={autocomplete}
+      />
       <ErrorStyle name={name} component="div" />
-    </>
+      {children}
+    </FieldWrapper>
   );
 };
 
@@ -31,4 +48,5 @@ InputField.propTypes = {
   id: PropTypes.string,
   span: PropTypes.string,
   autocomplete: PropTypes.string,
+  children: PropTypes.node,
 };

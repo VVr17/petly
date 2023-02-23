@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import Button from 'components/Ui-Kit/Button';
 import { FormWrapper, ButtonsContainer } from './AddPetForm.styled';
@@ -13,52 +12,11 @@ import UploadImageField from 'components/UploadImage';
 import FilterCategory from './FilterCategory';
 import SexField from './StepTwo/Sex';
 import { useAddNoticeMutation } from 'redux/api/noticesApi';
-
-// Values for Formik
-
-const initialValues = {
-  category: 'sell',
-  title: '',
-  name: '',
-  birthDate: '',
-  breed: '',
-  sex: 'male',
-  location: '',
-  comments: '',
-  price: '',
-  petImage: null,
-};
-
-// Yup validation
-
-const validationSchema = Yup.object().shape({
-  title: Yup.string()
-    .required('Name is required')
-    .min(2, 'Title should be at least 2 characters long')
-    .max(48, 'Title should be up to 48 characters long'),
-  name: Yup.string()
-    .required('Name is required')
-    .min(2, 'Name should be at least 2 characters long')
-    .max(16, 'Name should be up to 48 characters long'),
-  birthDate: Yup.date().required('Birth date is required'),
-
-  breed: Yup.string()
-    .required('Breed is required')
-    .min(2, 'Breed should be at least 2 characters long')
-    .max(16, 'Breed should be up to 48 characters long'),
-  location: Yup.string()
-    .matches(
-      /^\s*(?:\w+\s*,\s*){1,}(?:\w+\s*)$/,
-      'Should be at least two words separated by string'
-    )
-    .required('City is required'),
-  price: Yup.number().required('Name is required').min(1, 'Price can not be 0'),
-  petImage: Yup.mixed().required(),
-  comments: Yup.string()
-    .required('Comment is required')
-    .min(8, 'Title should be at least 8 characters long')
-    .max(200, 'Title should be up to 120 characters long'),
-});
+import {
+  initialValues,
+  validationSchemaStepOne,
+  validationSchemaStepTwo,
+} from './Validation';
 
 // Main function
 
@@ -67,8 +25,9 @@ const AddPetForm = ({ onClose }) => {
 
   const [file, setFile] = useState(null);
   const [fileDataURL, setFileDataURL] = useState(null);
-  const [addNotice] = useAddNoticeMutation();
+  const [addNotice, { isLoading }] = useAddNoticeMutation();
 
+  // effect to make an url from file to render in preview
   useEffect(() => {
     let fileReader,
       isCancel = false;
@@ -89,20 +48,32 @@ const AddPetForm = ({ onClose }) => {
       }
     };
   }, [file]);
+
+  // function to to fool day and month (01, 02...)
   function getFullMonth(date) {
     return date < 10 ? '0' + date : date;
   }
+
+  // form submit
 
   const handleSubmit = (values, { setSubmitting }) => {
     if (currentStep < 2) {
       setCurrentStep(currentStep + 1);
     } else {
+      console.log(values);
+      // Date converting to string
+
       const dateMDY = `${getFullMonth(
         values.birthDate.getDate()
       )}.${getFullMonth(
         values.birthDate.getMonth() + 1
       )}.${values.birthDate.getFullYear()}`;
+
+      // define category
+
       const categoryName = values.category;
+
+      // create formData
 
       const data = new FormData();
 
@@ -114,12 +85,16 @@ const AddPetForm = ({ onClose }) => {
       if (categoryName === 'sell') {
         data.append('price', values.price);
       }
-
       data.append('location', values.location);
       data.append('petImage', values.petImage);
-      data.append('comments', values.comment);
+      data.append('comments', values.comments);
+
+      // send FormData to Backend
 
       addNotice({ categoryName, noticeData: data });
+
+      // close Modal
+      onClose();
     }
     setSubmitting(false);
   };
@@ -131,10 +106,11 @@ const AddPetForm = ({ onClose }) => {
   return (
     <Formik
       initialValues={initialValues}
-      // validationSchema={validationSchema}
+      validationSchema={
+        currentStep === 1 ? validationSchemaStepOne : validationSchemaStepTwo
+      }
       onSubmit={handleSubmit}
       encType="multipart/form-data"
-      // setFieldValue
     >
       {({ isSubmitting, values, setFieldValue }) => (
         <FormWrapper>
@@ -158,7 +134,7 @@ const AddPetForm = ({ onClose }) => {
                 }}
               />
 
-              <CommentField name="comment" />
+              <CommentField name="comments" />
             </StepTwo>
           )}
 

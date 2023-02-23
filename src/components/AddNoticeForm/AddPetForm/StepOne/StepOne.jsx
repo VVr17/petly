@@ -14,6 +14,7 @@ import Button from 'components/Ui-Kit/Button';
 import MyDatePicker from './DatePicker';
 import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
 import PropTypes from 'prop-types';
+import { Label, ErrorStyle } from 'components/Ui-Kit/Input/Input.styled';
 
 const StepOne = ({ children }) => {
   // const Example = () => {
@@ -44,9 +45,10 @@ const StepOne = ({ children }) => {
         label="Name pet"
         span="*"
       />
-      <label>
-        Date of birth<StyledSpan>*</StyledSpan>
-      </label>
+      <Label>
+        Date of birth
+        <StyledSpan>*</StyledSpan>
+      </Label>
       <MyDatePicker
         name="birthDate"
         label="Date of birth*"

@@ -54,7 +54,6 @@ const UserPetsList = () => {
   };
 
   const handleSubmit = async data => {
-    console.log('Completed!', data);
     try {
       const response = await addPetMutation(data);
       await refetchCurrentUser();
