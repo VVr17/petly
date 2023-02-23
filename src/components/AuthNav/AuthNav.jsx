@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, AuthLink, Link } from "./AuthNav.styled";
 import PropTypes from 'prop-types';
-import { theme } from '../../constants/theme';
 
 const AuthNav = ({ closeMenu, loginIsActive, closeMenuRegister }) => {
 
