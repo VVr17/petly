@@ -70,15 +70,12 @@ const NoticeCategoryItem = ({
       toast.info('Please, register or login to add notice to favorite');
       return;
     }
-    console.log('noticeId', noticeId);
 
     if (isFavorite) {
       deleteNoticeFromFavorite(noticeId);
-      // refetchCurrentUser();
       return;
     }
     addNoticeToFavorite(noticeId);
-    // refetchCurrentUser();
   };
 
   const isLoading = deleting || adding || removing;
