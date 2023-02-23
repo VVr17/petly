@@ -45,7 +45,7 @@ export const ButtonStyled = styled(motion.button)`
   &:hover,
   &:focus {
     background-color: ${({ theme, name }) =>
-      name === 'learnMore' ? 'transparent' : theme.colors.hover};
+      name === 'learnMore' && 'transparent' ? 'contacts' : theme.colors.hover};
     border-color: ${({ theme, name }) =>
       name === 'learnMore' ? theme.colors.secondaryHover : theme.colors.hover};
     color: ${({ theme, name }) =>

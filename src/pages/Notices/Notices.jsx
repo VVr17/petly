@@ -71,9 +71,7 @@ const Notices = () => {
               </>
             ) : (
               <>
-                <ModalComponent closeModal={closeModal} key="popUp">
-                  <NotificationAddNotice />
-                </ModalComponent>
+                <NotificationAddNotice />
               </>
             )}
           </ModalComponent>
