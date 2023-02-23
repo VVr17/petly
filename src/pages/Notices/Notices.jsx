@@ -15,7 +15,6 @@ import AddNoticeFormHeader from 'components/AddNoticeForm';
 
 import NotificationAddNotice from 'components/NotificationAddNotice';
 
-
 import AddPetForm from 'components/AddNoticeForm/AddPetForm';
 
 import { AnimatePresence } from 'framer-motion';
@@ -25,9 +24,11 @@ const Notices = () => {
   const { isAuth } = useSelector(state => state.user);
   const handleClick = () => {
     setIsOpen(true);
+    document.body.classList.add('modal-open');
   };
   const closeModal = () => {
     setIsOpen(false);
+    document.body.classList.remove('modal-open');
   };
   // function toggleModal(e) {
   //   setIsOpen(!isOpen);
