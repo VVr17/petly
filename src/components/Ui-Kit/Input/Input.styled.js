@@ -27,31 +27,28 @@ export const FieldStyle = styled(Field)`
     padding: 12px 14px;
   }
 `;
-
-// export const ErrorStyle = styled(ErrorMessage)`
-//   position: absolute;
-//   transform: translate(20px, -15px);
-//   font-size: ${theme.fontSizes.xxxs};
-//   color: red;
-//    ${theme.mq.mobileOnly} {
-//     transform: translate(0px, -15px);
-//   }
-// `;
-
 export const Label = styled.label`
-  position: relative;
+  display: block;
+  margin-bottom: 12px;
+  ${theme.mq.mobileOnly} {
+    margin-bottom: 8px;
+  }
+  // position: relative;
 `;
 export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
-  top: 75px;
+  bottom: 0px;
   left: 30px;
   font-size: ${theme.fontSizes.xxxs};
   color: red;
   ${theme.mq.mobileOnly} {
-    transform: translate(0px, -15px);
+    transform: translate(0px, 0px);
   }
 `;
 
 export const StyledSpan = styled.span`
   color: ${theme.colors.accent};
+`;
+export const FieldWrapper = styled.div`
+  position: relative;
 `;

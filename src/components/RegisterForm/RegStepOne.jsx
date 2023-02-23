@@ -20,17 +20,18 @@ const RegStepOne = () => {
         placeholder="Email"
         autocomplete="email"
       />
-      <PasswordWrapper>
-        <InputField
-          name="password"
-          type={passwordInputType}
-          placeholder="Password"
-          autocomplete="new-password"
-        />
+
+      <InputField
+        name="password"
+        type={passwordInputType}
+        placeholder="Password"
+        autocomplete="new-password"
+      >
         <PasswordToggle type="button" onClick={toggleShowPassword}>
           {showPassword ? <RxEyeOpen /> : <RxEyeClosed />}
         </PasswordToggle>
-      </PasswordWrapper>
+      </InputField>
+
       <InputField
         name="confirmPassword"
         type={passwordInputType}

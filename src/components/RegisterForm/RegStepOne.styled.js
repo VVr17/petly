@@ -9,11 +9,12 @@ export const PasswordWrapper = styled.div`
 export const PasswordToggle = styled.button`
   position: absolute;
   right: 10px;
-  top: 50%;
-  transform: translateY(-65%);
+  bottom: 20px;
+  transform: translateY(-15%);
   border: none;
   background: none;
   font-size: 20px;
   color: ${theme.colors.secondaryText};
   cursor: pointer;
+  z-index: 100;
 `;

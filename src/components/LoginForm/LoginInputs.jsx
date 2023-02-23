@@ -21,17 +21,21 @@ const LoginInputs = () => {
         placeholder="Email"
         autocomplete="email"
       />
-      <PasswordWrapper>
-        <InputField
-          name="password"
-          type={passwordInputType}
-          placeholder="Password"
-          autocomplete="current-password"
-        />
+
+      <InputField
+        name="password"
+        type={passwordInputType}
+        placeholder="Password"
+        autocomplete="current-password"
+      >
         <PasswordToggle type="button" onClick={toggleShowPassword}>
           {showPassword ? <RxEyeOpen /> : <RxEyeClosed />}
         </PasswordToggle>
-      </PasswordWrapper>
+      </InputField>
+
+      {/* <PasswordToggle type="button" onClick={toggleShowPassword}>
+        {showPassword ? <RxEyeOpen /> : <RxEyeClosed />}
+      </PasswordToggle> */}
     </>
   );
 };
