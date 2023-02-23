@@ -13,7 +13,6 @@ import UploadImageField from 'components/UploadImage';
 import FilterCategory from './FilterCategory';
 import SexField from './StepTwo/Sex';
 import { useAddNoticeMutation } from 'redux/api/noticesApi';
-// import FormData from 'form-data';
 
 // Values for Formik
 
@@ -69,7 +68,7 @@ const AddPetForm = ({ onClose }) => {
   const [file, setFile] = useState(null);
   const [fileDataURL, setFileDataURL] = useState(null);
   const [addNotice] = useAddNoticeMutation();
-  
+
   useEffect(() => {
     let fileReader,
       isCancel = false;
