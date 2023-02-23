@@ -65,17 +65,19 @@ const NoticeCategoryItem = ({
     setModalIsOpen(false);
   };
 
-  const toggleFavorite = noticeId => {
+  const toggleFavorite = async noticeId => {
     if (!isAuth) {
       toast.info('Please, register or login to add notice to favorite');
       return;
     }
 
     if (isFavorite) {
-      deleteNoticeFromFavorite(noticeId);
+      await deleteNoticeFromFavorite(noticeId);
+      // toast.info(`Notice with ID ${_id} has been remove from favorites`);
       return;
     }
-    addNoticeToFavorite(noticeId);
+    await addNoticeToFavorite(noticeId);
+    // toast.info(`Notice with ID ${_id} has been added to favorites`);
   };
 
   const isLoading = deleting || adding || removing;
