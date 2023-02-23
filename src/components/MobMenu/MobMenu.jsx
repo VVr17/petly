@@ -15,7 +15,7 @@ import AuthNav from 'components/AuthNav';
 import UserNav from 'components/UserNav';
 import { mobileMenuAnimation } from 'constants/animation';
 
-const MobMenu = ({ closeMenu, isAuth }) => {
+const MobMenu = ({ closeMenu, isAuth , loginIsActive, closeMenuRegister}) => {
   return (
     <Modal key="mobile" {...mobileMenuAnimation} transition={{ duration: 0.3 }}>
       <Container>
@@ -30,7 +30,7 @@ const MobMenu = ({ closeMenu, isAuth }) => {
         {isAuth ? (
           <UserNav closeMenu={closeMenu} />
         ) : (
-          <AuthNav closeMenu={closeMenu} />
+            <AuthNav closeMenu={closeMenu} loginIsActive={loginIsActive} closeMenuRegister={closeMenuRegister} />
         )}
       </AuthBox>
       <Nav closeMenu={closeMenu} />
@@ -41,6 +41,8 @@ const MobMenu = ({ closeMenu, isAuth }) => {
 MobMenu.propTypes = {
   closeMenu: PropTypes.func.isRequired,
   isAuth: PropTypes.bool.isRequired,
+  loginIsActive: PropTypes.bool.isRequired,
+  closeMenuRegister: PropTypes.func.isRequired
 };
 
 export default MobMenu;

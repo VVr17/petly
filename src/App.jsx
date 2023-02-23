@@ -35,11 +35,7 @@ const App = () => {
           <Routes location={location}>
             <Route path="/" element={<SharedLayout />} key={location.key}>
               <Route index element={<Home />} key={location.key} />
-              <Route
-                path="register"
-                element={<Register />}
-                key={location.key}
-              />
+              <Route path="register" element={<Register />} key={location.key}/>
               <Route path="login" element={<Login />} key={location.key} />
               <Route path="user" element={<User />} key={location.key} />
               <Route path="friends" element={<Friends />} key={location.key} />
