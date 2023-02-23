@@ -54,9 +54,6 @@ const NoticeCategoryItem = ({
   const city = place[0];
   const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
   const isFavorite = user?.favoriteNotices.includes(_id);
-  // console.log(' user?.favoriteNotices', user?.favoriteNotices);
-  // console.log('isFavorite', isFavorite);
-  // console.log('favorites', favorites);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [deleteNotice, { isLoading: deleting }] = useDeleteNoticeMutation();
