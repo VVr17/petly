@@ -28,12 +28,27 @@ export const FieldStyle = styled(Field)`
   }
 `;
 
+// export const ErrorStyle = styled(ErrorMessage)`
+//   position: absolute;
+//   transform: translate(20px, -15px);
+//   font-size: ${theme.fontSizes.xxxs};
+//   color: red;
+//    ${theme.mq.mobileOnly} {
+//     transform: translate(0px, -15px);
+//   }
+// `;
+
+export const Label = styled.label`
+  position: relative;
+`;
 export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
-  transform: translate(20px, -15px);
+  top: 75px;
+  left: 30px;
+  // transform: translate(10px, 40px);
   font-size: ${theme.fontSizes.xxxs};
   color: red;
-   ${theme.mq.mobileOnly} {
+  ${theme.mq.mobileOnly} {
     transform: translate(0px, -15px);
   }
 `;

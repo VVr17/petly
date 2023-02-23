@@ -235,3 +235,17 @@ export const Textarea = styled(Field)`
   padding-top: 9px;
   padding-bottom: 9px;
 `;
+export const ErrorMessage = styled.div`
+  position: absolute;
+  color: red;
+  font-size: 14px;
+  text-align: center;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 120px;
+  ${theme.mq.mobileOnly} {
+    top: 50px;
+    font-size: 12px;
+  }
+`;
