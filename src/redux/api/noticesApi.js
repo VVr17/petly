@@ -21,7 +21,7 @@ export const noticesApi = createApi({
     getFavoritesNotices: builder.query({
       query: () => `${NOTICES_URL}/favorites`,
       transformResponse: response => response.data,
-      providesTags: [TAGS_TYPES.notice],
+      providesTags: [TAGS_TYPES.favorites],
     }),
     getUserNotices: builder.query({
       query: () => `${NOTICES_URL}/user`,
@@ -56,7 +56,7 @@ export const noticesApi = createApi({
         method: 'POST',
       }),
       transformResponse: response => response.data,
-      invalidatesTags: [TAGS_TYPES.notice],
+      invalidatesTags: [TAGS_TYPES.favorites],
     }),
     removeNoticeFromFavorite: builder.mutation({
       query: noticeId => ({
@@ -64,7 +64,7 @@ export const noticesApi = createApi({
         method: 'DELETE',
       }),
       transformResponse: response => response.data,
-      invalidatesTags: [TAGS_TYPES.notice],
+      invalidatesTags: [TAGS_TYPES.favorites],
     }),
   }),
 });
