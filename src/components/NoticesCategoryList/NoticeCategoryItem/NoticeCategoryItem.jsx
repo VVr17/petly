@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import {
   useDeleteNoticeMutation,
   useAddNoticeToFavoriteMutation,
+  useRemoveNoticeFromFavoriteMutation,
+  useGetUserNoticesQuery,
 } from 'redux/api/noticesApi';
 import { selectStatusFilter } from 'redux/filter/filterSelectors';
 import getAge from '../../../js';
@@ -24,8 +26,9 @@ import {
   CategoryBox,
   CategoryName,
   ContainerButton,
-  AddToFavoriteButton,
+  ToggleFavoriteButton,
 } from './NoticeCategoryItem.styled';
+import { useGetCurrentUserQuery } from 'redux/api/userApi';
 
 const NoticeCategoryItem = ({
   _id,
@@ -39,24 +42,30 @@ const NoticeCategoryItem = ({
 }) => {
   const status = useSelector(selectStatusFilter);
   const showButtonDelete = status === 'user';
+  const { data: user, refetch: refetchCurrentUser } = useGetCurrentUserQuery();
 
-  const [deleteNotice] = useDeleteNoticeMutation();
-  const [addNoticeToFavorite] = useAddNoticeToFavoriteMutation();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [deleteNotice, { isLoading: deleting }] = useDeleteNoticeMutation();
+  const [addNoticeToFavorite, { isLoading: adding }] =
+    useAddNoticeToFavoriteMutation();
+  const [deleteNoticeFromFavorite, { isLoading: removing }] =
+    useRemoveNoticeFromFavoriteMutation();
 
   const place = location.split(',');
   const city = place[0];
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleClick = () => {
-    setIsOpen(true);
-  };
-  const closeModal = () => {
-    setIsOpen(false);
-  };
- 
-
   const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
+  const isFavorite = user?.favoriteNotices.includes(_id);
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  const toggleFavorite = noticeId => {
+    console.log('noticeId', noticeId);
+    // addNoticeToFavorite()
+  };
+
+  // const isFavorite =
   return (
     <CardNotice>
       <ImageBox>
@@ -66,13 +75,15 @@ const NoticeCategoryItem = ({
           loading="lazy"
         />
       </ImageBox>
-      <AddToFavoriteButton
-        type="button"
-        onClick={() => addNoticeToFavorite(_id)}
-      >
-        <IoIosHeartEmpty size="28px" />
+      <ToggleFavoriteButton type="button" onClick={() => toggleFavorite(_id)}>
+        {isFavorite ? (
+          <IoIosHeart size="28px" />
+        ) : (
+          <IoIosHeartEmpty size="28px" />
+        )}
+        {/* <IoIosHeartEmpty size="28px" /> */}
         {/* {<IoIosHeart size="28px" />} */}
-      </AddToFavoriteButton>
+      </ToggleFavoriteButton>
       <CategoryBox>
         <CategoryName>{category}</CategoryName>
       </CategoryBox>
@@ -108,7 +119,9 @@ const NoticeCategoryItem = ({
           name="learnMore"
           type="button"
           width="248px"
-          onClick={() => handleClick(_id)}
+          onClick={() => {
+            setModalIsOpen(true);
+          }}
         >
           Learn more
         </Button>
@@ -126,7 +139,7 @@ const NoticeCategoryItem = ({
       </ContainerButton>
 
       <AnimatePresence>
-        {isOpen && (
+        {modalIsOpen && (
           <ModalComponent closeModal={closeModal} key="popUp">
             <ModalNotice id={_id} onClose={closeModal} />
           </ModalComponent>

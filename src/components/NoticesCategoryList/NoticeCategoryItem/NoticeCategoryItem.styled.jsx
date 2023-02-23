@@ -70,7 +70,7 @@ export const ContainerButton = styled.div`
   }
 `;
 
-export const AddToFavoriteButton = styled.button`
+export const ToggleFavoriteButton = styled.button`
   position: absolute;
   right: 12px;
   top: 12px;
