@@ -40,9 +40,6 @@ export const noticesApi = createApi({
         return {
           url: `${NOTICES_URL}${CATEGORY_URL}/${categoryName}`,
           method: 'POST',
-          // headers: {
-          //   'Content-Type': 'multipart/form-data',
-          // },
           body: noticeData,
         };
       },
