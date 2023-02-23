@@ -31,7 +31,7 @@ height: 85%;
   border-radius: 20px;
   background-color: ${theme.colors.lightText};
   @media(min-width: ${breakpoints[1]}px) {
-    width: 608px;
+    width: 650px;
     padding: 20px 20px 40px 20px;
     border-radius: 40px;
   }

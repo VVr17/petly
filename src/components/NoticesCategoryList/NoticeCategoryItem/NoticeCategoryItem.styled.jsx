@@ -61,7 +61,6 @@ export const CategoryName = styled.p`
 export const ContainerButton = styled.div`
   display: grid;
   gap: 12px;
-  margin: auto 0;
   padding: 0 16px 12px;
 
   ${theme.mq.tabletOnly} {
@@ -70,7 +69,7 @@ export const ContainerButton = styled.div`
   }
 `;
 
-export const AddToFavoriteButton = styled.button`
+export const ToggleFavoriteButton = styled.button`
   position: absolute;
   right: 12px;
   top: 12px;
@@ -86,6 +85,9 @@ export const AddToFavoriteButton = styled.button`
   justify-content: center;
 
   svg {
+    fill: ${({ theme, isFavorite }) =>
+      isFavorite ? theme.colors.accent : theme.colors.secondaryBackground};
     color: ${theme.colors.accent};
+    stroke-width: 30px;
   }
 `;

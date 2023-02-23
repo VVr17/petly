@@ -21,7 +21,7 @@ export const noticesApi = createApi({
     getFavoritesNotices: builder.query({
       query: () => `${NOTICES_URL}/favorites`,
       transformResponse: response => response.data,
-      providesTags: [TAGS_TYPES.notice],
+      providesTags: [TAGS_TYPES.favorites],
     }),
     getUserNotices: builder.query({
       query: () => `${NOTICES_URL}/user`,
@@ -34,16 +34,11 @@ export const noticesApi = createApi({
       providesTags: [TAGS_TYPES.notice],
     }),
     addNotice: builder.mutation({
-      query: ({ categoryName, noticeData }) => {
-        console.log('noticeData', noticeData);
-
-        return {
-          url: `${NOTICES_URL}${CATEGORY_URL}/${categoryName}`,
-
-          method: 'POST',
-          body: noticeData,
-        };
-      },
+      query: ({ categoryName, noticeData }) => ({
+        url: `${NOTICES_URL}${CATEGORY_URL}/${categoryName}`,
+        method: 'POST',
+        body: noticeData,
+      }),
       transformResponse: response => response.data,
       invalidatesTags: [TAGS_TYPES.notice],
     }),
@@ -61,7 +56,7 @@ export const noticesApi = createApi({
         method: 'POST',
       }),
       transformResponse: response => response.data,
-      invalidatesTags: [TAGS_TYPES.notice],
+      invalidatesTags: [TAGS_TYPES.favorites],
     }),
     removeNoticeFromFavorite: builder.mutation({
       query: noticeId => ({
@@ -69,7 +64,7 @@ export const noticesApi = createApi({
         method: 'DELETE',
       }),
       transformResponse: response => response.data,
-      invalidatesTags: [TAGS_TYPES.notice],
+      invalidatesTags: [TAGS_TYPES.favorites],
     }),
   }),
 });

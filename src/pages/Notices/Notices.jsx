@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
+import { selectIsAuthState } from 'redux/user/userSelectors';
 import { selectStatusFilter } from 'redux/filter/filterSelectors';
 import { useGetNoticeByCategoryQuery } from 'redux/api/noticesApi';
 import Loader from 'components/Loader';
@@ -12,16 +15,14 @@ import { NavContainer } from './Notices.styled';
 import AddPetButton from 'components/AddPetButton';
 import ModalComponent from 'components/Modal';
 import AddNoticeFormHeader from 'components/AddNoticeForm';
-
 import NotificationAddNotice from 'components/NotificationAddNotice';
-
 import AddPetForm from 'components/AddNoticeForm/AddPetForm';
-
 import { AnimatePresence } from 'framer-motion';
 
 const Notices = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isAuth } = useSelector(state => state.user);
+
+  const isAuth = useSelector(selectIsAuthState);
   const handleClick = () => {
     setIsOpen(true);
     document.body.classList.add('modal-open');
@@ -70,14 +71,13 @@ const Notices = () => {
               </>
             ) : (
               <>
-                <ModalComponent closeModal={closeModal} key="popUp">
-                  <NotificationAddNotice />
-                </ModalComponent>
+                <NotificationAddNotice />
               </>
             )}
           </ModalComponent>
         )}
       </AnimatePresence>
+      <ToastContainer />
     </Section>
   );
 };

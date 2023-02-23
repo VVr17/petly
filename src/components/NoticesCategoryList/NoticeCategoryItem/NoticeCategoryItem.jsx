@@ -1,10 +1,15 @@
 import { useState, React } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { ToastContainer, toast } from 'react-toastify';
 import {
   useDeleteNoticeMutation,
   useAddNoticeToFavoriteMutation,
+  useRemoveNoticeFromFavoriteMutation,
+  useGetUserNoticesQuery,
+  useGetFavoritesNoticesQuery,
 } from 'redux/api/noticesApi';
+import { selectIsAuthState } from 'redux/user/userSelectors';
 import { selectStatusFilter } from 'redux/filter/filterSelectors';
 import getAge from '../../../js';
 import Button from 'components/Ui-Kit/Button';
@@ -12,7 +17,7 @@ import ModalNotice from 'components/ModalNotice';
 import ModalComponent from 'components/Modal';
 import { AnimatePresence } from 'framer-motion';
 import { IoTrashSharp } from 'react-icons/io5';
-import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
+import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io';
 import {
   CardNotice,
   ImageBox,
@@ -24,8 +29,11 @@ import {
   CategoryBox,
   CategoryName,
   ContainerButton,
-  AddToFavoriteButton,
+  ToggleFavoriteButton,
 } from './NoticeCategoryItem.styled';
+import { useGetCurrentUserQuery } from 'redux/api/userApi';
+import { theme } from 'constants/theme';
+import Loader from 'components/Loader';
 
 const NoticeCategoryItem = ({
   _id,
@@ -37,105 +45,128 @@ const NoticeCategoryItem = ({
   birthDate,
   price,
 }) => {
+  const isAuth = useSelector(selectIsAuthState);
   const status = useSelector(selectStatusFilter);
   const showButtonDelete = status === 'user';
-
-  const [deleteNotice] = useDeleteNoticeMutation();
-  const [addNoticeToFavorite] = useAddNoticeToFavoriteMutation();
-
+  const { data: user, refetch: refetchCurrentUser } = useGetCurrentUserQuery();
+  const { data: favorites } = useGetFavoritesNoticesQuery();
   const place = location.split(',');
   const city = place[0];
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleClick = () => {
-    setIsOpen(true);
-  };
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-  const openModal = e => {
-    handleClick();
-    console.log({ _id });
-  };
-
   const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
-  return (
-    <CardNotice>
-      <ImageBox>
-        <Image
-          src={photoURL ? photoURL : altPosterUrl}
-          alt={title}
-          loading="lazy"
-        />
-      </ImageBox>
-      <AddToFavoriteButton
-        type="button"
-        onClick={() => addNoticeToFavorite(_id)}
-      >
-        <IoIosHeartEmpty size="28px" />
-        {/* {<IoIosHeart size="28px" />} */}
-      </AddToFavoriteButton>
-      <CategoryBox>
-        <CategoryName>{category}</CategoryName>
-      </CategoryBox>
-      <ContainerInfo>
-        <Title>{title}</Title>
-        <table>
-          <tbody>
-            <tr>
-              <Thead>Breed:</Thead>
-              <Text>{breed}</Text>
-            </tr>
-            <tr>
-              <Thead>Place:</Thead>
-              <Text>{city}</Text>
-            </tr>
-            <tr>
-              <Thead>Age:</Thead>
-              <Text>{getAge(birthDate)}</Text>
-            </tr>
+  const isFavorite = user?.favoriteNotices.includes(_id);
+  // console.log(' user?.favoriteNotices', user?.favoriteNotices);
+  // console.log('isFavorite', isFavorite);
+  // console.log('favorites', favorites);
 
-            {category === 'sell' && (
-              <tr>
-                <Thead>Price:</Thead>
-                <Text>{price} $</Text>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </ContainerInfo>
-      <ContainerButton>
-        <Button
-          id={_id}
-          name="learnMore"
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [deleteNotice, { isLoading: deleting }] = useDeleteNoticeMutation();
+  const [addNoticeToFavorite, { isLoading: adding }] =
+    useAddNoticeToFavoriteMutation();
+  const [deleteNoticeFromFavorite, { isLoading: removing }] =
+    useRemoveNoticeFromFavoriteMutation();
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  const toggleFavorite = noticeId => {
+    if (!isAuth) {
+      toast.info('Please, register or login to add notice to favorite');
+      return;
+    }
+    console.log('noticeId', noticeId);
+
+    if (isFavorite) {
+      deleteNoticeFromFavorite(noticeId);
+      refetchCurrentUser();
+      return;
+    }
+    addNoticeToFavorite(noticeId);
+    refetchCurrentUser();
+  };
+
+  const isLoading = deleting || adding || removing;
+
+  return (
+    <>
+      {isLoading && <Loader />}
+      <CardNotice>
+        <ImageBox>
+          <Image
+            src={photoURL ? photoURL : altPosterUrl}
+            alt={title}
+            loading="lazy"
+          />
+        </ImageBox>
+        <ToggleFavoriteButton
+          isFavorite={isFavorite}
           type="button"
-          width="248px"
-          onClick={() => openModal(_id)}
+          onClick={() => toggleFavorite(_id)}
         >
-          Learn more
-        </Button>
-        {showButtonDelete && (
+          {<IoIosHeart size="28px" />}
+        </ToggleFavoriteButton>
+        <CategoryBox>
+          <CategoryName>{category}</CategoryName>
+        </CategoryBox>
+        <ContainerInfo>
+          <Title>{title}</Title>
+          <table>
+            <tbody>
+              <tr>
+                <Thead>Breed:</Thead>
+                <Text>{breed}</Text>
+              </tr>
+              <tr>
+                <Thead>Place:</Thead>
+                <Text>{city}</Text>
+              </tr>
+              <tr>
+                <Thead>Age:</Thead>
+                <Text>{getAge(birthDate)}</Text>
+              </tr>
+
+              {category === 'sell' && (
+                <tr>
+                  <Thead>Price:</Thead>
+                  <Text>{price} $</Text>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </ContainerInfo>
+        <ContainerButton>
           <Button
+            id={_id}
             name="learnMore"
             type="button"
             width="248px"
-            onClick={() => deleteNotice(_id)}
+            onClick={() => {
+              setModalIsOpen(true);
+            }}
           >
-            Delete
-            <IoTrashSharp style={{ marginLeft: '12px' }} />
+            Learn more
           </Button>
-        )}
-      </ContainerButton>
-
+          {showButtonDelete && (
+            <Button
+              name="learnMore"
+              type="button"
+              width="248px"
+              onClick={() => deleteNotice(_id)}
+            >
+              Delete
+              <IoTrashSharp style={{ marginLeft: '12px' }} />
+            </Button>
+          )}
+        </ContainerButton>
+      </CardNotice>
       <AnimatePresence>
-        {isOpen && (
+        {modalIsOpen && (
           <ModalComponent closeModal={closeModal} key="popUp">
             <ModalNotice id={_id} onClose={closeModal} />
           </ModalComponent>
         )}
       </AnimatePresence>
-    </CardNotice>
+    </>
   );
 };
 
