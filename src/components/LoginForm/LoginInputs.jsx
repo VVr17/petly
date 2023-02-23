@@ -14,9 +14,9 @@ const LoginInputs = () => {
   const passwordInputType = showPassword ? 'text' : 'password';
     return (
         <div>
-            <InputField name="email" type="email" placeholder="Email" />
+            <InputField name="email" type="email" placeholder="Email" autocomplete="email" />
             <PasswordWrapper>
-                <InputField name="password" type={passwordInputType} placeholder="Password" />
+                <InputField name="password" type={passwordInputType} placeholder="Password" autocomplete="current-password"/>
                 <PasswordToggle type="button" onClick={toggleShowPassword}>
                    {showPassword ? <RxEyeOpen /> : <RxEyeClosed />}
                 </PasswordToggle>

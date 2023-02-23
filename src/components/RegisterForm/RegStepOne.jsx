@@ -14,7 +14,7 @@ const RegStepOne = () => {
 
   return (
     <div>
-      <InputField name="email" type="email" placeholder="Email" />
+      <InputField name="email" type="email" placeholder="Email" autocomplete="email"/>
       <PasswordWrapper>
         <InputField
           name="password"
