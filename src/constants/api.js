@@ -12,4 +12,5 @@ export const TAGS_TYPES = {
   user: 'User',
   pet: 'Pet',
   notice: 'Notice',
+  favorites: 'Favorites',
 };

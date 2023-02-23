@@ -20,7 +20,7 @@ export const Image = styled.img`
 `;
 
 export const ContainerInfo = styled.div`
-  padding: 20px;  
+  padding: 20px;
 `;
 
 export const Title = styled.h3`
@@ -60,9 +60,8 @@ export const CategoryName = styled.p`
 
 export const ContainerButton = styled.div`
   display: grid;
-  gap: 12px;  
-  padding: 0 16px 12px;  
-  
+  gap: 12px;
+  padding: 0 16px 12px;
 
   ${theme.mq.tabletOnly} {
     grid-template-columns: repeat(auto-fill, minmax(336px, 1fr));
@@ -70,7 +69,7 @@ export const ContainerButton = styled.div`
   }
 `;
 
-export const AddToFavoriteButton = styled.button`
+export const ToggleFavoriteButton = styled.button`
   position: absolute;
   right: 12px;
   top: 12px;
@@ -86,8 +85,9 @@ export const AddToFavoriteButton = styled.button`
   justify-content: center;
 
   svg {
-    fill: ${theme.colors.secondaryBackground};
+    fill: ${({ theme, isFavorite }) =>
+      isFavorite ? theme.colors.accent : theme.colors.secondaryBackground};
     color: ${theme.colors.accent};
-    stroke-width: 30px;    
+    stroke-width: 30px;
   }
 `;
