@@ -18,6 +18,7 @@ const InputField = ({
   span,
   autocomplete,
   children,
+  as,
 }) => {
   return (
     <FieldWrapper>
@@ -31,6 +32,7 @@ const InputField = ({
         id={id}
         placeholder={placeholder}
         autoComplete={autocomplete}
+        as={as}
       />
       <ErrorStyle name={name} component="div" />
       {children}
@@ -49,4 +51,5 @@ InputField.propTypes = {
   span: PropTypes.string,
   autocomplete: PropTypes.string,
   children: PropTypes.node,
+  as: PropTypes.string,
 };

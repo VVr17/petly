@@ -17,6 +17,7 @@ import {
   validationSchemaStepOne,
   validationSchemaStepTwo,
 } from './Validation';
+import Loader from 'components/Loader';
 
 // Main function
 
@@ -104,58 +105,62 @@ const AddPetForm = ({ onClose }) => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={
-        currentStep === 1 ? validationSchemaStepOne : validationSchemaStepTwo
-      }
-      onSubmit={handleSubmit}
-      encType="multipart/form-data"
-    >
-      {({ isSubmitting, values, setFieldValue }) => (
-        <FormWrapper>
-          {currentStep === 1 && (
-            <StepOne>
-              <FilterCategory value={values.category} />
-            </StepOne>
-          )}
-          {currentStep === 2 && (
-            <StepTwo>
-              <SexField value={values.sex} />
-              <LocationField />
-
-              {values.category === 'sell' && <PriceField />}
-
-              <UploadImageField
-                fileDataURL={fileDataURL}
-                handleChange={e => {
-                  setFile(e.currentTarget.files[0]);
-                  setFieldValue('petImage', e.currentTarget.files[0]);
-                }}
-              />
-
-              <CommentField name="comments" />
-            </StepTwo>
-          )}
-
-          <ButtonsContainer>
+    <>
+      {isLoading && <Loader />}
+      <Formik
+        initialValues={initialValues}
+        validationSchema={
+          currentStep === 1 ? validationSchemaStepOne : validationSchemaStepTwo
+        }
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+      >
+        {({ isSubmitting, values, setFieldValue }) => (
+          <FormWrapper>
             {currentStep === 1 && (
-              <Button name="transparent" onClick={onClose}>
-                Cancel
-              </Button>
+              <StepOne>
+                <FilterCategory value={values.category} />
+              </StepOne>
             )}
             {currentStep === 2 && (
-              <Button name="transparent" onClick={goBack}>
-                Back
-              </Button>
+              <StepTwo>
+                <SexField value={values.sex} />
+                <LocationField />
+
+                {values.category === 'sell' && <PriceField />}
+
+                <UploadImageField
+                  name="petImage"
+                  fileDataURL={fileDataURL}
+                  handleChange={e => {
+                    setFile(e.currentTarget.files[0]);
+                    setFieldValue('petImage', e.currentTarget.files[0]);
+                  }}
+                />
+
+                <CommentField name="comments" />
+              </StepTwo>
             )}
-            <Button name="filled" type="submit" disabled={isSubmitting}>
-              {currentStep < 2 ? 'Next' : 'Done'}
-            </Button>
-          </ButtonsContainer>
-        </FormWrapper>
-      )}
-    </Formik>
+
+            <ButtonsContainer>
+              {currentStep === 1 && (
+                <Button name="transparent" onClick={onClose}>
+                  Cancel
+                </Button>
+              )}
+              {currentStep === 2 && (
+                <Button name="transparent" onClick={goBack}>
+                  Back
+                </Button>
+              )}
+              <Button name="filled" type="submit" disabled={isSubmitting}>
+                {currentStep < 2 ? 'Next' : 'Done'}
+              </Button>
+            </ButtonsContainer>
+          </FormWrapper>
+        )}
+      </Formik>
+    </>
   );
 };
 
