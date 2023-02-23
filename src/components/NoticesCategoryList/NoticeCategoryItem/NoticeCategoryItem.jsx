@@ -54,10 +54,7 @@ const NoticeCategoryItem = ({
   const closeModal = () => {
     setIsOpen(false);
   };
-  const openModal = e => {
-    handleClick();
-    console.log({ _id });
-  };
+ 
 
   const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
   return (
@@ -111,7 +108,7 @@ const NoticeCategoryItem = ({
           name="learnMore"
           type="button"
           width="248px"
-          onClick={() => openModal(_id)}
+          onClick={() => handleClick(_id)}
         >
           Learn more
         </Button>

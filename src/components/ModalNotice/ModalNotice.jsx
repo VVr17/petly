@@ -1,6 +1,8 @@
 import Container from 'components/Container';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useGetNoticeByIdQuery } from 'redux/api/noticesApi';
+import Loader from 'components/Loader';
 import {
   ImgWrapper,
   PetsImg,
@@ -24,7 +26,7 @@ import Button from 'components/Ui-Kit/Button';
 
 const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
 
-const ModalNotice = () => {
+const ModalNotice = ({ id }) => {
   // const {
   //    _id,
   //    avatarURL,
@@ -42,101 +44,116 @@ const ModalNotice = () => {
   //    own,
   //  } = notice;
 
-  const { data } = useGetNoticeByIdQuery(_id);
+  const { data, isFetching, isLoading, isError } = useGetNoticeByIdQuery(id);
   console.log(data);
-  const noItem = '-------------';
+  //   console.log(data.price);
+  const noItem = '-----------';
   const noPrice = '0';
 
   const onRedirect = () => {
-    window.location = `tel:+380971234567`;
+    window.location = `tel:${data.owner.phone}`;
   };
-
   return (
-    <NoticeContainer>
-      <PetInfo>
-        <ImgWrapper>
-          <PetsImg src={altPosterUrl} />
-          <Category>
-            <CategoryName>Sell</CategoryName>
-          </Category>
-        </ImgWrapper>
+    <>
+      <NoticeContainer>
+        {isFetching && <Loader />}
+        {isError && <div>{isError.message}</div>}
 
-        <TextContent>
-          <Title>Сute dog looking for a home</Title>
-          <PetData>
-            <CategoryData>
-              <DataItem>
-                <CategoryText>Name:</CategoryText>
-              </DataItem>
-              <DataItem>
-                <CategoryText>Birthday:</CategoryText>
-              </DataItem>
-              <DataItem>
-                <CategoryText>Breed:</CategoryText>
-              </DataItem>
-              <DataItem>
-                <CategoryText>Location:</CategoryText>
-              </DataItem>
-              <DataItem>
-                <CategoryText>The sex:</CategoryText>
-              </DataItem>
-              <DataItem>
-                <CategoryText>Email:</CategoryText>
-              </DataItem>
-              <DataItem>
-                <CategoryText>Phone:</CategoryText>
-              </DataItem>
-              <DataItem>
-                <CategoryText>Price:</CategoryText>
-              </DataItem>
-            </CategoryData>
-            <ValueData>
-              <DataItem>
-                <ValueText>Rich</ValueText>
-              </DataItem>
-              <DataItem>
-                <ValueText>21.09.2020</ValueText>
-              </DataItem>
-              <DataItem>
-                <ValueText>Pomeranian</ValueText>
-              </DataItem>
-              <DataItem>
-                <ValueText>Lviv</ValueText>
-              </DataItem>
-              <DataItem>
-                <ValueText>male</ValueText>
-              </DataItem>
-              <DataItem>
-                <ValueText>user@mail.com</ValueText>
-              </DataItem>
-              <DataItem>
-                <ValueText>+380971234567</ValueText>
-              </DataItem>
-              <DataItem>
-                <ValueText>150$</ValueText>
-              </DataItem>
-            </ValueData>
-          </PetData>
-        </TextContent>
-      </PetInfo>
-      <Comments>
-        <CommentsTitle>Comments: </CommentsTitle>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis vero
-        ipsa est ipsum repudiandae assumenda aliquam atque ut quidem autem
-        illum, vitae in omnis quis amet, accusamus facilis doloribus fuga.
-      </Comments>
+        {data && (
+          <>
+            <PetInfo>
+              <ImgWrapper>
+                <PetsImg src={data.photoURL || altPosterUrl} />
+                <Category>
+                  <CategoryName>{data.category}</CategoryName>
+                </Category>
+              </ImgWrapper>
 
-      <Buttons>
-        <Button name="addToFavorite" type="button">
-          Add to favorite
-        </Button>
+              <TextContent>
+                <Title>{data.title}</Title>
+                <PetData>
+                  <CategoryData>
+                    <DataItem>
+                      <CategoryText>Name:</CategoryText>
+                    </DataItem>
+                    <DataItem>
+                      <CategoryText>Birthday:</CategoryText>
+                    </DataItem>
+                    <DataItem>
+                      <CategoryText>Breed:</CategoryText>
+                    </DataItem>
+                    <DataItem>
+                      <CategoryText>Location:</CategoryText>
+                    </DataItem>
+                    <DataItem>
+                      <CategoryText>The sex:</CategoryText>
+                    </DataItem>
+                    <DataItem>
+                      <CategoryText>Email:</CategoryText>
+                    </DataItem>
+                    <DataItem>
+                      <CategoryText>Phone:</CategoryText>
+                    </DataItem>
+                    <DataItem>
+                      <CategoryText>Price:</CategoryText>
+                    </DataItem>
+                  </CategoryData>
+                  <ValueData>
+                    <DataItem>
+                      <ValueText>{data.name}</ValueText>
+                    </DataItem>
+                    <DataItem>
+                      <ValueText>{data.birthDate}</ValueText>
+                    </DataItem>
+                    <DataItem>
+                      {data.breed === 'Unknown' ? (
+                        <ValueText>{noItem}</ValueText>
+                      ) : (
+                        <ValueText>{data.breed}</ValueText>
+                      )}
+                    </DataItem>
+                    <DataItem>
+                      <ValueText>{data.location}</ValueText>
+                    </DataItem>
+                    <DataItem>
+                      <ValueText>{data.sex}</ValueText>
+                    </DataItem>
+                    <DataItem>
+                      <ValueText>{data.owner.email}</ValueText>
+                    </DataItem>
+                    <DataItem>
+                      <ValueText>{data.owner.phone}</ValueText>
+                    </DataItem>
+                    <DataItem>
+                      <ValueText>{data.price || noPrice} $</ValueText>
+                    </DataItem>
+                  </ValueData>
+                </PetData>
+              </TextContent>
+            </PetInfo>
+            <Comments>
+              <CommentsTitle>Comments: </CommentsTitle>
+              {data.comments}
+            </Comments>
 
-        <Button onClick={onRedirect} name="contacts" type="button">
-          Contacts
-        </Button>
-      </Buttons>
-    </NoticeContainer>
+            <Buttons>
+              <Button name="addToFavorite" type="button">
+                Add to favorite
+              </Button>
+
+              <Button onClick={onRedirect} name="contacts" type="button">
+                Contacts
+              </Button>
+            </Buttons>
+          </>
+        )}
+      </NoticeContainer>
+    </>
   );
+};
+
+ModalNotice.propTypes = {
+  id: PropTypes.string.isRequired,
 };
 
 export default ModalNotice;
