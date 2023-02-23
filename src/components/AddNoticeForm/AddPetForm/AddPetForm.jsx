@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
-import { Formik, Form, Field, useFormik } from 'formik';
+import React, { useState, useEffect } from 'react';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
-import InputField from 'components/Ui-Kit/Input';
 import Button from 'components/Ui-Kit/Button';
 import { FormWrapper, ButtonsContainer } from './AddPetForm.styled';
-import StepOne from './StepOne';
-import StepTwo from './StepTwo';
-import {
-  RadioContainer,
-  RadioButton,
-  RadioLabel,
-  RadioItem,
-} from './AddPetForm.styled';
-import Male from '../../../assets/images/desktop/male.svg';
-import Female from '../../../assets/images/desktop/female.svg';
+import StepOne from './StepOne/StepOne';
+import StepTwo from './StepTwo/StepTwo';
+import LocationField from './StepTwo/Location';
+import PriceField from './StepTwo/PriceField';
+import CommentField from './StepTwo/CommentField';
+import UploadImageField from 'components/UploadImage';
+import FilterCategory from './FilterCategory';
+import SexField from './StepTwo/Sex';
+import { useAddNoticeMutation } from 'redux/api/noticesApi';
+// import FormData from 'form-data';
 
 // Values for Formik
 
 const initialValues = {
+  category: 'sell',
   title: '',
   name: '',
   birthDate: '',
@@ -27,7 +27,7 @@ const initialValues = {
   location: '',
   comment: '',
   price: '',
-  photoURL: null,
+  petImage: null,
 };
 
 // Yup validation
@@ -54,7 +54,7 @@ const validationSchema = Yup.object().shape({
     )
     .required('City is required'),
   price: Yup.number().required('Name is required').min(1, 'Price can not be 0'),
-  photoURL: Yup.mixed().required(),
+  petImage: Yup.mixed().required(),
   comment: Yup.string()
     .required('Comment is required')
     .min(8, 'Title should be at least 8 characters long')
@@ -66,11 +66,63 @@ const validationSchema = Yup.object().shape({
 const AddPetForm = ({ onClose }) => {
   const [currentStep, setCurrentStep] = useState(1);
 
+  const [file, setFile] = useState(null);
+  const [fileDataURL, setFileDataURL] = useState(null);
+  const [addNotice] = useAddNoticeMutation();
+  
+  useEffect(() => {
+    let fileReader,
+      isCancel = false;
+    if (file) {
+      fileReader = new FileReader();
+      fileReader.onload = e => {
+        const { result } = e.target;
+        if (result && !isCancel) {
+          setFileDataURL(result);
+        }
+      };
+      fileReader.readAsDataURL(file);
+    }
+    return () => {
+      isCancel = true;
+      if (fileReader && fileReader.readyState === 1) {
+        fileReader.abort();
+      }
+    };
+  }, [file]);
+
   const handleSubmit = (values, { setSubmitting }) => {
     if (currentStep < 2) {
       setCurrentStep(currentStep + 1);
     } else {
-      console.log(values);
+      const priceVal = parseInt(values.price);
+      const categoryName = values.category;
+
+      const data = new FormData();
+
+      data.append('title', values.title);
+      data.append('name', values.name);
+      data.append('birthDate', values.birthDate);
+      data.append('breed', values.breed);
+      data.append('sex', values.sex);
+      // data.append('price', values.price);
+      data.append('location', values.location);
+      data.append('petImage', values.petImage);
+      data.append('comments', values.comment);
+
+      // {
+      //   title: values.title,
+      //   name: values.name,
+      //   birthDate: values.birthDate,
+      //   breed: values.breed,
+      //   sex: values.sex,
+      //   location: values.location,
+      //   price: parseInt(values.price),
+      //   petImage: values.imageFile,
+      //   comment: values.comment,
+      // };
+      addNotice({ categoryName, noticeData: data });
+      // console.log(data);
     }
     setSubmitting(false);
   };
@@ -83,59 +135,36 @@ const AddPetForm = ({ onClose }) => {
     <Formik
       initialValues={initialValues}
       // validationSchema={validationSchema}
-
       onSubmit={handleSubmit}
+      encType="multipart/form-data"
       // setFieldValue
     >
-      {({ isSubmitting, values }) => (
+      {({ isSubmitting, values, setFieldValue }) => (
         <FormWrapper>
-          {currentStep === 1 && <StepOne />}
+          {currentStep === 1 && (
+            <StepOne>
+              <FilterCategory value={values.category} />
+            </StepOne>
+          )}
           {currentStep === 2 && (
-            <StepTwo
-              name="photoURL"
-              // handleChange={e => {
-              //   setFieldValue('photoURL', e.target.files[0]);
-              //   // setFile(URL.createObjectURL(e.target.files[0]));
-              // }}
-            >
-              <RadioContainer>
-                <li>
-                  <RadioLabel isSelected={values.sex === 'male'}>
-                    <RadioButton
-                      type="radio"
-                      name="sex"
-                      value="male"
-                      checked={values.sex === 'male'}
-                    />
-                    <RadioItem>
-                      <img src={Male} alt="Male" />
-                    </RadioItem>
-                    Male
-                  </RadioLabel>
-                </li>
+            <StepTwo>
+              <SexField value={values.sex} />
+              <LocationField />
 
-                <li>
-                  <RadioLabel isSelected={values.sex === 'female'}>
-                    <RadioButton
-                      type="radio"
-                      name="sex"
-                      value="female"
-                      checked={values.sex === 'female'}
-                    />
-                    <RadioItem>
-                      <img
-                        src={Female}
-                        alt="Female"
-                        width="60px"
-                        height="60px"
-                      />
-                    </RadioItem>
-                    Female
-                  </RadioLabel>
-                </li>
-              </RadioContainer>
+              {values.category === 'sell' && <PriceField />}
+
+              <UploadImageField
+                fileDataURL={fileDataURL}
+                handleChange={e => {
+                  setFile(e.currentTarget.files[0]);
+                  setFieldValue('petImage', e.currentTarget.files[0]);
+                }}
+              />
+
+              <CommentField name="comment" />
             </StepTwo>
           )}
+
           <ButtonsContainer>
             {currentStep === 1 && (
               <Button name="transparent" onClick={onClose}>

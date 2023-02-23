@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 export const FriendLinkTitle = styled.a`
   display: inline-block;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-family: ${p => p.theme.fontFamily.manrope};
   font-weight: ${p => p.theme.fontWeight.bold};
   font-size: ${p => p.theme.fontSizes.xxs};
@@ -27,6 +27,8 @@ export const FriendLinkTitle = styled.a`
   }
 
   ${p => p.theme.mq.tablet} {
+    font-size: ${p => p.theme.fontSizes.xs};
+    line-height: 1.36;
     margin-bottom: ${p => p.theme.space[3]};
   }
   ${p => p.theme.mq.desktop} {
@@ -66,31 +68,11 @@ export const FriendContentList = styled.ul`
   position: relative;
 `;
 
-export const HoursOfWeek = styled.ul`
-  position: absolute;
-  top: calc(100% + 3px);
-
-  ${p =>
-    p.isOpen
-      ? `display: flex;
-      flex-direction: column;
-      gap: 4px;`
-      : `display: none;`}
-  padding: 12px;
-  background-color: ${p => p.theme.colors.secondaryText};
-  border: 1px solid black;
-  box-shadow: ${p => p.theme.boxShadow.notice};
-  border-radius: 8px;
-
-  ${p => p.theme.mq.tablet} {
-    top: calc(100% + 4px);
-  }
-`;
-
 export const TimeList = styled.ul`
   position: absolute;
-  top: 25px;
-  left: 0;
+  top: 35px;
+  left: 5px;
+  width: 125px;
 
   display: flex;
   flex-direction: column;
@@ -103,13 +85,22 @@ export const TimeList = styled.ul`
   border-radius: 8px;
   padding: 12px;
   margin-bottom: -4px;
+
+  ${p => p.theme.mq.tablet} {
+    top: 40px;
+    width: 140px;
+  }
+
+  ${p => p.theme.mq.desktop} {
+    top: 50px;
+    width: 160px;
+  }
 `;
 
 //=================== LIST ITEMS (li) ============================
 
 export const FriendListItem = styled.li`
-  width: 280px;
-  min-height: 192px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -121,6 +112,7 @@ export const FriendListItem = styled.li`
   border-radius: 20px;
 
   ${p => p.theme.mq.tablet} {
+    flex-basis: calc((100% - 32px) / 2);
     margin-bottom: 32px;
     padding: 16px;
     border-radius: 40px;
@@ -135,37 +127,13 @@ export const TextWrapper = styled.li`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 12px;
+  margin-bottom: 5px;
   padding-left: 5px;
-`;
-
-export const HoursItem = styled.li`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 12px;
-
-  font-family: inherit;
-  font-size: ${p => p.theme.fontSizes.xxxs};
-  line-height: 1.35;
-
-  font-weight: ${p => p.theme.fontWeight.medium};
-  color: ${p => p.theme.colors.secondaryText};
-
-  ${p => p.theme.mq.tablet} {
-    font-size: ${p => p.theme.fontSizes.xxs};
-  }
-
-  ${p => p.theme.mq.desktop} {
-    font-size: ${p => p.theme.fontSizes.xs};
-  }
 `;
 
 export const TimeItem = styled.li`
   margin-bottom: 4px;
-  /* width: 100px; */
   ${p => p.theme.mq.tablet} {
-    /* width: 120px; */
   }
 `;
 
@@ -177,7 +145,7 @@ export const FriendTitle = styled.h3`
 `;
 
 export const FriendText = styled.p`
-  font-weight: ${p => p.theme.fontWeight.medium};
+  font-weight: ${p => p.theme.fontWeight.bold};
   font-size: ${p => p.theme.fontSizes.xxxs};
   line-height: 1.35;
 
@@ -198,12 +166,16 @@ export const FriendTime = styled(FriendText)`
   }
 `;
 
+export const HoursItemText = styled(FriendText)`
+  font-weight: ${p => p.theme.fontWeight.medium};
+`;
+
 // ============= DIV, IMG, BUTTON =========================
 export const FriendContentWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
 `;
 

@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-import { AiOutlineSearch as StyledAiOutlineSearch } from 'react-icons/ai';
+import {
+  AiOutlineSearch as StyledAiOutlineSearch,
+  AiOutlineCloseCircle as StyledAiOutlineCloseCircle,
+} from 'react-icons/ai';
 import { theme, breakpoints } from '../../../constants/theme';
 
 export const FormWrapper = styled.form`
   position: relative;
-  width: 280px;
   margin-bottom: 40px;
   margin-left: auto;
   margin-right: auto;
@@ -39,7 +41,7 @@ export const Button = styled.button`
   position: absolute;
   background-color: ${theme.colors.lightText};
   bottom: 6px;
-  right: 7px;
+  right: 12px;
   cursor: pointer;
   &:hover,
   &:focus {
@@ -48,6 +50,14 @@ export const Button = styled.button`
 `;
 
 export const AiOutlineSearch = styled(StyledAiOutlineSearch)`
+  font-size: 20px;
+
+  ${theme.mq.tablet} {
+    font-size: 24px;
+  }
+`;
+
+export const AiOutlineCloseCircle = styled(StyledAiOutlineCloseCircle)`
   font-size: 20px;
 
   ${theme.mq.tablet} {

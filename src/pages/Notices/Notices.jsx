@@ -12,33 +12,39 @@ import { NavContainer } from './Notices.styled';
 import AddPetButton from 'components/AddPetButton';
 import ModalComponent from 'components/Modal';
 import AddNoticeFormHeader from 'components/AddNoticeForm';
-// import AddPetForm from 'components/AddPetForm';
+
+import NotificationAddNotice from 'components/NotificationAddNotice';
+
 import AddPetForm from 'components/AddNoticeForm/AddPetForm';
+
 import { AnimatePresence } from 'framer-motion';
 
 const Notices = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuth } = useSelector(state => state.user);
   const handleClick = () => {
     setIsOpen(true);
+    document.body.classList.add('modal-open');
   };
   const closeModal = () => {
     setIsOpen(false);
+    document.body.classList.remove('modal-open');
   };
   // function toggleModal(e) {
   //   setIsOpen(!isOpen);
   // }
 
   const category = useSelector(selectStatusFilter);
+
   const {
-    data: noticesByCategory,
+    data: notices,
     error,
     isLoading,
     isFetching,
   } = useGetNoticeByCategoryQuery(category, { skip: !category });
 
-  if (!noticesByCategory) return;
-  const showNotices = noticesByCategory && !error && !isLoading;
-  console.log(noticesByCategory);
+  if (!notices) return;
+  const showNotices = notices && !error && !isFetching;
 
   return (
     <Section>
@@ -52,13 +58,23 @@ const Notices = () => {
       </NavContainer>
 
       {isFetching && <Loader />}
-      {showNotices && <NoticesCategoryList notices={noticesByCategory} />}
+      {showNotices && <NoticesCategoryList notices={notices} />}
 
       <AnimatePresence>
         {isOpen && (
           <ModalComponent closeModal={closeModal} key="popUp">
-            <AddNoticeFormHeader />
-            <AddPetForm onClose={closeModal} />
+            {isAuth ? (
+              <>
+                <AddNoticeFormHeader />
+                <AddPetForm onClose={closeModal} />
+              </>
+            ) : (
+              <>
+                <ModalComponent closeModal={closeModal} key="popUp">
+                  <NotificationAddNotice />
+                </ModalComponent>
+              </>
+            )}
           </ModalComponent>
         )}
       </AnimatePresence>

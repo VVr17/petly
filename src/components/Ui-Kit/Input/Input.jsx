@@ -1,14 +1,21 @@
 import React from 'react';
 import { Field, ErrorMessage } from 'formik';
 import PropTypes from 'prop-types';
-import { ErrorStyle, FieldStyle } from './Input.styled';
+import {
+  ErrorStyle,
+  FieldStyle,
+  StyledSpan,
+  StyledLabel,
+} from './Input.styled';
 
-
-const InputField = ({ label, name, type, placeholder, id }) => {
+const InputField = ({ label, name, type, placeholder, id, span, autocomplete }) => {
   return (
     <>
-      <label htmlFor={name}>{label}</label>
-      <FieldStyle type={type} name={name} id={id} placeholder={placeholder} />
+      <label htmlFor={name}>
+        {label}
+        <StyledSpan>{span}</StyledSpan>
+      </label>
+      <FieldStyle type={type} name={name} id={id} placeholder={placeholder} autoComplete={autocomplete} />
       <ErrorStyle name={name} component="div" />
     </>
   );
@@ -22,4 +29,6 @@ InputField.propTypes = {
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   id: PropTypes.string,
+  span: PropTypes.string,
+  autocomplete: PropTypes.string,
 };

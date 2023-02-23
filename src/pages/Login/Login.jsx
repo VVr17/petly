@@ -2,8 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from 'components/LoginForm/LoginForm';
 import { logout } from '../../redux/user/userSlice';
+import AuthPageContainer from 'components/AuthPageContainer';
+import Container from 'components/Container';
 import Section from 'components/Section';
-import { Wrapper } from './Login.styled';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -14,11 +15,15 @@ const Login = () => {
   };
 
   return (
-    <Wrapper>
+    <AuthPageContainer>
       <Section>
-        {isAuth ? <button onClick={handleLogout}>Logout</button> : <LoginForm />}
+        {isAuth ? (
+          <button onClick={handleLogout}>Logout</button>
+        ) : (
+          <LoginForm />
+        )}
       </Section>
-    </Wrapper>
+    </AuthPageContainer>
   );
 };
 

@@ -1,6 +1,11 @@
 import { React } from 'react';
 import PropTypes from 'prop-types';
-import { TimeList, TimeItem, FriendText } from './FriendItem.styled';
+import {
+  TimeList,
+  TimeItem,
+  FriendText,
+  HoursItemText,
+} from './FriendItem.styled';
 
 const TimeTable = ({ shedule }) => {
   return (
@@ -8,11 +13,11 @@ const TimeTable = ({ shedule }) => {
       {shedule.map((item, idx) => (
         <TimeItem key={idx}>
           {item.isOpen ? (
-            <FriendText>
+            <HoursItemText>
               {item.day}:{item.from}-{item.to}
-            </FriendText>
+            </HoursItemText>
           ) : (
-            <FriendText>{item.day}:Closed</FriendText>
+            <HoursItemText>{item.day}:Closed</HoursItemText>
           )}
         </TimeItem>
       ))}

@@ -16,6 +16,7 @@ export const Title = styled.h2`
     font-weight: ${theme.fontWeight.medium};
     font-size: ${theme.fontSizes.l};
     line-height: 1.37;
+    margin-bottom: 12px;
     @media(min-width: ${breakpoints[1]}px) {
         font-size: 36px;
     }
@@ -42,6 +43,7 @@ export const ControlBox = styled.div`
         width: 380px;
         margin-left: auto;
         margin-right: auto;
+        margin-top: 40px;
     }
 `;
 
@@ -71,35 +73,23 @@ export const Label = styled.label`
     line-height: 1.44;
     @media(min-width: ${breakpoints[1]}px) {
         font-size: ${theme.fontSizes.l};
-        margin-top: 20px;
+        margin-top: 28px;
     };
 `;
 
 export const LabelStyled = styled.label`
     margin-right: auto;
     margin-left: auto;
-    margin-top: 16px;
+    margin-top: 8px;
     font-family: ${theme.fontFamily.manrope};
     font-style: normal;
     font-weight: ${theme.fontWeight.medium};
     font-size: ${theme.fontSizes.xs};
     line-height: 1.44;
     @media(min-width: ${breakpoints[1]}px) {
-        margin-top: 20px;
+        margin-top: 12px;
         font-size: ${theme.fontSizes.m};
     };
-`;
-
-export const Upload = styled.button`
-    width: 208px;
-    height: 208px;
-    padding: 80px 80px 80px 80px;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    background: ${theme.colors.mainBackground};
-    border-radius: 20px;
-    border: none;
 `;
 
 export const Button = styled.button`
@@ -131,9 +121,3 @@ export const Button = styled.button`
 export const InputFile = styled(Field)`
 
 `;
-
-export const iconStyle = {
-  height: '48px',
-  width: '48px',
-  fill: theme.colors.secondaryText,
-};

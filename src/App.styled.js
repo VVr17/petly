@@ -12,6 +12,17 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing:border-box;
   }
 
+  
+  #root {
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+  }
+
+  main {
+    flex-grow:1;
+  }
+
 h1,
 h2,
 h3,

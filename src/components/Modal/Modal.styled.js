@@ -19,8 +19,11 @@ export const Overlay = styled(motion.div)`
 
 export const StyledModal = styled(motion.div)`
   position: relative;
+
+height: 85%;
   width: 280px;
   padding: 20px 20px 40px 20px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,6 +60,12 @@ export const ButtonCloseModal = styled.button`
     top: 28px;
     right: 28px;
   }
+`;
+
+export const StyledModalInternalDiv = styled(motion.div)`
+
+  padding: 40px 80px;
+  overflow-y: scroll;
 `;
 
 // export const StyledModal = Modal.styled`
