@@ -1,7 +1,7 @@
 import { useState, React } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import {  ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import {
   useDeleteNoticeMutation,
   useAddNoticeToFavoriteMutation,
@@ -41,6 +41,7 @@ const NoticeCategoryItem = ({
 }) => {
   const isAuth = useSelector(selectIsAuthState);
   const status = useSelector(selectStatusFilter);
+
   const showButtonDelete = status === 'user';
 
   const [deleteNotice] = useDeleteNoticeMutation();
@@ -57,10 +58,19 @@ const NoticeCategoryItem = ({
   const closeModal = () => {
     setIsOpen(false);
   };
+  const openModal = e => {
+    handleClick();
+    console.log({ _id });
+  };
+
+  function addToFavorit (isAuth) {
+    if (!isAuth) {
+      toast.info('Please, register or login to add notice to favorite'); 
+      return
+    } 
+    addNoticeToFavorite(_id);
+  };
  
-
-  
-
   const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
   return (
     <CardNotice>
@@ -71,73 +81,69 @@ const NoticeCategoryItem = ({
           loading="lazy"
         />
       </ImageBox>
-      <AddToFavoriteButton
-        type="button"
-        onClick={
-          isAuth ? () => addNoticeToFavorite(_id) : () => toast.info('Please, register or login to add notice to favorite')
-        }
-      >
+      <AddToFavoriteButton type="button" onClick={() => addToFavorit()}>
         {<IoIosHeart size="28px" />}
       </AddToFavoriteButton>
       <CategoryBox>
         <CategoryName>{category}</CategoryName>
       </CategoryBox>
-      <ContainerInfo>
-        <Title>{title}</Title>
-        <table>
-          <tbody>
-            <tr>
-              <Thead>Breed:</Thead>
-              <Text>{breed}</Text>
-            </tr>
-            <tr>
-              <Thead>Place:</Thead>
-              <Text>{city}</Text>
-            </tr>
-            <tr>
-              <Thead>Age:</Thead>
-              <Text>{getAge(birthDate)}</Text>
-            </tr>
-
-            {category === 'sell' && (
+      <>
+        <ContainerInfo>
+          <Title>{title}</Title>
+          <table>
+            <tbody>
               <tr>
-                <Thead>Price:</Thead>
-                <Text>{price} $</Text>
+                <Thead>Breed:</Thead>
+                <Text>{breed}</Text>
               </tr>
-            )}
-          </tbody>
-        </table>
-      </ContainerInfo>
-      <ContainerButton>
-        <Button
-          id={_id}
-          name="learnMore"
-          type="button"
-          width="248px"
-          onClick={() => handleClick(_id)}
-        >
-          Learn more
-        </Button>
-        {showButtonDelete && (
+              <tr>
+                <Thead>Place:</Thead>
+                <Text>{city}</Text>
+              </tr>
+              <tr>
+                <Thead>Age:</Thead>
+                <Text>{getAge(birthDate)}</Text>
+              </tr>
+
+              {category === 'sell' && (
+                <tr>
+                  <Thead>Price:</Thead>
+                  <Text>{price} $</Text>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </ContainerInfo>
+        <ContainerButton>
           <Button
+            id={_id}
             name="learnMore"
             type="button"
             width="248px"
-            onClick={() => deleteNotice(_id)}
+            onClick={() => openModal(_id)}
           >
-            Delete
-            <IoTrashSharp style={{ marginLeft: '12px' }} />
+            Learn more
           </Button>
-        )}
-      </ContainerButton>
-
+          {showButtonDelete && (
+            <Button
+              name="learnMore"
+              type="button"
+              width="248px"
+              onClick={() => deleteNotice(_id)}
+            >
+              Delete
+              <IoTrashSharp style={{ marginLeft: '12px' }} />
+            </Button>
+          )}
+        </ContainerButton>
+      </>
       <AnimatePresence>
         {isOpen && (
           <ModalComponent closeModal={closeModal} key="popUp">
             <ModalNotice id={_id} onClose={closeModal} />
           </ModalComponent>
         )}
-      </AnimatePresence>      
+      </AnimatePresence>
     </CardNotice>
   );
 };
