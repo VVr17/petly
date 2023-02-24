@@ -19,7 +19,12 @@ export const Button = styled(motion.button)`
 export const ButtonTitle = styled.span`
   display: inline-block;
   margin-right: 12px;
-  min-width: 73px;
+  font-family: ${theme.fontFamily.manrope};
+  font-style: normal;
+  font-weight: ${theme.fontWeight.medium};
+  font-size: ${theme.fontSizes.m};
+  line-height: 1.35;
+  color: ${theme.colors.mainText};  
 `;
 
 export const ReactIcon = styled.div`

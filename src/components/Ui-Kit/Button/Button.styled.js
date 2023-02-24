@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import { breakpoints } from 'constants/theme';
 
 export const ButtonStyled = styled(motion.button)`
+  height: 40px;
   display: block;
   border: none;
   font-family: inherit;
@@ -64,5 +66,8 @@ export const ButtonStyled = styled(motion.button)`
       name === 'learnMore'
         ? theme.colors.secondaryHover
         : theme.colors.lightText};
+  }
+  @media(min-width: ${breakpoints[1]}px) {
+    height: 44px
   }
 `;

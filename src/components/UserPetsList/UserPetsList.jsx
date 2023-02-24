@@ -2,14 +2,10 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import {
   Container,
-  Box,
   Title,
-  Text,
-  Button,
+  Box,
   List,
-  iconStyle,
 } from './UserPetsList.styled';
-import { VscAdd } from 'react-icons/vsc';
 import { useGetCurrentUserQuery } from 'redux/api/userApi';
 import { petsApi } from 'redux/api/petsApi';
 import UserAddPetForm from 'components/UserAddPetForm';
@@ -17,17 +13,14 @@ import UserAddPetForm from 'components/UserAddPetForm';
 import UserPetsListItem from './UserPetsListItem';
 import Modal from 'components/Modal';
 import { AnimatePresence } from 'framer-motion';
+import AddPetButton from 'components/AddPetButton';
 
 const UserPetsList = () => {
-  const { useAddPetMutation, useDeletePetMutation } = petsApi;
-  const [deletePetMutation] = useDeletePetMutation();
-  const { data: currentUserData, refetch: refetchCurrentUser } =
-    useGetCurrentUserQuery();
-  const [addPetMutation] = useAddPetMutation();
-
-  let dataPets = currentUserData ? currentUserData : [];
   const [pets, setPets] = useState();
   const [isOpen, setIsOpen] = useState(false);
+  const [deletePetMutation] = petsApi.useDeletePetMutation();
+  const { data: currentUserData, refetch: refetchCurrentUser } = useGetCurrentUserQuery();
+  let dataPets = currentUserData ? currentUserData : [];
 
   useEffect(() => {
     if (dataPets) {
@@ -53,23 +46,11 @@ const UserPetsList = () => {
     setIsOpen(false);
   };
 
-  const handleSubmit = async data => {
-    try {
-      const response = await addPetMutation(data);
-      await refetchCurrentUser();
-    } catch (error) {
-      console.error('Failed to add pet:', error);
-    }
-  };
-
   return (
     <Container>
       <Box>
         <Title>My pets:</Title>
-        <Text>Add pet:</Text>
-        <Button onClick={handleIsOpen}>
-          <VscAdd style={iconStyle} />
-        </Button>
+        <AddPetButton handleClick={handleIsOpen} />
       </Box>
       {pets && (
         <List>
@@ -87,7 +68,7 @@ const UserPetsList = () => {
       <AnimatePresence>
         {isOpen && (
           <Modal closeModal={closeModal} key="popUp">
-            <UserAddPetForm closeModal={closeModal} onSubmit={handleSubmit} />
+            <UserAddPetForm closeModal={closeModal} />
           </Modal>
         )}
       </AnimatePresence>

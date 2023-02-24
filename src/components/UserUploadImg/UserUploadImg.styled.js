@@ -22,7 +22,6 @@ export const LoadImgLabel = styled.label`
   margin-top: 20px;
   margin-right: auto;
   margin-left: auto;
-  margin-bottom: 4px;
   @media(min-width: ${breakpoints[1]}px) {
     margin-bottom: 20px;
   }
