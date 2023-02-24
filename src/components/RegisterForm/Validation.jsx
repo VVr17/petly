@@ -1,8 +1,7 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-
-// Formik initials 
+// Formik initials
 export const initialValues = {
   name: '',
   city: '',
@@ -11,7 +10,6 @@ export const initialValues = {
   password: '',
   confirmPassword: '',
 };
-
 
 // Yup Validation
 export const validationSchemaStepOne = Yup.object().shape({
@@ -34,23 +32,23 @@ export const validationSchemaStepOne = Yup.object().shape({
     .required('Password is required'),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('Please confirm your password')
+    .required('Please confirm your password'),
 });
-
 
 export const validationSchemaStepTwo = Yup.object().shape({
   name: Yup.string()
     .min(3, 'Name should have at least 3 characters')
     .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{7,}$/,
-      'Only letters can be accepted')
+      /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      'Only letters can be accepted'
+    )
     .max(12, 'Name should be up to 12 characters long')
     .required('Name is required'),
   city: Yup.string()
     .matches(
       /^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*,\s*[a-zA-Zа-яА-Я\s]+$/,
       'Should be at least 2 words separated by comma'
-     )
+    )
     .min(3, 'City should have at least 3 characters')
     .required('City is required'),
   phone: Yup.string()
