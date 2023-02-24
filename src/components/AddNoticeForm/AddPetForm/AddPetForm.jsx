@@ -89,7 +89,6 @@ const AddPetForm = ({ onClose }) => {
       data.append('comments', values.comments);
 
       // send FormData to Backend
-
       addNotice({ categoryName, noticeData: data });
 
       // close Modal
