@@ -17,8 +17,8 @@ const User = () => {
         <UserInfo />
         {/* <UserData></UserData> */}
 
-        <UserBirthday />
-        <UserData></UserData>
+        {/* <UserBirthday /> */}
+        {/* <UserData></UserData> */}
 
         <UserPetsList />
       </UserWrapper>

@@ -42,22 +42,22 @@ const UserEmail = () => {
       // encType="multipart/form-data"
     >
       {/* {({ isSubmitting, values, setFieldValue }) => ( */}
-        <Form>
-          <FieldWrapper>
-            <UserInput
-              label="Email"
-              name="email"
-              type="email"
-              disabled={isDisabled}
-              placeholder={data?.email || ''}
-            />
-            <UserUpdateButton
-              type="submit"
-              isdisabled={isDisabled}
-              onClick={handleClick}
-            />
-          </FieldWrapper>
-        </Form>
+      <Form>
+        <FieldWrapper>
+          <UserInput
+            label="Email"
+            name="email"
+            type="email"
+            disabled={isDisabled}
+            placeholder={data?.email || ''}
+          />
+          <UserUpdateButton
+            type="submit"
+            isdisabled={isDisabled}
+            onClick={handleClick}
+          />
+        </FieldWrapper>
+      </Form>
       {/* )} */}
     </Formik>
   );
