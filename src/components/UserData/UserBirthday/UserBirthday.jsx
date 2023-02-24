@@ -34,7 +34,7 @@ const MyDatePicker = ({
       {...field}
       selected={val}
       disabled={isDisabled}
-      placeholder={placeholder}
+      placeholderText={placeholder}
       onChange={date => {
         setValue(date);
         handleChange(date);
