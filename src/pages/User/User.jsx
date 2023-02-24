@@ -5,11 +5,13 @@ import { pageAnimation } from 'constants/animation';
 import { UserData } from 'components/UserData/UserData.jsx';
 import Section from 'components/Section';
 import { UserWrapper } from './User.styled';
+import UserBirthday from 'components/UserData/UserBirthday/UserBirthday';
 
 const User = () => {
   return (
     <Section>
       <UserWrapper>
+        <UserBirthday />
         <UserData></UserData>
         <UserPetsList />
       </UserWrapper>
