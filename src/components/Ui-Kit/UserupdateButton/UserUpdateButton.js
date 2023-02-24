@@ -1,13 +1,20 @@
 import React from 'react';
-import { Button, Pencil } from './UserupdateButton.styled';
+import { Button, Check, Pencil } from './UserupdateButton.styled';
+import PropTypes from 'prop-types';
 
-// eslint-disable-next-line react/prop-types
-const UserUpdateButton = ({ isDisabled, type = 'button', onClick }) => {
+const UserUpdateButton = ({ isdisabled, type = 'button', onClick }) => {
+  // console.log('disabled in button', disabled);
   return (
     <Button type={type} onClick={onClick}>
-      {isDisabled ? <Pencil /> : <p>submit</p>}
+      {isdisabled ? <Pencil /> : <Check />}
     </Button>
   );
 };
 
+UserUpdateButton.propTypes = {
+  label: PropTypes.string,
+  type: PropTypes.string,
+  onClick: PropTypes.func,
+  isdisabled: PropTypes.bool,
+};
 export default UserUpdateButton;

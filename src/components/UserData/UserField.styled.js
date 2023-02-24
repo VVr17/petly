@@ -1,4 +1,5 @@
 import { breakpoints, theme } from 'constants/theme';
+import { Form } from 'formik';
 import styled from 'styled-components';
 
 export const FieldWrapper = styled.div`
@@ -6,7 +7,6 @@ export const FieldWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 8px;
   font-family: ${theme.fontFamily.manrope};
   font-style: normal;
   font-weight: ${theme.fontWeight.medium};
@@ -19,17 +19,5 @@ export const FieldWrapper = styled.div`
     line-height: 1.39;
     width: 100%;
     margin-right: 30px;
-  }
-
-  &:last-of-type {
-    margin-bottom: 40px;
-
-    @media (min-width: ${breakpoints[1]}px) {
-      margin-bottom: 30px;
-    }
-
-    @media (min-width: ${breakpoints[1]}px) {
-      margin-bottom: 24px;
-    }
   }
 `;

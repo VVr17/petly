@@ -2,9 +2,32 @@ import styled from 'styled-components';
 import { theme, breakpoints } from '../../../constants/theme';
 import { Field, ErrorMessage } from 'formik';
 import { RiPencilFill } from 'react-icons/ri';
+import { AiOutlineCheck } from 'react-icons/ai';
+
+export const Label = styled.label`
+  width: 100%;
+  display: flex;
+`;
+
+export const Title = styled.span`
+  width: 56px;
+  margin-right: 26px;
+  overflow-x: hidden;
+
+  ${theme.mq.tablet} {
+    width: 83px;
+    margin-right: 36px;
+  }
+
+  ${theme.mq.desktop} {
+    width: 83px;
+    margin-right: 24px;
+  }
+`;
 
 export const Input = styled(Field)`
-  width: 160px;
+  /* width: 160px; */
+  width: 100%;
   height: 24px;
   margin-right: 13px;
   margin-left: auto;
@@ -12,8 +35,14 @@ export const Input = styled(Field)`
 
   cursor: pointer;
   border-radius: 40px;
-  border: 1px solid rgba(245, 146, 86, 0.5);
-  background-color: ${theme.colors.mainBackground};
+  border: 1px solid
+    ${({ theme, disabled }) =>
+      disabled ? 'transparent' : 'rgba(245, 146, 86, 0.5)'};
+  background-color: ${({ theme, disabled }) => {
+    // console.log('disabled in input', disabled);
+    return disabled ? 'transparent' : `${theme.colors.mainBackground}`;
+  }};
+
   font-family: ${theme.fontFamily.manrope};
   font-size: ${theme.fontSizes.s};
   font-weight: ${theme.fontWeight.normal};
@@ -32,6 +61,16 @@ export const Input = styled(Field)`
 `;
 
 export const Pencil = styled(RiPencilFill)`
+  fill: ${theme.colors.accent};
+  display: inline-block;
+
+  @media (min-width: ${breakpoints[1]}px) {
+    width: 20px;
+    height: 20px;
+  }
+`;
+
+export const Check = styled(AiOutlineCheck)`
   fill: ${theme.colors.accent};
   display: inline-block;
 
