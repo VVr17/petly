@@ -4,17 +4,22 @@ import {
     Container,
     Title,
     FormStyled,
-    Label,
-    FieldStyled,
     InputFile,
     LabelStyled,
-    Button,
-    ControlBox
+    ControlBox,
+    Span,
+    Box
 } from "./UserAddPetForm.styled";
 import PropTypes from 'prop-types';
 import PartFirst from "./PartFirst";
 import PartSecond from "./PartSecond";
 import UserUploadImg from "components/UserUploadImg";
+import Button from "components/Ui-Kit/Button";
+import CommentField from "components/AddNoticeForm/AddPetForm/StepTwo/CommentField";
+
+import { useGetCurrentUserQuery } from 'redux/api/userApi';
+import { petsApi } from 'redux/api/petsApi';
+import { breakpoints } from "constants/theme";
 
 const initialValues = {
     name: "",
@@ -24,12 +29,13 @@ const initialValues = {
     comments: ""
 }
 
-const UserAddPetForm = ({closeModal, onSubmit}) => {
+const UserAddPetForm = ({ closeModal }) => {
     const [currentPart, setCurrentPart] = useState(1);
-
     const [image, setImage] = useState(null);
     const [file, setFile] = useState(null);
     const [fileDataURL, setFileDataURL] = useState(null);
+    const [addPetMutation] = petsApi.useAddPetMutation();
+    const { refetch: refetchCurrentUser } = useGetCurrentUserQuery()
 
     useEffect(() => {
         let fileReader,
@@ -52,7 +58,7 @@ const UserAddPetForm = ({closeModal, onSubmit}) => {
         };
     }, [file]);
 
-    const handleSubmit = (values, { setSubmitting }) => {
+    const handleSubmit = async (values, { setSubmitting }) => {
         setSubmitting(false);
         closeModal();
         const data = new FormData();
@@ -61,7 +67,12 @@ const UserAddPetForm = ({closeModal, onSubmit}) => {
         data.append('breed', values.breed);
         data.append('petImage', values.imageFile);
         data.append('comments', values.comments);
-        onSubmit(data); 
+        try {
+            const response = await addPetMutation(data);
+            await refetchCurrentUser();
+        }   catch (error) {
+            console.error('Failed to add pet:', error);
+        } 
     };
 
     const handleNext = () => {
@@ -86,8 +97,8 @@ const UserAddPetForm = ({closeModal, onSubmit}) => {
                         {currentPart === 2 &&
                             <PartSecond>
                                 <>
-                                    <LabelStyled htmlFor="photoURL">Add photo and some comments</LabelStyled>
-                                    <InputFile hidden id="photoURL" name="photoURL" type="file" />
+                                    <LabelStyled htmlFor="imageFile">Add photo and some comments</LabelStyled>
+                                    <InputFile hidden id="imageFile" name="imageFile" type="file" />
                                     <UserUploadImg
                                         fileDataURL={fileDataURL}
                                         handleChange={e => {
@@ -95,7 +106,8 @@ const UserAddPetForm = ({closeModal, onSubmit}) => {
                                         setFieldValue('imageFile', e.currentTarget.files[0]);
                                         }}
                                     />
-                                    <Label htmlFor="comments">Comments</Label>
+                                    <CommentField name="comments" height="115px"/>
+                                    {/* <Label htmlFor="comments">Comments</Label>
                                     <FieldStyled
                                         id="comments"
                                         name="comments"
@@ -106,10 +118,15 @@ const UserAddPetForm = ({closeModal, onSubmit}) => {
                                         onChange={e => {
                                             setFieldValue('comments', e.target.value);
                                         }}
-                                    />
+                                    /> */}
                                     <ControlBox>
-                                        <Button type="submit" disabled={isSubmitting} >Done</Button>
-                                        <Button type="button" onClick={handleBack}>Back</Button>
+                                        <Button name="filled" type="button" width="100%" onClick={handleSubmit}>
+                                            <Span>Done</Span>
+                                        </Button>
+                                        <Box></Box>
+                                        <Button name="transparent" type="button" width="100%" onClick={handleBack}>
+                                            <Span>Back</Span>
+                                        </Button>
                                     </ControlBox>
                                 </>
                             </PartSecond>}
@@ -121,8 +138,7 @@ const UserAddPetForm = ({closeModal, onSubmit}) => {
 };
 
 UserAddPetForm.propTypes = {
-    closeModal: PropTypes.func.isRequired,
-    onSubmit: PropTypes.func.isRequired
+    closeModal: PropTypes.func.isRequired
 };
 
 export default UserAddPetForm;

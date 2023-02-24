@@ -215,25 +215,38 @@ export const ImagePreview = styled.img`
 
 export const TextareaLabel = styled.label`
   margin-top: 20px;
+  font-family: ${theme.fontFamily.manrope};
+  font-style: normal;
+  font-weight: ${theme.fontWeight.medium};
+  font-size: ${theme.fontSizes.s};
+  line-height: 1.44;
+  @media(min-width: ${breakpoints[1]}px) {
+    font-size: ${theme.fontSizes.l};
+  }
 `;
 
 export const Textarea = styled(Field)`
   position: relative;
   width: 100%;
   border-radius: 40px;
-  margin-bottom: 12px;
+  margin-top: 8px;
+  margin-bottom: 16px;
   cursor: pointer;
   border: 1px solid rgba(245, 146, 86, 0.5);
   background-color: ${theme.colors.mainBackground};
   font-family: ${theme.fontFamily.manrope};
-  font-size: ${theme.fontSizes.s};
+  font-size: ${theme.fontSizes.xxs};
   font-weight: ${theme.fontWeight.normal};
   color: ${theme.colors.primaryText};
-
   padding-left: 28px;
   padding-right: 28px;
   padding-top: 9px;
   padding-bottom: 9px;
+  @media(min-width: ${breakpoints[1]}px) {
+    border-radius: 20px;
+    margin-top: 12px;
+    font-size: ${theme.fontSizes.s};
+  };
 `;
 export const ErrorMessage = styled.div`
   position: absolute;

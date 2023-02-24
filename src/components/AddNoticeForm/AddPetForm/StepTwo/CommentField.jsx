@@ -16,7 +16,7 @@ const CommentField = ({ name }) => {
         {...field}
         as="textarea"
         type="text"
-        placeholder="Type comment"
+        placeholder="Type comments"
       />
     </>
   );

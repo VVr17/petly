@@ -24,6 +24,7 @@ export const Box = styled.div`
 `;
 
 export const Title = styled.h2`
+  margin-right: auto;
   font-family: ${theme.fontFamily.manrope};
   font-style: normal;
   font-weight: ${theme.fontWeight.medium};
@@ -33,27 +34,6 @@ export const Title = styled.h2`
   @media(min-width: ${breakpoints[1]}px) {
     font-size: ${theme.fontSizes.xl}
   ;
-`;
-
-export const Text = styled.p`
-  margin-left: auto;
-  font-family: ${theme.fontFamily.manrope};
-  font-style: normal;
-  font-weight: ${theme.fontWeight.medium};
-  font-size: ${theme.fontSizes.m};
-  line-height: 1.35;
-  color: ${theme.colors.mainText};
-`;
-
-export const Button = styled.button`
-  margin-left: 15px;
-  width: 40px;
-  height: 40px;
-  padding: 10px 10px 10px 10px;
-  border: none;
-  outline: none;
-  background-color: ${theme.colors.accent};
-  border-radius: 50%;
 `;
 
 export const List = styled.ul`

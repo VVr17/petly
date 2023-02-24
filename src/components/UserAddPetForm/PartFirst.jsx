@@ -1,19 +1,23 @@
 import React from "react";
-import { Label, FieldStyled, Button, ControlBox } from "./UserAddPetForm.styled";
+import { ControlBox, Span, Box } from "./UserAddPetForm.styled";
 import PropTypes from 'prop-types';
+import InputField from "components/Ui-Kit/Input/Input";
+import Button from "components/Ui-Kit/Button";
 
 const PartFirst = ({handleNext, closeModal}) => {
     return (
         <>
-            <Label htmlFor="name">Name pet</Label>
-            <FieldStyled id="name" name="name" type="text" placeholder="Type pet name" />
-            <Label htmlFor="birthDate">Date of birth</Label>
-            <FieldStyled id="birthDate" name="birthDate" placeholder="Type date of birth" />
-            <Label htmlFor="breed">Breed</Label>
-            <FieldStyled id="breed" name="breed" type="text" placeholder="Type breed" />
+            <InputField label="Name pet" id="name" type="text" name="name" placeholder="Type pet name" span="*"/>
+            <InputField label="Date of birth" id="birthDate" type="text" name="birthDate" placeholder="Type date of birth" span="*"/>
+            <InputField label="Breed" id="breed" type="text" name="breed" placeholder="Type breed" span="*"/>
             <ControlBox>
-                <Button type="button" onClick={handleNext}>Next</Button>
-                <Button type="button" onClick={closeModal}>Cancel</Button>
+                <Button name="filled" type="button" width="100%" onClick={handleNext}>
+                    <Span>Next</Span>
+                </Button>
+                <Box></Box>
+                <Button name="transparent" type="button" width="100%" onClick={closeModal}>
+                    <Span>Cancel</Span>
+                </Button>
             </ControlBox>
         </>
     );
