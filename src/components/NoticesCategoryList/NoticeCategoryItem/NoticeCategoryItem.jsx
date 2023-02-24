@@ -9,7 +9,7 @@ import {
   useGetUserNoticesQuery,
   useGetFavoritesNoticesQuery,
 } from 'redux/api/noticesApi';
-import { selectIsAuthState } from 'redux/user/userSelectors';
+import { selectIsAuthState, selectUserState } from 'redux/user/userSelectors';
 import { selectStatusFilter } from 'redux/filter/filterSelectors';
 import getAge from '../../../js';
 import Button from 'components/Ui-Kit/Button';
@@ -17,7 +17,7 @@ import ModalNotice from 'components/ModalNotice';
 import ModalComponent from 'components/Modal';
 import { AnimatePresence } from 'framer-motion';
 import { IoTrashSharp } from 'react-icons/io5';
-import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io';
+import { IoIosHeart } from 'react-icons/io';
 import {
   CardNotice,
   ImageBox,
@@ -34,6 +34,7 @@ import {
 import { useGetCurrentUserQuery } from 'redux/api/userApi';
 import { theme } from 'constants/theme';
 import Loader from 'components/Loader';
+import { selectFavoritesState } from 'redux/favorites/favoritesSelector';
 
 const NoticeCategoryItem = ({
   _id,
@@ -44,18 +45,19 @@ const NoticeCategoryItem = ({
   location,
   birthDate,
   price,
+  owner,
 }) => {
   const isAuth = useSelector(selectIsAuthState);
   const status = useSelector(selectStatusFilter);
-
-  const showButtonDelete = status === 'user';
-  const { data: user, refetch: refetchCurrentUser } = useGetCurrentUserQuery();
-  const { data: favorites } = useGetFavoritesNoticesQuery();
+  const user = useSelector(selectUserState);
+  const showButtonDelete = owner === user._id;
+  console.log('owner:', owner);
+  console.log('user:', user._id);
+  const favorites = useSelector(selectFavoritesState);
   const place = location.split(',');
   const city = place[0];
   const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
-  const isFavorite = user?.favoriteNotices.includes(_id);
-
+  const isFavorite = favorites.includes(_id);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [deleteNotice, { isLoading: deleting }] = useDeleteNoticeMutation();
   const [addNoticeToFavorite, { isLoading: adding }] =
@@ -67,20 +69,28 @@ const NoticeCategoryItem = ({
     setModalIsOpen(false);
   };
 
-  const toggleFavorite = noticeId => {
+  const toggleFavorite = async noticeId => {
     if (!isAuth) {
-      toast.info('Please, register or login to add notice to favorite');
+      toast.warn('Please, register or login to add notice to favorite');
       return;
     }
-    console.log('noticeId', noticeId);
 
     if (isFavorite) {
-      deleteNoticeFromFavorite(noticeId);
-      // refetchCurrentUser();
+      await deleteNoticeFromFavorite(noticeId);
+      toast.info(`Notice with ID ${_id} has been remove from favorites`);
       return;
     }
-    addNoticeToFavorite(noticeId);
-    // refetchCurrentUser();
+    await addNoticeToFavorite(noticeId);
+    toast.info(`Notice with ID ${_id} has been added to favorites`);
+  };
+
+  const onDelete = () => {
+    const confirmed = confirm('Are you sure you want to delete this file?');
+    if (confirmed) {
+      deleteNotice(_id);
+    } else {
+      return;
+    }
   };
 
   const isLoading = deleting || adding || removing;
@@ -149,7 +159,7 @@ const NoticeCategoryItem = ({
               name="learnMore"
               type="button"
               width="248px"
-              onClick={() => deleteNotice(_id)}
+              onClick={() => onDelete()}
             >
               Delete
               <IoTrashSharp style={{ marginLeft: '12px' }} />
@@ -176,6 +186,7 @@ NoticeCategoryItem.propTypes = {
   breed: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   birthDate: PropTypes.string.isRequired,
+  owner: PropTypes.string.isRequired,
   price: PropTypes.string,
 };
 
