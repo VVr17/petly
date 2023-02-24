@@ -19,6 +19,7 @@ const Home = () => {
     });
   };
 
+  const notify = () => toast('Wow Info !');
   const notifyInfo = () => toast.info('Wow Info !');
   const notifySuccess = () => toast.success('Wow so Success !');
   const notifyWarning = () => toast.warning('Wow so Warning !');
@@ -31,6 +32,7 @@ const Home = () => {
           Take good care of <br />
           your small pets
         </Title>
+        <button onClick={notify}>Notify !</button>
         <button onClick={notifyInfo}>NotifyInfo !</button>
         <button onClick={notifySuccess}>NotifySuccess !</button>
         <button onClick={notifyWarning}>NotifyWarning !</button>
