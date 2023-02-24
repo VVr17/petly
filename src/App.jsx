@@ -17,6 +17,8 @@ import {
   User,
 } from 'lazyLoading';
 import { AnimatePresence } from 'framer-motion';
+import { ToastContainer } from 'react-toastify';
+import ToastifyGlobalStyle from 'components/Ui-Kit/ToastifyGlobalStyle.styled';
 
 const App = () => {
   const location = useLocation();
@@ -29,6 +31,8 @@ const App = () => {
 
   return (
     <>
+      <ToastifyGlobalStyle autoClose={5000} />
+      {/* <ToastContainer /> */}
       <AnimatePresence>
         <Suspense fallback={<Loader />}>
           <Routes location={location}>
