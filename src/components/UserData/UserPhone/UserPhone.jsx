@@ -40,7 +40,7 @@ const UserPhone = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-      // encType="multipart/form-data"
+      encType="multipart/form-data"
     >
       {({ isSubmitting, values, setFieldValue }) => (
         <Form>

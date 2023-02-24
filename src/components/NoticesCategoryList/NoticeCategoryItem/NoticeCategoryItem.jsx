@@ -47,11 +47,11 @@ const NoticeCategoryItem = ({
   price,
   owner,
 }) => {
-  const isAuth = useSelector(selectIsAuthState);  
-  const user = useSelector(selectUserState);   
+  const isAuth = useSelector(selectIsAuthState);
+  const user = useSelector(selectUserState);
   const favorites = useSelector(selectFavoritesState);
 
-  const showButtonDelete = user ? owner === user._id : false; 
+  const showButtonDelete = user ? owner === user._id : false;
 
   const place = location.split(',');
   const city = place[0];
@@ -66,6 +66,7 @@ const NoticeCategoryItem = ({
 
   const closeModal = () => {
     setModalIsOpen(false);
+    document.body.classList.remove('modal-open');
   };
 
   const toggleFavorite = async noticeId => {
@@ -75,7 +76,7 @@ const NoticeCategoryItem = ({
     }
     if (isFavorite) {
       await deleteNoticeFromFavorite(noticeId);
-      toast.info(`Notice has been remove from favorites`);      
+      toast.info(`Notice has been remove from favorites`);
       return;
     }
     await addNoticeToFavorite(noticeId);
@@ -88,7 +89,7 @@ const NoticeCategoryItem = ({
       deleteNotice(_id);
     } else {
       return;
-    }   
+    }
   };
 
   const isLoading = deleting || adding || removing;
@@ -148,6 +149,7 @@ const NoticeCategoryItem = ({
             width="248px"
             onClick={() => {
               setModalIsOpen(true);
+              document.body.classList.add('modal-open');
             }}
           >
             Learn more

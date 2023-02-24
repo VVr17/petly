@@ -12,7 +12,7 @@ export const LoadImageCont = styled.div`
   border-radius: 20px;
   background: ${theme.colors.mainBackground};
   color: ${theme.colors.mainText};
-  @media(min-width: ${breakpoints[1]}px) {
+  @media (min-width: ${breakpoints[1]}px) {
     width: 182px;
     height: 182px;
   }
@@ -22,7 +22,7 @@ export const LoadImgLabel = styled.label`
   margin-top: 20px;
   margin-right: auto;
   margin-left: auto;
-  @media(min-width: ${breakpoints[1]}px) {
+  @media (min-width: ${breakpoints[1]}px) {
     margin-bottom: 20px;
   }
 `;
@@ -40,7 +40,7 @@ export const ImagePreview = styled.img`
   border-radius: 20px;
   background: ${theme.colors.mainBackground};
   object-fit: cover;
-  @media(min-width: ${breakpoints[1]}px) {
+  @media (min-width: ${breakpoints[1]}px) {
     width: 182px;
     height: 182px;
   }
