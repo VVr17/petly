@@ -47,10 +47,11 @@ export const UserCard = styled.div`
     width: 736px;
     margin-top: 40px;
     margin-left: -32px;
-    padding: 24px 0;
+    padding: 24px 40px 24px 32px;
     border-radius: 0 40px 40px 0;
     display: flex;
     flex-direction: row-reverse;
+    align-items: center;
   }
   @media (min-width: ${breakpoints[2]}px) {
     width: 410px;
@@ -61,69 +62,23 @@ export const UserCard = styled.div`
   }
 `;
 
-export const FormStyled = styled(Form)`
-  @media (min-width: ${breakpoints[1]}px) {
-    width: 100%;
-    display: flex;
-    flex-direction: row-reverse;
-  }
-  @media (min-width: ${breakpoints[2]}px) {
-    flex-direction: column;
-  }
-`;
+export const UserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 42px;
 
-export const ImageBox = styled.div`
-  position: relative;
-  padding: 0 12px 32px 12px;
-
-  @media (min-width: ${breakpoints[1]}px) {
-    margin-right: 40px;
-    padding: 0;
-  }
-  @media (min-width: ${breakpoints[2]}px) {
-    margin: 0 auto;
-
-    & button {
-      position: absolute;
-      right: -74px;
-      bottom: 0;
-    }
-  }
-`;
-
-export const UploadField = styled(LoadImageCont)`
-  width: 233px;
-  height: 233px;
-  border-radius: 50%;
-
-  @media (min-width: ${breakpoints[1]}px) {
-    margin: 0 0 8px;
+  ${theme.mq.tablet} {
+    /* padding-left: 32px; */
+    /* width: 379px; */
+    margin-bottom: 33px;
+    margin-right: 24px;
   }
 
-  @media (min-width: ${breakpoints[2]}px) {
-    margin: 0;
+  ${theme.mq.desktop} {
+    /* padding-left: 16px; */
+    /* margin-left: 64px; */
   }
-`;
-
-export const DataBox = styled.div`
-  @media (min-width: ${breakpoints[1]}px) {
-    margin-top: 40px;
-    margin-right: 52px;
-  }
-  @media (min-width: ${breakpoints[2]}px) {
-    margin-top: 32px;
-    margin-right: 0;
-  }
-`;
-
-export const Text = styled.p`
-  margin-left: auto;
-  font-family: ${theme.fontFamily.manrope};
-  font-style: normal;
-  font-weight: ${theme.fontWeight.medium};
-  font-size: ${theme.fontSizes.m};
-  line-height: 1.35;
-  color: ${theme.colors.mainText};
 `;
 
 export const Button = styled.button`

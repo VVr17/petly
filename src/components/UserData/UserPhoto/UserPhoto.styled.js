@@ -6,11 +6,12 @@ export const ImageBox = styled.div`
   padding: 0 12px 32px 12px;
 
   @media (min-width: ${breakpoints[1]}px) {
-    margin-right: 40px;
+    /* margin-right: 40px; */
     padding: 0;
   }
   @media (min-width: ${breakpoints[2]}px) {
     margin: 0 auto;
+    margin-bottom: 32px;
 
     & button {
       position: absolute;
