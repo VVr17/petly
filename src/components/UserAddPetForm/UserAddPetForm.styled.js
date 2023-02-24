@@ -128,20 +128,7 @@ export const InputFile = styled(Field)`
 `;
 
 export const ErrorStyle = styled(ErrorMessage)`
-  top: 140px;
-  position: absolute;
-  font-size: ${theme.fontSizes.xxxs};
-  color: red;
-  ${theme.mq.mobileOnly} {
-    transform: translate(0px, 0px);
-  }
-  @media(min-width: ${breakpoints[1]}) {
-    top: 160px;
-    left: 30px;
-  }
-`;
-
-export const ErrorData = styled(ErrorMessage)`
+  bottom: -20px;
   left: 30px;
   position: absolute;
   font-size: ${theme.fontSizes.xxxs};
@@ -151,5 +138,20 @@ export const ErrorData = styled(ErrorMessage)`
   }
   @media(min-width: ${breakpoints[1]}) {
     
+    
+  }
+`;
+
+export const ErrorData = styled(ErrorMessage)`
+  left: 30px;
+  bottom: -5px;
+  position: absolute;
+  font-size: ${theme.fontSizes.xxxs};
+  color: red;
+  ${theme.mq.mobileOnly} {
+    transform: translate(0px, 0px);
+  }
+  @media(min-width: ${breakpoints[1]}) {
+    bottom: -10px
   }
 `;
