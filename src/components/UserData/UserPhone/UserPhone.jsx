@@ -2,11 +2,16 @@ import UserInput from 'components/Ui-Kit/UserInput';
 import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
-import { useUpdateUserMutation } from 'redux/api/userApi';
+import {
+  useGetCurrentUserQuery,
+  useUpdateUserMutation,
+} from 'redux/api/userApi';
 import { FieldWrapper, FormStyled } from '../UserField.styled';
 
 const UserPhone = () => {
   const [isDisabled, setIsDisabled] = useState(true);
+  const { data } = useGetCurrentUserQuery();
+  console.log('data', data?.phone);
   const [updateUser] = useUpdateUserMutation();
 
   const handleClick = event => {
@@ -43,7 +48,7 @@ const UserPhone = () => {
               name="phone"
               type="phone"
               disabled={isDisabled}
-              placeholder={'here should be real phone'}
+              placeholder={data?.phone || ''}
             />
             <UserUpdateButton
               type="submit"
