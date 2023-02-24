@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import { theme, breakpoints } from '../../../constants/theme';
+import { breakpoints } from 'constants/theme';
+
 export const ButtonStyled = styled(motion.button)`
+  height: 40px;
   display: block;
   border: none;
   font-family: inherit;

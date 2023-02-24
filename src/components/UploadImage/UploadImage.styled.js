@@ -22,15 +22,6 @@ export const LoadImgLabel = styled.label`
 
 export const LoadImgInput = styled.input`
   display: none;
-
-  // display: block;
-  // width: 140px;
-  // height: 140px;
-  // border-radius: 20px;
-  // background: ${theme.colors.mainBackground};
-  // margin-top: 12px;
-  // margin-bottom: 28px;
-  // color: ${theme.colors.mainText};
 `;
 export const LoadImgPlus = styled.img`
   width: 47px;
