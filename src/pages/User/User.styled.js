@@ -6,11 +6,10 @@ export const Section = styled(motion.section)`
   padding-top: 60px;
   padding-bottom: 40px;
 `;
-
-export const ContainerStyled = styled.div`
-   @media(min-width: ${breakpoints[2]}px) {
-      display: flex;
-      justify-content; center;
-      align-items-center;
-   };
+export const UserWrapper = styled.div`
+  @media (min-width: ${breakpoints[2]}px) {
+    display: flex;
+    /* justify-content; center; */
+    /* align-items-center; */
+  } ;
 `;

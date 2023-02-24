@@ -1,19 +1,19 @@
 import React from 'react';
 import UserPetsList from 'components/UserPetsList';
-import { Section, ContainerStyled } from './User.styled';
+// import { Section, Container } from './User.styled';
 import { pageAnimation } from 'constants/animation';
 import { UserData } from 'components/UserData/UserData.jsx';
-import Container from 'components/Container';
+import Section from 'components/Section';
+import { UserWrapper } from './User.styled';
+import UserPhone from 'components/UserData/UserPhone/UserPhone';
 
 const User = () => {
   return (
-    <Section {...pageAnimation} transition={{ duration: 0.3 }}>
-      <Container>
-        <ContainerStyled>
-          <UserData />
-          <UserPetsList />
-        </ContainerStyled>
-      </Container>
+    <Section>
+      <UserWrapper>
+        <UserData></UserData>
+        <UserPetsList />
+      </UserWrapper>
     </Section>
   );
 };
