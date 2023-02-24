@@ -15,4 +15,8 @@ export const GalleryNotices = styled(motion.ul)`
   ${theme.mq.desktop} {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
+
+  li {
+    height: 100%;
+  }
 `;
