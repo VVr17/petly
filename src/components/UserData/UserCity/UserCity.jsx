@@ -11,25 +11,27 @@ import { FieldWrapper, FormStyled } from '../UserField.styled';
 const UserCity = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const { data } = useGetCurrentUserQuery();
-  const [updateUser] = useUpdateUserMutation();
+  const initialValues = { city: data?.city || '' };
+  const [updateUser, { isLoading }] = useUpdateUserMutation();
 
-  const handleClick = event => {
-    //handlesubmit
-
+  const handleClick = (values, actions) => {
     if (isDisabled) {
-      console.log('disable false');
       setIsDisabled(false);
       return;
     }
-    console.log('submit, disabled true');
-    // updateUser(value);
-    handleSubmit();
+
     setIsDisabled(true);
   };
-  const initialValues = '';
 
-  const handleSubmit = () => {
-    console.log('submit');
+  const handleSubmit = (values, actions) => {
+    if (!isDisabled) {
+      return;
+    }
+
+    // create formData
+    const data = new FormData();
+    data.append('city', values.city);
+    updateUser(data);
   };
 
   return (
