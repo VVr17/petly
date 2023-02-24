@@ -4,17 +4,19 @@ import { theme, breakpoints } from '../../constants/theme';
 import { LoadImageCont } from 'components/UploadImage/UploadImage.styled';
 
 export const Container = styled.div`
-  padding: 0 20px;
+  /* padding: 0 20px; */
+  width: 100%;
 
-  @media(min-width: ${breakpoints[1]}px) {
+  @media (min-width: ${breakpoints[1]}px) {
     max-width: ${breakpoints[1]}px;
-    padding: 0 32px;
-  ;
-  @media(min-width: ${breakpoints[2]}px) {
+    /* padding: 0 32px; */
+  }
+
+  @media (min-width: ${breakpoints[2]}px) {
     max-width: 820px;
-    margin-left: 0;
-    padding: 0;
-  ;
+    /* margin-left: 0; */
+    /* padding: 0; */
+  }
 `;
 
 export const Title = styled.h2`
@@ -24,36 +26,36 @@ export const Title = styled.h2`
   font-size: ${theme.fontSizes.m};
   line-height: 1.35;
   color: ${theme.colors.mainText};
-  @media(min-width: ${breakpoints[1]}px) {
-    font-size: ${theme.fontSizes.xl}
-  ;
+  @media (min-width: ${breakpoints[1]}px) {
+    font-size: ${theme.fontSizes.xl};
+  }
 `;
 
 export const UserCard = styled.div`
-  width: 280px;
-  margin-top 18px;
+  /* width: 280px; */
+  margin-top: 18px;
   margin-left: auto;
   margin-right: auto;
   padding: 20px 12px;
 
   background-color: ${theme.colors.lightText};
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: 20px;
 
-  @media(min-width: ${breakpoints[1]}px) {
+  @media (min-width: ${breakpoints[1]}px) {
     width: 736px;
     margin-top: 40px;
     margin-left: -32px;
     padding: 24px 0;
     border-radius: 0 40px 40px 0;
-    }
-   @media(min-width: ${breakpoints[2]}px) {
-      width: 410px;
-      margin-top: 24px;
-      margin-left: -16px;
-      padding: 20px 16px;
-   }
+  }
+  @media (min-width: ${breakpoints[2]}px) {
+    width: 410px;
+    margin-top: 24px;
+    margin-left: -16px;
+    padding: 20px 16px;
+  }
 `;
 
 export const FormStyled = styled(Form)`
