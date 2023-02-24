@@ -36,7 +36,9 @@ export const noticesApi = createApi({
     }),
     addNotice: builder.mutation({
       query: ({ categoryName, noticeData }) => ({
-        url: `${NOTICES_URL}${CATEGORY_URL}/${categoryName}`,
+        // url: `${NOTICES_URL}${CATEGORY_URL}/${categoryName}`,
+
+        url: `http://localhost:3000/api/notices${CATEGORY_URL}/${categoryName}`,
         method: 'POST',
         body: noticeData,
       }),

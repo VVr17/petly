@@ -21,7 +21,7 @@ export const Overlay = styled(motion.div)`
 export const StyledModal = styled(motion.div)`
   position: relative;
   width: 280px;
-  padding: 20px 20px 40px 20px;
+  padding: 40px 20px;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -31,7 +31,7 @@ export const StyledModal = styled(motion.div)`
   background-color: ${theme.colors.lightText};
   @media (min-width: ${breakpoints[1]}px) {
     width: 650px;
-    padding: 20px 20px 40px 20px;
+    padding: 40px 80px;
     border-radius: 40px;
   }
 `;
