@@ -29,7 +29,7 @@ export const StyledModal = styled(motion.div)`
   justify-content: center;
   border-radius: 20px;
   background-color: ${theme.colors.lightText};
-  @media(min-width: ${breakpoints[1]}px) {
+  @media (min-width: ${breakpoints[1]}px) {
     width: 650px;
     padding: 20px 20px 40px 20px;
     border-radius: 40px;
@@ -53,7 +53,7 @@ export const ButtonCloseModal = styled.button`
   &:focus {
     color: ${theme.colors.accent};
   }
-  @media(min-width: ${breakpoints[1]}px) {
+  @media (min-width: ${breakpoints[1]}px) {
     width: 44px;
     height: 44px;
     top: 28px;
