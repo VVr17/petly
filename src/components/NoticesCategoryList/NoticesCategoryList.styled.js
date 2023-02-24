@@ -1,7 +1,8 @@
 import { theme } from '../../constants/theme';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-export const GalleryNotices = styled.div`
+export const GalleryNotices = styled(motion.ul)`
   display: grid;
   grid-gap: 32px;
   margin-top: 30px;
