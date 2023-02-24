@@ -3,18 +3,30 @@ import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButto
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 import { useUpdateUserMutation } from 'redux/api/userApi';
-import { FieldWrapper } from '../UserField.styled';
+import { FieldWrapper, FormStyled } from '../UserField.styled';
 
 const UserPhone = () => {
   const [isDisabled, setIsDisabled] = useState(true);
-  const [updateUser] = useUpdateUserMutation();
+  // const [updateUser] = useUpdateUserMutation();
 
-  const handleSubmit = value => {
+  const handleClick = event => {
     //handlesubmit
-    updateUser(value);
+
+    if (isDisabled) {
+      console.log('disable false');
+      setIsDisabled(false);
+      return;
+    }
+    console.log('submit, disabled true');
+    // updateUser(value);
+    handleSubmit();
     setIsDisabled(true);
   };
   const initialValues = '';
+
+  const handleSubmit = () => {
+    console.log('submit');
+  };
 
   return (
     <Formik
@@ -30,23 +42,13 @@ const UserPhone = () => {
               label="Phone"
               name="phone"
               type="phone"
-              isDisabled={isDisabled}
+              disabled={isDisabled}
             />
-            {isDisabled ? (
-              <UserUpdateButton
-                type="button"
-                isDisabled={isDisabled}
-                onClick={() => {
-                  setIsDisabled(false);
-                }}
-              />
-            ) : (
-              <UserUpdateButton
-                type="submit"
-                isDisabled={isDisabled}
-                onClick={handleSubmit}
-              />
-            )}
+            <UserUpdateButton
+              type="submit"
+              isdisabled={isDisabled}
+              onClick={handleClick}
+            />
           </FieldWrapper>
         </Form>
       )}

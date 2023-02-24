@@ -26,6 +26,7 @@ import { UserDataItem } from 'components/UserData/UserDataItem/UserDataItem';
 import { IoLogOutOutline } from 'react-icons/io5';
 import { HiCamera } from 'react-icons/hi2';
 import UserPhone from './UserPhone/UserPhone';
+import { Box } from 'components/Box/Box';
 
 const UserInfo = () => {
   const { isAuth } = useSelector(state => state.user);
@@ -56,7 +57,15 @@ const UserInfo = () => {
     <Container>
       <Title>My information:</Title>
       <UserCard>
-        <UserPhone />
+        <Box
+          pl={['0px', '0px', '32px', '16px']}
+          display="flex"
+          flexDirection="column"
+          gridGap="8px"
+        >
+          {/* <UserPhone /> */}
+          <UserPhone />
+        </Box>
       </UserCard>
     </Container>
   );

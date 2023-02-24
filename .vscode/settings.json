@@ -1,4 +1,4 @@
 {
   "css.lint.unknownAtRules": "ignore",
-  "cSpell.words": ["formik"]
+  "cSpell.words": ["formik", "isdisabled"]
 }
