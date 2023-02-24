@@ -25,15 +25,8 @@ import Plus from '../../assets/images/desktop/plus.svg';
 import { UserDataItem } from 'components/UserData/UserDataItem/UserDataItem';
 import { IoLogOutOutline } from 'react-icons/io5';
 import { HiCamera } from 'react-icons/hi2';
-import UserPhone from './UserPhone/UserPhone';
-import { Box } from 'components/Box/Box';
-import UserPhoto from './UserPhoto/UserPhoto';
-import UserName from './UserName/UserName';
-import UserEmail from './UserEmail/UserEmail';
-import UserBirthday from './UserBirthday/UserBirthday';
-import UserCity from './UserCity/UserCity';
 
-const UserInfo = () => {
+export const UserData = () => {
   const { isAuth } = useSelector(state => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -61,23 +54,34 @@ const UserInfo = () => {
   return (
     <Container>
       <Title>My information:</Title>
-      <UserCard>
-        <UserPhoto />
-        <Box
-          pl={['0px', '0px', '32px', '16px']}
-          display="flex"
-          flexDirection="column"
-          gridGap="8px"
-        >
-          <UserName />
-          <UserEmail />
-          <UserBirthday />
-          <UserPhone />
-          <UserCity />
-        </Box>
-      </UserCard>
+      <Formik initialValues={user}>
+        <UserCard>
+          <FormStyled>
+            <ImageBox>
+              <UploadField>
+                <LoadImgPlus
+                  src={Plus}
+                  alt="upload"
+                  width="47px"
+                  height="47px"
+                />
+                <LoadImgInput name="imageFile" type="file" accept="image/*" />
+              </UploadField>
+              <Button style={editBtn} type="button">
+                <HiCamera style={iconStyle} />
+                Edit photo
+              </Button>
+            </ImageBox>
+            <DataBox>
+              <UserDataItem />
+              <Button style={LogoutBtn} type="button" onClick={handleLogout}>
+                <IoLogOutOutline style={iconStyle} />
+                Log out
+              </Button>
+            </DataBox>
+          </FormStyled>
+        </UserCard>
+      </Formik>
     </Container>
   );
 };
-
-export default UserInfo;

@@ -7,6 +7,7 @@ import {
   useUpdateUserMutation,
 } from 'redux/api/userApi';
 import { FieldWrapper, FormStyled } from '../UserField.styled';
+import { validationSchema } from './validation';
 
 const UserEmail = () => {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -37,7 +38,7 @@ const UserEmail = () => {
   return (
     <Formik
       initialValues={initialValues}
-      // validationSchema={ }
+      validationSchema={validationSchema}
       onSubmit={handleSubmit}
       // encType="multipart/form-data"
     >

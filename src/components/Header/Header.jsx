@@ -37,8 +37,8 @@ const Header = () => {
     setMenuIsActive(false);
     if (!loginIsActive) {
       setLoginIsActive(true);
-      document.body.classList.remove('modal-open');
     }
+    document.body.classList.remove('modal-open');
   };
 
   const closeMenuRegister = () => {
