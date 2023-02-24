@@ -7,7 +7,7 @@ import { FieldWrapper, FormStyled } from '../UserField.styled';
 
 const UserPhone = () => {
   const [isDisabled, setIsDisabled] = useState(true);
-  // const [updateUser] = useUpdateUserMutation();
+  const [updateUser] = useUpdateUserMutation();
 
   const handleClick = event => {
     //handlesubmit
@@ -43,6 +43,7 @@ const UserPhone = () => {
               name="phone"
               type="phone"
               disabled={isDisabled}
+              placeholder={'here should be real phone'}
             />
             <UserUpdateButton
               type="submit"

@@ -12,8 +12,8 @@ const User = () => {
   return (
     <Section>
       <UserWrapper>
-        {/* <UserInfo /> */}
-        <UserData></UserData>
+        <UserInfo />
+        {/* <UserData></UserData> */}
         <UserPetsList />
       </UserWrapper>
     </Section>

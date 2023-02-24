@@ -27,6 +27,11 @@ import { IoLogOutOutline } from 'react-icons/io5';
 import { HiCamera } from 'react-icons/hi2';
 import UserPhone from './UserPhone/UserPhone';
 import { Box } from 'components/Box/Box';
+import UserPhoto from './UserPhoto/UserPhoto';
+import UserName from './UserName/UserName';
+import UserEmail from './UserEmail/UserEmail';
+import UserBirthday from './UserBirthday/UserBirthday';
+import UserCity from './UserCity/UserCity';
 
 const UserInfo = () => {
   const { isAuth } = useSelector(state => state.user);
@@ -57,14 +62,18 @@ const UserInfo = () => {
     <Container>
       <Title>My information:</Title>
       <UserCard>
+        <UserPhoto />
         <Box
           pl={['0px', '0px', '32px', '16px']}
           display="flex"
           flexDirection="column"
           gridGap="8px"
         >
-          {/* <UserPhone /> */}
+          <UserName />
+          <UserEmail />
+          <UserBirthday />
           <UserPhone />
+          <UserCity />
         </Box>
       </UserCard>
     </Container>
