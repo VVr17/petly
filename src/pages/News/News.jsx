@@ -15,7 +15,10 @@ const News = () => {
   const searchQuery = (e, value) => {
     e.preventDefault();
     const newsFilter = news.filter(el =>
-      el.title.concat(el.description).toLowerCase().includes(value)
+      el.title
+        .concat(el.description)
+        .toLowerCase()
+        .includes(value.toLowerCase())
     );
     setFilteredNews(newsFilter);
   };

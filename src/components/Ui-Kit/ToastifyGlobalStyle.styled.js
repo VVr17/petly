@@ -18,19 +18,19 @@ const ToastifyGlobalStyle = styled(ToastContainer)`
   }
 
   .Toastify__toast--success {
-    color: #3ab821;
+    color: #07bc0c;
   }
 
   .Toastify__toast--error {
-    color: #f70303;
+    color: #e74c3c;
   }
 
   .Toastify__toast--warning {
-    color: #fec003;
+    color: #f1c40f;
   }
 
   .Toastify__toast--info {
-    color: #3091eb;
+    color: #3498db;
   }
 
   .Toastify__toast-body {
