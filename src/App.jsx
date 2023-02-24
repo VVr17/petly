@@ -17,6 +17,8 @@ import {
   User,
 } from 'lazyLoading';
 import { AnimatePresence } from 'framer-motion';
+import { RestrictedRoute } from 'components/Routes/RestrictedRoute';
+import { PrivateRoute } from 'components/Routes/PrivateRoute';
 import { ToastContainer } from 'react-toastify';
 import ToastifyGlobalStyle from 'components/Ui-Kit/ToastifyGlobalStyle.styled';
 
@@ -37,14 +39,32 @@ const App = () => {
         <Suspense fallback={<Loader />}>
           <Routes location={location}>
             <Route path="/" element={<SharedLayout />} key={location.key}>
-              <Route index element={<Home />} key={location.key} />
               <Route
-                path="register"
-                element={<Register />}
+                index
                 key={location.key}
+                element={
+                  <RestrictedRoute component={Home} redirectTo="/user" />
+                }
               />
-              <Route path="login" element={<Login />} key={location.key} />
-              <Route path="user" element={<User />} key={location.key} />
+
+              <Route
+                path="/register"
+                key={location.key}
+                element={
+                  <RestrictedRoute component={Register} redirectTo="/user" />
+                }
+              />
+              <Route
+                path="/login"
+                key={location.key}
+                element={
+                  <RestrictedRoute component={Login} redirectTo="/user" />
+                }
+              />
+              <Route
+                path="user"
+                element={<PrivateRoute component={User} redirectTo="/login" />}
+              />
               <Route path="friends" element={<Friends />} key={location.key} />
               <Route path="news" element={<News />} key={location.key} />
               <Route path="notices" element={<Notices />} key={location.key} />
@@ -54,6 +74,7 @@ const App = () => {
         </Suspense>
       </AnimatePresence>
       <GlobalStyle />
+      {/* <ToastContainer /> */}
     </>
   );
 };

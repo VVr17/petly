@@ -3,10 +3,13 @@ import styled from 'styled-components';
 
 export const CardNotice = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   border-radius: 0px 0px 20px 20px;
   background-color: ${theme.colors.cardBackground};
   box-shadow: ${theme.boxShadow.main};
+  height: 100%;
 `;
 
 export const ImageBox = styled.div`
@@ -62,6 +65,7 @@ export const ContainerButton = styled.div`
   display: grid;
   gap: 12px;
   padding: 0 16px 12px;
+  margin-top: auto;
 
   ${theme.mq.tabletOnly} {
     grid-template-columns: repeat(auto-fill, minmax(336px, 1fr));

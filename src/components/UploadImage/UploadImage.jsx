@@ -9,8 +9,13 @@ import {
 } from './UploadImage.styled';
 import Plus from '../../assets/images/desktop/plus.svg';
 import PropTypes from 'prop-types';
+import { ErrorStyle } from './UploadImage.styled';
+import { useField } from 'formik';
 
-const UploadImageField = ({ handleChange, fileDataURL }) => {
+const UploadImageField = ({ handleChange, fileDataURL, name }) => {
+  const [field, meta, helpers] = useField(name);
+  const { value } = meta;
+
   return (
     <LoadImgLabel>
       Load the pet’s image:<StyledSpan>*</StyledSpan>
@@ -27,9 +32,12 @@ const UploadImageField = ({ handleChange, fileDataURL }) => {
         <>
           <LoadImageCont>
             <LoadImgPlus src={Plus} alt="upload" width="47px" height="47px" />
+            <ErrorStyle name={name} component="div" />
           </LoadImageCont>
           <LoadImgInput
-            name="imageFile"
+            // {...field}
+            selected={value}
+            name={name}
             type="file"
             accept="image/*"
             onChange={handleChange}
@@ -43,6 +51,7 @@ const UploadImageField = ({ handleChange, fileDataURL }) => {
 UploadImageField.propTypes = {
   handleChange: PropTypes.func,
   fileDataURL: PropTypes.string,
+  name: PropTypes.string,
 };
 
 export default UploadImageField;

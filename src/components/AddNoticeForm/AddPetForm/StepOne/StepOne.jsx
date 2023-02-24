@@ -1,27 +1,13 @@
 import React from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import InputField from 'components/Ui-Kit/Input';
-import {
-  FormTitle,
-  Text,
-  ButtonFilterList,
-  ButtonFilterItem,
-  RadioButton,
-  DatePickerInput,
-  Asterisk,
-} from '../AddPetForm.styled';
-import Button from 'components/Ui-Kit/Button';
+import { Text, DatePickerContainer } from '../AddPetForm.styled';
 import MyDatePicker from './DatePicker';
 import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
 import PropTypes from 'prop-types';
+import { Label, ErrorStyle } from 'components/Ui-Kit/Input/Input.styled';
 
 const StepOne = ({ children }) => {
-  // const Example = () => {
-  //   const [startDate, setStartDate] = useState(new Date());
-  //   return (
-  //     <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
-  //   );
-  // };
   return (
     <>
       <Text>
@@ -44,14 +30,18 @@ const StepOne = ({ children }) => {
         label="Name pet"
         span="*"
       />
-      <label>
-        Date of birth<StyledSpan>*</StyledSpan>
-      </label>
-      <MyDatePicker
-        name="birthDate"
-        label="Date of birth*"
-        placeholder="Type date of birth"
-      />
+      <DatePickerContainer>
+        <Label>
+          Date of birth
+          <StyledSpan>*</StyledSpan>
+        </Label>
+        <MyDatePicker
+          name="birthDate"
+          label="Date of birth*"
+          placeholder="Type date of birth"
+        />
+        <ErrorStyle name="birthDate" component="div" />
+      </DatePickerContainer>
       <InputField
         name="breed"
         type="text"

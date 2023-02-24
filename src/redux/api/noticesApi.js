@@ -7,7 +7,7 @@ import {
   TAGS_TYPES,
 } from 'constants/api';
 import baseQuery from 'redux/baseQuery';
-import { userApi } from './userApi';
+import { addFavorites, removeFavorites } from 'redux/favorites/favoritesSlice';
 
 export const noticesApi = createApi({
   reducerPath: 'noticesApi',
@@ -58,11 +58,12 @@ export const noticesApi = createApi({
       }),
       transformResponse: response => response.data,
       invalidatesTags: [TAGS_TYPES.notice],
-      async onQueryStarted(id, { dispatch, queryFulfilled }) {
-        // console.log('starting!');
+      async onQueryStarted(id, { dispatch, queryFulfilled, getState }) {
         try {
-          await queryFulfilled;
-          dispatch(userApi.util.invalidateTags([TAGS_TYPES.user]));
+          const {
+            meta: { response },
+          } = await queryFulfilled;
+          if (response.status === 200) dispatch(addFavorites(id));
         } catch (err) {
           console.log('error... ', err);
         }
@@ -76,10 +77,12 @@ export const noticesApi = createApi({
       transformResponse: response => response.data,
       invalidatesTags: [TAGS_TYPES.notice],
       async onQueryStarted(id, { dispatch, queryFulfilled, getState }) {
-        // console.log('starting!');
         try {
           await queryFulfilled;
-          dispatch(userApi.util.invalidateTags([TAGS_TYPES.user]));
+          const {
+            meta: { response },
+          } = await queryFulfilled;
+          if (response.status === 200) dispatch(removeFavorites(id));
         } catch (err) {
           console.log('error... ', err);
         }

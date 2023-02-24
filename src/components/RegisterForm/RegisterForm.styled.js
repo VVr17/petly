@@ -7,17 +7,19 @@ export const ModalWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 85%;
 `;
 
 export const ModalContent = styled.div`
-  position:relative;
+  position: relative;
+  overflow-y: auto;
   background-color: ${theme.colors.cardBackground};
   border-radius: 40px;
   padding: 60px 80px 40px 80px;
   width: 618px;
-  max-height: 605px;
+
   box-shadow: ${theme.boxShadow.second};
-   ${theme.mq.desktop} {
+  ${theme.mq.desktop} {
     margin-top: 0;
   }
   ${theme.mq.tabletOnly} {
@@ -48,14 +50,15 @@ export const FormWrapper = styled(Form)`
   display: flex;
   flex-direction: column;
   margin-top: 40px;
-  margin-bottom: 40px;
-  gap: 30px;
+  /* margin-bottom: 40px;  */
+  /* gap: 30px; */
 `;
 
 export const ButtonWrapper = styled.div`
-  display:flex;
+  display: flex;
   flex-direction: column;
-  gap: 16px;
+  margin-bottom: 50px;
+  margin-top: 40px;
   width: 100%;
 `;
 
@@ -70,7 +73,7 @@ export const Paragraph = styled.p`
 `;
 
 export const LoginLink = styled(NavLink)`
-  color: #3091EB;
+  color: #3091eb;
   text-decoration: none;
 `;
 
@@ -81,11 +84,10 @@ export const ErrorMessage = styled.div`
   text-align: center;
   width: 100%;
   left: 50%;
-  transform:translateX(-50%);
+  transform: translateX(-50%);
   top: 120px;
   ${theme.mq.mobileOnly} {
-   top: 50px;
-   font-size: 12px;
+    top: 50px;
+    font-size: 12px;
   }
-
 `;

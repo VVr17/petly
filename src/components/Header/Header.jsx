@@ -25,14 +25,25 @@ import { AnimatePresence } from 'framer-motion';
 
 const Header = () => {
   const [menuIsActive, setMenuIsActive] = useState(false);
+  const [loginIsActive, setLoginIsActive] = useState(true);
   const isAuth = useSelector(selectIsAuthState);
 
   const openMenu = () => {
     setMenuIsActive(true);
+    document.body.classList.add('modal-open');
   };
 
   const closeMenu = () => {
     setMenuIsActive(false);
+    if (!loginIsActive) {
+      setLoginIsActive(true);
+      document.body.classList.remove('modal-open');
+    }
+  };
+
+  const closeMenuRegister = () => {
+    setMenuIsActive(false);
+    setLoginIsActive(false);
   };
 
   return (
@@ -44,9 +55,19 @@ const Header = () => {
               pe<Span>t</Span>ly
             </Link>
             <PagesBox>
-              <Nav />
+              <Nav closeMenu={closeMenu} />
             </PagesBox>
-            <AuthBox>{isAuth ? <UserNav /> : <AuthNav />}</AuthBox>
+            <AuthBox>
+              {isAuth ? (
+                <UserNav />
+              ) : (
+                <AuthNav
+                  closeMenu={closeMenu}
+                  loginIsActive={loginIsActive}
+                  closeMenuRegister={closeMenuRegister}
+                />
+              )}
+            </AuthBox>
             <MenuBox>
               <MenuButton onClick={openMenu}>
                 <VscMenu style={iconStyle} />
@@ -58,7 +79,13 @@ const Header = () => {
 
       <AnimatePresence>
         {menuIsActive ? (
-          <MobMenu closeMenu={closeMenu} isAuth={isAuth} key="mobile" />
+          <MobMenu
+            closeMenu={closeMenu}
+            isAuth={isAuth}
+            loginIsActive={loginIsActive}
+            closeMenuRegister={closeMenuRegister}
+            key="mobile"
+          />
         ) : null}
       </AnimatePresence>
     </>
