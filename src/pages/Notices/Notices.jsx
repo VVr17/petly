@@ -23,8 +23,12 @@ const Notices = () => {
 
   const isAuth = useSelector(selectIsAuthState);
   const handleClick = () => {
-    setIsOpen(true);
-    document.body.classList.add('modal-open');
+    if (isAuth) {
+      setIsOpen(true);
+      document.body.classList.add('modal-open');
+    } else {
+      toast('You have to register or login to add Pet');
+    }
   };
   const closeModal = () => {
     setIsOpen(false);
@@ -59,18 +63,10 @@ const Notices = () => {
 
       <AnimatePresence>
         {isOpen && (
-          <>
-            (
-            {isAuth ? (
-              <ModalComponent closeModal={closeModal} key="popUp">
-                <AddNoticeFormHeader />
-                <AddPetForm onClose={closeModal} />
-              </ModalComponent>
-            ) : (
-              <>{toast('You have to register or login to add Pet')}</>
-            )}
-            )
-          </>
+          <ModalComponent closeModal={closeModal} key="popUp">
+            <AddNoticeFormHeader />
+            <AddPetForm onClose={closeModal} />
+          </ModalComponent>
         )}
       </AnimatePresence>
     </Section>
