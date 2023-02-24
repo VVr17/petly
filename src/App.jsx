@@ -37,13 +37,7 @@ const App = () => {
         <Suspense fallback={<Loader />}>
           <Routes location={location}>
             <Route path="/" element={<SharedLayout />} key={location.key}>
-              <Route
-                index
-                key={location.key}
-                element={
-                  <RestrictedRoute component={Home} redirectTo="/user" />
-                }
-              />
+              <Route index key={location.key} element={<Home />} />
 
               <Route
                 path="/register"
