@@ -2,24 +2,43 @@ import UserInput from 'components/Ui-Kit/UserInput';
 import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
-import { useUpdateUserMutation } from 'redux/api/userApi';
-import { FieldWrapper } from '../UserField.styled';
+import {
+  useGetCurrentUserQuery,
+  useUpdateUserMutation,
+} from 'redux/api/userApi';
+import { FieldWrapper, FormStyled } from '../UserField.styled';
+import { validationSchema } from './validation';
 
 const UserPhone = () => {
   const [isDisabled, setIsDisabled] = useState(true);
-  const [updateUser] = useUpdateUserMutation();
+  const { data } = useGetCurrentUserQuery();
+  const initialValues = { phone: data?.phone || '' };
+  const [updateUser, { isLoading }] = useUpdateUserMutation();
 
-  const handleSubmit = value => {
-    //handlesubmit
-    updateUser(value);
+  const handleClick = (values, actions) => {
+    if (isDisabled) {
+      setIsDisabled(false);
+      return;
+    }
+
     setIsDisabled(true);
   };
-  const initialValues = '';
+
+  const handleSubmit = (values, actions) => {
+    if (!isDisabled) {
+      return;
+    }
+
+    // create formData
+    const data = new FormData();
+    data.append('phone', values.phone);
+    updateUser(data);
+  };
 
   return (
     <Formik
       initialValues={initialValues}
-      // validationSchema={ }
+      validationSchema={validationSchema}
       onSubmit={handleSubmit}
       // encType="multipart/form-data"
     >
@@ -30,23 +49,14 @@ const UserPhone = () => {
               label="Phone"
               name="phone"
               type="phone"
-              isDisabled={isDisabled}
+              disabled={isDisabled}
+              placeholder={data?.phone || ''}
             />
-            {isDisabled ? (
-              <UserUpdateButton
-                type="button"
-                isDisabled={isDisabled}
-                onClick={() => {
-                  setIsDisabled(false);
-                }}
-              />
-            ) : (
-              <UserUpdateButton
-                type="submit"
-                isDisabled={isDisabled}
-                onClick={handleSubmit}
-              />
-            )}
+            <UserUpdateButton
+              type="submit"
+              isdisabled={isDisabled}
+              onClick={handleClick}
+            />
           </FieldWrapper>
         </Form>
       )}

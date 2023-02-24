@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Field, Form } from "formik";
+import { Field, Form, ErrorMessage } from "formik";
 import { theme, breakpoints } from "constants/theme";
 
 export const Container = styled.div`
@@ -35,6 +35,14 @@ export const FormStyled = styled(Form)`
     }
 `;
 
+export const CommentsBox = styled.div`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 16px;
+`;
+
 export const ControlBox = styled.div`
     height: 92px;
     margin-top: 24px;
@@ -45,51 +53,51 @@ export const ControlBox = styled.div`
     @media(min-width: ${breakpoints[1]}px) {
         height: 44px;
         display: flex;
-        flex-direction: row-reverse;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: row;
+        flex: grid;
+        gap: 0 20px;
         width: 380px;
         margin-left: auto;
         margin-right: auto;
     }
 `;
-export const Box = styled.div`
-    display:none;
+
+export const FieldStyled = styled(Field)`
+    min-height: 100px;
+    border-radius: 20px;
+    margin-top: 8px;
+    padding: 10px 20px 10px 14px;
+    background-color: ${theme.colors.mainBackground};
+    border: 1px solid ${theme.colors.borderColor};
+    font-family: ${theme.fontFamily.manrope};
+    font-style: normal;
+    font-weight: ${theme.fontWeight.normal};
+    font-size: ${theme.fontSizes.xxs};
+    line-height: 19px;
     @media(min-width: ${breakpoints[1]}px) {
-       display: flex;
-       width: 54px;
+        margin-top: 12px;
+        font-size: ${theme.fontSizes.xs};
     }
-`
+`;
 
-// export const FieldStyled = styled(Field)`
-//     margin-top: 8px;
-//     padding: 10px 20px 10px 14px;
-//     background-color: ${theme.colors.mainBackground};
-//     border: 1px solid ${theme.colors.borderColor};
-//     border-radius: 40px;
-//     font-family: ${theme.fontFamily.manrope};
-//     font-style: normal;
-//     font-weight: ${theme.fontWeight.normal};
-//     font-size: ${theme.fontSizes.xxs};
-//     line-height: 19px;
-//     @media(min-width: ${breakpoints[1]}px) {
-//         margin-top: 12px;
-//         font-size: ${theme.fontSizes.xs};
-//     }
-// `;
+export const DateBox = styled.div`
+    position: relative;
+`;
 
-// export const Label = styled.label`
-//     margin-top: 16px;
-//     font-family: ${theme.fontFamily.manrope};
-//     font-style: normal;
-//     font-weight: ${theme.fontWeight.medium};
-//     font-size: ${theme.fontSizes.s};
-//     line-height: 1.44;
-//     @media(min-width: ${breakpoints[1]}px) {
-//         font-size: ${theme.fontSizes.l};
-//         margin-top: 28px;
-//     };
-// `;
+export const Label = styled.label`
+    display: block;
+    margin-bottom: 8px;
+    font-family: ${theme.fontFamily.manrope};
+    font-style: normal;
+    font-weight: ${theme.fontWeight.medium};
+    font-size: ${theme.fontSizes.s};
+    line-height: 1.44;
+    @media(min-width: ${breakpoints[1]}px) {
+        font-size: ${theme.fontSizes.l};
+        margin-bottom: 12px;
+        margin-top: 8px;
+    };
+`;
 
 export const LabelStyled = styled.label`
     margin-right: auto;
@@ -117,4 +125,31 @@ export const Span = styled.span`
 
 export const InputFile = styled(Field)`
 
+`;
+
+export const ErrorStyle = styled(ErrorMessage)`
+  top: 140px;
+  position: absolute;
+  font-size: ${theme.fontSizes.xxxs};
+  color: red;
+  ${theme.mq.mobileOnly} {
+    transform: translate(0px, 0px);
+  }
+  @media(min-width: ${breakpoints[1]}) {
+    top: 160px;
+    left: 30px;
+  }
+`;
+
+export const ErrorData = styled(ErrorMessage)`
+  left: 30px;
+  position: absolute;
+  font-size: ${theme.fontSizes.xxxs};
+  color: red;
+  ${theme.mq.mobileOnly} {
+    transform: translate(0px, 0px);
+  }
+  @media(min-width: ${breakpoints[1]}) {
+    
+  }
 `;

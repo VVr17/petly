@@ -30,7 +30,7 @@ const StepOne = ({ children }) => {
         span="*"
       />
       <DatePickerContainer>
-        <Label>
+        <Label name="birthDate">
           Date of birth
           <StyledSpan>*</StyledSpan>
         </Label>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, ErrorMessage } from 'formik';
 import PropTypes from 'prop-types';
-import { ErrorStyle, Input } from './UserInput.styled';
+import { ErrorStyle, Input, Label, Title } from './UserInput.styled';
 
 const UserInput = ({
   label,
@@ -10,48 +10,29 @@ const UserInput = ({
   placeholder,
   id,
   span,
-  autocomplete,
+  // autocomplete,
   children,
   as,
-  isDisabled,
+  disabled,
 }) => {
   return (
-    <label>
-      {label}
+    <Label>
+      <Title>{label}</Title>
       <Input
         name={name}
         type={type}
-        autocomplete={autocomplete}
-        isDisabled={isDisabled}
+        disabled={disabled}
         placeholder={placeholder}
       />
       {children}
       <ErrorStyle name={name} component="div" />
-    </label>
+    </Label>
   );
 };
 
-// <FieldWrapper>
-//   <Label htmlFor={name}>
-//     {label}
-//     <StyledSpan>{span}</StyledSpan>
-//   </Label>
-//   <FieldStyle
-//     type={type}
-//     name={name}
-//     id={id}
-//     placeholder={placeholder}
-//     autoComplete={autocomplete}
-//     as={as}
-//   />
-//   <ErrorStyle name={name} component="div" />
-//   {children}
-// </FieldWrapper>
-
-export default UserInput;
-
 UserInput.propTypes = {
   label: PropTypes.string,
+  disabled: PropTypes.bool,
   placeholder: PropTypes.string,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -60,5 +41,6 @@ UserInput.propTypes = {
   autocomplete: PropTypes.string,
   children: PropTypes.node,
   as: PropTypes.string,
-  isDisabled: PropTypes.bool,
 };
+
+export default UserInput;
