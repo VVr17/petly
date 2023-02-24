@@ -97,4 +97,5 @@ export const {
   useSignupUserMutation,
   useLoginUserMutation,
   useLogoutUserMutation,
+  useUpdateUserMutation,
 } = userApi;
