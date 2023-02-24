@@ -74,11 +74,14 @@ export const userApi = createApi({
     }),
 
     updateUser: builder.mutation({
-      query: userData => ({
-        url: `${USER_URL}/current`,
-        method: 'PUT',
-        body: userData,
-      }),
+      query: userData => {
+        console.log('userData', userData);
+        return {
+          url: `${USER_URL}/current`,
+          method: 'PUT',
+          body: userData,
+        };
+      },
       invalidatesTags: [TAGS_TYPES.user],
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {

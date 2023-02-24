@@ -5,6 +5,7 @@ import { RiPencilFill } from 'react-icons/ri';
 import { AiOutlineCheck } from 'react-icons/ai';
 
 export const Label = styled.label`
+  position: relative;
   width: 100%;
   display: flex;
   align-items: center;

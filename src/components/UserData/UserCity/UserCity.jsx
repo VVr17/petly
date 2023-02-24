@@ -11,7 +11,6 @@ import { FieldWrapper, FormStyled } from '../UserField.styled';
 const UserCity = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const { data } = useGetCurrentUserQuery();
-  console.log('data', data?.phone);
   const [updateUser] = useUpdateUserMutation();
 
   const handleClick = event => {
