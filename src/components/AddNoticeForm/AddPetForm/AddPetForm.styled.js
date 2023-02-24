@@ -9,10 +9,10 @@ import { motion } from 'framer-motion';
 // header of form
 export const FormWrapper = styled(Form)`
   display: flex;
-  flex-direction: column;
-
+  flex-direction: column;  
   gap: 10px;
-  width: 100%;
+}
+
 `;
 
 export const FormTitle = styled.h3`

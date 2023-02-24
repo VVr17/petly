@@ -1,7 +1,16 @@
 import Container from 'components/Container';
-import React from 'react';
+import { useState, React } from 'react';
+import { useSelector } from 'react-redux';
+import {
+  useAddNoticeToFavoriteMutation,
+  useRemoveNoticeFromFavoriteMutation,
+  useGetNoticeByIdQuery,
+} from 'redux/api/noticesApi';
+import { selectFavoritesState } from 'redux/favorites/favoritesSelector';
+import { ToastContainer, toast } from 'react-toastify';
+import { selectIsAuthState } from 'redux/user/userSelectors';
 import PropTypes from 'prop-types';
-import { useGetNoticeByIdQuery } from 'redux/api/noticesApi';
+// import { useGetNoticeByIdQuery } from 'redux/api/noticesApi';
 import Loader from 'components/Loader';
 import { IoIosHeart } from 'react-icons/io';
 import {
@@ -22,7 +31,7 @@ import {
   CommentsTitle,
   NoticeContainer,
   Buttons,
-  ButtonDiv,
+  Plug,
 } from './ModalNotice.styled';
 import Button from 'components/Ui-Kit/Button';
 
@@ -30,17 +39,43 @@ const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
 
 const ModalNotice = ({ id }) => {
   const { data, isFetching, isError } = useGetNoticeByIdQuery(id);
-  console.log(data);
   const noItem = '-----------';
   const noPrice = '0';
 
   const onRedirect = () => {
     window.location = `tel:${data.owner.phone}`;
   };
+
+  const isAuth = useSelector(selectIsAuthState);
+  const favorites = useSelector(selectFavoritesState);
+  const isFavorite = favorites.includes(id);
+  const [addNoticeToFavorite, { isLoading: adding }] =
+    useAddNoticeToFavoriteMutation();
+  const [deleteNoticeFromFavorite, { isLoading: removing }] =
+    useRemoveNoticeFromFavoriteMutation();
+  const toggleFavorite = async noticeId => {
+    if (!isAuth) {
+      toast.info('Please, register or login to add notice to favorite');
+      return;
+    }
+
+    if (isFavorite) {
+      await deleteNoticeFromFavorite(noticeId);
+      // toast.info(`Notice with ID ${_id} has been remove from favorites`);
+      return;
+    }
+    await addNoticeToFavorite(noticeId);
+    // toast.info(`Notice with ID ${_id} has been added to favorites`);
+  };
+  const isLoading = adding || removing;
+
   return (
     <>
       <NoticeContainer>
+        {isLoading && <Loader />}
+
         {isFetching && <Loader />}
+        {isFetching && <Plug />}
         {isError && <div>{isError.message}</div>}
 
         {data && (
@@ -126,12 +161,17 @@ const ModalNotice = ({ id }) => {
             </Comments>
 
             <Buttons>
-              <Button name="addToFavorite" type="button">
-                Add to {<IoIosHeart fill="#F59256" size="20px" />}
+              <Button onClick={onRedirect} name="contacts" type="button">
+                Contact
               </Button>
 
-              <Button onClick={onRedirect} name="contacts" type="button">
-                Contacts
+              <Button
+                name="addToFavorite"
+                type="button"
+                isFavorite={isFavorite}
+                onClick={() => toggleFavorite(id)}
+              >
+                Add to {<IoIosHeart fill="#F59256" size="20px" />}
               </Button>
             </Buttons>
           </>

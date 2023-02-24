@@ -11,8 +11,7 @@ const StepOne = ({ children }) => {
   return (
     <>
       <Text>
-        Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-        consectetur
+      Choose the category that suits you
       </Text>
       {children}
 

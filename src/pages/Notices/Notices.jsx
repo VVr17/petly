@@ -10,7 +10,7 @@ import Section from 'components/Section';
 import TitlePage from 'components/Ui-Kit/TitlePage';
 import FindPetFilter from 'components/FindPetFilter';
 import SearchForm from 'components/Ui-Kit/SearchForm';
-import { NavContainer } from './Notices.styled';
+import { NavContainer, FormContainer } from './Notices.styled';
 import AddPetButton from 'components/AddPetButton';
 import ModalComponent from 'components/Modal';
 import AddNoticeFormHeader from 'components/AddNoticeForm';
@@ -63,8 +63,10 @@ const Notices = () => {
             (
             {isAuth ? (
               <ModalComponent closeModal={closeModal} key="popUp">
+               <FormContainer>
                 <AddNoticeFormHeader />
                 <AddPetForm onClose={closeModal} />
+               </FormContainer>
               </ModalComponent>
             ) : (
               <>{toast('You have to register or login to add Pet')}</>
