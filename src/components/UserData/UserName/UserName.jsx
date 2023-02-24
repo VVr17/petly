@@ -4,7 +4,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 import { useGetCurrentUserQuery, useUpdateUserMutation } from 'redux/api/userApi';
 import { FieldWrapper, FormStyled } from '../UserField.styled';
-import PropTypes from 'prop-types';
+import { validationSchema } from './validation.js';
 
 const UserName = () => {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -35,7 +35,7 @@ const UserName = () => {
   return (
     <Formik
     initialValues={initialValues}
-    // validationSchema={ }
+    validationSchema={validationSchema}
     onSubmit={handleSubmit}
     // encType="multipart/form-data"
   >
@@ -59,10 +59,6 @@ const UserName = () => {
     )}
   </Formik>
   );
-};
-
-UserName.propTypes = {
-  name: PropTypes.string,
 };
 
 export default UserName;
