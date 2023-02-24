@@ -32,13 +32,11 @@ const App = () => {
 
   return (
     <>
-      <ToastifyGlobalStyle autoClose={5000} />
       <AnimatePresence>
         <Suspense fallback={<Loader />}>
           <Routes location={location}>
             <Route path="/" element={<SharedLayout />} key={location.key}>
               <Route index key={location.key} element={<Home />} />
-
               <Route
                 path="/register"
                 key={location.key}
@@ -66,6 +64,7 @@ const App = () => {
         </Suspense>
       </AnimatePresence>
       <GlobalStyle />
+      <ToastifyGlobalStyle autoClose={5000} />
     </>
   );
 };

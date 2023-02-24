@@ -38,16 +38,6 @@ const UserInfo = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [user, setUser] = useState({
-    email: 'nikolaj.jeliba@gmail.com',
-    name: 'Nick Click',
-    birthday: '19.04.1998',
-    city: 'Odessa, Ukraine',
-    phone: '+380000000000',
-    photoURL:
-      'https://res.cloudinary.com/pet-support/image/upload/v1676981263/ahrvgvc50jqweiy98x4n.jpg',
-  });
-
   const handleLogout = () => {
     dispatch(logout());
   };
@@ -74,6 +64,10 @@ const UserInfo = () => {
           <UserBirthday />
           <UserPhone />
           <UserCity />
+          <Button style={LogoutBtn} type="button" onClick={handleLogout}>
+            <IoLogOutOutline style={iconStyle} />
+            Log out
+          </Button>
         </Box>
       </UserCard>
     </Container>

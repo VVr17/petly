@@ -49,9 +49,12 @@ export const UserCard = styled.div`
     margin-left: -32px;
     padding: 24px 0;
     border-radius: 0 40px 40px 0;
+    display: flex;
+    flex-direction: row-reverse;
   }
   @media (min-width: ${breakpoints[2]}px) {
     width: 410px;
+    flex-direction: column;
     margin-top: 24px;
     margin-left: -16px;
     padding: 20px 16px;
