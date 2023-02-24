@@ -29,6 +29,7 @@ const UserPetsList = () => {
   }, [dataPets]);
 
   const handleDelete = async petId => {
+    window.alert("Pet has been deleted?")
     try {
       const response = await deletePetMutation(petId);
       await refetchCurrentUser();
