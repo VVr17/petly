@@ -15,7 +15,6 @@ const UserInput = ({
   as,
   disabled,
 }) => {
-  // console.log('disabled', disabled);
   return (
     <Label>
       <Title>{label}</Title>

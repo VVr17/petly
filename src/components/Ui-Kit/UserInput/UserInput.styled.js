@@ -7,6 +7,7 @@ import { AiOutlineCheck } from 'react-icons/ai';
 export const Label = styled.label`
   width: 100%;
   display: flex;
+  align-items: center;
 `;
 
 export const Title = styled.span`
@@ -28,25 +29,29 @@ export const Title = styled.span`
 export const Input = styled(Field)`
   /* width: 160px; */
   width: 100%;
-  height: 24px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   margin-right: 13px;
-  margin-left: auto;
-  padding-left: 15px;
+  padding-left: 12px;
+  padding-right: 12px;
 
   cursor: pointer;
   border-radius: 40px;
   border: 1px solid
     ${({ theme, disabled }) =>
       disabled ? 'transparent' : 'rgba(245, 146, 86, 0.5)'};
-  background-color: ${({ theme, disabled }) => {
-    // console.log('disabled in input', disabled);
-    return disabled ? 'transparent' : `${theme.colors.mainBackground}`;
-  }};
+  background-color: ${({ theme, disabled }) =>
+    disabled ? 'transparent' : `${theme.colors.mainBackground}`};
 
   font-family: ${theme.fontFamily.manrope};
   font-size: ${theme.fontSizes.s};
   font-weight: ${theme.fontWeight.normal};
   color: ${theme.colors.mainText};
+
+  ::placeholder {
+    color: ${({ theme }) => theme.colors.mainText};
+    opacity: 1;
+  }
 
   ${theme.mq.mobileOnly} {
     font-size: ${theme.fontSizes.xxxs};
@@ -54,9 +59,9 @@ export const Input = styled(Field)`
 
   @media (min-width: ${breakpoints[1]}px) {
     width: 216px;
-    height: 32px;
+    /* height: 32px; */
     margin-right: 24px;
-    padding-left: 10px;
+    /* padding-left: 10px; */
   }
 `;
 
