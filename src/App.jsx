@@ -19,7 +19,6 @@ import {
 import { AnimatePresence } from 'framer-motion';
 import { RestrictedRoute } from 'components/Routes/RestrictedRoute';
 import { PrivateRoute } from 'components/Routes/PrivateRoute';
-import { ToastContainer } from 'react-toastify';
 import ToastifyGlobalStyle from 'components/Ui-Kit/ToastifyGlobalStyle.styled';
 
 const App = () => {
@@ -34,7 +33,6 @@ const App = () => {
   return (
     <>
       <ToastifyGlobalStyle autoClose={5000} />
-      {/* <ToastContainer /> */}
       <AnimatePresence>
         <Suspense fallback={<Loader />}>
           <Routes location={location}>
@@ -74,7 +72,6 @@ const App = () => {
         </Suspense>
       </AnimatePresence>
       <GlobalStyle />
-      {/* <ToastContainer /> */}
     </>
   );
 };

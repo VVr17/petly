@@ -1,5 +1,3 @@
-import { createGlobalStyle } from 'styled-components';
-import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import styled from 'styled-components';
 import { theme } from 'constants/theme';
@@ -71,24 +69,6 @@ const ToastifyGlobalStyle = styled(ToastContainer)`
   .Toastify__progress-bar--error {
     background: linear-gradient(90deg, #eb0a0a 0%, #fea4a4 105.44%);
   }
-
-  .Toastify__progress-bar--animated {
-    animation: Toastify__trackProgress 1s linear;
-  }
-
-  @keyframes Toastify__trackProgress {
-    0% {
-      transform: scaleX(1);
-    }
-    50% {
-      transform: scaleX(0.5);
-    }
-    100% {
-      transform: scaleX(1);
-    }
-  }
 `;
-const ToastStylesComponent = () => {
-  return <ToastContainer css={ToastifyGlobalStyle} />;
-};
+
 export default ToastifyGlobalStyle;
