@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NoticeCategoryItem from './NoticeCategoryItem';
 import { GalleryNotices } from './NoticesCategoryList.styled';
-import { AnimateSharedLayout, LayoutGroup, motion } from 'framer-motion';
+import { LayoutGroup } from 'framer-motion';
 import { pageAnimation } from 'constants/animation';
 
 const NoticesCategoryList = ({ notices }) => {
