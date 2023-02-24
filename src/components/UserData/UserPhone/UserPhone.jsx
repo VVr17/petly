@@ -1,7 +1,9 @@
 import UserInput from 'components/Ui-Kit/UserInput';
+import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 import { useUpdateUserMutation } from 'redux/api/userApi';
+import { FieldWrapper } from '../UserField.styled';
 
 const UserPhone = () => {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -23,7 +25,7 @@ const UserPhone = () => {
     >
       {({ isSubmitting, values, setFieldValue }) => (
         <Form>
-          <div>
+          <FieldWrapper>
             <UserInput
               label="Phone"
               name="phone"
@@ -31,20 +33,21 @@ const UserPhone = () => {
               isDisabled={isDisabled}
             />
             {isDisabled ? (
-              <button
+              <UserUpdateButton
                 type="button"
+                isDisabled={isDisabled}
                 onClick={() => {
                   setIsDisabled(false);
                 }}
-              >
-                {/* <Pencil /> */}
-              </button>
+              />
             ) : (
-              <button type="submit" onClick={handleSubmit}>
-                {/* <галочка /> */}
-              </button>
+              <UserUpdateButton
+                type="submit"
+                isDisabled={isDisabled}
+                onClick={handleSubmit}
+              />
             )}
-          </div>
+          </FieldWrapper>
         </Form>
       )}
     </Formik>
