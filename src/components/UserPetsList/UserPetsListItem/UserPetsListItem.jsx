@@ -17,9 +17,9 @@ const UserPetsListItem = ({ pet, handleDelete }) => {
 
   return (
     <Item>
-      <Image src={photoURL} alt="photo"/>
+      <Image src={photoURL} alt="photo" />
       <InfoBox>
-        <Button onClick={()=>handleDelete(pet._id)}>
+        <Button onClick={() => handleDelete(pet._id)}>
           <RiDeleteBin6Fill style={iconStyle} />
         </Button>
         <Text>
@@ -45,7 +45,7 @@ const UserPetsListItem = ({ pet, handleDelete }) => {
 
 UserPetsListItem.propTypes = {
   pet: PropTypes.object.isRequired,
-  handleDelete: PropTypes.func.isRequired
+  handleDelete: PropTypes.func.isRequired,
 };
 
 export default UserPetsListItem;

@@ -2,23 +2,24 @@ import styled from 'styled-components';
 import { theme, breakpoints } from '../../../constants/theme';
 
 export const Item = styled.li`
-   margin-top 20px;
-   margin-left: auto;
-   margin-right: auto;
-   width: 280px;
-   padding: ${theme.space[4]} ${theme.space[4]} 42px ${theme.space[4]};
-   background-color: ${theme.colors.lightText};
-   background: #FFFFFF;
-   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-   border-radius: 20px;
-   @media(min-width: ${breakpoints[1]}px) {
-      width: 704px;
-      display: flex;
-      padding-bottom: ${theme.space[4]};
-   }
-   @media(min-width: ${breakpoints[2]}px) {
-      width: 820px;
-   }
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  /* width: 280px; */
+  width: 100%;
+  padding: ${theme.space[4]} ${theme.space[4]} 42px ${theme.space[4]};
+  background-color: ${theme.colors.lightText};
+  background: #ffffff;
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  border-radius: 20px;
+  @media (min-width: ${breakpoints[1]}px) {
+    width: 704px;
+    display: flex;
+    padding-bottom: ${theme.space[4]};
+  }
+  @media (min-width: ${breakpoints[2]}px) {
+    width: 820px;
+  }
 `;
 
 export const InfoBox = styled.div`
@@ -33,8 +34,11 @@ export const InfoBox = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 240px;
+  width: 100%;
+  /* height: auto; */
+  /* width: 240px; */
   height: 240px;
+  object-fit: cover;
   background-color: grey;
   border-radius: ${theme.space[4]};
   margin-bottom: ${theme.space[4]};
