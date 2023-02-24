@@ -7,39 +7,42 @@ import {
   useUpdateUserMutation,
 } from 'redux/api/userApi';
 import { FieldWrapper, FormStyled } from '../UserField.styled';
+import { validationSchema } from './validation';
 
 const UserEmail = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const { data } = useGetCurrentUserQuery();
-  const [updateUser] = useUpdateUserMutation();
+  const initialValues = { email: data?.email || '' };
+  const [updateUser, { isLoading }] = useUpdateUserMutation();
 
-  const handleClick = event => {
-    //handlesubmit
-
+  const handleClick = (values, actions) => {
     if (isDisabled) {
-      console.log('disable false');
       setIsDisabled(false);
       return;
     }
-    console.log('submit, disabled true');
-    // updateUser(value);
-    handleSubmit();
+
     setIsDisabled(true);
   };
-  const initialValues = '';
 
-  const handleSubmit = () => {
-    console.log('submit');
+  const handleSubmit = (values, actions) => {
+    if (!isDisabled) {
+      return;
+    }
+
+    // create formData
+    const data = new FormData();
+    data.append('email', values.email);
+    updateUser(data);
   };
 
   return (
     <Formik
       initialValues={initialValues}
-      // validationSchema={ }
+      validationSchema={validationSchema}
       onSubmit={handleSubmit}
       // encType="multipart/form-data"
     >
-      {({ isSubmitting, values, setFieldValue }) => (
+      {/* {({ isSubmitting, values, setFieldValue }) => ( */}
         <Form>
           <FieldWrapper>
             <UserInput
@@ -56,7 +59,7 @@ const UserEmail = () => {
             />
           </FieldWrapper>
         </Form>
-      )}
+      {/* )} */}
     </Formik>
   );
 };
