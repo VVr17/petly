@@ -3,7 +3,6 @@ import { theme, breakpoints } from 'constants/theme';
 import { Field, ErrorMessage } from 'formik';
 
 export const FieldStyle = styled(Field)`
-  position: relative;
   width: 100%;
   border-radius: 40px;
   cursor: pointer;
@@ -44,7 +43,7 @@ export const Label = styled.label`
 
 export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
-  bottom: 0px;
+  bottom: -10px;
   left: 30px;
   font-size: ${theme.fontSizes.xxxs};
   color: red;
@@ -58,4 +57,5 @@ export const StyledSpan = styled.span`
 `;
 export const FieldWrapper = styled.div`
   position: relative;
+  padding-bottom: 6px;
 `;

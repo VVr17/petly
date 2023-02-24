@@ -51,7 +51,7 @@ export const validationSchemaStepTwo = Yup.object().shape({
       return schema;
     }),
 
-  petImage: Yup.mixed().required(),
+  petImage: Yup.mixed().required('Please add the picture'),
   comments: Yup.string()
     .required('Comment is required')
     .min(8, 'Title should be at least 8 characters long')

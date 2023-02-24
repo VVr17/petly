@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { theme, breakpoints } from 'constants/theme';
 
 export const LoadImageCont = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,4 +33,8 @@ export const ImagePreview = styled.img`
   border-radius: 20px;
   background: ${theme.colors.mainBackground};
   object-fit: cover;
+`;
+export const ErrorStyle = styled.div`
+  position: absolute;
+  bottom: 0px;
 `;

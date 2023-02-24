@@ -38,7 +38,7 @@ const LoginForm = () => {
     useEffect(() => {
         if (isAuth) {
             console.log('Congratulations! You are successfully signed up!');
-            navigate('/notices');
+            navigate('/user');
         }
     });
 

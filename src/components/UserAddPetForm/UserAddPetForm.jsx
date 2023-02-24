@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Formik  } from "formik";
+import React, { useState, useEffect } from 'react';
+import { Formik } from 'formik';
 import {
     Container,
     Title,
@@ -21,13 +21,14 @@ import { useGetCurrentUserQuery } from 'redux/api/userApi';
 import { petsApi } from 'redux/api/petsApi';
 import { breakpoints } from "constants/theme";
 
+
 const initialValues = {
-    name: "",
-    birthDate: "",
-    breed: "",
-    imageFile: null,
-    comments: ""
-}
+  name: '',
+  birthDate: '',
+  breed: '',
+  imageFile: null,
+  comments: '',
+};
 
 const UserAddPetForm = ({ closeModal }) => {
     const [currentPart, setCurrentPart] = useState(1);
@@ -37,7 +38,7 @@ const UserAddPetForm = ({ closeModal }) => {
     const [addPetMutation] = petsApi.useAddPetMutation();
     const { refetch: refetchCurrentUser } = useGetCurrentUserQuery()
 
-    useEffect(() => {
+  useEffect(() => {
         let fileReader,
           isCancel = false;
         if (file) {
@@ -57,8 +58,9 @@ const UserAddPetForm = ({ closeModal }) => {
           }
         };
     }, [file]);
+  
 
-    const handleSubmit = async (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting }) => {
         setSubmitting(false);
         closeModal();
         const data = new FormData();
@@ -73,15 +75,15 @@ const UserAddPetForm = ({ closeModal }) => {
         }   catch (error) {
             console.error('Failed to add pet:', error);
         } 
-    };
+  };
 
-    const handleNext = () => {
-        setCurrentPart(2);
-    };
+  const handleNext = () => {
+    setCurrentPart(2);
+  };
 
-    const handleBack = () => {
-        setCurrentPart(1);
-    }
+  const handleBack = () => {
+    setCurrentPart(1);
+  };
 
     return (
         <Container>

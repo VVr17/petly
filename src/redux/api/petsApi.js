@@ -1,6 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { PETS_URL, TAGS_TYPES } from 'constants/api';
 import baseQuery from 'redux/baseQuery';
+import { userApi } from './userApi';
 
 export const petsApi = createApi({
   reducerPath: 'petsApi',
@@ -15,6 +16,14 @@ export const petsApi = createApi({
       }),
       invalidatesTags: [TAGS_TYPES.pet],
       transformResponse: response => response.data,
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          dispatch(userApi.util.invalidateTags([TAGS_TYPES.user]));
+        } catch (err) {
+          console.log('error... ', err);
+        }
+      },
     }),
     deletePet: builder.mutation({
       query: petId => ({
@@ -23,6 +32,14 @@ export const petsApi = createApi({
       }),
       invalidatesTags: [TAGS_TYPES.pet],
       transformResponse: response => response.data,
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          dispatch(userApi.util.invalidateTags([TAGS_TYPES.user]));
+        } catch (err) {
+          console.log('error... ', err);
+        }
+      },
     }),
   }),
 });

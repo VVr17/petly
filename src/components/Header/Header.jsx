@@ -30,19 +30,21 @@ const Header = () => {
 
   const openMenu = () => {
     setMenuIsActive(true);
+    document.body.classList.add('modal-open');
   };
 
   const closeMenu = () => {
     setMenuIsActive(false);
     if (!loginIsActive) {
       setLoginIsActive(true);
+      document.body.classList.remove('modal-open');
     }
   };
 
   const closeMenuRegister = () => {
     setMenuIsActive(false);
     setLoginIsActive(false);
-  }
+  };
 
   return (
     <>
@@ -55,7 +57,17 @@ const Header = () => {
             <PagesBox>
               <Nav closeMenu={closeMenu} />
             </PagesBox>
-            <AuthBox>{isAuth ? <UserNav /> : <AuthNav closeMenu={closeMenu} loginIsActive={loginIsActive} closeMenuRegister={closeMenuRegister} />}</AuthBox>
+            <AuthBox>
+              {isAuth ? (
+                <UserNav />
+              ) : (
+                <AuthNav
+                  closeMenu={closeMenu}
+                  loginIsActive={loginIsActive}
+                  closeMenuRegister={closeMenuRegister}
+                />
+              )}
+            </AuthBox>
             <MenuBox>
               <MenuButton onClick={openMenu}>
                 <VscMenu style={iconStyle} />
@@ -67,7 +79,13 @@ const Header = () => {
 
       <AnimatePresence>
         {menuIsActive ? (
-          <MobMenu closeMenu={closeMenu} isAuth={isAuth} loginIsActive={loginIsActive} closeMenuRegister={closeMenuRegister} key="mobile" />
+          <MobMenu
+            closeMenu={closeMenu}
+            isAuth={isAuth}
+            loginIsActive={loginIsActive}
+            closeMenuRegister={closeMenuRegister}
+            key="mobile"
+          />
         ) : null}
       </AnimatePresence>
     </>
