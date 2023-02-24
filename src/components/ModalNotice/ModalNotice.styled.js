@@ -3,8 +3,11 @@ import { theme, breakpoints } from '../../constants/theme';
 
 
 export const NoticeContainer = styled.div`
-   width: 100%;
-   margin-top: 40px;
+   width: 240px;
+   margin: 60px 20px 40px 20px;
+   @media (min-width: ${breakpoints[1]}px) {
+      width: 660px;
+  }
 `;
 
 export const PetInfo = styled.div`
@@ -154,16 +157,22 @@ export const CommentsTitle = styled.span`
 
 
 export const Buttons = styled.div`
-&:not(:last-child) {
-   margin-left: 20px;
-};
-    @media (min-width: ${breakpoints[1]}px) {
-        display: flex;
+display: flex;
+flex-direction: column;
+
+@media (min-width: ${breakpoints[1]}px) {
+   display: flex;
+   flex-direction: row-reverse;
         justify-content: end;
         padding-right: 16px;
     }
 `;
 
-export const ButtonDiv = styled.div`
-// background-color: blue;
+export const Plug = styled.div`
+   display:block;
+   height: 665px;
+   width: 300px;
+   @media (min-width: ${breakpoints[1]}px) {
+      height: 465px;
+   }
 `

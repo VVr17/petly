@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import { selectIsAuthState } from 'redux/user/userSelectors';
@@ -11,7 +12,7 @@ import Section from 'components/Section';
 import TitlePage from 'components/Ui-Kit/TitlePage';
 import FindPetFilter from 'components/FindPetFilter';
 import SearchForm from 'components/Ui-Kit/SearchForm';
-import { NavContainer } from './Notices.styled';
+import { NavContainer, FormContainer } from './Notices.styled';
 import AddPetButton from 'components/AddPetButton';
 import ModalComponent from 'components/Modal';
 import AddNoticeFormHeader from 'components/AddNoticeForm';
@@ -59,9 +60,9 @@ const Notices = () => {
     const noticesByQuery = notices.filter(notice =>
       notice.title.toLowerCase().includes(query)
     );
-    
-    if(noticesByQuery.length === 0) {
-      toast.info('Not found any ad')
+
+    if (noticesByQuery.length === 0) {
+      toast.info('Not found any ad');
     }
     setvisibleNotices(noticesByQuery);
   };
@@ -84,10 +85,20 @@ const Notices = () => {
 
       <AnimatePresence>
         {isOpen && (
-          <ModalComponent closeModal={closeModal} key="popUp">
-            <AddNoticeFormHeader />
-            <AddPetForm onClose={closeModal} />
-          </ModalComponent>
+          <>
+            (
+            {isAuth ? (
+              <ModalComponent closeModal={closeModal} key="popUp">
+                <FormContainer>
+                  <AddNoticeFormHeader />
+                  <AddPetForm onClose={closeModal} />
+                </FormContainer>
+              </ModalComponent>
+            ) : (
+              <>{toast('You have to register or login to add Pet')}</>
+            )}
+            )
+          </>
         )}
       </AnimatePresence>
     </Section>

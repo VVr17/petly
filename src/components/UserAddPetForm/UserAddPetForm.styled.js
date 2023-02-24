@@ -3,11 +3,15 @@ import { Field, Form, ErrorMessage } from "formik";
 import { theme, breakpoints } from "constants/theme";
 
 export const Container = styled.div`
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 280px;
+    margin: 40px 0 40px 0;
+    @media (min-width: ${breakpoints[1]}px) {
+       width: 610px;
+   }
 `;
 
 export const Title = styled.h2`
