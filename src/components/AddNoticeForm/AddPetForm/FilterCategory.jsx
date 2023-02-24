@@ -5,7 +5,6 @@ import {
   ButtonFilterLabel,
   ButtonFilterInput,
 } from './AddPetForm.styled';
-import Button from 'components/Ui-Kit/Button';
 import PropTypes from 'prop-types';
 
 const FilterCategory = ({ value }) => {
@@ -14,9 +13,6 @@ const FilterCategory = ({ value }) => {
       <ButtonFilterItem>
         <ButtonFilterLabel name="filter" selected={value === 'lost-found'}>
           lost/found
-          {/* <Button name="transparent" onClick={() => setlLostFound(true)}>
-            lost/found
-          </Button> */}
           <ButtonFilterInput
             type="radio"
             name="category"
@@ -28,9 +24,6 @@ const FilterCategory = ({ value }) => {
       <ButtonFilterItem>
         <ButtonFilterLabel name="filter" selected={value === 'in-good-hands'}>
           in good hands
-          {/* <Button name="transparent" onClick={() => setInGoodHands(true)}>
-            in good hands
-          </Button> */}
           <ButtonFilterInput
             type="radio"
             name="category"
@@ -42,9 +35,6 @@ const FilterCategory = ({ value }) => {
       <ButtonFilterItem>
         <ButtonFilterLabel name="filter" selected={value === 'sell'}>
           sell
-          {/* <Button name="transparent" onClick={() => setSell(true)}>
-            sell
-          </Button> */}
           <ButtonFilterInput
             type="radio"
             name="category"

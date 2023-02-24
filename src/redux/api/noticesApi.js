@@ -58,10 +58,12 @@ export const noticesApi = createApi({
       }),
       transformResponse: response => response.data,
       invalidatesTags: [TAGS_TYPES.notice],
-      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+      async onQueryStarted(id, { dispatch, queryFulfilled, getState }) {
         try {
-          await queryFulfilled;
-          dispatch(addFavorites(id));
+          const {
+            meta: { response },
+          } = await queryFulfilled;
+          if (response.status === 200) dispatch(addFavorites(id));
         } catch (err) {
           console.log('error... ', err);
         }
@@ -77,7 +79,10 @@ export const noticesApi = createApi({
       async onQueryStarted(id, { dispatch, queryFulfilled, getState }) {
         try {
           await queryFulfilled;
-          dispatch(removeFavorites(id));
+          const {
+            meta: { response },
+          } = await queryFulfilled;
+          if (response.status === 200) dispatch(removeFavorites(id));
         } catch (err) {
           console.log('error... ', err);
         }
