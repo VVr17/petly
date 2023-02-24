@@ -18,11 +18,11 @@ export const validationSchemaStepOne = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email address')
     .matches(
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      /^([a-zA-Z][\w+-]+(?:\.\w+)?)@([\w-]+(?:\.[a-zA-Z]{2,10})+)$/,
       'Please enter a valid email address, example: "mail@mail.com"'
     )
     .required('Email is required')
-    .min(10, 'Email should be at least 10 characters long')
+    .min(12, 'Email should be at least 12 characters long')
     .max(63, 'Email should be up to 63 characters long'),
   password: Yup.string()
     .matches(
@@ -39,17 +39,23 @@ export const validationSchemaStepOne = Yup.object().shape({
 
 
 export const validationSchemaStepTwo = Yup.object().shape({
-  name: Yup.string().min(4, 'Name should have at least 4 characters').required('Name is required'),
+  name: Yup.string()
+    .min(3, 'Name should have at least 3 characters')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{7,}$/,
+      'Only letters can be accepted')
+    .max(12, 'Name should be up to 12 characters long')
+    .required('Name is required'),
   city: Yup.string()
     .matches(
-      /^\s*(?:\w+\s*,\s*){1,}(?:\w+\s*)$/,
+      /^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*,\s*[a-zA-Zа-яА-Я\s]+$/,
       'Should be at least 2 words separated by comma'
      )
     .min(3, 'City should have at least 3 characters')
     .required('City is required'),
   phone: Yup.string()
     .matches(
-      /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
+      /^\+380\d{9}$/,
       'Number should begin with +380 and contain 13 digits'
     )
     .min(13, 'Phone number should be 13 digits')
