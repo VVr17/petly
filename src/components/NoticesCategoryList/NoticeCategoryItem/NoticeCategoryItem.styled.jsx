@@ -66,7 +66,6 @@ export const ContainerButton = styled.div`
   gap: 12px;
   padding: 0 16px 12px;
   margin-top: auto;
-
   ${theme.mq.tabletOnly} {
     grid-template-columns: repeat(auto-fill, minmax(336px, 1fr));
     padding: 0 44px 12px;
@@ -87,7 +86,6 @@ export const ToggleFavoriteButton = styled.button`
   cursor: pointer;
   align-items: center;
   justify-content: center;
-
   svg {
     fill: ${({ theme, isFavorite }) =>
       isFavorite ? theme.colors.accent : theme.colors.secondaryBackground};

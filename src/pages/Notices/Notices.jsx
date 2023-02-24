@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import { selectIsAuthState } from 'redux/user/userSelectors';
 import { selectStatusFilter } from 'redux/filter/filterSelectors';
@@ -20,6 +21,7 @@ import { AnimatePresence } from 'framer-motion';
 
 const Notices = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [visibleNotices, setvisibleNotices] = useState([]);
 
   const isAuth = useSelector(selectIsAuthState);
   const handleClick = () => {
@@ -40,14 +42,33 @@ const Notices = () => {
     isFetching,
   } = useGetNoticeByCategoryQuery(category, { skip: !category });
 
-  if (!notices) return;
-  const showNotices = notices && !error && !isFetching;
+  useEffect(() => {
+    if (notices) {
+      setvisibleNotices(notices);
+    }
+  }, [notices]);
+
+  const searchQuery = (e, value) => {
+    e.preventDefault();
+    const query = value.toLowerCase();
+
+    const noticesByQuery = notices.filter(notice =>
+      notice.title.toLowerCase().includes(query)
+    );
+    
+    if(noticesByQuery.length === 0) {
+      toast.info('Not found any ad')
+    }
+    setvisibleNotices(noticesByQuery);
+  };
+
+  const showNotices = visibleNotices && !error && !isFetching;
 
   return (
     <Section>
       <TitlePage name={'Find your favorite pet'} />
 
-      <SearchForm />
+      <SearchForm handleSubmit={searchQuery} />
 
       <NavContainer>
         <FindPetFilter />
@@ -55,7 +76,7 @@ const Notices = () => {
       </NavContainer>
 
       {isFetching && <Loader />}
-      {showNotices && <NoticesCategoryList notices={notices} />}
+      {showNotices && <NoticesCategoryList notices={visibleNotices} />}
 
       <AnimatePresence>
         {isOpen && (

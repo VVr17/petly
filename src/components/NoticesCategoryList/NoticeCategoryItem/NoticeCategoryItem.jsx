@@ -1,7 +1,7 @@
 import { useState, React } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import {
   useDeleteNoticeMutation,
   useAddNoticeToFavoriteMutation,
@@ -9,7 +9,7 @@ import {
   useGetUserNoticesQuery,
   useGetFavoritesNoticesQuery,
 } from 'redux/api/noticesApi';
-import { selectIsAuthState } from 'redux/user/userSelectors';
+import { selectIsAuthState, selectUserState } from 'redux/user/userSelectors';
 import { selectStatusFilter } from 'redux/filter/filterSelectors';
 import getAge from '../../../js';
 import Button from 'components/Ui-Kit/Button';
@@ -17,7 +17,7 @@ import ModalNotice from 'components/ModalNotice';
 import ModalComponent from 'components/Modal';
 import { AnimatePresence } from 'framer-motion';
 import { IoTrashSharp } from 'react-icons/io5';
-import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io';
+import { IoIosHeart } from 'react-icons/io';
 import {
   CardNotice,
   ImageBox,
@@ -45,11 +45,14 @@ const NoticeCategoryItem = ({
   location,
   birthDate,
   price,
+  owner,
 }) => {
-  const isAuth = useSelector(selectIsAuthState);
-  const status = useSelector(selectStatusFilter);
-  const showButtonDelete = status === 'user';
+  const isAuth = useSelector(selectIsAuthState);  
+  const user = useSelector(selectUserState);   
   const favorites = useSelector(selectFavoritesState);
+
+  const showButtonDelete = user ? owner === user._id : false; 
+
   const place = location.split(',');
   const city = place[0];
   const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
@@ -67,17 +70,25 @@ const NoticeCategoryItem = ({
 
   const toggleFavorite = async noticeId => {
     if (!isAuth) {
-      toast.info('Please, register or login to add notice to favorite');
+      toast.warn('Please, register or login to add notice to favorite');
       return;
     }
-
     if (isFavorite) {
       await deleteNoticeFromFavorite(noticeId);
-      toast.info(`Notice has been remove from favorites`);
+      toast.info(`Notice has been remove from favorites`);      
       return;
     }
     await addNoticeToFavorite(noticeId);
-    toast.info(`Notice has been added to favorites`);
+    toast.info(`Notice with has been added to favorites`);
+  };
+
+  const onDelete = () => {
+    const confirmed = confirm('Are you sure you want to delete this ad?');
+    if (confirmed) {
+      deleteNotice(_id);
+    } else {
+      return;
+    }   
   };
 
   const isLoading = deleting || adding || removing;
@@ -146,7 +157,7 @@ const NoticeCategoryItem = ({
               name="learnMore"
               type="button"
               width="248px"
-              onClick={() => deleteNotice(_id)}
+              onClick={() => onDelete()}
             >
               Delete
               <IoTrashSharp style={{ marginLeft: '12px' }} />
@@ -173,6 +184,7 @@ NoticeCategoryItem.propTypes = {
   breed: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   birthDate: PropTypes.string.isRequired,
+  owner: PropTypes.string.isRequired,
   price: PropTypes.string,
 };
 
