@@ -1,61 +1,150 @@
 import styled from 'styled-components';
-import { theme, breakpoints } from 'constants/theme';
+import { theme, breakpoints } from '../../../constants/theme';
 import { Field, ErrorMessage } from 'formik';
+import { RiPencilFill } from 'react-icons/ri';
 
-export const FieldStyle = styled(Field)`
-  width: 100%;
-  border-radius: 40px;
+export const Label = styled.label`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+  font-family: ${theme.fontFamily.manrope};
+  font-style: normal;
+  font-weight: ${theme.fontWeight.medium};
+  font-size: ${theme.fontSizes.xxxs};
+  line-height: 1.33;
+  color: ${theme.colors.mainText};
+
+  @media (min-width: ${breakpoints[1]}px) {
+    font-size: ${theme.fontSizes.s};
+    line-height: 1.39;
+    width: 100%;
+    margin-right: 30px;
+  }
+
+  &:last-of-type {
+    margin-bottom: 40px;
+
+    @media (min-width: ${breakpoints[1]}px) {
+      margin-bottom: 30px;
+    }
+
+    @media (min-width: ${breakpoints[1]}px) {
+      margin-bottom: 24px;
+    }
+  }
+`;
+
+export const Input = styled(Field)`
+  width: 160px;
+  height: 24px;
+  margin-right: 13px;
+  margin-left: auto;
+  padding-left: 15px;
+
   cursor: pointer;
-  margin-bottom: 16px;
+  border-radius: 40px;
   border: 1px solid rgba(245, 146, 86, 0.5);
   background-color: ${theme.colors.mainBackground};
   font-family: ${theme.fontFamily.manrope};
   font-size: ${theme.fontSizes.s};
   font-weight: ${theme.fontWeight.normal};
-  color: ${theme.colors.primaryText};
-  padding-left: 28px;
-  padding-right: 28px;
-  padding-top: 9px;
-  padding-bottom: 9px;
-  ${theme.mq.mobileOnly} {
-    font-size: ${theme.fontSizes.xxs};
-    padding: 12px 14px;
-  }
-`;
+  color: ${theme.colors.mainText};
 
-export const Label = styled.label`
-  display: block;
-  margin-bottom: 12px;
   ${theme.mq.mobileOnly} {
-    margin-bottom: 8px;
+    font-size: ${theme.fontSizes.xxxs};
   }
-  font-family: ${theme.fontFamily.manrope};
-  font-style: normal;
-  font-weight: ${theme.fontWeight.medium};
-  font-size: ${theme.fontSizes.s};
-  line-height: 1.44;
+
   @media (min-width: ${breakpoints[1]}px) {
-    font-size: ${theme.fontSizes.l};
-    margin-top: 12px;
-  }
-  // position: relative;
-`;
-
-export const ErrorStyle = styled(ErrorMessage)`
-  position: absolute;
-  bottom: -10px;
-  left: 30px;
-  font-size: ${theme.fontSizes.xxxs};
-  color: red;
-  ${theme.mq.mobileOnly} {
-    transform: translate(0px, 0px);
+    width: 216px;
+    height: 32px;
+    margin-right: 24px;
+    padding-left: 10px;
   }
 `;
 
-export const StyledSpan = styled.span`
-  color: ${theme.colors.accent};
+export const Button = styled.button`
+  width: 20px;
+  height: 20px;
+  padding: 3px;
+  border-radius: 50%;
+  border: inherit;
+  background-color: ${theme.colors.mainBackground};
+
+  @media (min-width: ${breakpoints[1]}px) {
+    width: 32px;
+    height: 32px;
+  }
 `;
-export const FieldWrapper = styled.div`
-  position: relative;
-  padding-bottom: 6px;
+
+export const Pencil = styled(RiPencilFill)`
+  fill: ${theme.colors.accent};
+  display: inline-block;
+
+  @media (min-width: ${breakpoints[1]}px) {
+    width: 20px;
+    height: 20px;
+  }
 `;
+
+// import styled from 'styled-components';
+// import { theme, breakpoints } from 'constants/theme';
+// import { Field, ErrorMessage } from 'formik';
+
+// export const FieldStyle = styled(Field)`
+//   width: 100%;
+//   border-radius: 40px;
+//   cursor: pointer;
+//   margin-bottom: 16px;
+//   border: 1px solid rgba(245, 146, 86, 0.5);
+//   background-color: ${theme.colors.mainBackground};
+//   font-family: ${theme.fontFamily.manrope};
+//   font-size: ${theme.fontSizes.s};
+//   font-weight: ${theme.fontWeight.normal};
+//   color: ${theme.colors.primaryText};
+//   padding-left: 28px;
+//   padding-right: 28px;
+//   padding-top: 9px;
+//   padding-bottom: 9px;
+//   ${theme.mq.mobileOnly} {
+//     font-size: ${theme.fontSizes.xxs};
+//     padding: 12px 14px;
+//   }
+// `;
+
+// export const Label = styled.label`
+//   display: block;
+//   margin-bottom: 12px;
+//   ${theme.mq.mobileOnly} {
+//     margin-bottom: 8px;
+//   }
+//   font-family: ${theme.fontFamily.manrope};
+//   font-style: normal;
+//   font-weight: ${theme.fontWeight.medium};
+//   font-size: ${theme.fontSizes.s};
+//   line-height: 1.44;
+//   @media (min-width: ${breakpoints[1]}px) {
+//     font-size: ${theme.fontSizes.l};
+//     margin-top: 12px;
+//   }
+//   // position: relative;
+// `;
+
+// export const ErrorStyle = styled(ErrorMessage)`
+//   position: absolute;
+//   bottom: -10px;
+//   left: 30px;
+//   font-size: ${theme.fontSizes.xxxs};
+//   color: red;
+//   ${theme.mq.mobileOnly} {
+//     transform: translate(0px, 0px);
+//   }
+// `;
+
+// export const StyledSpan = styled.span`
+//   color: ${theme.colors.accent};
+// `;
+// export const FieldWrapper = styled.div`
+//   position: relative;
+//   padding-bottom: 6px;
+// `;

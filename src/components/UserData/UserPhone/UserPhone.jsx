@@ -1,6 +1,6 @@
 import UserInput from 'components/Ui-Kit/UserInput';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import React from 'react';
+import React, { useState } from 'react';
 import { useUpdateUserMutation } from 'redux/api/userApi';
 
 const UserPhone = () => {
@@ -12,6 +12,7 @@ const UserPhone = () => {
     updateUser(value);
     setIsDisabled(true);
   };
+  const initialValues = '';
 
   return (
     <Formik
