@@ -11,7 +11,7 @@ export const ModalWrapper = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  // position: relative;
+  position: relative;
   overflow-y: auto;
   background-color: ${theme.colors.cardBackground};
   border-radius: 40px;
@@ -50,14 +50,15 @@ export const FormWrapper = styled(Form)`
   display: flex;
   flex-direction: column;
   margin-top: 40px;
-  margin-bottom: 40px;
-  // gap: 30px;
+  /* margin-bottom: 40px;  */
+  /* gap: 30px; */
 `;
 
 export const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  margin-bottom: 50px;
+  margin-top: 40px;
   width: 100%;
 `;
 

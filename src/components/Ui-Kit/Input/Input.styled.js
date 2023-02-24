@@ -6,7 +6,7 @@ export const FieldStyle = styled(Field)`
   width: 100%;
   border-radius: 40px;
   cursor: pointer;
-  margin-bottom: 16px;
+  margin: 0;
   border: 1px solid rgba(245, 146, 86, 0.5);
   background-color: ${theme.colors.mainBackground};
   font-family: ${theme.fontFamily.manrope};
@@ -33,7 +33,7 @@ export const Label = styled.label`
 `;
 export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
-  bottom: 0px;
+  bottom: -10px;
   left: 30px;
   font-size: ${theme.fontSizes.xxxs};
   color: red;
@@ -47,4 +47,5 @@ export const StyledSpan = styled.span`
 `;
 export const FieldWrapper = styled.div`
   position: relative;
+  padding-bottom: 6px;
 `;
