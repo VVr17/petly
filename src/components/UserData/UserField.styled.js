@@ -20,4 +20,8 @@ export const FieldWrapper = styled.div`
     width: 100%;
     margin-right: 30px;
   }
+
+  ${theme.mq.desktop} {
+    margin-right: 0;
+  }
 `;

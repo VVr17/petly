@@ -7,27 +7,31 @@ import {
   LabelStyled,
   ControlBox,
   Span,
-  Label, 
+  Label,
   FieldStyled,
   CommentsBox,
-  ErrorStyle
-} from "./UserAddPetForm.styled";
+  ErrorStyle,
+} from './UserAddPetForm.styled';
 import PropTypes from 'prop-types';
-import PartFirst from "./PartFirst";
-import PartSecond from "./PartSecond";
-import UserUploadImg from "components/UserUploadImg";
-import Button from "components/Ui-Kit/Button";
+import PartFirst from './PartFirst';
+import PartSecond from './PartSecond';
+import UserUploadImg from 'components/UserUploadImg';
+import Button from 'components/Ui-Kit/Button';
 import { petsApi } from 'redux/api/petsApi';
 import Loader from 'components/Loader';
 
-import { initialValues, validationSchemaPartOne, validationSchemaPartTwo} from './Validation';
+import {
+  initialValues,
+  validationSchemaPartOne,
+  validationSchemaPartTwo,
+} from './Validation';
 
 const UserAddPetForm = ({ closeModal }) => {
-    const [currentPart, setCurrentPart] = useState(1);
-    const [image, setImage] = useState(null);
-    const [file, setFile] = useState(null);
-    const [fileDataURL, setFileDataURL] = useState(null);
-    const [addPetMutation, { isLoading }] = petsApi.useAddPetMutation();
+  const [currentPart, setCurrentPart] = useState(1);
+  const [image, setImage] = useState(null);
+  const [file, setFile] = useState(null);
+  const [fileDataURL, setFileDataURL] = useState(null);
+  const [addPetMutation, { isLoading }] = petsApi.useAddPetMutation();
 
   useEffect(() => {
     let fileReader,
@@ -49,16 +53,15 @@ const UserAddPetForm = ({ closeModal }) => {
       }
     };
   }, [file]);
-  
-   function getFullMonth(date) {
+
+  function getFullMonth(date) {
     return date < 10 ? '0' + date : date;
-  };
+  }
 
   const handleSubmit = async (values, { setSubmitting }) => {
     if (currentPart < 2) {
       setCurrentPart(2);
     } else {
-
       const dateMDY = `${getFullMonth(
         values.birthDate.getDate()
       )}.${getFullMonth(
@@ -76,7 +79,7 @@ const UserAddPetForm = ({ closeModal }) => {
         const response = await addPetMutation(data);
       } catch (error) {
         console.error('Failed to add pet:', error);
-      } 
+      }
       closeModal();
     }
     setSubmitting(false);
@@ -101,50 +104,70 @@ const UserAddPetForm = ({ closeModal }) => {
         }
         onSubmit={handleSubmit}
         encType="multipart/form-data"
-       >
-      {({ isSubmitting, values, setFieldValue }) => (
-        <FormStyled>
-          {currentPart === 1 && <PartFirst handleNext={handleNext} closeModal={closeModal} />}
-          {currentPart === 2 &&
-            <PartSecond>
-              <>
-                <LabelStyled htmlFor="imageFile">Add photo and some comments</LabelStyled>
-                <UserUploadImg
-                  name="imageFile"
-                  fileDataURL={fileDataURL}
-                  handleChange={e => {
-                  setFile(e.currentTarget.files[0]);
-                  setFieldValue('imageFile', e.currentTarget.files[0]);
-                  }}
-                />
-                <CommentsBox>
-                  <Label htmlFor="comments">Comments</Label>
-                  <FieldStyled
-                    id="comments"
-                    name="comments"
-                    type="text"
-                    as="textarea"
-                    placeholder="Type comments"
-                    onChange={e => {
-                      setFieldValue('comments', e.target.value);
-                    }}                   
+      >
+        {({ isSubmitting, values, setFieldValue }) => (
+          <FormStyled>
+            {currentPart === 1 && (
+              <PartFirst handleNext={handleNext} closeModal={closeModal} />
+            )}
+            {currentPart === 2 && (
+              <PartSecond>
+                <>
+                  <LabelStyled htmlFor="imageFile">
+                    Add photo and some comments
+                  </LabelStyled>
+                  <UserUploadImg
+                    name="imageFile"
+                    fileDataURL={fileDataURL}
+                    handleChange={e => {
+                      setFile(e.currentTarget.files[0]);
+                      setFieldValue('imageFile', e.currentTarget.files[0]);
+                    }}
                   />
-                  <ErrorStyle name="comments" component="div" />
-                </CommentsBox>
-              </>
-            </PartSecond>}
+                  <CommentsBox>
+                    <Label htmlFor="comments">Comments</Label>
+                    <FieldStyled
+                      id="comments"
+                      name="comments"
+                      type="text"
+                      as="textarea"
+                      placeholder="Type comments"
+                      onChange={e => {
+                        setFieldValue('comments', e.target.value);
+                      }}
+                    />
+                    <ErrorStyle name="comments" component="div" />
+                  </CommentsBox>
+                </>
+              </PartSecond>
+            )}
             <ControlBox>
-              {currentPart === 1 &&
-                <Button name="transparent" type="button" width="100%" onClick={closeModal}>
+              {currentPart === 1 && (
+                <Button
+                  name="transparent"
+                  type="button"
+                  width="100%"
+                  onClick={closeModal}
+                >
                   <Span>Cancel</Span>
                 </Button>
-              }
-              {currentPart === 2 &&
-                <Button name="transparent" type="button" width="100%" onClick={handleBack}>
+              )}
+              {currentPart === 2 && (
+                <Button
+                  name="transparent"
+                  type="button"
+                  width="100%"
+                  onClick={handleBack}
+                >
                   <Span>Back</Span>
                 </Button>
-              }
-              <Button name="filled" type="submit" width="100%" disabled={isSubmitting}>
+              )}
+              <Button
+                name="filled"
+                type="submit"
+                width="100%"
+                disabled={isSubmitting}
+              >
                 {currentPart < 2 ? <Span>Next</Span> : <Span>Done</Span>}
               </Button>
             </ControlBox>
@@ -156,7 +179,7 @@ const UserAddPetForm = ({ closeModal }) => {
 };
 
 UserAddPetForm.propTypes = {
-    closeModal: PropTypes.func.isRequired
+  closeModal: PropTypes.func.isRequired,
 };
 
 export default UserAddPetForm;

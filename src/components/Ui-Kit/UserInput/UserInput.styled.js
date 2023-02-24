@@ -9,6 +9,7 @@ export const Label = styled.label`
   width: 100%;
   display: flex;
   align-items: center;
+  margin-right: 13px;
 `;
 
 export const Title = styled.span`
@@ -32,7 +33,6 @@ export const Input = styled(Field)`
   width: 100%;
   padding-top: 4px;
   padding-bottom: 4px;
-  margin-right: 13px;
   padding-left: 12px;
   padding-right: 12px;
 
@@ -59,7 +59,7 @@ export const Input = styled(Field)`
   }
 
   @media (min-width: ${breakpoints[1]}px) {
-    width: 216px;
+    /* width: 216px; */
     /* height: 32px; */
     margin-right: 24px;
     /* padding-left: 10px; */

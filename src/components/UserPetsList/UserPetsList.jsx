@@ -1,11 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import {
-  Container,
-  Title,
-  Box,
-  List,
-} from './UserPetsList.styled';
+import { Container, Title, Box, List } from './UserPetsList.styled';
 import { useGetCurrentUserQuery } from 'redux/api/userApi';
 import { petsApi } from 'redux/api/petsApi';
 import UserAddPetForm from 'components/UserAddPetForm';
@@ -19,7 +14,8 @@ const UserPetsList = () => {
   const [pets, setPets] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const [deletePetMutation] = petsApi.useDeletePetMutation();
-  const { data: currentUserData, refetch: refetchCurrentUser } = useGetCurrentUserQuery();
+  const { data: currentUserData, refetch: refetchCurrentUser } =
+    useGetCurrentUserQuery();
   let dataPets = currentUserData ? currentUserData : [];
 
   useEffect(() => {
@@ -29,7 +25,7 @@ const UserPetsList = () => {
   }, [dataPets]);
 
   const handleDelete = async petId => {
-    window.alert("Pet has been deleted?")
+    window.alert('Pet has been deleted?');
     try {
       const response = await deletePetMutation(petId);
       await refetchCurrentUser();
@@ -45,6 +41,7 @@ const UserPetsList = () => {
 
   const closeModal = () => {
     setIsOpen(false);
+    document.body.classList.remove('modal-open');
   };
 
   return (
