@@ -2,7 +2,7 @@ import { breakpoints, theme } from 'constants/theme';
 import styled from 'styled-components';
 
 export const FieldWrapper = styled.div`
-  max-width: 379px;
+  /* max-width: 379px; */
   display: flex;
   justify-content: space-between;
   align-items: baseline;
