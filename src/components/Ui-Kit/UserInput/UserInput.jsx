@@ -1,14 +1,7 @@
 import React from 'react';
 import { Field, ErrorMessage } from 'formik';
 import PropTypes from 'prop-types';
-// import {
-//   ErrorStyle,
-//   FieldStyle,
-//   StyledSpan,
-//   Label,
-//   FieldWrapper,
-// } from './Input.styled';
-import { Button, Input, Label, Pencil } from './UserInput.styled';
+import { ErrorStyle, Input } from './UserInput.styled';
 
 const UserInput = ({
   label,
@@ -23,32 +16,37 @@ const UserInput = ({
   isDisabled,
 }) => {
   return (
-    // <FieldWrapper>
-    //   <Label htmlFor={name}>
-    //     {label}
-    //     <StyledSpan>{span}</StyledSpan>
-    //   </Label>
-    //   <FieldStyle
-    //     type={type}
-    //     name={name}
-    //     id={id}
-    //     placeholder={placeholder}
-    //     autoComplete={autocomplete}
-    //     as={as}
-    //   />
-    //   <ErrorStyle name={name} component="div" />
-    //   {children}
-    // </FieldWrapper>
-
-    <Label>
-      Phone:
-      <Input name="phone" type="phone" />
-      <Button type="submit">
-        <Pencil />
-      </Button>
-    </Label>
+    <label>
+      {label}
+      <Input
+        name={name}
+        type={type}
+        autocomplete={autocomplete}
+        isDisabled={isDisabled}
+        placeholder={placeholder}
+      />
+      {children}
+      <ErrorStyle name={name} component="div" />
+    </label>
   );
 };
+
+// <FieldWrapper>
+//   <Label htmlFor={name}>
+//     {label}
+//     <StyledSpan>{span}</StyledSpan>
+//   </Label>
+//   <FieldStyle
+//     type={type}
+//     name={name}
+//     id={id}
+//     placeholder={placeholder}
+//     autoComplete={autocomplete}
+//     as={as}
+//   />
+//   <ErrorStyle name={name} component="div" />
+//   {children}
+// </FieldWrapper>
 
 export default UserInput;
 

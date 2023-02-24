@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { theme, breakpoints } from '../../../constants/theme';
 import { Field, ErrorMessage } from 'formik';
-import { RiPencilFill } from "react-icons/ri";
+import { RiPencilFill } from 'react-icons/ri';
 
 export const Label = styled.label`
   display: flex;
@@ -15,25 +15,25 @@ export const Label = styled.label`
   line-height: 1.33;
   color: ${theme.colors.mainText};
 
-  @media(min-width: ${breakpoints[1]}px) {
+  @media (min-width: ${breakpoints[1]}px) {
     font-size: ${theme.fontSizes.s};
     line-height: 1.39;
     width: 100%;
     margin-right: 30px;
   }
 
-  &:last-of-type  {
+  &:last-of-type {
     margin-bottom: 40px;
 
-    @media(min-width: ${breakpoints[1]}px) {
+    @media (min-width: ${breakpoints[1]}px) {
       margin-bottom: 30px;
     }
 
-    @media(min-width: ${breakpoints[1]}px) {
+    @media (min-width: ${breakpoints[1]}px) {
       margin-bottom: 24px;
     }
   }
-`
+`;
 
 export const Input = styled(Field)`
   width: 160px;
@@ -55,13 +55,13 @@ export const Input = styled(Field)`
     font-size: ${theme.fontSizes.xxxs};
   }
 
-  @media(min-width: ${breakpoints[1]}px) {
+  @media (min-width: ${breakpoints[1]}px) {
     width: 216px;
     height: 32px;
     margin-right: 24px;
     padding-left: 10px;
   }
-`
+`;
 
 export const Button = styled.button`
   width: 20px;
@@ -71,18 +71,18 @@ export const Button = styled.button`
   border: inherit;
   background-color: ${theme.colors.mainBackground};
 
-  @media(min-width: ${breakpoints[1]}px) {
+  @media (min-width: ${breakpoints[1]}px) {
     width: 32px;
     height: 32px;
   }
-`
+`;
 
 export const Pencil = styled(RiPencilFill)`
   fill: ${theme.colors.accent};
   display: inline-block;
 
-  @media(min-width: ${breakpoints[1]}px) {
-  width: 20px;
-  height: 20px;
+  @media (min-width: ${breakpoints[1]}px) {
+    width: 20px;
+    height: 20px;
   }
-`
+`;
