@@ -18,6 +18,8 @@ import {
 import PropTypes from 'prop-types';
 
 import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
+import { useSelector } from 'react-redux';
+import { selectUserState } from 'redux/user/userSelectors';
 
 const MyDatePicker = ({
   name = '',
@@ -49,12 +51,14 @@ const MyDatePicker = ({
 
 const UserBirthday = () => {
   const [isDisabled, setIsDisabled] = useState(true);
-  const { data } = useGetCurrentUserQuery();
+  // const { data } = useGetCurrentUserQuery();
   // console.log('data', data);
+  const user = useSelector(selectUserState);
   // const dataBirthday = data.birthday;
   // console.log('data.birthday', dataBirthday);
-  const parsedDate = convertStringToDate(data?.birthday || '00.00.0000');
+  const parsedDate = convertStringToDate(user?.birthday || '00.00.0000');
   // console.log('parsedDate', parsedDate);
+  const initialValues = { birthday: user?.birthday || '' };
 
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
@@ -76,8 +80,6 @@ const UserBirthday = () => {
     }
     setIsDisabled(true);
   };
-
-  const initialValues = { birthday: data?.birthday || '' };
 
   const handleSubmit = values => {
     if (!isDisabled) {
@@ -109,7 +111,7 @@ const UserBirthday = () => {
 
             <MyDatePicker
               isDisabled={isDisabled}
-              placeholder={data?.birthday || ''}
+              placeholder={user?.birthday || ''}
               val={parsedDate}
               name="birthday"
               handleChange={date => {

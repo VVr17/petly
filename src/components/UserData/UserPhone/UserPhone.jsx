@@ -2,19 +2,19 @@ import UserInput from 'components/Ui-Kit/UserInput';
 import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
   useGetCurrentUserQuery,
   useUpdateUserMutation,
 } from 'redux/api/userApi';
+import { selectUserState } from 'redux/user/userSelectors';
 import { FieldWrapper, FormStyled } from '../UserField.styled';
 import { validationSchema } from './validation';
 
 const UserPhone = () => {
   const [isDisabled, setIsDisabled] = useState(true);
-  const { data } = useGetCurrentUserQuery();
-  console.log('data', data);
-  const initialValues = { phone: data?.phone || '' };
-  console.log('initialValues', initialValues);
+  const user = useSelector(selectUserState);
+  const initialValues = { phone: user.phone || '' };
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
   const handleClick = (values, actions) => {
@@ -52,7 +52,7 @@ const UserPhone = () => {
               name="phone"
               type="phone"
               disabled={isDisabled}
-              placeholder={initialValues.phone}
+              placeholder={user.phone || ''}
             />
             <UserUpdateButton
               type="submit"

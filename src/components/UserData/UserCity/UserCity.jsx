@@ -2,17 +2,19 @@ import UserInput from 'components/Ui-Kit/UserInput';
 import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
   useGetCurrentUserQuery,
   useUpdateUserMutation,
 } from 'redux/api/userApi';
+import { selectUserState } from 'redux/user/userSelectors';
 import { FieldWrapper, FormStyled } from '../UserField.styled';
 import { validationSchema } from './validation';
 
 const UserCity = () => {
   const [isDisabled, setIsDisabled] = useState(true);
-  const { data } = useGetCurrentUserQuery();
-  const initialValues = { city: data?.city || '' };
+  const user = useSelector(selectUserState);
+  const initialValues = { city: user.city || '' };
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
   const handleClick = (values, actions) => {
@@ -50,7 +52,7 @@ const UserCity = () => {
               name="city"
               type="city"
               disabled={isDisabled}
-              placeholder={data?.city || ''}
+              placeholder={user.city || ''}
             />
             <UserUpdateButton
               type="submit"
