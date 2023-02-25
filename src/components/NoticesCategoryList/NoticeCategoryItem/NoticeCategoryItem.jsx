@@ -80,7 +80,7 @@ const NoticeCategoryItem = ({
       return;
     }
     await addNoticeToFavorite(noticeId);
-    toast.info(`Notice with has been added to favorites`);
+    toast.info(`Notice has been added to favorites`);
   };
 
   const onDelete = () => {

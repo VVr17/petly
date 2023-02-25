@@ -11,9 +11,24 @@ import {
   iconStyle,
 } from './UserPetsListItem.styled';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
+import { useDeletePetMutation } from 'redux/api/petsApi';
+import { useGetCurrentUserQuery } from 'redux/api/userApi';
+import { toast } from 'react-toastify';
 
-const UserPetsListItem = ({ pet, handleDelete }) => {
+const UserPetsListItem = ({ pet }) => {
   const { name, birthDate, breed, comments, photoURL } = pet;
+  const [deletePetMutation, { isLoading }] = useDeletePetMutation();
+
+  const handleDelete = async petId => {
+    window.alert('Are you really want to delete your pet?');
+    try {
+      const response = await deletePetMutation(petId);
+      // console.log('Pet deleted!');
+      toast.info(`Pet has been deleted`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Item>
@@ -45,7 +60,7 @@ const UserPetsListItem = ({ pet, handleDelete }) => {
 
 UserPetsListItem.propTypes = {
   pet: PropTypes.object.isRequired,
-  handleDelete: PropTypes.func.isRequired,
+  // handleDelete: PropTypes.func.isRequired,
 };
 
 export default UserPetsListItem;

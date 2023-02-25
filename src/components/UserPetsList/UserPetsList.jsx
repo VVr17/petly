@@ -13,9 +13,7 @@ import AddPetButton from 'components/AddPetButton';
 const UserPetsList = () => {
   const [pets, setPets] = useState();
   const [isOpen, setIsOpen] = useState(false);
-  const [deletePetMutation] = petsApi.useDeletePetMutation();
-  const { data: currentUserData, refetch: refetchCurrentUser } =
-    useGetCurrentUserQuery();
+  const { data: currentUserData } = useGetCurrentUserQuery();
   let dataPets = currentUserData ? currentUserData : [];
 
   useEffect(() => {
@@ -23,17 +21,6 @@ const UserPetsList = () => {
       setPets(dataPets.pets);
     }
   }, [dataPets]);
-
-  const handleDelete = async petId => {
-    window.alert('Pet has been deleted?');
-    try {
-      const response = await deletePetMutation(petId);
-      await refetchCurrentUser();
-      console.log('Pet deleted!');
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handleIsOpen = () => {
     setIsOpen(true);
@@ -53,13 +40,7 @@ const UserPetsList = () => {
       {pets && (
         <List>
           {pets.map(pet => {
-            return (
-              <UserPetsListItem
-                key={pet._id}
-                pet={pet}
-                handleDelete={handleDelete}
-              />
-            );
+            return <UserPetsListItem key={pet._id} pet={pet} />;
           })}
         </List>
       )}
