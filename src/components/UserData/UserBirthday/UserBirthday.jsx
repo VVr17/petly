@@ -32,6 +32,11 @@ const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
       }}
       dateFormat="dd.MM.yyyy"
       maxDate={new Date()}
+      peekNextMonth
+      showMonthDropdown
+      showYearDropdown
+      yearDropdownItemNumber={100}
+      dropdownMode="select"
     />
   );
 };

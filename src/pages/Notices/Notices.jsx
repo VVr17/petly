@@ -46,6 +46,7 @@ const Notices = () => {
     isLoading,
     isFetching,
   } = useGetNoticeByCategoryQuery(category, { skip: !category });
+  console.log(notices);
 
   useEffect(() => {
     if (notices) {
