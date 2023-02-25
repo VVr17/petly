@@ -20,7 +20,6 @@ import AddPetForm from 'components/AddNoticeForm/AddPetForm';
 import { AnimatePresence } from 'framer-motion';
 import throttle from 'lodash.throttle';
 
-
 const Notices = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [visibleNotices, setvisibleNotices] = useState([]);
@@ -34,12 +33,12 @@ const Notices = () => {
     isFetching,
   } = useGetNoticeByCategoryQuery(category, { skip: !category });
 
-  const filterUpdate = (e) => {
+  const filterUpdate = e => {
     const value = e.target.value;
     setFilter(value ? value.toLowerCase() : value);
   };
 
-  const filterNotices = (notices) => {
+  const filterNotices = notices => {
     const filteredNotices = notices.filter(notice => {
       return notice.title.toLowerCase().includes(filter);
     });
@@ -65,17 +64,7 @@ const Notices = () => {
   //   toast.info('Not found any ad');
   // };
 
-
-  const {
-    data: notices,
-    error,
-    isLoading,
-    isFetching,
-  } = useGetNoticeByCategoryQuery(category, { skip: !category });
-  console.log(notices);
-
   // const throttledNotify = useCallback(throttle(notify, 3000), []);
-
 
   useEffect(() => {
     if (notices) {
