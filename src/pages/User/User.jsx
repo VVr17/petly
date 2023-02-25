@@ -4,13 +4,26 @@ import UserPetsList from 'components/UserPetsList';
 import { pageAnimation } from 'constants/animation';
 import Section from 'components/Section';
 import { UserWrapper } from './User.styled';
+import UserPhone from 'components/UserData/UserPhone/UserPhone';
+import UserInfo from 'components/UserData/UserInfo';
+import UserBirthday from 'components/UserData/UserBirthday/UserBirthday';
 import UserData from 'components/UserData/UserData';
+
 
 const User = () => {
   return (
     <Section>
       <UserWrapper>
+
+        <UserInfo />
+        {/* <UserData></UserData> */}
+
+        {/* <UserBirthday /> */}
+        {/* <UserData></UserData> */}
+
+
         <UserData />
+
         <UserPetsList />
       </UserWrapper>
     </Section>
