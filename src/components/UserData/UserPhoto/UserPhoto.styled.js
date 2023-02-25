@@ -1,5 +1,6 @@
 import { breakpoints, theme } from 'constants/theme';
 import styled from 'styled-components';
+import { Field } from 'formik';
 
 export const ImageBox = styled.div`
   position: relative;
@@ -22,14 +23,14 @@ export const ImageBox = styled.div`
 `;
 
 export const LoadImageCont = styled.div`
-  position: relative;
+  // position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  width: 140px;
-  height: 140px;
-  border-radius: 20px;
+  width: 233px;
+  height: 233px;
+  border-radius: 50%;
   background: ${theme.colors.mainBackground};
   margin-top: 12px;
   margin-bottom: 28px;
@@ -37,6 +38,17 @@ export const LoadImageCont = styled.div`
 `;
 
 export const LoadImgLabel = styled.label`
+  position: absolute;
+  bottom: 0px;
+  right: -65px;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  margin-left: auto;
+  margin-right: 12px;
+  padding: 0;
+  border: none;
+  background-color: white;
   cursor: pointer;
 `;
 
@@ -48,9 +60,9 @@ export const LoadImgPlus = styled.img`
   height: 47px;
 `;
 export const ImagePreview = styled.img`
-  width: 140px;
-  height: 140px;
-  border-radius: 20px;
+  width: 233px;
+  height: 233px;
+  border-radius: 50%;
   background: ${theme.colors.mainBackground};
   object-fit: cover;
 `;
@@ -59,7 +71,7 @@ export const ErrorStyle = styled.div`
   bottom: 0px;
 `;
 
-export const UploadField = styled(LoadImageCont)`
+export const UploadField = styled.div`
   width: 233px;
   height: 233px;
   border-radius: 50%;
