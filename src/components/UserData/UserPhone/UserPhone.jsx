@@ -61,9 +61,13 @@ const UserPhone = () => {
             <UserUpdateButton
               type="submit"
               isdisabled={isDisabled}
-              onClick={() =>{ 
+              onClick={() => {
+                if (!values.phone) {
+                  values.phone = user.phone;
+                  handleClick(values);
+                }
                 if (errors.phone) return;
-                handleClick(values)
+                handleClick(values);
               }}
             />
             {isLoading && <Loader />}

@@ -61,9 +61,13 @@ const UserCity = () => {
             <UserUpdateButton
               type="submit"
               isdisabled={isDisabled}
-              onClick={() =>{ 
+              onClick={() => {
+                if (!values.city) {
+                  values.city = user.city;
+                  handleClick(values);
+                }
                 if (errors.city) return;
-                handleClick(values)
+                handleClick(values);
               }}
             />
             {isLoading && <Loader />}

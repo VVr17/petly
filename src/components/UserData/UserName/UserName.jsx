@@ -61,9 +61,13 @@ const UserName = () => {
             <UserUpdateButton
               type="submit"
               isdisabled={isDisabled}
-              onClick={() =>{ 
+              onClick={() => {
+                if (!values.name) {
+                  values.name = user.name;
+                  handleClick(values);
+                }
                 if (errors.name) return;
-                handleClick(values)
+                handleClick(values);
               }}
             />
             {isLoading && <Loader />}

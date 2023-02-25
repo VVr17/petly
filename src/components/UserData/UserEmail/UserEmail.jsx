@@ -24,7 +24,7 @@ const UserEmail = () => {
       return;
     }
 
-    if (!values.email) return;
+    // if (!values.email) return;
     setIsDisabled(true);
   };
 
@@ -61,9 +61,13 @@ const UserEmail = () => {
             <UserUpdateButton
               type="submit"
               isdisabled={isDisabled}
-              onClick={() =>{ 
+              onClick={() => {
+                if (!values.email) {
+                  values.email = user.email;
+                  handleClick(values);
+                }
                 if (errors.email) return;
-                handleClick(values)
+                handleClick(values);
               }}
             />
             {isLoading && <Loader />}

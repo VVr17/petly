@@ -50,7 +50,8 @@ export const Input = styled(Field)`
   color: ${theme.colors.mainText};
 
   ::placeholder {
-    color: ${({ theme }) => theme.colors.mainText};
+    color: ${({ theme, disabled }) =>
+      disabled ? theme.colors.mainText : theme.colors.secondaryText};
     opacity: 1;
   }
 
