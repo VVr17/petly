@@ -12,7 +12,7 @@ export const ImageBox = styled.div`
   }
   @media (min-width: ${breakpoints[2]}px) {
     margin: 0 auto;
-    margin-bottom: 32px;
+    /* margin-bottom: 32px; */
 
     & button {
       position: absolute;
@@ -40,7 +40,7 @@ export const LoadImageCont = styled.div`
 export const LoadImgLabel = styled.label`
   position: absolute;
   bottom: 0px;
-  right: -65px;
+  right: 0px;
   display: flex;
   align-items: flex-end;
   gap: 4px;
@@ -50,6 +50,16 @@ export const LoadImgLabel = styled.label`
   border: none;
   background-color: white;
   cursor: pointer;
+
+  ${theme.mq.tablet} {
+    bottom: -32px;
+    right: 0px;
+  }
+
+  ${theme.mq.desktop} {
+    bottom: 0px;
+    right: -64px;
+  }
 `;
 
 export const LoadImgInput = styled.input`

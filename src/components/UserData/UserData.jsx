@@ -25,24 +25,24 @@ import UserCity from './UserCity/UserCity';
 const UserData = () => {
   const { isAuth } = useSelector(state => state.user);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
   };
 
-  useEffect(() => {
-    if (!isAuth) {
-      navigate('/login');
-    }
-  });
+  // useEffect(() => {
+  //   if (!isAuth) {
+  //     navigate('/login');
+  //   }
+  // });
 
   return (
     <Container>
       <Title>My information:</Title>
       <UserCard>
         <UserPhoto />
-        <Box>
+        <Box mt={['32px', '32px', '0', '0']}>
           <UserInfo>
             <UserName />
             <UserEmail />

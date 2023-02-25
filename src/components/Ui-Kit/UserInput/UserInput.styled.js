@@ -14,11 +14,12 @@ export const Label = styled.label`
 
 export const Title = styled.span`
   width: 56px;
+  /* width: 85px; */
   margin-right: 26px;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 
   ${theme.mq.tablet} {
-    width: 83px;
+    width: 90px;
     margin-right: 36px;
   }
 
@@ -61,7 +62,7 @@ export const Input = styled(Field)`
   @media (min-width: ${breakpoints[1]}px) {
     /* width: 216px; */
     /* height: 32px; */
-    margin-right: 24px;
+    /* margin-right: 24px; */
     /* padding-left: 10px; */
   }
 `;
@@ -88,9 +89,9 @@ export const Check = styled(AiOutlineCheck)`
 
 export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
-  bottom: -10px;
-  left: 30px;
-  font-size: ${theme.fontSizes.xxxs};
+  bottom: -9px;
+  left: 0px;
+  font-size: 8px;
   color: red;
   ${theme.mq.mobileOnly} {
     transform: translate(0px, 0px);

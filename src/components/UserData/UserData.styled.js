@@ -68,7 +68,7 @@ export const UserInfo = styled.div`
   gap: 8px;
   margin-bottom: 42px;
 
-  ${theme.mq.tablet} {
+  ${theme.mq.tabletOnly} {
     /* padding-left: 32px; */
     /* width: 379px; */
     margin-bottom: 33px;
@@ -76,7 +76,7 @@ export const UserInfo = styled.div`
   }
 
   ${theme.mq.desktop} {
-    /* padding-left: 16px; */
+    padding-left: 8px;
     /* margin-left: 64px; */
   }
 `;

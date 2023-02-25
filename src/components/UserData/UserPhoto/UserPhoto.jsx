@@ -53,6 +53,7 @@ const UserPhoto = () => {
   const handleSubmit = values => {
     console.log(values);
   };
+
   const initialValues = {
     userImage: data?.photoURL || '',
   };
@@ -88,7 +89,7 @@ const UserPhoto = () => {
               </LoadImageCont>
             ) : (
               <>
-                {data ? (
+                {data && data?.photoURL ? (
                   <LoadImageCont>
                     <ImagePreview src={data?.photoURL} alt="Preview" />
                   </LoadImageCont>

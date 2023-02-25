@@ -13,6 +13,7 @@ import {
   Pencil,
   Check,
   MyDatePickerNew,
+  FormStyled,
 } from './UserBirthday.styled';
 import PropTypes from 'prop-types';
 
@@ -102,7 +103,7 @@ const UserBirthday = () => {
       onSubmit={handleSubmit}
     >
       {({ isSubmitting, values, setFieldValue, setValue }) => (
-        <Form>
+        <FormStyled>
           <Label>
             <Title>Birthday</Title>
 
@@ -123,7 +124,7 @@ const UserBirthday = () => {
             isdisabled={isDisabled}
             onClick={handleClick}
           />
-        </Form>
+        </FormStyled>
       )}
     </Formik>
   );
