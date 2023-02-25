@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { theme, breakpoints } from '../../constants/theme';
 
 export const Container = styled.div`
+  margin-top: 20px;
   /* max-width: ${breakpoints[0]}px; */
   box-sizing: border-box;
   /* padding: 40px ${theme.space[4]} ${theme.space[4]} ${theme.space[4]}; */
@@ -13,6 +14,7 @@ export const Container = styled.div`
   }
   @media (min-width: ${breakpoints[2]}px) {
     max-width: 820px;
+    margin-top: 0px;
     margin-left: 32px;
     padding: 0 0 0 0;
   }

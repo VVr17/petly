@@ -43,8 +43,8 @@ export const Label = styled.label`
 
 export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
-  bottom: -10px;
   left: 30px;
+  bottom: 0;
   font-size: ${theme.fontSizes.xxxs};
   color: red;
   ${theme.mq.mobileOnly} {

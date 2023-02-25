@@ -24,6 +24,7 @@ export const Item = styled.li`
 
 export const InfoBox = styled.div`
   position: relative;
+  width: 100%;
   @media (min-width: ${breakpoints[1]}px) {
     margin-left: ${theme.space[6]};
     width: 470px;
@@ -34,10 +35,8 @@ export const InfoBox = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 100%;
-  /* height: auto; */
-  /* width: 240px; */
-  height: 240px;
+  max-width: 100%;
+  min-height: 240px;
   object-fit: cover;
   background-color: grey;
   border-radius: ${theme.space[4]};
@@ -85,8 +84,8 @@ export const TextComments = styled.p`
 
 export const Button = styled.button`
   position: absolute;
-  top: -3px;
-  left: 220px;
+  top: -5px;
+  right: 0;
   width: 21px;
   height: 21px;
   padding: 0 0 0 0;
@@ -95,15 +94,11 @@ export const Button = styled.button`
   background-color: ${theme.colors.lightText};
   @media (min-width: ${breakpoints[1]}px) {
     top: 0;
-    left: 427px;
     width: 45px;
     height: 45px;
     padding: 12px 14px 12px 14px;
     border-radius: 50%;
     background-color: ${theme.colors.mainBackground};
-  }
-  @media (min-width: ${breakpoints[2]}px) {
-    left: 537px;
   }
 `;
 
