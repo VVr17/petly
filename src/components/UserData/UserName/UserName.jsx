@@ -48,7 +48,7 @@ const UserName = () => {
       onSubmit={handleSubmit}
       // encType="multipart/form-data"
     >
-      {({ isSubmitting, values, setFieldValue }) => (
+      {({ isSubmitting, values, setFieldValue, errors }) => (
         <Form>
           <FieldWrapper>
             <UserInput
@@ -61,7 +61,14 @@ const UserName = () => {
             <UserUpdateButton
               type="submit"
               isdisabled={isDisabled}
-              onClick={() => handleClick(values)}
+              onClick={() => {
+                if (!values.name) {
+                  values.name = user.name;
+                  handleClick(values);
+                }
+                if (errors.name) return;
+                handleClick(values);
+              }}
             />
             {isLoading && <Loader />}
           </FieldWrapper>

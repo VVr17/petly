@@ -35,7 +35,6 @@ export const Input = styled(Field)`
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 12px;
-  padding-right: 12px;
 
   cursor: pointer;
   border-radius: 40px;
@@ -51,7 +50,8 @@ export const Input = styled(Field)`
   color: ${theme.colors.mainText};
 
   ::placeholder {
-    color: ${({ theme }) => theme.colors.mainText};
+    color: ${({ theme, disabled }) =>
+      disabled ? theme.colors.mainText : theme.colors.secondaryText};
     opacity: 1;
   }
 
