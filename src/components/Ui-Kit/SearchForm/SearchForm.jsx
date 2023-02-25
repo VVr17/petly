@@ -8,38 +8,37 @@ import {
 } from './SearchForm.styled';
 import PropTypes from 'prop-types';
 
-const SearchForm = ({ handleSubmit }) => {
+const SearchForm = ({ onChange }) => {
   const [isSearch, setIsSearch] = useState(false);
-  const [value, setValue] = useState('');
 
-  const submitForm = e => {
-    e.preventDefault();
+  const handleChange = (e) => {
     setIsSearch(true);
-    handleSubmit(e, value);
-  };
+    onChange(e);
+    if (e.target.value==='') {
+      setIsSearch(false);
+    }
+  }
 
-  const handleClick = e => {
-    setIsSearch(false);
+  const handleClean = (e) => {
     e.preventDefault();
-    setValue('');
-    handleSubmit(e, '');
+    e.currentTarget.reset();
+    setIsSearch(false);
   };
 
   return (
-    <FormWrapper onSubmit={submitForm}>
+    <FormWrapper onSubmit={handleClean}>
       <FormField
         name="search"
         type="text"
         placeholder="Search"
-        value={value}
-        onChange={e => setValue(e.target.value)}
+        onChange={handleChange}
       />
       {!isSearch ? (
-        <Button type="submit">
+        <Button type="button">
           <AiOutlineSearch />
         </Button>
       ) : (
-        <Button type="button" name="clear" onClick={handleClick}>
+        <Button type="submit" name="clear">
           <AiOutlineCloseCircle />
         </Button>
       )}
@@ -48,7 +47,7 @@ const SearchForm = ({ handleSubmit }) => {
 };
 
 SearchForm.propTypes = {
-  handleSubmit: PropTypes.func,
+  onChange: PropTypes.func.isRequired
 };
 
 export default SearchForm;
