@@ -5,10 +5,11 @@ import Header from '../Header';
 import { Box } from 'components/Box/Box';
 import Loader from 'components/Loader';
 
-const SharedLayout = () => {
+// eslint-disable-next-line react/prop-types
+const SharedLayout = ({ locale, handleLocaleChange }) => {
   return (
     <>
-      <Header />
+      <Header locale={locale} handleLocaleChange={handleLocaleChange} />
       <Box as="main">
         <Suspense fallback={<Loader />}>
           <Outlet />

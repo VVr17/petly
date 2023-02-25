@@ -23,7 +23,8 @@ import Container from 'components/Container';
 import { pageAnimation } from 'constants/animation';
 import { AnimatePresence } from 'framer-motion';
 
-const Header = () => {
+// eslint-disable-next-line react/prop-types
+const Header = ({ locale, handleLocaleChange }) => {
   const [menuIsActive, setMenuIsActive] = useState(false);
   const [loginIsActive, setLoginIsActive] = useState(true);
   const isAuth = useSelector(selectIsAuthState);
@@ -57,6 +58,12 @@ const Header = () => {
             <PagesBox>
               <Nav closeMenu={closeMenu} />
             </PagesBox>
+            <div>
+              <select value={locale} onChange={handleLocaleChange}>
+                <option value="en">English</option>
+                <option value="uk">Українська</option>
+              </select>
+            </div>
             <AuthBox>
               {isAuth ? (
                 <UserNav />
