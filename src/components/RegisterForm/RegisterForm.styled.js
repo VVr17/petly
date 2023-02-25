@@ -57,6 +57,7 @@ export const FormWrapper = styled(Form)`
 export const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 16px;
   margin-bottom: 50px;
   margin-top: 40px;
   width: 100%;
