@@ -57,9 +57,9 @@ const AddPetForm = ({ onClose }) => {
 
   // form submit
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = values => {
     if (currentStep < 2) {
-      actions.setCurrentStep(currentStep + 1);
+      setCurrentStep(currentStep + 1);
     } else {
       console.log(values);
 
