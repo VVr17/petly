@@ -24,7 +24,7 @@ export const Label = styled.label`
 `;
 
 export const Title = styled.span`
-  width: 85px;
+  width: 88px;
   /* overflow-x: hidden; */
 
   ${theme.mq.mobileOnly} {
@@ -32,13 +32,13 @@ export const Title = styled.span`
   }
 
   ${theme.mq.tablet} {
-    width: 56px;
-    margin-right: 41px;
+    /* width: 56px; */
+    margin-right: 15px;
   }
 
   ${theme.mq.desktop} {
     width: 83px;
-    margin-right: 14px;
+    /* margin-right: 14px; */
   }
 `;
 
@@ -113,10 +113,15 @@ export const Input = styled(Field)`
   }
 
   @media (min-width: ${breakpoints[1]}px) {
-    width: 216px;
+    /* width: 216px; */
     /* height: 32px; */
     /* margin-right: 24px; */
     /* padding-left: 10px; */
+  }
+
+  @media (min-width: ${breakpoints[2]}px) {
+    /* height: 32px; */
+    margin-right: 11px;
   }
 `;
 
