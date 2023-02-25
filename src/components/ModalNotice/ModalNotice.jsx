@@ -59,11 +59,11 @@ const ModalNotice = ({ id }) => {
     }
     if (isFavorite) {
       await deleteNoticeFromFavorite(noticeId);
-      toast.info(`Notice has been remove from favorites`);
+      toast.info(`Notice has been removed from favorites`);
       return;
     }
     await addNoticeToFavorite(noticeId);
-    toast.info(`Notice with has been added to favorites`);
+    toast.info(`Notice has been added to favorites`);
   };
   const isLoading = adding || removing;
 
@@ -171,7 +171,7 @@ const ModalNotice = ({ id }) => {
                 onClick={() => toggleFavorite(id)}
               >
                 {!isFavorite ? 'Add to' : 'Remove from'}
-                {<IoIosHeart fill="#F59256" size="20px" margin-left ="10px" />}
+                {<IoIosHeart fill="#F59256" size="20px" margin-left="10px" />}
               </Button>
             </Buttons>
           </>
