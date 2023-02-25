@@ -27,8 +27,8 @@ export const Pencil = styled(RiPencilFill)`
   height: 16px;
 
   @media (min-width: ${breakpoints[1]}px) {
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
   }
 `;
 
@@ -39,7 +39,7 @@ export const Check = styled(AiOutlineCheck)`
   height: 16px;
 
   @media (min-width: ${breakpoints[1]}px) {
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
   }
 `;

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { toast } from 'react-toastify';
-
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import { selectIsAuthState } from 'redux/user/userSelectors';
@@ -19,10 +18,33 @@ import AddNoticeFormHeader from 'components/AddNoticeForm';
 import NotificationAddNotice from 'components/NotificationAddNotice';
 import AddPetForm from 'components/AddNoticeForm/AddPetForm';
 import { AnimatePresence } from 'framer-motion';
+import throttle from 'lodash.throttle';
+
 
 const Notices = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [visibleNotices, setvisibleNotices] = useState([]);
+  const [filter, setFilter] = useState('');
+
+  const category = useSelector(selectStatusFilter);
+  const {
+    data: notices,
+    error,
+    isLoading,
+    isFetching,
+  } = useGetNoticeByCategoryQuery(category, { skip: !category });
+
+  const filterUpdate = (e) => {
+    const value = e.target.value;
+    setFilter(value ? value.toLowerCase() : value);
+  };
+
+  const filterNotices = (notices) => {
+    const filteredNotices = notices.filter(notice => {
+      return notice.title.toLowerCase().includes(filter);
+    });
+    return filteredNotices;
+  };
 
   const isAuth = useSelector(selectIsAuthState);
   const handleClick = () => {
@@ -33,12 +55,16 @@ const Notices = () => {
       toast('You have to register or login to add Pet');
     }
   };
+
   const closeModal = () => {
     setIsOpen(false);
     document.body.classList.remove('modal-open');
   };
 
-  const category = useSelector(selectStatusFilter);
+  // const notify = () => {
+  //   toast.info('Not found any ad');
+  // };
+
 
   const {
     data: notices,
@@ -48,25 +74,16 @@ const Notices = () => {
   } = useGetNoticeByCategoryQuery(category, { skip: !category });
   console.log(notices);
 
+  // const throttledNotify = useCallback(throttle(notify, 3000), []);
+
+
   useEffect(() => {
     if (notices) {
-      setvisibleNotices(notices);
+      const filteredNotices = filterNotices(notices);
+      setvisibleNotices(filteredNotices);
+      // visibleNotices.length === 0 && throttledNotify();
     }
-  }, [notices]);
-
-  const searchQuery = (e, value) => {
-    e.preventDefault();
-    const query = value.toLowerCase();
-
-    const noticesByQuery = notices.filter(notice =>
-      notice.title.toLowerCase().includes(query)
-    );
-
-    if (noticesByQuery.length === 0) {
-      toast.info('Not found any ad');
-    }
-    setvisibleNotices(noticesByQuery);
-  };
+  }, [notices, filter]);
 
   const showNotices = visibleNotices && !error && !isFetching;
 
@@ -74,7 +91,7 @@ const Notices = () => {
     <Section>
       <TitlePage name={'Find your favorite pet'} />
 
-      <SearchForm handleSubmit={searchQuery} />
+      <SearchForm onChange={filterUpdate} />
 
       <NavContainer>
         <FindPetFilter />

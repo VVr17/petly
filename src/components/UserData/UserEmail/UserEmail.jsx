@@ -24,7 +24,7 @@ const UserEmail = () => {
       return;
     }
 
-    if (!values.email) return;
+    // if (!values.email) return;
     setIsDisabled(true);
   };
 
@@ -48,7 +48,7 @@ const UserEmail = () => {
       onSubmit={handleSubmit}
       // encType="multipart/form-data"
     >
-      {({ isSubmitting, values, setFieldValue }) => (
+      {({ isSubmitting, values, setFieldValue, errors }) => (
         <Form>
           <FieldWrapper>
             <UserInput
@@ -61,7 +61,14 @@ const UserEmail = () => {
             <UserUpdateButton
               type="submit"
               isdisabled={isDisabled}
-              onClick={() => handleClick(values)}
+              onClick={() => {
+                if (!values.email) {
+                  values.email = user.email;
+                  handleClick(values);
+                }
+                if (errors.email) return;
+                handleClick(values);
+              }}
             />
             {isLoading && <Loader />}
           </FieldWrapper>
