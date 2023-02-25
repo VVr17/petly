@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Title, Box, List } from './UserPetsList.styled';
 import { useGetCurrentUserQuery } from 'redux/api/userApi';
 import { petsApi } from 'redux/api/petsApi';
 import UserAddPetForm from 'components/UserAddPetForm';
-
 import UserPetsListItem from './UserPetsListItem';
 import Modal from 'components/Modal';
 import { AnimatePresence } from 'framer-motion';
@@ -25,11 +23,10 @@ const UserPetsList = () => {
   }, [dataPets]);
 
   const handleDelete = async petId => {
-    window.alert('Pet has been deleted?');
+    window.confirm('Delete the pet?');
     try {
       const response = await deletePetMutation(petId);
       await refetchCurrentUser();
-      console.log('Pet deleted!');
     } catch (error) {
       console.log(error);
     }

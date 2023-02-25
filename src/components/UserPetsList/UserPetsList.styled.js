@@ -3,14 +3,11 @@ import { theme, breakpoints } from '../../constants/theme';
 
 export const Container = styled.div`
   margin-top: 20px;
-  /* max-width: ${breakpoints[0]}px; */
   box-sizing: border-box;
-  /* padding: 40px ${theme.space[4]} ${theme.space[4]} ${theme.space[4]}; */
   margin-right: auto;
   margin-left: auto;
   @media (min-width: ${breakpoints[1]}px) {
     max-width: ${breakpoints[1]}px;
-    /* padding: ${theme.space[4]} ${theme.space[6]} 100px ${theme.space[6]}; */
   }
   @media (min-width: ${breakpoints[2]}px) {
     max-width: 820px;

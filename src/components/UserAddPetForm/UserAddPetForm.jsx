@@ -56,8 +56,8 @@ const UserAddPetForm = ({ closeModal }) => {
 
   function getFullMonth(date) {
     return date < 10 ? '0' + date : date;
-  }
-
+  };
+  
   const handleSubmit = async (values, { setSubmitting }) => {
     if (currentPart < 2) {
       setCurrentPart(2);

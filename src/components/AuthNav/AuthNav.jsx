@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Container, AuthLink, Link } from "./AuthNav.styled";
 import PropTypes from 'prop-types';
 
