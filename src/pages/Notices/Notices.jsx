@@ -35,9 +35,11 @@ const Notices = () => {
     data: notices,
     error: noticeError,
     isFetching: fetchingNotices,
-  } = useGetNoticeByCategoryQuery(category || 'sell', {
+  } = useGetNoticeByCategoryQuery(category, {
     skip:
-      category === statusFilter.favoriteAds || category === statusFilter.myAds,
+      !category ||
+      category === statusFilter.favoriteAds ||
+      category === statusFilter.myAds,
   });
   const {
     data: favoriteNotices,
