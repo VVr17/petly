@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const FieldWrapper = styled.div`
   max-width: 379px;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   font-family: ${theme.fontFamily.manrope};
   font-style: normal;
@@ -17,7 +17,6 @@ export const FieldWrapper = styled.div`
     font-size: ${theme.fontSizes.s};
     line-height: 1.39;
     width: 100%;
-    margin-right: 30px;
   }
 
   ${theme.mq.desktop} {

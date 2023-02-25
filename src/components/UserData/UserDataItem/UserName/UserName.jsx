@@ -9,7 +9,7 @@ import {
   useUpdateUserMutation,
 } from 'redux/api/userApi';
 import { selectUserState } from 'redux/user/userSelectors';
-import { FieldWrapper, FormStyled } from '../../UserField.styled';
+import { FieldWrapper, FormStyled } from '../UserField.styled';
 import { validationSchema } from './validation.js';
 
 const UserName = () => {
@@ -61,9 +61,13 @@ const UserName = () => {
             <UserUpdateButton
               type="submit"
               isdisabled={isDisabled}
-              onClick={() =>{ 
+              onClick={() => {
+                if (!values.name) {
+                  values.name = user.name;
+                  handleClick(values);
+                }
                 if (errors.name) return;
-                handleClick(values)
+                handleClick(values);
               }}
             />
             {isLoading && <Loader />}

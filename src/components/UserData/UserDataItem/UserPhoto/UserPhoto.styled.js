@@ -1,45 +1,31 @@
 import { breakpoints, theme } from 'constants/theme';
 import styled from 'styled-components';
-import { Field } from 'formik';
 
 export const ImageBox = styled.div`
   position: relative;
-  padding: 0 12px 32px 12px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 8px;
 
   @media (min-width: ${breakpoints[1]}px) {
-    /* margin-right: 40px; */
-    padding: 0;
+    padding-bottom: 30px;
   }
   @media (min-width: ${breakpoints[2]}px) {
-    margin: 0 auto;
-    /* margin-bottom: 32px; */
-
-    & button {
-      position: absolute;
-      right: -74px;
-      bottom: 0;
-    }
+    margin-bottom: 32px;
   }
 `;
 
 export const LoadImageCont = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
   width: 233px;
   height: 233px;
   border-radius: 50%;
   background: ${theme.colors.mainBackground};
-  margin-top: 12px;
-  margin-bottom: 28px;
   color: ${theme.colors.mainText};
 `;
 
 export const LoadImgLabel = styled.label`
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
   display: flex;
   align-items: flex-end;
   gap: 4px;
@@ -49,15 +35,17 @@ export const LoadImgLabel = styled.label`
   border: none;
   background-color: white;
   cursor: pointer;
+  font-size: 12px;
 
   ${theme.mq.tablet} {
-    bottom: -32px;
+    position: absolute;
+    bottom: 0px;
     right: 0px;
   }
 
   ${theme.mq.desktop} {
     bottom: 0px;
-    right: -64px;
+    right: -84px;
   }
 `;
 

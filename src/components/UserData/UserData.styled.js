@@ -30,7 +30,7 @@ export const UserCard = styled.div`
   margin-top: 18px;
   margin-left: auto;
   margin-right: auto;
-  padding: 20px 12px;
+  padding: 20px 16px;
 
   background-color: ${theme.colors.lightText};
   background: #ffffff;
@@ -66,7 +66,7 @@ export const UserInfo = styled.div`
     /* padding-left: 32px; */
     /* width: 379px; */
     margin-bottom: 33px;
-    margin-right: 24px;
+    margin-right: 52px;
   }
 
   ${theme.mq.desktop} {

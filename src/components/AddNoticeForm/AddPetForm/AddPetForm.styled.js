@@ -11,6 +11,7 @@ export const FormWrapper = styled(Form)`
   display: flex;
   flex-direction: column;  
   gap: 10px;
+  width: 100%;
 }
 
 `;
@@ -32,11 +33,18 @@ export const Text = styled.p`
 
 // container of buttons
 export const ButtonsContainer = styled.div`
-  margin-top: 40px;
+  margin-top: 24px;
   display: flex;
-  gap: 20px;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 12px;
+  @media(min-width: ${breakpoints[1]}px) {
+    flex-direction: row;
+    width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
 // choose field
 export const ButtonFilterList = styled.ul`
@@ -189,15 +197,6 @@ export const LoadImgLabel = styled.label`
 
 export const LoadImgInput = styled.input`
   display: none;
-
-  // display: block;
-  // width: 140px;
-  // height: 140px;
-  // border-radius: 20px;
-  // background: ${theme.colors.mainBackground};
-  // margin-top: 12px;
-  // margin-bottom: 28px;
-  // color: ${theme.colors.mainText};
 `;
 
 export const LoadImgPlus = styled.img`
@@ -236,7 +235,6 @@ export const TextareaContainer = styled.label`
 `;
 
 export const TextareaLabel = styled.label`
-  margin-top: 20px;
   font-family: ${theme.fontFamily.manrope};
   font-style: normal;
   font-weight: ${theme.fontWeight.medium};
@@ -255,11 +253,8 @@ export const Textarea = styled(Field)`
   width: 100%;
   border-radius: 40px;
   margin-top: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   cursor: pointer;
-
-  margin-bottom: 16px;
-
   border: 1px solid rgba(245, 146, 86, 0.5);
   background-color: ${theme.colors.mainBackground};
   font-family: ${theme.fontFamily.manrope};
@@ -285,7 +280,7 @@ export const Textarea = styled(Field)`
 // common error
 export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
-  bottom: 0px;
+  bottom: -10px;
   left: 30px;
   font-size: ${theme.fontSizes.xxxs};
   color: red;
@@ -293,17 +288,3 @@ export const ErrorStyle = styled(ErrorMessage)`
     transform: translate(0px, 0px);
   }
 `;
-// export const ErrorMessage = styled.div`
-//   position: absolute;
-//   color: red;
-//   font-size: 14px;
-//   text-align: center;
-//   width: 100%;
-//   left: 50%;
-//   transform: translateX(-50%);
-//   top: 120px;
-//   ${theme.mq.mobileOnly} {
-//     top: 50px;
-//     font-size: 12px;
-//   }
-// `;

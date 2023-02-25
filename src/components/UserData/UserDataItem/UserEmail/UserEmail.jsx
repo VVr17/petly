@@ -9,7 +9,7 @@ import {
   useUpdateUserMutation,
 } from 'redux/api/userApi';
 import { selectUserState } from 'redux/user/userSelectors';
-import { FieldWrapper, FormStyled } from '../../UserField.styled';
+import { FieldWrapper, FormStyled } from '../UserField.styled';
 import { validationSchema } from './validation';
 
 const UserEmail = () => {
@@ -24,7 +24,7 @@ const UserEmail = () => {
       return;
     }
 
-    if (!values.email) return;
+    // if (!values.email) return;
     setIsDisabled(true);
   };
 
@@ -61,9 +61,13 @@ const UserEmail = () => {
             <UserUpdateButton
               type="submit"
               isdisabled={isDisabled}
-              onClick={() =>{ 
+              onClick={() => {
+                if (!values.email) {
+                  values.email = user.email;
+                  handleClick(values);
+                }
                 if (errors.email) return;
-                handleClick(values)
+                handleClick(values);
               }}
             />
             {isLoading && <Loader />}

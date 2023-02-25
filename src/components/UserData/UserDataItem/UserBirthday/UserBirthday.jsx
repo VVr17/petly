@@ -1,7 +1,7 @@
 import { Formik, useField } from 'formik';
 import React, { useState } from 'react';
 import { useUpdateUserMutation } from 'redux/api/userApi';
-import { FieldWrapper } from '../../UserField.styled';
+import { FieldWrapper } from '../UserField.styled';
 import {
   Title,
   Label,
@@ -46,11 +46,13 @@ const UserBirthday = () => {
 
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
-  const handleClick = () => {
+  const handleClick = values => {
     if (isDisabled) {
       setIsDisabled(false);
       return;
     }
+
+    // if (!values.birthday) return;
     setIsDisabled(true);
   };
 
@@ -97,7 +99,7 @@ const UserBirthday = () => {
             <UserUpdateButton
               type="submit"
               isdisabled={isDisabled}
-              onClick={handleClick}
+              onClick={() => handleClick(values)}
             />
             {isLoading && <Loader />}
           </FieldWrapper>
