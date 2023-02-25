@@ -14,6 +14,7 @@ const UserPetsList = () => {
 
   const handleIsOpen = () => {
     setIsOpen(true);
+    document.body.classList.add('modal-open');
   };
 
   const closeModal = () => {

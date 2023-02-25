@@ -10,6 +10,7 @@ import {
   MenuButton,
   iconStyle,
   HeaderStyled,
+  LogoTitle
 } from './Header.styled';
 import { VscMenu } from 'react-icons/vsc';
 import { useSelector } from 'react-redux';
@@ -51,9 +52,12 @@ const Header = () => {
       <HeaderStyled {...pageAnimation} transition={{ duration: 0.3 }}>
         <Container>
           <Navigation>
-            <Link to="/" end>
-              pe<Span>t</Span>ly
+            <Link to="/" end >
+              <LogoTitle>
+                pe<Span>t</Span>ly
+              </LogoTitle>
             </Link>
+
             <PagesBox>
               <Nav closeMenu={closeMenu} />
             </PagesBox>
