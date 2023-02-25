@@ -59,10 +59,12 @@ const ModalNotice = ({ id }) => {
     }
     if (isFavorite) {
       await deleteNoticeFromFavorite(noticeId);
+      document.body.classList.remove('modal-open');
       toast.info(`Notice has been removed from favorites`);
       return;
     }
     await addNoticeToFavorite(noticeId);
+    document.body.classList.remove('modal-open');
     toast.info(`Notice has been added to favorites`);
   };
   const isLoading = adding || removing;
