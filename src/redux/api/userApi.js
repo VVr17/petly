@@ -82,7 +82,7 @@ export const userApi = createApi({
           body: userData,
         };
       },
-      // invalidatesTags: [TAGS_TYPES.user],
+      invalidatesTags: [TAGS_TYPES.user],
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const {

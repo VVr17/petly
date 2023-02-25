@@ -28,37 +28,32 @@ const MyDatePicker = ({
   val,
   handleChange,
 }) => {
-  const [field, meta, helpers] = useField(name);
-  // const { value } = meta;
+  const [field] = useField(name);
+  const [startDate, setStartDate] = useState(val);
 
-  const { setValue } = helpers;
   return (
     <MyDatePickerNew
       {...field}
-      selected={val}
+      selected={startDate}
       disabled={isDisabled}
-      placeholderText={placeholder}
+      // placeholderText={placeholder}
       onChange={date => {
-        setValue(date);
         handleChange(date);
+        setStartDate(date);
       }}
       dateFormat="dd.MM.yyyy"
       maxDate={new Date()}
-      // customInput={<Input />}
     />
   );
 };
 
 const UserBirthday = () => {
   const [isDisabled, setIsDisabled] = useState(true);
-  // const { data } = useGetCurrentUserQuery();
-  // console.log('data', data);
   const user = useSelector(selectUserState);
-  // const dataBirthday = data.birthday;
-  // console.log('data.birthday', dataBirthday);
-  const parsedDate = convertStringToDate(user?.birthday || '00.00.0000');
-  // console.log('parsedDate', parsedDate);
-  const initialValues = { birthday: user?.birthday || '' };
+
+  const parsedDate = convertStringToDate(user.birthday || '00.00.0000');
+
+  const initialValues = { birthday: user.birthday || '' };
 
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
@@ -104,18 +99,20 @@ const UserBirthday = () => {
       // validationSchema={ }
       onSubmit={handleSubmit}
     >
-      {({ isSubmitting, values, setFieldValue, setValue }) => (
+      {({ isSubmitting, values, setFieldValue }) => (
         <FormStyled>
           <Label>
             <Title>Birthday</Title>
 
             <MyDatePicker
               isDisabled={isDisabled}
-              placeholder={user?.birthday || ''}
+              // placeholder={user?.birthday || ''}
+              // placeholder={user.birthday || ''}
               val={parsedDate}
               name="birthday"
               handleChange={date => {
                 setFieldValue('birthday', date);
+                console.log('handleChange', values);
               }}
             />
 
