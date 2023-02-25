@@ -6,13 +6,13 @@ import {
   iconStyle,
   Button,
   Link,
-  Span
+  Span,
 } from './MobMenu.styled';
 import PropTypes from 'prop-types';
 import { VscChromeClose } from 'react-icons/vsc';
-import Nav from 'components/Nav/Nav';
-import AuthNav from 'components/AuthNav';
-import UserNav from 'components/UserNav';
+import Nav from 'components/Header/Nav/Nav';
+import AuthNav from 'components/Header/AuthNav';
+import UserNav from 'components/Header/UserNav';
 import Overlay from 'components/Overlay';
 import { mobileMenuAnimation } from 'constants/animation';
 

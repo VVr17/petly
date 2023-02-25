@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { theme, breakpoints } from '../../constants/theme';
+import { theme, breakpoints } from '../../../constants/theme';
 
 export const Container = styled.div`
   display: flex;
@@ -35,22 +35,22 @@ export const Link = styled(NavLink)`
   :focus {
     color: ${theme.colors.accent};
     text-decoration: underline;
-   };
-   &:not(:last-child) {
-      margin-bottom: 40px;
-   }
-   @media(min-width: ${breakpoints[1]}px) {
-      font-size: ${theme.fontSizes.xxxl};
-      &:not(:last-child) {
-         margin-bottom: 60px;
-      }
-   }
-   @media(min-width: ${breakpoints[2]}px) {
-     margin-left: 80px;
-     font-size: ${theme.fontSizes.m};
-     line-height: 1.35;
-     &:not(:last-child) {
-         margin-bottom: 0;
-      }
-   };
+  }
+  &:not(:last-child) {
+    margin-bottom: 40px;
+  }
+  @media (min-width: ${breakpoints[1]}px) {
+    font-size: ${theme.fontSizes.xxxl};
+    &:not(:last-child) {
+      margin-bottom: 60px;
+    }
+  }
+  @media (min-width: ${breakpoints[2]}px) {
+    margin-left: 80px;
+    font-size: ${theme.fontSizes.m};
+    line-height: 1.35;
+    &:not(:last-child) {
+      margin-bottom: 0;
+    }
+  } ;
 `;
