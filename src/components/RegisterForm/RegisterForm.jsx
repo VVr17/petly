@@ -23,12 +23,13 @@ import {
   FormTitle,
   Paragraph,
   LoginLink,
+  ErrorMessage
 } from './RegisterForm.styled';
 import Button from 'components/Ui-Kit/Button';
 
 const RegistrationForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [signupUser, { isError }] = useSignupUserMutation();
+  const [signupUser, { isError, error }] = useSignupUserMutation();
   const navigate = useNavigate();
   const { isAuth } = useSelector(state => state.user);
 
@@ -78,11 +79,11 @@ const RegistrationForm = () => {
           }
           onSubmit={handleSubmit}
         >
-          {({ isSubmitting }) => {
+          {({ isSubmitting, values, setFieldValue }) => {
             return (
               <FormWrapper>
                 {currentStep === 1 && <RegStepOne />}
-                {currentStep === 2 && <RegStepTwo />}
+                {currentStep === 2 && <RegStepTwo value={values.city} setFieldValue={setFieldValue}/>}
                 <ButtonWrapper>
                   <Button name="filled" type="submit" disabled={isSubmitting}>
                     {currentStep < 2 ? 'Next' : 'Register'}
@@ -100,6 +101,7 @@ const RegistrationForm = () => {
         <Paragraph>
           Already have an account? <LoginLink to="/login">Login</LoginLink>
         </Paragraph>
+        {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
       </ModalContent>
     </ModalWrapper>
   );
