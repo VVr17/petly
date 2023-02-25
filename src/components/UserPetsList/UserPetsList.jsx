@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useState } from 'react';
 import { Container, Title, Box, List } from './UserPetsList.styled';
 import { useGetCurrentUserQuery } from 'redux/api/userApi';
-import { petsApi } from 'redux/api/petsApi';
 import UserAddPetForm from 'components/UserAddPetForm';
-
 import UserPetsListItem from './UserPetsListItem';
 import Modal from 'components/Modal';
 import { AnimatePresence } from 'framer-motion';
