@@ -20,7 +20,7 @@ export const Title = styled.h2`
     font-weight: ${theme.fontWeight.medium};
     font-size: ${theme.fontSizes.l};
     line-height: 1.37;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
     @media(min-width: ${breakpoints[1]}px) {
         font-size: 36px;
     }
@@ -39,13 +39,12 @@ export const CommentsBox = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
 `;
 
 export const ControlBox = styled.div`
     height: 92px;
-    margin-top: 24px;
+    margin-top: 32px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -65,7 +64,6 @@ export const ControlBox = styled.div`
 export const FieldStyled = styled(Field)`
     min-height: 100px;
     border-radius: 20px;
-    margin-top: 8px;
     padding: 10px 20px 10px 14px;
     background-color: ${theme.colors.mainBackground};
     border: 1px solid ${theme.colors.borderColor};
@@ -75,7 +73,6 @@ export const FieldStyled = styled(Field)`
     font-size: ${theme.fontSizes.xxs};
     line-height: 19px;
     @media(min-width: ${breakpoints[1]}px) {
-        margin-top: 12px;
         font-size: ${theme.fontSizes.xs};
     }
 `;
@@ -87,6 +84,7 @@ export const DateBox = styled.div`
 export const Label = styled.label`
     display: block;
     margin-bottom: 8px;
+    margin-top: 6px;
     font-family: ${theme.fontFamily.manrope};
     font-style: normal;
     font-weight: ${theme.fontWeight.medium};
@@ -95,7 +93,7 @@ export const Label = styled.label`
     @media(min-width: ${breakpoints[1]}px) {
         font-size: ${theme.fontSizes.l};
         margin-bottom: 12px;
-        margin-top: 8px;
+        margin-top: 20px;
     };
 `;
 
@@ -129,17 +127,15 @@ export const InputFile = styled(Field)`
 
 export const ErrorStyle = styled(ErrorMessage)`
   bottom: -20px;
-  left: 30px;
   position: absolute;
   font-size: ${theme.fontSizes.xxxs};
   color: red;
   ${theme.mq.mobileOnly} {
     transform: translate(0px, 0px);
-  }
+  };
   @media(min-width: ${breakpoints[1]}) {
-    
-    
-  }
+    left: 30px;
+  };
 `;
 
 export const ErrorData = styled(ErrorMessage)`

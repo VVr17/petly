@@ -1,3 +1,4 @@
+import Loader from 'components/Loader';
 import UserInput from 'components/Ui-Kit/UserInput';
 import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
@@ -23,6 +24,7 @@ const UserCity = () => {
       return;
     }
 
+    if (!values.city) return;
     setIsDisabled(true);
   };
 
@@ -30,6 +32,8 @@ const UserCity = () => {
     if (!isDisabled) {
       return;
     }
+
+    if (values.city === user.city) return;
 
     // create formData
     const data = new FormData();
@@ -57,8 +61,9 @@ const UserCity = () => {
             <UserUpdateButton
               type="submit"
               isdisabled={isDisabled}
-              onClick={handleClick}
+              onClick={() => handleClick(values)}
             />
+            {isLoading && <Loader />}
           </FieldWrapper>
         </Form>
       )}

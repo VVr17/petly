@@ -1,1 +1,1 @@
-export {default} from './getAge'
+export { default } from './getAge';

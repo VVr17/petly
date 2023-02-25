@@ -1,3 +1,4 @@
+import Loader from 'components/Loader';
 import UserInput from 'components/Ui-Kit/UserInput';
 import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
@@ -17,12 +18,13 @@ const UserPhone = () => {
   const initialValues = { phone: user.phone || '' };
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
-  const handleClick = (values, actions) => {
+  const handleClick = values => {
     if (isDisabled) {
       setIsDisabled(false);
       return;
     }
 
+    if (!values.phone) return;
     setIsDisabled(true);
   };
 
@@ -30,6 +32,8 @@ const UserPhone = () => {
     if (!isDisabled) {
       return;
     }
+
+    if (values.phone === user.phone) return;
 
     // create formData
     const data = new FormData();
@@ -57,8 +61,9 @@ const UserPhone = () => {
             <UserUpdateButton
               type="submit"
               isdisabled={isDisabled}
-              onClick={handleClick}
+              onClick={() => handleClick(values)}
             />
+            {isLoading && <Loader />}
           </FieldWrapper>
         </Form>
       )}

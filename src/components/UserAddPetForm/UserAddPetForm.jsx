@@ -19,6 +19,7 @@ import UserUploadImg from 'components/UserUploadImg';
 import Button from 'components/Ui-Kit/Button';
 import { petsApi } from 'redux/api/petsApi';
 import Loader from 'components/Loader';
+import { convertDateToString } from '../../helpers/date';
 
 import {
   initialValues,
@@ -56,17 +57,13 @@ const UserAddPetForm = ({ closeModal }) => {
 
   function getFullMonth(date) {
     return date < 10 ? '0' + date : date;
-  }
-
+  };
+  
   const handleSubmit = async (values, { setSubmitting }) => {
     if (currentPart < 2) {
       setCurrentPart(2);
     } else {
-      const dateMDY = `${getFullMonth(
-        values.birthDate.getDate()
-      )}.${getFullMonth(
-        values.birthDate.getMonth() + 1
-      )}.${values.birthDate.getFullYear()}`;
+      const dateMDY = convertDateToString(values.birthDate);
 
       const data = new FormData();
       data.append('name', values.name);

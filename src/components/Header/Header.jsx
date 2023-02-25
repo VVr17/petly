@@ -16,10 +16,10 @@ import { VscMenu } from 'react-icons/vsc';
 import { useSelector } from 'react-redux';
 import { selectIsAuthState } from 'redux/user/userSelectors';
 
-import Nav from 'components/Nav';
-import AuthNav from 'components/AuthNav';
-import UserNav from 'components/UserNav';
-import MobMenu from 'components/MobMenu';
+import Nav from 'components/Header/Nav';
+import AuthNav from 'components/Header/AuthNav';
+import UserNav from 'components/Header/UserNav';
+import MobMenu from 'components/Header/MobMenu';
 import Container from 'components/Container';
 import { pageAnimation } from 'constants/animation';
 import { AnimatePresence } from 'framer-motion';
