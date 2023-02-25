@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Title, Box, List } from './UserPetsList.styled';
 import { useGetCurrentUserQuery } from 'redux/api/userApi';
-import { petsApi } from 'redux/api/petsApi';
 import UserAddPetForm from 'components/UserAddPetForm';
 import UserPetsListItem from './UserPetsListItem';
 import Modal from 'components/Modal';
@@ -9,7 +8,6 @@ import { AnimatePresence } from 'framer-motion';
 import AddPetButton from 'components/AddPetButton';
 
 const UserPetsList = () => {
-  const [pets, setPets] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const [deletePetMutation] = petsApi.useDeletePetMutation();
   const { data: currentUserData, refetch: refetchCurrentUser } =
@@ -47,16 +45,10 @@ const UserPetsList = () => {
         <Title>My pets:</Title>
         <AddPetButton handleClick={handleIsOpen} />
       </Box>
-      {pets && (
+      {data?.pets && (
         <List>
-          {pets.map(pet => {
-            return (
-              <UserPetsListItem
-                key={pet._id}
-                pet={pet}
-                handleDelete={handleDelete}
-              />
-            );
+          {data?.pets.map(pet => {
+            return <UserPetsListItem key={pet._id} pet={pet} />;
           })}
         </List>
       )}

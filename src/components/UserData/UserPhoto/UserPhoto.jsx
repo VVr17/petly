@@ -16,14 +16,16 @@ import {
   useUpdateUserMutation,
   useGetCurrentUserQuery,
 } from 'redux/api/userApi';
+import Loader from 'components/Loader';
+import { validationSchema } from './validation';
 // import { initialValues } from 'components/RegisterForm/Validation';
 
 const UserPhoto = () => {
   const [fileDataURL, setFileDataURL] = useState(null);
   const [file, setFile] = useState(null);
   const { data } = useGetCurrentUserQuery();
-  const [updateUser] = useUpdateUserMutation();
-  console.log(data);
+  const [updateUser, { isLoading }] = useUpdateUserMutation();
+  // console.log(data);
 
   useEffect(() => {
     let fileReader,
@@ -61,7 +63,7 @@ const UserPhoto = () => {
   return (
     <Formik
       initialValues={initialValues}
-      // validationSchema={validationSchema}
+      validationSchema={validationSchema}
       onSubmit={handleSubmit}
       encType="multipart/form-data"
     >
@@ -107,6 +109,7 @@ const UserPhoto = () => {
                 )}
               </>
             )}
+            {isLoading && <Loader />}
           </ImageBox>
         </Form>
       )}

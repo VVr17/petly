@@ -76,11 +76,11 @@ const NoticeCategoryItem = ({
     }
     if (isFavorite) {
       await deleteNoticeFromFavorite(noticeId);
-      toast.info(`Notice has been remove from favorites`);
+      toast.info(`Notice has been removed from favorites`);
       return;
     }
     await addNoticeToFavorite(noticeId);
-    toast.info(`Notice with has been added to favorites`);
+    toast.info(`Notice has been added to favorites`);
   };
 
   const onDelete = () => {

@@ -18,6 +18,7 @@ import {
   validationSchemaStepTwo,
 } from './Validation';
 import Loader from 'components/Loader';
+import { convertDateToString } from '../../../helpers/date';
 
 // Main function
 
@@ -57,18 +58,14 @@ const AddPetForm = ({ onClose }) => {
 
   // form submit
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = values => {
     if (currentStep < 2) {
-      actions.setCurrentStep(currentStep + 1);
+      setCurrentStep(currentStep + 1);
     } else {
       console.log(values);
 
       // Date converting to string
-      const dateMDY = `${getFullMonth(
-        values.birthDate.getDate()
-      )}.${getFullMonth(
-        values.birthDate.getMonth() + 1
-      )}.${values.birthDate.getFullYear()}`;
+      const dateMDY = convertDateToString(values.birthDate);
 
       // define category
       const categoryName = values.category;
