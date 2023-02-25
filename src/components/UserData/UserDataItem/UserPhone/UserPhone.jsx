@@ -9,22 +9,22 @@ import {
   useUpdateUserMutation,
 } from 'redux/api/userApi';
 import { selectUserState } from 'redux/user/userSelectors';
-import { FieldWrapper, FormStyled } from '../UserField.styled';
+import { FieldWrapper, FormStyled } from '../../UserField.styled';
 import { validationSchema } from './validation';
 
-const UserEmail = () => {
+const UserPhone = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const user = useSelector(selectUserState);
-  const initialValues = { email: user.email || '' };
+  const initialValues = { phone: user.phone || '' };
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
-  const handleClick = (values, actions) => {
+  const handleClick = values => {
     if (isDisabled) {
       setIsDisabled(false);
       return;
     }
 
-    if (!values.email) return;
+    if (!values.phone) return;
     setIsDisabled(true);
   };
 
@@ -33,11 +33,11 @@ const UserEmail = () => {
       return;
     }
 
-    if (values.email === user.email) return;
+    if (values.phone === user.phone) return;
 
     // create formData
     const data = new FormData();
-    data.append('email', values.email);
+    data.append('phone', values.phone);
     updateUser(data);
   };
 
@@ -46,22 +46,25 @@ const UserEmail = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-      // encType="multipart/form-data"
+      encType="multipart/form-data"
     >
-      {({ isSubmitting, values, setFieldValue }) => (
+      {({ isSubmitting, values, setFieldValue, errors }) => (
         <Form>
           <FieldWrapper>
             <UserInput
-              label="Email"
-              name="email"
-              type="email"
+              label="Phone"
+              name="phone"
+              type="phone"
               disabled={isDisabled}
-              placeholder={user.email || ''}
+              placeholder={user.phone || ''}
             />
             <UserUpdateButton
               type="submit"
               isdisabled={isDisabled}
-              onClick={() => handleClick(values)}
+              onClick={() =>{ 
+                if (errors.phone) return;
+                handleClick(values)
+              }}
             />
             {isLoading && <Loader />}
           </FieldWrapper>
@@ -71,4 +74,4 @@ const UserEmail = () => {
   );
 };
 
-export default UserEmail;
+export default UserPhone;

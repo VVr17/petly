@@ -9,22 +9,22 @@ import {
   useUpdateUserMutation,
 } from 'redux/api/userApi';
 import { selectUserState } from 'redux/user/userSelectors';
-import { FieldWrapper, FormStyled } from '../UserField.styled';
-import { validationSchema } from './validation';
+import { FieldWrapper, FormStyled } from '../../UserField.styled';
+import { validationSchema } from './validation.js';
 
-const UserPhone = () => {
+const UserName = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const user = useSelector(selectUserState);
-  const initialValues = { phone: user.phone || '' };
+  const initialValues = { name: user.name || '' };
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
-  const handleClick = values => {
+  const handleClick = (values, actions) => {
     if (isDisabled) {
       setIsDisabled(false);
       return;
     }
 
-    if (!values.phone) return;
+    if (!values.name) return;
     setIsDisabled(true);
   };
 
@@ -33,11 +33,11 @@ const UserPhone = () => {
       return;
     }
 
-    if (values.phone === user.phone) return;
+    if (values.name === user.name) return;
 
     // create formData
     const data = new FormData();
-    data.append('phone', values.phone);
+    data.append('name', values.name);
     updateUser(data);
   };
 
@@ -46,22 +46,25 @@ const UserPhone = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-      encType="multipart/form-data"
+      // encType="multipart/form-data"
     >
-      {({ isSubmitting, values, setFieldValue }) => (
+      {({ isSubmitting, values, setFieldValue, errors }) => (
         <Form>
           <FieldWrapper>
             <UserInput
-              label="Phone"
-              name="phone"
-              type="phone"
+              label="Name"
+              name="name"
+              type="name"
               disabled={isDisabled}
-              placeholder={user.phone || ''}
+              placeholder={user.name || ''}
             />
             <UserUpdateButton
               type="submit"
               isdisabled={isDisabled}
-              onClick={() => handleClick(values)}
+              onClick={() =>{ 
+                if (errors.name) return;
+                handleClick(values)
+              }}
             />
             {isLoading && <Loader />}
           </FieldWrapper>
@@ -71,4 +74,4 @@ const UserPhone = () => {
   );
 };
 
-export default UserPhone;
+export default UserName;

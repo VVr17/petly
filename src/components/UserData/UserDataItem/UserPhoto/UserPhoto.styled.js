@@ -23,10 +23,9 @@ export const ImageBox = styled.div`
 `;
 
 export const LoadImageCont = styled.div`
-  // position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
   width: 233px;
   height: 233px;

@@ -11,7 +11,7 @@ import {
   LoadImageCont,
   LoadImgLabel,
 } from './UserPhoto.styled';
-import Plus from '../../../assets/images/desktop/plus.svg';
+import Plus from '../../../../assets/images/desktop/plus.svg';
 import {
   useUpdateUserMutation,
   useGetCurrentUserQuery,
@@ -19,6 +19,8 @@ import {
 import Loader from 'components/Loader';
 import { validationSchema } from './validation';
 // import { initialValues } from 'components/RegisterForm/Validation';
+import UserUploadImg from 'components/UserUploadImg/UserUploadImg';
+import { Button } from '../../UserData.styled';
 
 const UserPhoto = () => {
   const [fileDataURL, setFileDataURL] = useState(null);
@@ -55,6 +57,10 @@ const UserPhoto = () => {
   const handleSubmit = values => {
     console.log(values);
   };
+  const handleChange = e => {
+    setFile(e.currentTarget.files[0]);
+    setFieldValue('userImage', e.currentTarget.files[0]);
+  }
 
   const initialValues = {
     userImage: data?.photoURL || '',
@@ -69,7 +75,14 @@ const UserPhoto = () => {
     >
       {({ isSubmitting, values, setFieldValue }) => (
         <Form>
-          <ImageBox>
+
+{/* <UserUploadImg handleChange={handleChange} fileDataURL={fileDataURL} >
+<Button type='button'>Edit photo
+<HiCamera style={iconStyle} /></Button>  
+</UserUploadImg> */}
+
+          {
+            <ImageBox>
             <LoadImgLabel htmlFor="upload">
               <HiCamera style={iconStyle} />
               Edit photo
@@ -109,8 +122,10 @@ const UserPhoto = () => {
                 )}
               </>
             )}
-            {isLoading && <Loader />}
+
           </ImageBox>
+          }
+        {isLoading && <Loader />}
         </Form>
       )}
     </Formik>

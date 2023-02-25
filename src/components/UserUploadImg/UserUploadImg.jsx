@@ -9,9 +9,9 @@ import {
   LoadImgInput,
 } from './UserUploadImg.styled';
 
-const UserUploadImg = ({ handleChange, fileDataURL }) => {
+const UserUploadImg = ({ handleChange, fileDataURL, children }) => {
   return (
-    <LoadImgLabel>
+    <LoadImgLabel htmlFor="upload"> {children}
       {fileDataURL ? (
         <LoadImageCont>
           <ImagePreview
@@ -27,6 +27,7 @@ const UserUploadImg = ({ handleChange, fileDataURL }) => {
             <LoadImgPlus src={Plus} alt="upload" width="47px" height="47px" />
           </LoadImageCont>
           <LoadImgInput
+            id="upload"
             name="imageFile"
             type="file"
             accept="image/*"
@@ -41,6 +42,7 @@ const UserUploadImg = ({ handleChange, fileDataURL }) => {
 UserUploadImg.propTypes = {
   handleChange: PropTypes.func,
   fileDataURL: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default UserUploadImg;

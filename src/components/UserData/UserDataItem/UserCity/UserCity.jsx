@@ -9,7 +9,7 @@ import {
   useUpdateUserMutation,
 } from 'redux/api/userApi';
 import { selectUserState } from 'redux/user/userSelectors';
-import { FieldWrapper, FormStyled } from '../UserField.styled';
+import { FieldWrapper, FormStyled } from '../../UserField.styled';
 import { validationSchema } from './validation';
 
 const UserCity = () => {
@@ -48,7 +48,7 @@ const UserCity = () => {
       onSubmit={handleSubmit}
       // encType="multipart/form-data"
     >
-      {({ isSubmitting, values, setFieldValue }) => (
+      {({ isSubmitting, values, setFieldValue, errors }) => (
         <Form>
           <FieldWrapper>
             <UserInput
@@ -61,7 +61,10 @@ const UserCity = () => {
             <UserUpdateButton
               type="submit"
               isdisabled={isDisabled}
-              onClick={() => handleClick(values)}
+              onClick={() =>{ 
+                if (errors.city) return;
+                handleClick(values)
+              }}
             />
             {isLoading && <Loader />}
           </FieldWrapper>

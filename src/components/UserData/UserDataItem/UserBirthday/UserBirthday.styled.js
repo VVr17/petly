@@ -1,28 +1,30 @@
 import styled from 'styled-components';
-import { theme, breakpoints } from '../../../constants/theme';
+import { theme, breakpoints } from '../../../../constants/theme';
 import { Field, ErrorMessage, Form } from 'formik';
 import { RiPencilFill } from 'react-icons/ri';
 import { AiOutlineCheck } from 'react-icons/ai';
 import DatePicker from 'react-datepicker';
 
 export const FormStyled = styled(Form)`
-  display: flex;
-  align-items: center;
+  max-width: 379px;
 `;
 
 export const Label = styled.label`
   display: flex;
   align-items: center;
   margin-right: 13px;
-
   ${theme.mq.mobileOnly} {
     width: 100%;
+  }
+
+  ${theme.mq.desktop} {
+    width: 100%;
+    margin-right: 12px;
   }
 `;
 
 export const Title = styled.span`
   width: 85px;
-  margin-right: 3px;
   /* overflow-x: hidden; */
 
   ${theme.mq.mobileOnly} {
@@ -36,7 +38,7 @@ export const Title = styled.span`
 
   ${theme.mq.desktop} {
     width: 83px;
-    margin-right: 3px;
+    margin-right: 14px;
   }
 `;
 
@@ -71,11 +73,11 @@ export const MyDatePickerNew = styled(DatePicker)`
   }
 
   @media (min-width: ${breakpoints[1]}px) {
-    width: 237px;
+    /* width: 240px; */
+  }
 
-    /* height: 32px; */
-    /* margin-right: 24px; */
-    /* padding-left: 10px; */
+  @media (min-width: ${breakpoints[2]}px) {
+    /* width: 24px; */
   }
 `;
 

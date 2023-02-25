@@ -1,7 +1,7 @@
 import { Formik, useField } from 'formik';
 import React, { useState } from 'react';
 import { useUpdateUserMutation } from 'redux/api/userApi';
-
+import { FieldWrapper } from '../../UserField.styled';
 import {
   Title,
   Label,
@@ -78,27 +78,29 @@ const UserBirthday = () => {
     >
       {({ isSubmitting, values, setFieldValue }) => (
         <FormStyled>
-          <Label>
-            <Title>Birthday</Title>
+          <FieldWrapper>
+            <Label>
+              <Title>Birthday</Title>
 
-            <MyDatePicker
-              isDisabled={isDisabled}
-              val={parsedDate}
-              name="birthday"
-              handleChange={date => {
-                setFieldValue('birthday', date);
-                console.log('handleChange', values);
-              }}
+              <MyDatePicker
+                isDisabled={isDisabled}
+                val={parsedDate}
+                name="birthday"
+                handleChange={date => {
+                  setFieldValue('birthday', date);
+                  console.log('handleChange', values);
+                }}
+              />
+
+              <ErrorStyle name="birthday" component="div" />
+            </Label>
+            <UserUpdateButton
+              type="submit"
+              isdisabled={isDisabled}
+              onClick={handleClick}
             />
-
-            <ErrorStyle name="birthday" component="div" />
-          </Label>
-          <UserUpdateButton
-            type="submit"
-            isdisabled={isDisabled}
-            onClick={handleClick}
-          />
-          {isLoading && <Loader />}
+            {isLoading && <Loader />}
+          </FieldWrapper>
         </FormStyled>
       )}
     </Formik>

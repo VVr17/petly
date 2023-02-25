@@ -1,26 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/user/userSlice';
-
-import { Formik, ErrorMessage } from 'formik';
-import {
-  Container,
-  UserCard,
-  Title,
-  Button,
-  LogoutBtn,
-  iconStyle,
-  UserInfo,
-} from './UserData.styled';
+import { Container, UserCard, Title, Button, LogoutBtn, iconStyle, UserInfo } from './UserData.styled';
 import { IoLogOutOutline } from 'react-icons/io5';
-import UserPhone from './UserPhone/UserPhone';
 import { Box } from 'components/Box/Box';
-import UserPhoto from './UserPhoto/UserPhoto';
-import UserName from './UserName/UserName';
-import UserEmail from './UserEmail/UserEmail';
-import UserBirthday from './UserBirthday/UserBirthday';
-import UserCity from './UserCity/UserCity';
+import UserPhoto from './UserDataItem/UserPhoto/UserPhoto';
+import UserName from './UserDataItem/UserName/UserName';
+import UserEmail from './UserDataItem/UserEmail/UserEmail';
+import UserBirthday from './UserDataItem/UserBirthday/UserBirthday';
+import UserPhone from './UserDataItem/UserPhone/UserPhone';
+import UserCity from './UserDataItem/UserCity/UserCity';
 
 const UserData = () => {
   const { isAuth } = useSelector(state => state.user);

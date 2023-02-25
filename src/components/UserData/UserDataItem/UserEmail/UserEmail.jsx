@@ -9,13 +9,13 @@ import {
   useUpdateUserMutation,
 } from 'redux/api/userApi';
 import { selectUserState } from 'redux/user/userSelectors';
-import { FieldWrapper, FormStyled } from '../UserField.styled';
-import { validationSchema } from './validation.js';
+import { FieldWrapper, FormStyled } from '../../UserField.styled';
+import { validationSchema } from './validation';
 
-const UserName = () => {
+const UserEmail = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const user = useSelector(selectUserState);
-  const initialValues = { name: user.name || '' };
+  const initialValues = { email: user.email || '' };
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
   const handleClick = (values, actions) => {
@@ -24,7 +24,7 @@ const UserName = () => {
       return;
     }
 
-    if (!values.name) return;
+    if (!values.email) return;
     setIsDisabled(true);
   };
 
@@ -33,11 +33,11 @@ const UserName = () => {
       return;
     }
 
-    if (values.name === user.name) return;
+    if (values.email === user.email) return;
 
     // create formData
     const data = new FormData();
-    data.append('name', values.name);
+    data.append('email', values.email);
     updateUser(data);
   };
 
@@ -48,20 +48,23 @@ const UserName = () => {
       onSubmit={handleSubmit}
       // encType="multipart/form-data"
     >
-      {({ isSubmitting, values, setFieldValue }) => (
+      {({ isSubmitting, values, setFieldValue, errors }) => (
         <Form>
           <FieldWrapper>
             <UserInput
-              label="Name"
-              name="name"
-              type="name"
+              label="Email"
+              name="email"
+              type="email"
               disabled={isDisabled}
-              placeholder={user.name || ''}
+              placeholder={user.email || ''}
             />
             <UserUpdateButton
               type="submit"
               isdisabled={isDisabled}
-              onClick={() => handleClick(values)}
+              onClick={() =>{ 
+                if (errors.email) return;
+                handleClick(values)
+              }}
             />
             {isLoading && <Loader />}
           </FieldWrapper>
@@ -71,4 +74,4 @@ const UserName = () => {
   );
 };
 
-export default UserName;
+export default UserEmail;

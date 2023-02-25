@@ -1,5 +1,4 @@
 import { breakpoints, theme } from 'constants/theme';
-import { Form } from 'formik';
 import styled from 'styled-components';
 
 export const FieldWrapper = styled.div`
