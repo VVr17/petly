@@ -64,8 +64,8 @@ const ModalNotice = ({ id, onClose }) => {
       return;
     }
     await addNoticeToFavorite(noticeId);
-    onClose();
     toast.info(`Notice has been added to favorites`);
+    onClose();
   };
   const isLoading = adding || removing;
 
