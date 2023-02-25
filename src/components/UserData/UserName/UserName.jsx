@@ -33,6 +33,8 @@ const UserName = () => {
       return;
     }
 
+    if (values.name === user.name) return;
+
     // create formData
     const data = new FormData();
     data.append('name', values.name);

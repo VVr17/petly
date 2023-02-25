@@ -33,6 +33,8 @@ const UserPhone = () => {
       return;
     }
 
+    if (values.phone === user.phone) return;
+
     // create formData
     const data = new FormData();
     data.append('phone', values.phone);

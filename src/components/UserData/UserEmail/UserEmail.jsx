@@ -33,6 +33,8 @@ const UserEmail = () => {
       return;
     }
 
+    if (values.email === user.email) return;
+
     // create formData
     const data = new FormData();
     data.append('email', values.email);

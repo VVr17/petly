@@ -33,6 +33,8 @@ const UserCity = () => {
       return;
     }
 
+    if (values.city === user.city) return;
+
     // create formData
     const data = new FormData();
     data.append('city', values.city);
