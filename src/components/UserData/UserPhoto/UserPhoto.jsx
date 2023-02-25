@@ -16,21 +16,14 @@ import {
   useUpdateUserMutation,
   useGetCurrentUserQuery,
 } from 'redux/api/userApi';
-import { useSelector } from 'react-redux';
-import { selectUserState } from 'redux/user/userSelectors';
 // import { initialValues } from 'components/RegisterForm/Validation';
 
 const UserPhoto = () => {
   const [fileDataURL, setFileDataURL] = useState(null);
   const [file, setFile] = useState(null);
-  const user = useSelector(selectUserState);
-  const initialValues = {
-    userImage: user.photoURL || '',
-  };
-
-  // const { data } = useGetCurrentUserQuery();
+  const { data } = useGetCurrentUserQuery();
   const [updateUser] = useUpdateUserMutation();
-  // console.log(data);
+  console.log(data);
 
   useEffect(() => {
     let fileReader,
@@ -59,6 +52,10 @@ const UserPhoto = () => {
 
   const handleSubmit = values => {
     console.log(values);
+  };
+
+  const initialValues = {
+    userImage: data?.photoURL || '',
   };
 
   return (
@@ -92,7 +89,7 @@ const UserPhoto = () => {
               </LoadImageCont>
             ) : (
               <>
-                {user.photoURL ? (
+                {data && data?.photoURL ? (
                   <LoadImageCont>
                     <ImagePreview src={data?.photoURL} alt="Preview" />
                   </LoadImageCont>
