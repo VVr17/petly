@@ -1,3 +1,4 @@
+import Loader from 'components/Loader';
 import UserInput from 'components/Ui-Kit/UserInput';
 import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
@@ -59,6 +60,7 @@ const UserCity = () => {
               isdisabled={isDisabled}
               onClick={handleClick}
             />
+            {isLoading && <Loader />}
           </FieldWrapper>
         </Form>
       )}
