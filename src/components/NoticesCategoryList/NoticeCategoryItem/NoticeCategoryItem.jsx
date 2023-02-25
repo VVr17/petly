@@ -50,13 +50,14 @@ const NoticeCategoryItem = ({
   const isAuth = useSelector(selectIsAuthState);
   const user = useSelector(selectUserState);
   const favorites = useSelector(selectFavoritesState);
-
   const showButtonDelete = user ? owner === user._id : false;
 
   const place = location.split(',');
   const city = place[0];
   const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
   const isFavorite = favorites?.includes(_id);
+  // const isFavorite = !!favorites?.find(notice => notice._id === _id);
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [deleteNotice, { isLoading: deleting }] = useDeleteNoticeMutation();
   const [addNoticeToFavorite, { isLoading: adding }] =
