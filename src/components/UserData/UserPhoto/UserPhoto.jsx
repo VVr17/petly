@@ -17,6 +17,7 @@ import {
   useGetCurrentUserQuery,
 } from 'redux/api/userApi';
 import Loader from 'components/Loader';
+import { validationSchema } from './validation';
 // import { initialValues } from 'components/RegisterForm/Validation';
 
 const UserPhoto = () => {
@@ -62,7 +63,7 @@ const UserPhoto = () => {
   return (
     <Formik
       initialValues={initialValues}
-      // validationSchema={validationSchema}
+      validationSchema={validationSchema}
       onSubmit={handleSubmit}
       encType="multipart/form-data"
     >
