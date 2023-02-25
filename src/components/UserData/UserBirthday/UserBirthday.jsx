@@ -1,7 +1,7 @@
 import { Formik, useField } from 'formik';
 import React, { useState } from 'react';
 import { useUpdateUserMutation } from 'redux/api/userApi';
-
+import { FieldWrapper } from '../UserField.styled';
 import {
   Title,
   Label,
@@ -78,6 +78,7 @@ const UserBirthday = () => {
     >
       {({ isSubmitting, values, setFieldValue }) => (
         <FormStyled>
+          <FieldWrapper>
           <Label>
             <Title>Birthday</Title>
 
@@ -99,6 +100,7 @@ const UserBirthday = () => {
             onClick={handleClick}
           />
           {isLoading && <Loader />}
+          </FieldWrapper>
         </FormStyled>
       )}
     </Formik>
