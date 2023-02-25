@@ -18,12 +18,13 @@ const UserPhone = () => {
   const initialValues = { phone: user.phone || '' };
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
-  const handleClick = (values, actions) => {
+  const handleClick = values => {
     if (isDisabled) {
       setIsDisabled(false);
       return;
     }
 
+    if (!values.phone) return;
     setIsDisabled(true);
   };
 
@@ -58,7 +59,7 @@ const UserPhone = () => {
             <UserUpdateButton
               type="submit"
               isdisabled={isDisabled}
-              onClick={handleClick}
+              onClick={() => handleClick(values)}
             />
             {isLoading && <Loader />}
           </FieldWrapper>

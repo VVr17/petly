@@ -24,6 +24,7 @@ const UserCity = () => {
       return;
     }
 
+    if (!values.city) return;
     setIsDisabled(true);
   };
 
@@ -58,7 +59,7 @@ const UserCity = () => {
             <UserUpdateButton
               type="submit"
               isdisabled={isDisabled}
-              onClick={handleClick}
+              onClick={() => handleClick(values)}
             />
             {isLoading && <Loader />}
           </FieldWrapper>
