@@ -46,25 +46,25 @@ const UserEmail = () => {
       onSubmit={handleSubmit}
       // encType="multipart/form-data"
     >
-      {/* {({ isSubmitting, values, setFieldValue }) => ( */}
-      <Form>
-        <FieldWrapper>
-          <UserInput
-            label="Email"
-            name="email"
-            type="email"
-            disabled={isDisabled}
-            placeholder={user.email || ''}
-          />
-          <UserUpdateButton
-            type="submit"
-            isdisabled={isDisabled}
-            onClick={() => handleClick(values)}
-          />
-          {isLoading && <Loader />}
-        </FieldWrapper>
-      </Form>
-      {/* )} */}
+      {({ isSubmitting, values, setFieldValue }) => (
+        <Form>
+          <FieldWrapper>
+            <UserInput
+              label="Email"
+              name="email"
+              type="email"
+              disabled={isDisabled}
+              placeholder={user.email || ''}
+            />
+            <UserUpdateButton
+              type="submit"
+              isdisabled={isDisabled}
+              onClick={() => handleClick(values)}
+            />
+            {isLoading && <Loader />}
+          </FieldWrapper>
+        </Form>
+      )}
     </Formik>
   );
 };
