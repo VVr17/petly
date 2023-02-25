@@ -65,7 +65,17 @@ const Notices = () => {
   //   toast.info('Not found any ad');
   // };
 
+
+  const {
+    data: notices,
+    error,
+    isLoading,
+    isFetching,
+  } = useGetNoticeByCategoryQuery(category, { skip: !category });
+  console.log(notices);
+
   // const throttledNotify = useCallback(throttle(notify, 3000), []);
+
 
   useEffect(() => {
     if (notices) {
