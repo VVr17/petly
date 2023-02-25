@@ -36,7 +36,7 @@ import Button from 'components/Ui-Kit/Button';
 
 const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
 
-const ModalNotice = ({ id }) => {
+const ModalNotice = ({ id, onClose }) => {
   const { data, isFetching, isError } = useGetNoticeByIdQuery(id);
   const noItem = '-----------';
 
@@ -60,9 +60,11 @@ const ModalNotice = ({ id }) => {
     if (isFavorite) {
       await deleteNoticeFromFavorite(noticeId);
       toast.info(`Notice has been removed from favorites`);
+      onClose();
       return;
     }
     await addNoticeToFavorite(noticeId);
+    onClose();
     toast.info(`Notice has been added to favorites`);
   };
   const isLoading = adding || removing;
@@ -183,6 +185,7 @@ const ModalNotice = ({ id }) => {
 
 ModalNotice.propTypes = {
   id: PropTypes.string.isRequired,
+  onClose: PropTypes.func,
 };
 
 export default ModalNotice;
