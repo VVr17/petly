@@ -61,17 +61,17 @@ const Notices = () => {
     document.body.classList.remove('modal-open');
   };
 
-  const notify = () => {
-    toast.info('Not found any ad');
-  };
+  // const notify = () => {
+  //   toast.info('Not found any ad');
+  // };
 
-  const throttledNotify = useCallback(throttle(notify, 3000), []);
+  // const throttledNotify = useCallback(throttle(notify, 3000), []);
 
   useEffect(() => {
     if (notices) {
       const filteredNotices = filterNotices(notices);
       setvisibleNotices(filteredNotices);
-      visibleNotices.length === 0 && throttledNotify();
+      // visibleNotices.length === 0 && throttledNotify();
     }
   }, [notices, filter]);
 

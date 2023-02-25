@@ -138,16 +138,16 @@ const AddPetForm = ({ onClose }) => {
 
             <ButtonsContainer>
               {currentStep === 1 && (
-                <Button name="transparent" onClick={onClose}>
+                <Button name="transparent" width="100%" onClick={onClose}>
                   Cancel
                 </Button>
               )}
               {currentStep === 2 && (
-                <Button name="transparent" onClick={goBack}>
+                <Button name="transparent" width="100%" onClick={goBack}>
                   Back
                 </Button>
               )}
-              <Button name="filled" type="submit" disabled={isSubmitting}>
+              <Button name="filled" type="submit" width="100%" disabled={isSubmitting}>
                 {currentStep < 2 ? 'Next' : 'Done'}
               </Button>
             </ButtonsContainer>
