@@ -12,7 +12,9 @@ import { validationSchema } from './validation';
 const UserPhone = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const { data } = useGetCurrentUserQuery();
+  console.log('data', data);
   const initialValues = { phone: data?.phone || '' };
+  console.log('initialValues', initialValues);
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
   const handleClick = (values, actions) => {
@@ -50,7 +52,7 @@ const UserPhone = () => {
               name="phone"
               type="phone"
               disabled={isDisabled}
-              placeholder={data?.phone || ''}
+              placeholder={initialValues.phone}
             />
             <UserUpdateButton
               type="submit"
