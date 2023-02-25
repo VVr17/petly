@@ -12,13 +12,14 @@ export const FormStyled = styled(Form)`
 export const Label = styled.label`
   display: flex;
   align-items: center;
-
-  ${theme.mq.tabletOnly} {
-    margin-right: 13px;
-  }
-
+  margin-right: 13px;
   ${theme.mq.mobileOnly} {
     width: 100%;
+  }
+
+  ${theme.mq.desktop} {
+    width: 100%;
+    margin-right: 12px;
   }
 `;
 
@@ -37,7 +38,7 @@ export const Title = styled.span`
 
   ${theme.mq.desktop} {
     width: 83px;
-    margin-right: 24px;
+    margin-right: 14px;
   }
 `;
 
@@ -72,11 +73,11 @@ export const MyDatePickerNew = styled(DatePicker)`
   }
 
   @media (min-width: ${breakpoints[1]}px) {
-    width: 237px;
+    /* width: 240px; */
+  }
 
-    /* height: 32px; */
-    /* margin-right: 24px; */
-    /* padding-left: 10px; */
+  @media (min-width: ${breakpoints[2]}px) {
+    /* width: 24px; */
   }
 `;
 

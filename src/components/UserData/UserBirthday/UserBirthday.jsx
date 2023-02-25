@@ -79,27 +79,27 @@ const UserBirthday = () => {
       {({ isSubmitting, values, setFieldValue }) => (
         <FormStyled>
           <FieldWrapper>
-          <Label>
-            <Title>Birthday</Title>
+            <Label>
+              <Title>Birthday</Title>
 
-            <MyDatePicker
-              isDisabled={isDisabled}
-              val={parsedDate}
-              name="birthday"
-              handleChange={date => {
-                setFieldValue('birthday', date);
-                console.log('handleChange', values);
-              }}
+              <MyDatePicker
+                isDisabled={isDisabled}
+                val={parsedDate}
+                name="birthday"
+                handleChange={date => {
+                  setFieldValue('birthday', date);
+                  console.log('handleChange', values);
+                }}
+              />
+
+              <ErrorStyle name="birthday" component="div" />
+            </Label>
+            <UserUpdateButton
+              type="submit"
+              isdisabled={isDisabled}
+              onClick={handleClick}
             />
-
-            <ErrorStyle name="birthday" component="div" />
-          </Label>
-          <UserUpdateButton
-            type="submit"
-            isdisabled={isDisabled}
-            onClick={handleClick}
-          />
-          {isLoading && <Loader />}
+            {isLoading && <Loader />}
           </FieldWrapper>
         </FormStyled>
       )}
