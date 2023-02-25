@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { theme, breakpoints } from 'constants/theme';
+import { theme } from 'constants/theme';
 
 export const LoadImageCont = styled.div`
   position: relative;

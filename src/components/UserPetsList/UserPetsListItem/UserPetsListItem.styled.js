@@ -5,7 +5,6 @@ export const Item = styled.li`
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  /* width: 280px; */
   width: 100%;
   padding: ${theme.space[4]} ${theme.space[4]} 42px ${theme.space[4]};
   background-color: ${theme.colors.lightText};
@@ -35,8 +34,10 @@ export const InfoBox = styled.div`
 `;
 
 export const Image = styled.img`
-  max-width: 100%;
-  min-height: 240px;
+  width: 240px;
+  height: 240px;
+  margin-left: auto;
+  margin-right: auto;
   object-fit: cover;
   background-color: grey;
   border-radius: ${theme.space[4]};

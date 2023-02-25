@@ -6,8 +6,7 @@ import {
   iconStyle,
   Button,
   Link,
-  Span,
-  // Overlay,
+  Span
 } from './MobMenu.styled';
 import PropTypes from 'prop-types';
 import { VscChromeClose } from 'react-icons/vsc';

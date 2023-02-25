@@ -35,7 +35,6 @@ const UploadImageField = ({ handleChange, fileDataURL, name }) => {
             <ErrorStyle name={name} component="div" />
           </LoadImageCont>
           <LoadImgInput
-            // {...field}
             selected={value}
             name={name}
             type="file"
