@@ -1,3 +1,4 @@
+import Loader from 'components/Loader';
 import UserInput from 'components/Ui-Kit/UserInput';
 import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
@@ -23,6 +24,7 @@ const UserEmail = () => {
       return;
     }
 
+    if (!values.email) return;
     setIsDisabled(true);
   };
 
@@ -30,6 +32,8 @@ const UserEmail = () => {
     if (!isDisabled) {
       return;
     }
+
+    if (values.email === user.email) return;
 
     // create formData
     const data = new FormData();
@@ -44,24 +48,25 @@ const UserEmail = () => {
       onSubmit={handleSubmit}
       // encType="multipart/form-data"
     >
-      {/* {({ isSubmitting, values, setFieldValue }) => ( */}
-      <Form>
-        <FieldWrapper>
-          <UserInput
-            label="Email"
-            name="email"
-            type="email"
-            disabled={isDisabled}
-            placeholder={user.email || ''}
-          />
-          <UserUpdateButton
-            type="submit"
-            isdisabled={isDisabled}
-            onClick={handleClick}
-          />
-        </FieldWrapper>
-      </Form>
-      {/* )} */}
+      {({ isSubmitting, values, setFieldValue }) => (
+        <Form>
+          <FieldWrapper>
+            <UserInput
+              label="Email"
+              name="email"
+              type="email"
+              disabled={isDisabled}
+              placeholder={user.email || ''}
+            />
+            <UserUpdateButton
+              type="submit"
+              isdisabled={isDisabled}
+              onClick={() => handleClick(values)}
+            />
+            {isLoading && <Loader />}
+          </FieldWrapper>
+        </Form>
+      )}
     </Formik>
   );
 };
