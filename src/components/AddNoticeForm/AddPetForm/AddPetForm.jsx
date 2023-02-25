@@ -18,7 +18,7 @@ import {
   validationSchemaStepTwo,
 } from './Validation';
 import Loader from 'components/Loader';
-import { convertDateToString } from 'helpers/date';
+import { convertDateToString } from '../../../helpers/date';
 
 // Main function
 
