@@ -20,13 +20,13 @@ const UserPetsListItem = ({ pet }) => {
   const [deletePetMutation, { isLoading }] = useDeletePetMutation();
 
   const handleDelete = async petId => {
-    window.alert('Are you really want to delete your pet?');
-    try {
-      const response = await deletePetMutation(petId);
-      // console.log('Pet deleted!');
-      toast.info(`Pet has been deleted`);
-    } catch (error) {
-      console.log(error);
+    if (confirm('Do you want to delete your pet')) {
+      try {
+        const response = await deletePetMutation(petId);
+        toast.info(`Pet has been deleted`);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
