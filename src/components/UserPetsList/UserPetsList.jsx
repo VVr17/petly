@@ -11,16 +11,8 @@ import { AnimatePresence } from 'framer-motion';
 import AddPetButton from 'components/AddPetButton';
 
 const UserPetsList = () => {
-  const [pets, setPets] = useState();
   const [isOpen, setIsOpen] = useState(false);
-  const { data: currentUserData } = useGetCurrentUserQuery();
-  let dataPets = currentUserData ? currentUserData : [];
-
-  useEffect(() => {
-    if (dataPets) {
-      setPets(dataPets.pets);
-    }
-  }, [dataPets]);
+  const { data } = useGetCurrentUserQuery();
 
   const handleIsOpen = () => {
     setIsOpen(true);
@@ -37,9 +29,9 @@ const UserPetsList = () => {
         <Title>My pets:</Title>
         <AddPetButton handleClick={handleIsOpen} />
       </Box>
-      {pets && (
+      {data?.pets && (
         <List>
-          {pets.map(pet => {
+          {data?.pets.map(pet => {
             return <UserPetsListItem key={pet._id} pet={pet} />;
           })}
         </List>
