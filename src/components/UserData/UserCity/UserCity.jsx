@@ -48,7 +48,7 @@ const UserCity = () => {
       onSubmit={handleSubmit}
       // encType="multipart/form-data"
     >
-      {({ isSubmitting, values, setFieldValue }) => (
+      {({ isSubmitting, values, setFieldValue, errors }) => (
         <Form>
           <FieldWrapper>
             <UserInput
@@ -61,7 +61,10 @@ const UserCity = () => {
             <UserUpdateButton
               type="submit"
               isdisabled={isDisabled}
-              onClick={() => handleClick(values)}
+              onClick={() =>{ 
+                if (errors.city) return;
+                handleClick(values)
+              }}
             />
             {isLoading && <Loader />}
           </FieldWrapper>

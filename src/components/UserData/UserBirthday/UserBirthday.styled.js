@@ -6,14 +6,16 @@ import { AiOutlineCheck } from 'react-icons/ai';
 import DatePicker from 'react-datepicker';
 
 export const FormStyled = styled(Form)`
-  display: flex;
-  align-items: center;
+  max-width: 379px;
 `;
 
 export const Label = styled.label`
   display: flex;
   align-items: center;
-  margin-right: 13px;
+
+  ${theme.mq.tabletOnly} {
+    margin-right: 13px;
+  }
 
   ${theme.mq.mobileOnly} {
     width: 100%;
@@ -22,7 +24,6 @@ export const Label = styled.label`
 
 export const Title = styled.span`
   width: 85px;
-  margin-right: 3px;
   /* overflow-x: hidden; */
 
   ${theme.mq.mobileOnly} {
@@ -36,7 +37,7 @@ export const Title = styled.span`
 
   ${theme.mq.desktop} {
     width: 83px;
-    margin-right: 3px;
+    margin-right: 24px;
   }
 `;
 

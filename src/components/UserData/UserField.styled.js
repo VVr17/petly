@@ -18,7 +18,6 @@ export const FieldWrapper = styled.div`
     font-size: ${theme.fontSizes.s};
     line-height: 1.39;
     width: 100%;
-    margin-right: 30px;
   }
 
   ${theme.mq.desktop} {
