@@ -285,9 +285,9 @@ export const Textarea = styled(Field)`
 // common error
 export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
-  bottom: -10px;
-  left: 30px;
-  font-size: ${theme.fontSizes.xxxs};
+  bottom: 0;
+  left: -3px;
+  font-size: 10px;
   color: red;
   ${theme.mq.mobileOnly} {
     transform: translate(0px, 0px);
