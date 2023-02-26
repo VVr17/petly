@@ -28,9 +28,9 @@ import { useGetNotices } from 'hooks/useGetNotices';
 
 const Notices = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [visibleNotices, setvisibleNotices] = useState([]);
-  const [filter, setFilter] = useState('');
   const { notices, isFetching, error } = useGetNotices();
+  const [filter, setFilter] = useState('');
+  const [visibleNotices, setvisibleNotices] = useState([]);
 
   const filterUpdate = e => {
     const value = e.target.value;
@@ -41,7 +41,13 @@ const Notices = () => {
     const filteredNotices = notices.filter(notice => {
       return notice.title.toLowerCase().includes(filter);
     });
+    if (filteredNotices.length === 0)
+   { toast.info('Not find any ad');} 
     return filteredNotices;
+  };
+
+  const handleClean = () => {
+    setFilter('');
   };
 
   const isAuth = useSelector(selectIsAuthState);
@@ -59,17 +65,10 @@ const Notices = () => {
     document.body.classList.remove('modal-open');
   };
 
-  // const notify = () => {
-  //   toast.info('Not found any ad');
-  // };
-
-  // const throttledNotify = useCallback(throttle(notify, 3000), []);
-
   useEffect(() => {
     if (notices) {
-      const filteredNotices = filterNotices(notices);
-      setvisibleNotices(filteredNotices);
-      // visibleNotices.length === 0 && throttledNotify();
+      const filteredNotices = filterNotices(notices);     
+      setvisibleNotices(filteredNotices)          
     }
   }, [notices, filter]);
 
@@ -78,7 +77,7 @@ const Notices = () => {
   return (
     <Section>
       <TitlePage name={'Find your favorite pet'} />
-      <SearchForm onChange={filterUpdate} />
+      <SearchForm onChange={filterUpdate} onSubmit={handleClean} />
 
       <NavContainer>
         <FindPetFilter />

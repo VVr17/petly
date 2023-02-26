@@ -9,11 +9,9 @@ import { motion } from 'framer-motion';
 // header of form
 export const FormWrapper = styled(Form)`
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   gap: 10px;
   width: 100%;
-}
-
 `;
 
 export const FormTitle = styled.h3`
@@ -39,7 +37,7 @@ export const ButtonsContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 12px;
-  @media(min-width: ${breakpoints[1]}px) {
+  @media (min-width: ${breakpoints[1]}px) {
     flex-direction: row;
     width: 380px;
     margin-left: auto;
@@ -50,15 +48,15 @@ export const ButtonsContainer = styled.div`
 export const ButtonFilterList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  @media(min-width: ${breakpoints[1]}px) {
+  @media (min-width: ${breakpoints[1]}px) {
     margin-bottom: 8px;
-  };
+  } ;
 `;
 
 export const ButtonFilterItem = styled.li`
   margin-right: 15px;
   margin-bottom: 12px;
-  @media(min-width: ${breakpoints[1]}px) {
+  @media (min-width: ${breakpoints[1]}px) {
     margin-bottom: 0;
   }
 `;
@@ -247,9 +245,9 @@ export const TextareaLabel = styled.label`
   font-size: ${theme.fontSizes.s};
   line-height: 1.44;
   margin-bottom: 8px;
-  @media(min-width: ${breakpoints[1]}px) {
+  @media (min-width: ${breakpoints[1]}px) {
     font-size: ${theme.fontSizes.l};
-    line-height: 1.08
+    line-height: 1.08;
     display: block;
     margin-bottom: 12px;
   }
@@ -257,8 +255,8 @@ export const TextareaLabel = styled.label`
 
 export const Textarea = styled(Field)`
   width: 100%;
-  height: 40px;
-  border-radius: 40px;
+  height: ${({ form }) => (form === 'userPet' ? '100px' : '40px')};
+  border-radius: ${({ form }) => (form === 'userPet' ? '20px' : '40px')};
   margin-top: 8px;
   margin-bottom: 8px;
   cursor: pointer;
@@ -272,23 +270,24 @@ export const Textarea = styled(Field)`
   padding-right: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
-  @media(min-width: ${breakpoints[1]}px) {
-    height: 110px;
+
+  @media (min-width: ${breakpoints[1]}px) {
+    height: 116px;
     border-radius: 20px;
     margin-top: 12px;
     padding-left: 18px;
     padding-right: 18px;
     font-size: ${theme.fontSizes.s};
-  };
+  } ;
 `;
 // end of comments section
 
 // common error
 export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
-  bottom: -10px;
-  left: 30px;
-  font-size: ${theme.fontSizes.xxxs};
+  bottom: 0;
+  left: -3px;
+  font-size: 8px;
   color: red;
   ${theme.mq.mobileOnly} {
     transform: translate(0px, 0px);

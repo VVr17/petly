@@ -68,9 +68,11 @@ export const Input = styled(Field)`
 
 export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
-  bottom: -10px;
+  bottom: -8px;
   left: 0px;
-  font-size: 8px;
+  font-size: 7px;
+  max-height: 9px;
+  overflow-y: hidden;
   color: red;
   ${theme.mq.mobileOnly} {
     transform: translate(0px, 0px);

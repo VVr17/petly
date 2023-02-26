@@ -17,16 +17,20 @@ export const LoadImageCont = styled.div`
 `;
 
 export const LoadImgLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  align-items: ${({ form }) => (form === 'userPet' ? 'center' : 'left')};
+
   cursor: pointer;
   font-family: ${theme.fontFamily.manrope};
   font-style: normal;
   font-weight: ${theme.fontWeight.medium};
   font-size: ${theme.fontSizes.s};
   line-height: 1.37;
-  @media(min-width: ${breakpoints[1]}px) {
+  @media (min-width: ${breakpoints[1]}px) {
     font-size: ${theme.fontSizes.l};
     line-height: 1.08;
-    margin-top: 16px;
+    margin-top: ${({ form }) => (form === 'userPet' ? '0px' : '16px')};
   }
 `;
 

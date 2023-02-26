@@ -15,21 +15,20 @@ import {
 import PropTypes from 'prop-types';
 import PartFirst from './PartFirst';
 import PartSecond from './PartSecond';
-import UserUploadImg from 'components/UserUploadImg/UserUploadImg';
 import Button from 'components/Ui-Kit/Button';
-import { petsApi, useAddPetMutation } from 'redux/api/petsApi';
+import { useAddPetMutation } from 'redux/api/petsApi';
 import Loader from 'components/Loader';
 import { convertDateToString } from '../../helpers/date';
-
 import {
   initialValues,
   validationSchemaPartOne,
   validationSchemaPartTwo,
 } from './Validation';
+import UploadImageField from 'components/UploadImage/UploadImage';
+import CommentField from 'components/AddNoticeForm/AddPetForm/StepTwo/CommentField';
 
 const UserAddPetForm = ({ closeModal }) => {
   const [currentPart, setCurrentPart] = useState(1);
-  const [image, setImage] = useState(null);
   const [file, setFile] = useState(null);
   const [fileDataURL, setFileDataURL] = useState(null);
   const [addPetMutation, { isLoading }] = useAddPetMutation();
@@ -38,6 +37,7 @@ const UserAddPetForm = ({ closeModal }) => {
     let fileReader,
       isCancel = false;
     if (file) {
+      console.log('file in pet', file);
       fileReader = new FileReader();
       fileReader.onload = e => {
         const { result } = e.target;
@@ -61,7 +61,7 @@ const UserAddPetForm = ({ closeModal }) => {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     if (currentPart < 2) {
-      setCurrentPart(2);
+      setCurrentPart(currentPart + 1);
     } else {
       const dateMDY = convertDateToString(values.birthDate);
 
@@ -69,9 +69,8 @@ const UserAddPetForm = ({ closeModal }) => {
       data.append('name', values.name);
       data.append('birthDate', dateMDY);
       data.append('breed', values.breed);
-      data.append('petImage', values.imageFile);
+      data.append('petImage', values.petImage);
       data.append('comments', values.comments);
-      console.log(data);
       try {
         const response = await addPetMutation(data);
       } catch (error) {
@@ -110,31 +109,17 @@ const UserAddPetForm = ({ closeModal }) => {
             {currentPart === 2 && (
               <PartSecond>
                 <>
-                  <LabelStyled htmlFor="imageFile">
-                    Add photo and some comments
-                  </LabelStyled>
-                  <UserUploadImg
-                    name="imageFile"
+                  <UploadImageField
+                    name="petImage"
+                    form="userPet"
+                    label="Add photo and some comments"
                     fileDataURL={fileDataURL}
                     handleChange={e => {
                       setFile(e.currentTarget.files[0]);
-                      setFieldValue('imageFile', e.currentTarget.files[0]);
+                      setFieldValue('petImage', e.currentTarget.files[0]);
                     }}
                   />
-                  <CommentsBox>
-                    <Label htmlFor="comments">Comments</Label>
-                    <FieldStyled
-                      id="comments"
-                      name="comments"
-                      type="text"
-                      as="textarea"
-                      placeholder="Type comments"
-                      onChange={e => {
-                        setFieldValue('comments', e.target.value);
-                      }}
-                    />
-                    <ErrorStyle name="comments" component="div" />
-                  </CommentsBox>
+                  <CommentField name="comments" form="userPet" />
                 </>
               </PartSecond>
             )}
@@ -180,3 +165,17 @@ UserAddPetForm.propTypes = {
 };
 
 export default UserAddPetForm;
+
+/* <LabelStyled htmlFor="petImage">
+                    Add photo and some comments
+                    <PetUploadImg
+                      name="petImage"
+                      id="petImage"
+                      fileDataURL={fileDataURL}
+                      handleChange={e => {
+                        setFile(e.currentTarget.files[0]);
+                        setFieldValue('petImage', e.currentTarget.files[0]);
+                        console.log('values', values);
+                      }}
+                    />
+                  </LabelStyled> */
