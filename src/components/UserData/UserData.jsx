@@ -4,12 +4,25 @@ import { selectUserState } from 'redux/user/userSelectors';
 import { logout } from '../../redux/user/userSlice';
 import { IoLogOutOutline } from 'react-icons/io5';
 import { Box } from 'components/Box/Box';
-import { Container, UserCard, Title, Button, LogoutBtn, iconStyle, UserInfo } from './UserData.styled';
-import { UserPhoto, UserName, UserEmail, UserBirthday, UserPhone, UserCity } from "./UserDataItem/index"
+import {
+  Container,
+  UserCard,
+  Title,
+  Button,
+  LogoutBtn,
+  iconStyle,
+  UserInfo,
+} from './UserData.styled';
+import {
+  UserPhoto,
+  UserName,
+  UserEmail,
+  UserBirthday,
+  UserPhone,
+  UserCity,
+} from './UserDataItem/index';
 
 const UserData = () => {
-  const user = useSelector(selectUserState);
-
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -23,11 +36,11 @@ const UserData = () => {
         <UserPhoto />
         <Box mt={['32px', '32px', '0', '0']}>
           <UserInfo>
-            <UserName user={user}/>
-            <UserEmail user={user}/>
-            <UserBirthday user={user}/>
-            <UserPhone user={user}/>
-            <UserCity user={user}/>
+            <UserName />
+            <UserEmail />
+            <UserBirthday />
+            <UserPhone />
+            <UserCity />
           </UserInfo>
           <Box
             display="flex"

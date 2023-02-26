@@ -7,11 +7,13 @@ import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButto
 import UserInput from 'components/Ui-Kit/UserInput';
 import Loader from 'components/Loader';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { selectUserState } from 'redux/user/userSelectors';
 
-const UserName = ({ user }) => {
+const UserName = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [updateUser, { isLoading }] = useUpdateUserMutation();
-
+  const user = useSelector(selectUserState);
   const initialValues = { name: user.name || '' };
 
   const handleClick = (values, actions) => {
@@ -76,6 +78,6 @@ const UserName = ({ user }) => {
 
 UserName.propTypes = {
   user: PropTypes.object,
-}
+};
 
 export default UserName;

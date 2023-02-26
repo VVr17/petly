@@ -13,6 +13,8 @@ import { convertStringToDate, convertDateToString } from 'helpers/date';
 import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
 import Loader from 'components/Loader';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { selectUserState } from 'redux/user/userSelectors';
 
 const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
   const [field] = useField(name);
@@ -36,9 +38,9 @@ const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
   );
 };
 
-const UserBirthday = ({ user }) => {
+const UserBirthday = () => {
   const [isDisabled, setIsDisabled] = useState(true);
-  // const user = useSelector(selectUserState);
+  const user = useSelector(selectUserState);
 
   const val = () => {
     let date;

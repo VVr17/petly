@@ -26,7 +26,7 @@ export const validationSchemaStepOne = Yup.object().shape({
   name: Yup.string()
     .required('Name is required')
     .matches(
-      /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/,
       'Only letters can be accepted'
     )
     .min(2, 'Name should be at least 2 characters long')
@@ -35,7 +35,7 @@ export const validationSchemaStepOne = Yup.object().shape({
   breed: Yup.string()
     .required('Breed is required')
     .matches(
-      /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/,
       'Only letters can be accepted'
     )
     .min(2, 'Breed should be at least 2 characters long')
@@ -46,7 +46,7 @@ export const validationSchemaStepTwo = Yup.object().shape({
   sex: Yup.string().required(),
   location: Yup.string()
     .matches(
-      /^[a-zA-Zа-яА-ЯіІїЇ]+(?:[-\s]?[a-zA-Zа-яА-ЯіІїЇ]+)*,\s*[a-zA-Zа-яА-ЯіІїЇ'’\s-]+$/,
+      /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?:[-\s]?[a-zA-Zа-яА-ЯіІїЇґҐ]+)*,\s*[a-zA-Zа-яА-ЯіІїЇґҐ'’\s-]+$/,
       'Should be at least two words separated by coma'
     )
     .required('City is required'),
