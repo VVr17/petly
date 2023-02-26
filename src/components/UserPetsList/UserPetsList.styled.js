@@ -20,6 +20,10 @@ export const Container = styled.div`
 export const Box = styled.div`
   display: flex;
   align-items: center;
+
+  @media (min-width: ${breakpoints[2]}px) {
+  min-width: 805px;
+  }
 `;
 
 export const Title = styled.h2`
