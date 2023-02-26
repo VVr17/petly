@@ -24,52 +24,13 @@ import AddPetForm from 'components/AddNoticeForm/AddPetForm';
 import { AnimatePresence } from 'framer-motion';
 import throttle from 'lodash.throttle';
 import { statusFilter } from 'redux/filter/filterConstans';
+import { useGetNotices } from 'hooks/useGetNotices';
 
 const Notices = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [visibleNotices, setvisibleNotices] = useState([]);
   const [filter, setFilter] = useState('');
-
-  const category = useSelector(selectStatusFilter);
-  const {
-    data: notices,
-    error: noticeError,
-    isFetching: fetchingNotices,
-  } = useGetNoticeByCategoryQuery(category, {
-    skip:
-      !category ||
-      category === statusFilter.favoriteAds ||
-      category === statusFilter.myAds,
-  });
-  const {
-    data: favoriteNotices,
-    error: favoriteError,
-    isFetching: fetchingFavorites,
-  } = useGetFavoritesNoticesQuery();
-  /**
-   * null, {
-    skip: category !== statusFilter.favoriteAds,
-  }
-   */
-  const {
-    data: myNotices,
-    error: myError,
-    isFetching: fetchingMy,
-  } = useGetUserNoticesQuery(null, {
-    skip: category !== statusFilter.myAds,
-  });
-
-  const chooseNotices = () => {
-    if (category === statusFilter.favoriteAds) {
-      return favoriteNotices;
-    }
-    if (category === statusFilter.myAds) {
-      return myNotices;
-    }
-    return notices;
-  };
-
-  const chosenNotices = chooseNotices();
+  const { notices, isFetching, error } = useGetNotices();
 
   const filterUpdate = e => {
     const value = e.target.value;
@@ -104,22 +65,20 @@ const Notices = () => {
 
   // const throttledNotify = useCallback(throttle(notify, 3000), []);
 
+  console.log('notices', notices);
   useEffect(() => {
-    if (chosenNotices) {
-      const filteredNotices = filterNotices(chosenNotices);
+    if (notices) {
+      const filteredNotices = filterNotices(notices);
       setvisibleNotices(filteredNotices);
       // visibleNotices.length === 0 && throttledNotify();
     }
-  }, [chosenNotices, filter]);
+  }, [notices, filter]);
 
-  const isFetching = fetchingNotices || fetchingFavorites || fetchingMy;
-  const error = noticeError || favoriteError || myError;
   const showNotices = visibleNotices && !error && !isFetching;
 
   return (
     <Section>
       <TitlePage name={'Find your favorite pet'} />
-
       <SearchForm onChange={filterUpdate} />
 
       <NavContainer>

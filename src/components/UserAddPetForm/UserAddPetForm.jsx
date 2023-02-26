@@ -17,7 +17,7 @@ import PartFirst from './PartFirst';
 import PartSecond from './PartSecond';
 import UserUploadImg from 'components/UserUploadImg';
 import Button from 'components/Ui-Kit/Button';
-import { petsApi } from 'redux/api/petsApi';
+import { petsApi, useAddPetMutation } from 'redux/api/petsApi';
 import Loader from 'components/Loader';
 import { convertDateToString } from '../../helpers/date';
 
@@ -32,7 +32,7 @@ const UserAddPetForm = ({ closeModal }) => {
   const [image, setImage] = useState(null);
   const [file, setFile] = useState(null);
   const [fileDataURL, setFileDataURL] = useState(null);
-  const [addPetMutation, { isLoading }] = petsApi.useAddPetMutation();
+  const [addPetMutation, { isLoading }] = useAddPetMutation();
 
   useEffect(() => {
     let fileReader,
@@ -57,8 +57,8 @@ const UserAddPetForm = ({ closeModal }) => {
 
   function getFullMonth(date) {
     return date < 10 ? '0' + date : date;
-  };
-  
+  }
+
   const handleSubmit = async (values, { setSubmitting }) => {
     if (currentPart < 2) {
       setCurrentPart(2);
