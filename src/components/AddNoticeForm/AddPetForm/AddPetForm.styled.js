@@ -206,6 +206,22 @@ export const RadioButton = styled(Field)`
 `;
 // end sex field
 
+// price and image error
+export const CustomCont = styled.div`
+  position: relative;
+`;
+export const ErrorMess = styled.div`
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  font-size: 8px;
+  color: red;
+  ${theme.mq.mobileOnly} {
+    transform: translate(0px, 0px);
+  }
+`;
+// end price error
+
 export const LoadImageCont = styled.div`
   display: flex;
   justify-content: center;

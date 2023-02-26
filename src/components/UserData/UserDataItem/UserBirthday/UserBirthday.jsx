@@ -17,7 +17,6 @@ import PropTypes from 'prop-types';
 const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
   const [field] = useField(name);
   const [startDate, setStartDate] = useState(val);
-
   return (
     <MyDatePickerNew
       {...field}
@@ -33,13 +32,30 @@ const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
       showMonthDropdown
       showYearDropdown
       yearDropdownItemNumber={100}
-      dropdownMode="select"
+      scrollableYearDropdown
     />
   );
 };
 
 const UserBirthday = ({ user }) => {
   const [isDisabled, setIsDisabled] = useState(true);
+
+  // const user = useSelector(selectUserState);
+
+  const val = () => {
+    let date;
+    if (user.birthday === null) {
+      date = new Date();
+    } else {
+      date = convertStringToDate(user.birthday);
+    }
+    return date;
+  };
+
+  // const parsedDate = convertStringToDate(user.birthday || '00.00.0000');
+
+  // const initialValues = { birthday: user.birthday || '' };
+
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
   const parsedDate = convertStringToDate(user?.birthday || '00.00.0000');
@@ -83,11 +99,10 @@ const UserBirthday = ({ user }) => {
 
               <MyDatePicker
                 isDisabled={isDisabled}
-                val={parsedDate}
+                val={val}
                 name="birthday"
                 handleChange={date => {
                   setFieldValue('birthday', date);
-                  console.log('handleChange', values);
                 }}
               />
 

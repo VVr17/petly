@@ -2,7 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 import Button from 'components/Ui-Kit/Button';
-import { FormWrapper, ButtonsContainer } from './AddPetForm.styled';
+import { toast } from 'react-toastify';
+import {
+  FormWrapper,
+  ButtonsContainer,
+  ErrorMess,
+  CustomCont,
+} from './AddPetForm.styled';
 import StepOne from './StepOne/StepOne';
 import StepTwo from './StepTwo/StepTwo';
 import LocationField from './StepTwo/Location';
@@ -51,19 +57,16 @@ const AddPetForm = ({ onClose }) => {
     };
   }, [file]);
 
-  // function to to fool day and month (01, 02...)
-  function getFullMonth(date) {
-    return date < 10 ? '0' + date : date;
-  }
-
   // form submit
 
-  const handleSubmit = values => {
+  const handleSubmit = (values, { setSubmitting }) => {
     if (currentStep < 2) {
       setCurrentStep(currentStep + 1);
     } else {
-      console.log(values);
-
+      if (!values.price) {
+        toast.error('All the fields must be filled');
+        return;
+      }
       // Date converting to string
       const dateMDY = convertDateToString(values.birthDate);
 
@@ -91,6 +94,7 @@ const AddPetForm = ({ onClose }) => {
       // close Modal
       onClose();
     }
+
     setSubmitting(false);
   };
 
@@ -109,7 +113,14 @@ const AddPetForm = ({ onClose }) => {
         onSubmit={handleSubmit}
         encType="multipart/form-data"
       >
-        {({ isSubmitting, values, setFieldValue }) => (
+        {({
+          isSubmitting,
+          values,
+          setFieldValue,
+          handleBlur,
+          touched,
+          errors,
+        }) => (
           <FormWrapper>
             {currentStep === 1 && (
               <StepOne>
@@ -121,17 +132,28 @@ const AddPetForm = ({ onClose }) => {
                 <SexField value={values.sex} />
                 <LocationField />
 
-                {values.category === 'sell' && <PriceField />}
-
-                <UploadImageField
-                  name="petImage"
-                  label="Load the pet’s image:"
-                  fileDataURL={fileDataURL}
-                  handleChange={e => {
-                    setFile(e.currentTarget.files[0]);
-                    setFieldValue('petImage', e.currentTarget.files[0]);
-                  }}
-                />
+                {values.category === 'sell' && (
+                  <CustomCont>
+                    <PriceField errors={errors} touched={touched} />
+                    {touched.price && values.price === '' && (
+                      <ErrorMess>Price is required</ErrorMess>
+                    )}
+                  </CustomCont>
+                )}
+                <CustomCont>
+                  <UploadImageField
+                    name="petImage"
+                    label="Load the pet’s image:"
+                    fileDataURL={fileDataURL}
+                    handleChange={e => {
+                      setFile(e.currentTarget.files[0]);
+                      setFieldValue('petImage', e.currentTarget.files[0]);
+                    }}
+                  />
+                  {values.petImage === null && (
+                    <ErrorMess component="div">Image is required</ErrorMess>
+                  )}
+                </CustomCont>
 
                 <CommentField name="comments" />
               </StepTwo>
