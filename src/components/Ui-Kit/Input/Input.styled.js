@@ -36,9 +36,9 @@ export const Label = styled.label`
   line-height: 1.44;
   @media(min-width: ${breakpoints[1]}px) {
     font-size: ${theme.fontSizes.l};
+    line-height: 1.08;
     margin-top: 12px;
   };
-  // position: relative;
 `;
 
 export const ErrorStyle = styled(ErrorMessage)`

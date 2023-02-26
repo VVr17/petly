@@ -1,22 +1,18 @@
-import Loader from 'components/Loader';
-import UserInput from 'components/Ui-Kit/UserInput';
-import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import {
-  useGetCurrentUserQuery,
-  useUpdateUserMutation,
-} from 'redux/api/userApi';
-import { selectUserState } from 'redux/user/userSelectors';
-import { FieldWrapper, FormStyled } from '../UserField.styled';
+import { Formik, Form } from 'formik';
+import { useUpdateUserMutation } from 'redux/api/userApi';
 import { validationSchema } from './validation';
+import { FieldWrapper } from '../UserDataItem.styled';
+import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
+import UserInput from 'components/Ui-Kit/UserInput';
+import Loader from 'components/Loader';
+import PropTypes from 'prop-types';
 
-const UserPhone = () => {
+const UserPhone = ({ user }) => {
   const [isDisabled, setIsDisabled] = useState(true);
-  const user = useSelector(selectUserState);
-  const initialValues = { phone: user.phone || '' };
   const [updateUser, { isLoading }] = useUpdateUserMutation();
+
+  const initialValues = { phone: user?.phone || '' };
 
   const handleClick = values => {
     if (isDisabled) {
@@ -46,9 +42,8 @@ const UserPhone = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-      encType="multipart/form-data"
     >
-      {({ isSubmitting, values, setFieldValue, errors }) => (
+      {({ isSubmitting, values, errors }) => (
         <Form>
           <FieldWrapper>
             <UserInput
@@ -77,5 +72,9 @@ const UserPhone = () => {
     </Formik>
   );
 };
+
+UserPhone.propTypes = {
+  user: PropTypes.object,
+}
 
 export default UserPhone;

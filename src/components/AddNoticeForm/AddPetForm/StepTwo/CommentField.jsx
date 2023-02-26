@@ -8,8 +8,6 @@ import {
 import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
 import { useField } from 'formik';
 import PropTypes from 'prop-types';
-// import { ErrorStyle } from 'components/Ui-Kit/Input/Input.styled';
-import InputField from 'components/Ui-Kit/Input/Input';
 
 const CommentField = ({ name }) => {
   const [field, meta, helpers] = useField(name);

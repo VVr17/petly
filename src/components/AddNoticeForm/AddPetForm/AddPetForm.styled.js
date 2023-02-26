@@ -50,11 +50,17 @@ export const ButtonsContainer = styled.div`
 export const ButtonFilterList = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  @media(min-width: ${breakpoints[1]}px) {
+    margin-bottom: 8px;
+  };
 `;
 
 export const ButtonFilterItem = styled.li`
   margin-right: 15px;
-  margin-bottom: 28px;
+  margin-bottom: 12px;
+  @media(min-width: ${breakpoints[1]}px) {
+    margin-bottom: 0;
+  }
 `;
 
 export const ButtonFilterLabel = styled(motion.label)`
@@ -127,7 +133,7 @@ export const DatePickerInput = styled.input`
 
   cursor: pointer;
 
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 
   border: 1px solid rgba(245, 146, 86, 0.5);
   background-color: ${theme.colors.mainBackground};
@@ -240,17 +246,18 @@ export const TextareaLabel = styled.label`
   font-weight: ${theme.fontWeight.medium};
   font-size: ${theme.fontSizes.s};
   line-height: 1.44;
+  margin-bottom: 8px;
   @media(min-width: ${breakpoints[1]}px) {
     font-size: ${theme.fontSizes.l};
-  display: block;
-  margin-bottom: 12px;
-  ${theme.mq.mobileOnly} {
-    margin-bottom: 8px;
+    line-height: 1.08
+    display: block;
+    margin-bottom: 12px;
   }
 `;
 
 export const Textarea = styled(Field)`
   width: 100%;
+  height: 40px;
   border-radius: 40px;
   margin-top: 8px;
   margin-bottom: 8px;
@@ -261,19 +268,18 @@ export const Textarea = styled(Field)`
   font-size: ${theme.fontSizes.xxs};
   font-weight: ${theme.fontWeight.normal};
   color: ${theme.colors.primaryText};
-  padding-left: 28px;
-  padding-right: 28px;
-  padding-top: 9px;
-  padding-bottom: 9px;
+  padding-left: 14px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   @media(min-width: ${breakpoints[1]}px) {
+    height: 110px;
     border-radius: 20px;
     margin-top: 12px;
+    padding-left: 18px;
+    padding-right: 18px;
     font-size: ${theme.fontSizes.s};
   };
-  ${theme.mq.mobileOnly} {
-    font-size: ${theme.fontSizes.xxs};
-    padding: 12px 14px;
-  }
 `;
 // end of comments section
 

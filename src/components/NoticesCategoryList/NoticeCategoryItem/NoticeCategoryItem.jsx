@@ -1,5 +1,5 @@
 import { useState, React } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import {
@@ -35,6 +35,7 @@ import { useGetCurrentUserQuery } from 'redux/api/userApi';
 import { theme } from 'constants/theme';
 import Loader from 'components/Loader';
 import { selectFavoritesState } from 'redux/favorites/favoritesSelector';
+import { addFavorites } from 'redux/favorites/favoritesSlice';
 
 const NoticeCategoryItem = ({
   _id,
@@ -47,6 +48,7 @@ const NoticeCategoryItem = ({
   price,
   owner,
 }) => {
+  const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuthState);
   const user = useSelector(selectUserState);
   const favorites = useSelector(selectFavoritesState);
@@ -56,12 +58,12 @@ const NoticeCategoryItem = ({
   const city = place[0];
   const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
   const isFavorite = favorites?.includes(_id);
-  // const isFavorite = !!favorites?.find(notice => notice._id === _id);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [deleteNotice, { isLoading: deleting }] = useDeleteNoticeMutation();
   const [addNoticeToFavorite, { isLoading: adding }] =
     useAddNoticeToFavoriteMutation();
+
   const [deleteNoticeFromFavorite, { isLoading: removing }] =
     useRemoveNoticeFromFavoriteMutation();
 

@@ -9,9 +9,11 @@ import {
   LoadImgInput,
 } from './UserUploadImg.styled';
 
-const UserUploadImg = ({ handleChange, fileDataURL }) => {
+const UserUploadImg = ({ handleChange, fileDataURL, children, activeInput }) => {
+  const click = () => activeInput.current.click();
+
   return (
-    <LoadImgLabel>
+    <LoadImgLabel htmlFor="upload"> {children}
       {fileDataURL ? (
         <LoadImageCont>
           <ImagePreview
@@ -26,7 +28,7 @@ const UserUploadImg = ({ handleChange, fileDataURL }) => {
           <LoadImageCont>
             <LoadImgPlus src={Plus} alt="upload" width="47px" height="47px" />
           </LoadImageCont>
-          <LoadImgInput
+          <LoadImgInput ref={activeInput} onClick={click}
             name="imageFile"
             type="file"
             accept="image/*"
@@ -41,6 +43,8 @@ const UserUploadImg = ({ handleChange, fileDataURL }) => {
 UserUploadImg.propTypes = {
   handleChange: PropTypes.func,
   fileDataURL: PropTypes.string,
+  children: PropTypes.node,
+  activeInput: PropTypes.object,
 };
 
 export default UserUploadImg;

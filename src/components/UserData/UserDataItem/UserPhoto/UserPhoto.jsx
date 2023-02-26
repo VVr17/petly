@@ -1,31 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, Form } from 'formik';
-import { HiCamera } from 'react-icons/hi2';
-import {
-  iconStyle,
-  ImageBox,
-  LoadImgInput,
-  LoadImgPlus,
-  UploadField,
-  ImagePreview,
-  LoadImageCont,
-  LoadImgLabel,
-} from './UserPhoto.styled';
-import Plus from '../../../assets/images/desktop/plus.svg';
-import {
-  useUpdateUserMutation,
-  useGetCurrentUserQuery,
-} from 'redux/api/userApi';
-import Loader from 'components/Loader';
 import { validationSchema } from './validation';
-// import { initialValues } from 'components/RegisterForm/Validation';
+import { ImageBox, LoadImgInput, LoadImgPlus, ImagePreview, LoadImageCont, LoadImgLabel, Camera } from '../UserDataItem.styled';
+import { useUpdateUserMutation, useGetCurrentUserQuery} from 'redux/api/userApi';
+import Plus from '../../../../assets/images/desktop/plus.svg';
+import Loader from 'components/Loader';
 
 const UserPhoto = () => {
   const [fileDataURL, setFileDataURL] = useState(null);
   const [file, setFile] = useState(null);
   const { data } = useGetCurrentUserQuery();
   const [updateUser, { isLoading }] = useUpdateUserMutation();
-  // console.log(data);
 
   useEffect(() => {
     let fileReader,
@@ -69,9 +54,9 @@ const UserPhoto = () => {
     >
       {({ isSubmitting, values, setFieldValue }) => (
         <Form>
-          <ImageBox>
+          {<ImageBox>
             <LoadImgLabel htmlFor="upload">
-              <HiCamera style={iconStyle} />
+              <Camera/>
               Edit photo
             </LoadImgLabel>
             <LoadImgInput
@@ -97,6 +82,7 @@ const UserPhoto = () => {
                   </LoadImageCont>
                 ) : (
                   <>
+                  <label htmlFor="upload">
                     <LoadImageCont>
                       <LoadImgPlus
                         src={Plus}
@@ -105,12 +91,13 @@ const UserPhoto = () => {
                         height="47px"
                       />
                     </LoadImageCont>
+                    </label>
                   </>
                 )}
               </>
             )}
-            {isLoading && <Loader />}
-          </ImageBox>
+          </ImageBox>}
+        {isLoading && <Loader />}
         </Form>
       )}
     </Formik>
