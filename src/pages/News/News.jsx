@@ -17,6 +17,9 @@ const News = () => {
     const newsFilter = news.filter(el =>
       el.title.concat(el.description).toLowerCase().includes(filter)
     );
+    if (newsFilter.length === 0) {
+      toast.info('Nothing was found for your request');
+    }
     return newsFilter;
   };
 

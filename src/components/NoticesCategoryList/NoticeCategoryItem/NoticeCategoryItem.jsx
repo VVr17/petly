@@ -74,7 +74,7 @@ const NoticeCategoryItem = ({
 
   const toggleFavorite = async noticeId => {
     if (!isAuth) {
-      toast.warn('Please, register or login to add notice to favorite');
+      toast('Please, register or login to add notice to favorite');
       return;
     }
     if (isFavorite) {

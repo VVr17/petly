@@ -41,6 +41,8 @@ const Notices = () => {
     const filteredNotices = notices.filter(notice => {
       return notice.title.toLowerCase().includes(filter);
     });
+    if (filteredNotices.length === 0)
+   { toast.info('Not find any ad');} 
     return filteredNotices;
   };
 
@@ -65,9 +67,8 @@ const Notices = () => {
 
   useEffect(() => {
     if (notices) {
-      const filteredNotices = filterNotices(notices);
-      setvisibleNotices(filteredNotices);
-      // visibleNotices.length === 0 && throttledNotify();
+      const filteredNotices = filterNotices(notices);     
+      setvisibleNotices(filteredNotices)          
     }
   }, [notices, filter]);
 
