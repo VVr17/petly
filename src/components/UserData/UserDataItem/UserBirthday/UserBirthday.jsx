@@ -31,8 +31,7 @@ const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
       peekNextMonth
       showMonthDropdown
       showYearDropdown
-      yearDropdownItemNumber={100}
-      scrollableYearDropdown
+      dropdownMode="select"
     />
   );
 };
@@ -45,20 +44,15 @@ const UserBirthday = ({ user }) => {
   const val = () => {
     let date;
     if (user.birthday === null) {
-      date = new Date();
+      date = null;
     } else {
       date = convertStringToDate(user.birthday);
     }
     return date;
   };
 
-  // const parsedDate = convertStringToDate(user.birthday || '00.00.0000');
-
-  // const initialValues = { birthday: user.birthday || '' };
-
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
-  const parsedDate = convertStringToDate(user?.birthday || '00.00.0000');
   const initialValues = { birthday: user?.birthday || '00.00.0000' };
 
   const handleClick = () => {
@@ -70,14 +64,19 @@ const UserBirthday = ({ user }) => {
   };
 
   const handleSubmit = values => {
-    if (!isDisabled) {
-      return;
+    // if (!isDisabled) {
+    //   return;
+    // }
+    // if (values.birthday === user.birthday) {
+    //   return;
+    // }
+    console.log(values);
+    let dateMDY;
+    if (values.birthday === null) {
+      dateMDY = '00.00.0000';
+    } else {
+      dateMDY = convertDateToString(values.birthday);
     }
-    if (values.birthday === user.birthday) {
-      return;
-    }
-
-    const dateMDY = convertDateToString(values.birthday);
 
     // create formData
     const data = new FormData();
