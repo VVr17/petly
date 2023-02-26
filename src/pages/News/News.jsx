@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import NewsCard from 'components/NewsCard/NewsCard';
 import Section from 'components/Section';
 import SearchForm from 'components/Ui-Kit/SearchForm/SearchForm';
@@ -8,8 +9,7 @@ import TitlePage from 'components/Ui-Kit/TitlePage';
 import Loader from 'components/Loader';
 
 const News = () => {
-  const { data, error, isLoading } = useGetNewsQuery();
-  let news = data ? data : [];
+  const { data: news, error, isLoading } = useGetNewsQuery();  
   const [filter, setFilter] = useState('');
   const [filteredNews, setFilteredNews] = useState([]);
 
@@ -17,6 +17,9 @@ const News = () => {
     const newsFilter = news.filter(el =>
       el.title.concat(el.description).toLowerCase().includes(filter)
     );
+    if (newsFilter.length === 0) {
+      toast.info('Nothing was found for your request');
+    }
     return newsFilter;
   };
 
@@ -34,7 +37,7 @@ const News = () => {
       const visibleNews = searchQuery(news);
       setFilteredNews(visibleNews);
     }
-  }, [data, filter]);
+  }, [news, filter]);
 
   return (
     <Section>
