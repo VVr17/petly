@@ -24,8 +24,7 @@ const MyDatePicker = ({ name }) => {
       peekNextMonth
       showMonthDropdown
       showYearDropdown
-      yearDropdownItemNumber={100}
-      scrollableYearDropdown
+      dropdownMode="select"
     />
   );
 };

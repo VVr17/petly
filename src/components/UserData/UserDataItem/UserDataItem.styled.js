@@ -36,7 +36,7 @@ export const MyDatePickerNew = styled(DatePicker)`
 
 export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
-  bottom: -32px;
+  bottom: -10px;
   /* left: 0; */
   font-size: 8px;
   color: red;
@@ -73,6 +73,7 @@ export const FieldWrapper = styled.div`
 `;
 
 export const Label = styled.label`
+  position: relative;
   display: flex;
   align-items: center;
   margin-right: 13px;
