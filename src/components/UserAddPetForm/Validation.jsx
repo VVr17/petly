@@ -16,7 +16,7 @@ export const validationSchemaPartOne = Yup.object().shape({
   name: Yup.string()
     .required('Name is required')
     .matches(
-      /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/,
       'Only letters can be accepted'
     )
     .min(2, 'Name should be at least 2 characters long')
@@ -25,7 +25,7 @@ export const validationSchemaPartOne = Yup.object().shape({
   breed: Yup.string()
     .required('Breed is required')
     .matches(
-      /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/,
       'Only letters can be accepted'
     )
     .min(2, 'Breed should be at least 2 characters long')
