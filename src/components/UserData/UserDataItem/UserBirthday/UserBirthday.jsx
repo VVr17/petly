@@ -65,12 +65,12 @@ const UserBirthday = () => {
   };
 
   const handleSubmit = values => {
-    // if (!isDisabled) {
-    //   return;
-    // }
-    // if (values.birthday === user.birthday) {
-    //   return;
-    // }
+    if (!isDisabled) {
+      return;
+    }
+    if (values.birthday === user.birthday) {
+      return;
+    }
     console.log(values);
     let dateMDY;
     if (values.birthday === null) {
