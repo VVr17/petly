@@ -144,21 +144,13 @@ const UserAddPetForm = ({ closeModal }) => {
                   <Span>Back</Span>
                 </Button>
               )}
-              {/* <Button
-                name="filled"
-                type="submit"
-                width="100%"
-                disabled={isSubmitting}
-              >
-                {currentPart < 2 ? <Span>Next</Span> : <Span>Done</Span>}
-              </Button> */}
               <Button
                 name="filled"
                 type="submit"
                 width="100%"
                 disabled={isSubmitting}
               >
-                {currentPart < 2 ? 'Next' : 'Done'}
+                {currentPart < 2 ? <Span>Next</Span> : <Span>Done</Span>}
               </Button>
             </ControlBox>
           </FormStyled>
