@@ -14,20 +14,16 @@ import { ModalContent, ModalWrapper, FormWrapper, ButtonWrapper, FormTitle, Logi
 
 import Button from 'components/Ui-Kit/Button';
 
-
-
-
-// main function
-
+// Main component for login form
 const LoginForm = () => {
 
+    // React Redux hooks
     const [loginUser, { isError, error }] = useLoginUserMutation();
     const navigate = useNavigate();
     const { isAuth } = useSelector(state => state.user);
 
-
+    // Function to handle form submission
     const handleSubmit = (values) => {
-
         const credentials = {
             email: values.email,
             password: values.password,
@@ -35,6 +31,7 @@ const LoginForm = () => {
         loginUser(credentials);
     };
 
+    // Effect hook to handle successful login and redirect user to dashboard
     useEffect(() => {
         if (isAuth) {
             console.log('Congratulations! You are successfully signed up!');
@@ -42,6 +39,7 @@ const LoginForm = () => {
         }
     });
 
+    // Render form using Formik and LoginInputs components
     return (
         <ModalWrapper>
             <ModalContent>

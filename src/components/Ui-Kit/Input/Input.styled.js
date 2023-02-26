@@ -38,7 +38,6 @@ export const Label = styled.label`
     font-size: ${theme.fontSizes.l};
     margin-top: 12px;
   };
-  // position: relative;
 `;
 
 export const ErrorStyle = styled(ErrorMessage)`
