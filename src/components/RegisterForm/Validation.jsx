@@ -14,7 +14,7 @@ export const initialValues = {
 // Yup Validation
 export const validationSchemaStepOne = Yup.object().shape({
   email: Yup.string()
-    .email('Invalid email address')
+    .email('Please enter a valid email address, example: "mail@mail.com"')
     .matches(
       /^([a-zA-Z][\w+-]+(?:\.\w+)?)@([\w-]+(?:\.[a-zA-Z]{2,10})+)$/,
       'Please enter a valid email address, example: "mail@mail.com"'
@@ -60,3 +60,5 @@ export const validationSchemaStepTwo = Yup.object().shape({
     .max(13, 'Phone number should be 13 digits')
     .required('Phone number is required'),
 });
+
+// name without space ^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$

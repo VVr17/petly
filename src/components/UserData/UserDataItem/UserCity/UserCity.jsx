@@ -75,6 +75,6 @@ const UserCity = ({ user }) => {
 
 UserCity.propTypes = {
   user: PropTypes.object,
-}
+};
 
 export default UserCity;

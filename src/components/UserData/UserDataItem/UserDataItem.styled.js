@@ -36,13 +36,17 @@ export const MyDatePickerNew = styled(DatePicker)`
 
 export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
-  bottom: -10px;
-  left: 0px;
+  bottom: -32px;
+  /* left: 0; */
   font-size: 8px;
   color: red;
-  ${theme.mq.mobileOnly} {
+  max-width: 230px;
+  max-height: 10px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  /* ${theme.mq.mobileOnly} {
     transform: translate(0px, 0px);
-  }
+  } */
 `;
 
 export const FieldWrapper = styled.div`
@@ -168,7 +172,7 @@ export const LoadImgPlus = styled.img`
 `;
 
 export const Camera = styled(HiCamera)`
-height: '20px';
-width: '20px';
-color: ${theme.colors.accent};
+  height: '20px';
+  width: '20px';
+  color: ${theme.colors.accent};
 `;
