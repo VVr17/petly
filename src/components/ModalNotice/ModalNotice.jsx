@@ -10,7 +10,6 @@ import { selectFavoritesState } from 'redux/favorites/favoritesSelector';
 import { ToastContainer, toast } from 'react-toastify';
 import { selectIsAuthState } from 'redux/user/userSelectors';
 import PropTypes from 'prop-types';
-// import { useGetNoticeByIdQuery } from 'redux/api/noticesApi';
 import Loader from 'components/Loader';
 import { IoIosHeart } from 'react-icons/io';
 import {
@@ -34,13 +33,15 @@ import {
   Plug,
 } from './ModalNotice.styled';
 import Button from 'components/Ui-Kit/Button';
+import { selectStatusFilter } from 'redux/filter/filterSelectors';
+import { statusFilter } from 'redux/filter/filterConstans';
 
 const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
 
-const ModalNotice = ({ id }) => {
+const ModalNotice = ({ id, onClose }) => {
   const { data, isFetching, isError } = useGetNoticeByIdQuery(id);
+  const currentCategory = useSelector(selectStatusFilter);
   const noItem = '-----------';
-  const noPrice = '0';
 
   const onRedirect = () => {
     window.location = `tel:${data.owner.phone}`;
@@ -53,19 +54,27 @@ const ModalNotice = ({ id }) => {
     useAddNoticeToFavoriteMutation();
   const [deleteNoticeFromFavorite, { isLoading: removing }] =
     useRemoveNoticeFromFavoriteMutation();
+
   const toggleFavorite = async noticeId => {
     if (!isAuth) {
       toast.info('Please, register or login to add notice to favorite');
       return;
     }
-
     if (isFavorite) {
       await deleteNoticeFromFavorite(noticeId);
-      // toast.info(`Notice with ID ${_id} has been remove from favorites`);
+      toast.info(`Notice has been removed from favorites`);
+      // onClose();
+      if (currentCategory === statusFilter.favoriteAds) {
+        document.body.classList.remove('modal-open');
+      }
       return;
     }
     await addNoticeToFavorite(noticeId);
-    // toast.info(`Notice with ID ${_id} has been added to favorites`);
+    toast.info(`Notice has been added to favorites`);
+    // onClose();
+    if (currentCategory === statusFilter.favoriteAds) {
+      document.body.classList.remove('modal-open');
+    }
   };
   const isLoading = adding || removing;
 
@@ -73,7 +82,6 @@ const ModalNotice = ({ id }) => {
     <>
       <NoticeContainer>
         {isLoading && <Loader />}
-
         {isFetching && <Loader />}
         {isFetching && <Plug />}
         {isError && <div>{isError.message}</div>}
@@ -134,7 +142,9 @@ const ModalNotice = ({ id }) => {
                       )}
                     </DataItem>
                     <DataItem>
-                      <ValueText>{data.location}</ValueText>
+                      <ValueText>
+                        {data && data.location.split(',')[0]}
+                      </ValueText>
                     </DataItem>
                     <DataItem>
                       <ValueText>{data.sex}</ValueText>
@@ -171,7 +181,8 @@ const ModalNotice = ({ id }) => {
                 isFavorite={isFavorite}
                 onClick={() => toggleFavorite(id)}
               >
-                Add to {<IoIosHeart fill="#F59256" size="20px" />}
+                {!isFavorite ? 'Add to' : 'Remove from'}
+                {<IoIosHeart fill="#F59256" size="20px" margin-left="10px" />}
               </Button>
             </Buttons>
           </>
@@ -183,6 +194,7 @@ const ModalNotice = ({ id }) => {
 
 ModalNotice.propTypes = {
   id: PropTypes.string.isRequired,
+  onClose: PropTypes.func,
 };
 
 export default ModalNotice;

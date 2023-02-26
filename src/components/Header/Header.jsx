@@ -10,6 +10,7 @@ import {
   MenuButton,
   iconStyle,
   HeaderStyled,
+  LogoTitle
   WrapSelector,
   Selector,
   BtnFlag,
@@ -18,10 +19,10 @@ import { VscMenu } from 'react-icons/vsc';
 import { useSelector } from 'react-redux';
 import { selectIsAuthState } from 'redux/user/userSelectors';
 
-import Nav from 'components/Nav';
-import AuthNav from 'components/AuthNav';
-import UserNav from 'components/UserNav';
-import MobMenu from 'components/MobMenu';
+import Nav from 'components/Header/Nav';
+import AuthNav from 'components/Header/AuthNav';
+import UserNav from 'components/Header/UserNav';
+import MobMenu from 'components/Header/MobMenu';
 import Container from 'components/Container';
 import { pageAnimation } from 'constants/animation';
 import { AnimatePresence } from 'framer-motion';
@@ -57,9 +58,12 @@ const Header = ({ locale, handleLocaleChange }) => {
       <HeaderStyled {...pageAnimation} transition={{ duration: 0.3 }}>
         <Container>
           <Navigation>
-            <Link to="/" end>
-              pe<Span>t</Span>ly
+            <Link to="/" end >
+              <LogoTitle>
+                pe<Span>t</Span>ly
+              </LogoTitle>
             </Link>
+
             <PagesBox>
               <Nav closeMenu={closeMenu} />
             </PagesBox>

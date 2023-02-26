@@ -16,7 +16,7 @@ export const Overlay = styled(motion.div)`
   z-index: 30;
   opacity: ${theme.colors.secondaryText};
   background-color: ${theme.colors.secondaryText};
-`;
+  `;
 
 export const StyledModal = styled(motion.div)`
   position: relative;
@@ -30,6 +30,7 @@ export const StyledModal = styled(motion.div)`
   background-color: ${theme.colors.lightText};
   @media (min-width: ${breakpoints[1]}px) {
      border-radius: 40px;
+     top:7%;
   }
 `;
 

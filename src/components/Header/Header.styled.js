@@ -44,16 +44,9 @@ export const MenuBox = styled.div`
   } ;
 `;
 
-export const Link = styled(NavLink)`
-  font-family: ${theme.fontFamily.poppins};
-  font-size: ${theme.fontSizes.xl};
-  font-weight: ${theme.fontWeight.bold};
-  line-height: 1.5;
-  color: ${theme.colors.mainText};
-  @media (min-width: ${breakpoints[1]}px) {
-    font-size: ${theme.fontSizes.xxl};
-  } ;
-`;
+export const LogoTitle = styled.div`
+transition: color ${theme.transitionTiming};
+`
 
 export const Span = styled.span`
   font-family: ${theme.fontFamily.poppins};
@@ -61,10 +54,33 @@ export const Span = styled.span`
   font-weight: ${theme.fontWeight.bold};
   line-height: 1.5;
   color: ${theme.colors.accent};
+  transition: color ${theme.transitionTiming};
   @media (min-width: ${breakpoints[1]}px) {
     font-size: ${theme.fontSizes.xxl};
-  } ;
+  } ;  
 `;
+
+
+export const Link = styled(NavLink)`
+  font-family: ${theme.fontFamily.poppins};
+  font-size: ${theme.fontSizes.xl};
+  font-weight: ${theme.fontWeight.bold};
+  line-height: 1.5;
+  color: ${theme.colors.mainText};  
+  &:hover ${LogoTitle} {
+     color: ${theme.colors.accent};
+  };
+  &:hover ${Span} {
+  color: ${theme.colors.mainText};
+ };
+  @media (min-width: ${breakpoints[1]}px) {
+     font-size: ${theme.fontSizes.xxl};
+   };   
+`;
+
+
+
+
 
 export const MenuButton = styled.button`
   display: flex;
@@ -77,10 +93,10 @@ export const MenuButton = styled.button`
 `;
 
 export const iconStyle = {
-  height: '30px',
-  width: '40px',
-  backgroundColor: theme.colors.mainBackground,
-  fill: theme.colors.mainText,
+   height: '30px',
+   width: '40px',
+   backgroundColor: theme.colors.mainBackground,
+   fill: theme.colors.mainText,
 };
 
 export const WrapSelector = styled.div`

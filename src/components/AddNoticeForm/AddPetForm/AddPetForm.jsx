@@ -18,6 +18,7 @@ import {
   validationSchemaStepTwo,
 } from './Validation';
 import Loader from 'components/Loader';
+import { convertDateToString } from '../../../helpers/date';
 
 // Main function
 
@@ -64,11 +65,7 @@ const AddPetForm = ({ onClose }) => {
       console.log(values);
 
       // Date converting to string
-      const dateMDY = `${getFullMonth(
-        values.birthDate.getDate()
-      )}.${getFullMonth(
-        values.birthDate.getMonth() + 1
-      )}.${values.birthDate.getFullYear()}`;
+      const dateMDY = convertDateToString(values.birthDate);
 
       // define category
       const categoryName = values.category;
@@ -128,6 +125,7 @@ const AddPetForm = ({ onClose }) => {
 
                 <UploadImageField
                   name="petImage"
+                  label="Load the pet’s image:"
                   fileDataURL={fileDataURL}
                   handleChange={e => {
                     setFile(e.currentTarget.files[0]);
@@ -141,16 +139,21 @@ const AddPetForm = ({ onClose }) => {
 
             <ButtonsContainer>
               {currentStep === 1 && (
-                <Button name="transparent" onClick={onClose}>
+                <Button name="transparent" width="100%" onClick={onClose}>
                   Cancel
                 </Button>
               )}
               {currentStep === 2 && (
-                <Button name="transparent" onClick={goBack}>
+                <Button name="transparent" width="100%" onClick={goBack}>
                   Back
                 </Button>
               )}
-              <Button name="filled" type="submit" disabled={isSubmitting}>
+              <Button
+                name="filled"
+                type="submit"
+                width="100%"
+                disabled={isSubmitting}
+              >
                 {currentStep < 2 ? 'Next' : 'Done'}
               </Button>
             </ButtonsContainer>

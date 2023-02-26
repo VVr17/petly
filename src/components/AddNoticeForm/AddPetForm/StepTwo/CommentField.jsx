@@ -8,14 +8,9 @@ import {
 import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
 import { useField } from 'formik';
 import PropTypes from 'prop-types';
-// import { ErrorStyle } from 'components/Ui-Kit/Input/Input.styled';
-import InputField from 'components/Ui-Kit/Input/Input';
 
-const CommentField = ({ name }) => {
+const CommentField = ({ name, form }) => {
   const [field, meta, helpers] = useField(name);
-
-  const { value } = meta;
-  const { setValue } = helpers;
 
   return (
     <>
@@ -26,6 +21,7 @@ const CommentField = ({ name }) => {
         <Textarea
           {...field}
           name={name}
+          form={form}
           as="textarea"
           type="text"
           placeholder="Type comment"
@@ -37,5 +33,6 @@ const CommentField = ({ name }) => {
 };
 CommentField.propTypes = {
   name: PropTypes.string,
+  form: PropTypes.string,
 };
 export default CommentField;

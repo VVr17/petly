@@ -6,7 +6,7 @@ export const FieldStyle = styled(Field)`
   width: 100%;
   border-radius: 40px;
   cursor: pointer;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   border: 1px solid rgba(245, 146, 86, 0.5);
   background-color: ${theme.colors.mainBackground};
   font-family: ${theme.fontFamily.manrope};
@@ -34,18 +34,18 @@ export const Label = styled.label`
   font-weight: ${theme.fontWeight.medium};
   font-size: ${theme.fontSizes.s};
   line-height: 1.44;
-  @media(min-width: ${breakpoints[1]}px) {
+  @media (min-width: ${breakpoints[1]}px) {
     font-size: ${theme.fontSizes.l};
+    line-height: 1.08;
     margin-top: 12px;
-  };
-  // position: relative;
+  } ;
 `;
 
 export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
-  left: 30px;
-  bottom: 0;
-  font-size: ${theme.fontSizes.xxxs};
+  left: 0;
+  bottom: -3px;
+  font-size: 8px;
   color: red;
   ${theme.mq.mobileOnly} {
     transform: translate(0px, 0px);
@@ -57,5 +57,4 @@ export const StyledSpan = styled.span`
 `;
 export const FieldWrapper = styled.div`
   position: relative;
-  padding-bottom: 6px;
 `;

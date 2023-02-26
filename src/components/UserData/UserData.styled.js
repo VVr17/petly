@@ -1,21 +1,14 @@
 import styled from 'styled-components';
-import { Form } from 'formik';
 import { theme, breakpoints } from '../../constants/theme';
-import { LoadImageCont } from 'components/UploadImage/UploadImage.styled';
 
 export const Container = styled.div`
-  /* padding: 0 20px; */
   width: 100%;
 
   @media (min-width: ${breakpoints[1]}px) {
     max-width: ${breakpoints[1]}px;
-    /* padding: 0 32px; */
   }
-
   @media (min-width: ${breakpoints[2]}px) {
     max-width: 820px;
-    /* margin-left: 0; */
-    /* padding: 0; */
   }
 `;
 
@@ -36,7 +29,7 @@ export const UserCard = styled.div`
   margin-top: 18px;
   margin-left: auto;
   margin-right: auto;
-  padding: 20px 12px;
+  padding: 20px 16px;
 
   background-color: ${theme.colors.lightText};
   background: #ffffff;
@@ -69,15 +62,12 @@ export const UserInfo = styled.div`
   margin-bottom: 42px;
 
   ${theme.mq.tabletOnly} {
-    /* padding-left: 32px; */
-    /* width: 379px; */
     margin-bottom: 33px;
-    margin-right: 24px;
+    margin-right: 52px;
   }
 
   ${theme.mq.desktop} {
     padding-left: 8px;
-    /* margin-left: 64px; */
   }
 `;
 
@@ -98,11 +88,6 @@ export const iconStyle = {
   width: '20px',
   fill: theme.colors.accent,
   color: theme.colors.accent,
-};
-
-export const editBtn = {
-  gap: '4px',
-  marginLeft: 'auto',
 };
 
 export const LogoutBtn = {

@@ -21,6 +21,11 @@ const MyDatePicker = ({ name }) => {
       dateFormat="dd.MM.yyyy"
       maxDate={new Date()}
       customInput={<DatePickerInput />}
+      peekNextMonth
+      showMonthDropdown
+      showYearDropdown
+      yearDropdownItemNumber={100}
+      dropdownMode="select"
     />
   );
 };

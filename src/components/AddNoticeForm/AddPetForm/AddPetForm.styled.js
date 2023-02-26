@@ -9,10 +9,9 @@ import { motion } from 'framer-motion';
 // header of form
 export const FormWrapper = styled(Form)`
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   gap: 10px;
-}
-
+  width: 100%;
 `;
 
 export const FormTitle = styled.h3`
@@ -32,21 +31,34 @@ export const Text = styled.p`
 
 // container of buttons
 export const ButtonsContainer = styled.div`
-  margin-top: 40px;
+  margin-top: 24px;
   display: flex;
-  gap: 20px;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 12px;
+  @media (min-width: ${breakpoints[1]}px) {
+    flex-direction: row;
+    width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
 // choose field
 export const ButtonFilterList = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  @media (min-width: ${breakpoints[1]}px) {
+    margin-bottom: 8px;
+  } ;
 `;
 
 export const ButtonFilterItem = styled.li`
   margin-right: 15px;
-  margin-bottom: 28px;
+  margin-bottom: 12px;
+  @media (min-width: ${breakpoints[1]}px) {
+    margin-bottom: 0;
+  }
 `;
 
 export const ButtonFilterLabel = styled(motion.label)`
@@ -119,7 +131,7 @@ export const DatePickerInput = styled.input`
 
   cursor: pointer;
 
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 
   border: 1px solid rgba(245, 146, 86, 0.5);
   background-color: ${theme.colors.mainBackground};
@@ -189,15 +201,6 @@ export const LoadImgLabel = styled.label`
 
 export const LoadImgInput = styled.input`
   display: none;
-
-  // display: block;
-  // width: 140px;
-  // height: 140px;
-  // border-radius: 20px;
-  // background: ${theme.colors.mainBackground};
-  // margin-top: 12px;
-  // margin-bottom: 28px;
-  // color: ${theme.colors.mainText};
 `;
 
 export const LoadImgPlus = styled.img`
@@ -236,74 +239,57 @@ export const TextareaContainer = styled.label`
 `;
 
 export const TextareaLabel = styled.label`
-  margin-top: 20px;
   font-family: ${theme.fontFamily.manrope};
   font-style: normal;
   font-weight: ${theme.fontWeight.medium};
   font-size: ${theme.fontSizes.s};
   line-height: 1.44;
-  @media(min-width: ${breakpoints[1]}px) {
+  margin-bottom: 8px;
+  @media (min-width: ${breakpoints[1]}px) {
     font-size: ${theme.fontSizes.l};
-  display: block;
-  margin-bottom: 12px;
-  ${theme.mq.mobileOnly} {
-    margin-bottom: 8px;
+    line-height: 1.08;
+    display: block;
+    margin-bottom: 12px;
   }
 `;
 
 export const Textarea = styled(Field)`
   width: 100%;
-  border-radius: 40px;
+  height: ${({ form }) => (form === 'userPet' ? '100px' : '40px')};
+  border-radius: ${({ form }) => (form === 'userPet' ? '20px' : '40px')};
   margin-top: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   cursor: pointer;
-
-  margin-bottom: 16px;
-
   border: 1px solid rgba(245, 146, 86, 0.5);
   background-color: ${theme.colors.mainBackground};
   font-family: ${theme.fontFamily.manrope};
   font-size: ${theme.fontSizes.xxs};
   font-weight: ${theme.fontWeight.normal};
   color: ${theme.colors.primaryText};
-  padding-left: 28px;
-  padding-right: 28px;
-  padding-top: 9px;
-  padding-bottom: 9px;
-  @media(min-width: ${breakpoints[1]}px) {
+  padding-left: 14px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  @media (min-width: ${breakpoints[1]}px) {
+    height: 116px;
     border-radius: 20px;
     margin-top: 12px;
+    padding-left: 18px;
+    padding-right: 18px;
     font-size: ${theme.fontSizes.s};
-  };
-  ${theme.mq.mobileOnly} {
-    font-size: ${theme.fontSizes.xxs};
-    padding: 12px 14px;
-  }
+  } ;
 `;
 // end of comments section
 
 // common error
 export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
-  bottom: 0px;
-  left: 30px;
-  font-size: ${theme.fontSizes.xxxs};
+  bottom: 0;
+  left: -3px;
+  font-size: 8px;
   color: red;
   ${theme.mq.mobileOnly} {
     transform: translate(0px, 0px);
   }
 `;
-// export const ErrorMessage = styled.div`
-//   position: absolute;
-//   color: red;
-//   font-size: 14px;
-//   text-align: center;
-//   width: 100%;
-//   left: 50%;
-//   transform: translateX(-50%);
-//   top: 120px;
-//   ${theme.mq.mobileOnly} {
-//     top: 50px;
-//     font-size: 12px;
-//   }
-// `;

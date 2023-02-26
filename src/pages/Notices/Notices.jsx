@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { toast } from 'react-toastify';
-
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import { selectIsAuthState } from 'redux/user/userSelectors';
 import { selectStatusFilter } from 'redux/filter/filterSelectors';
-import { useGetNoticeByCategoryQuery } from 'redux/api/noticesApi';
+import {
+  useGetFavoritesNoticesQuery,
+  useGetNoticeByCategoryQuery,
+  useGetUserNoticesQuery,
+} from 'redux/api/noticesApi';
 import Loader from 'components/Loader';
 import NoticesCategoryList from 'components/NoticesCategoryList';
 import Section from 'components/Section';
@@ -19,10 +22,33 @@ import AddNoticeFormHeader from 'components/AddNoticeForm';
 import NotificationAddNotice from 'components/NotificationAddNotice';
 import AddPetForm from 'components/AddNoticeForm/AddPetForm';
 import { AnimatePresence } from 'framer-motion';
+import throttle from 'lodash.throttle';
+import { statusFilter } from 'redux/filter/filterConstans';
+import { useGetNotices } from 'hooks/useGetNotices';
 
 const Notices = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { notices, isFetching, error } = useGetNotices();
+  const [filter, setFilter] = useState('');
   const [visibleNotices, setvisibleNotices] = useState([]);
+
+  const filterUpdate = e => {
+    const value = e.target.value;
+    setFilter(value ? value.toLowerCase() : value);
+  };
+
+  const filterNotices = notices => {
+    const filteredNotices = notices.filter(notice => {
+      return notice.title.toLowerCase().includes(filter);
+    });
+    if (filteredNotices.length === 0)
+   { toast.info('Not find any ad');} 
+    return filteredNotices;
+  };
+
+  const handleClean = () => {
+    setFilter('');
+  };
 
   const isAuth = useSelector(selectIsAuthState);
   const handleClick = () => {
@@ -33,47 +59,25 @@ const Notices = () => {
       toast('You have to register or login to add Pet');
     }
   };
+
   const closeModal = () => {
     setIsOpen(false);
     document.body.classList.remove('modal-open');
   };
 
-  const category = useSelector(selectStatusFilter);
-
-  const {
-    data: notices,
-    error,
-    isLoading,
-    isFetching,
-  } = useGetNoticeByCategoryQuery(category, { skip: !category });
-
   useEffect(() => {
     if (notices) {
-      setvisibleNotices(notices);
+      const filteredNotices = filterNotices(notices);     
+      setvisibleNotices(filteredNotices)          
     }
-  }, [notices]);
-
-  const searchQuery = (e, value) => {
-    e.preventDefault();
-    const query = value.toLowerCase();
-
-    const noticesByQuery = notices.filter(notice =>
-      notice.title.toLowerCase().includes(query)
-    );
-
-    if (noticesByQuery.length === 0) {
-      toast.info('Not found any ad');
-    }
-    setvisibleNotices(noticesByQuery);
-  };
+  }, [notices, filter]);
 
   const showNotices = visibleNotices && !error && !isFetching;
 
   return (
     <Section>
       <TitlePage name={'Find your favorite pet'} />
-
-      <SearchForm handleSubmit={searchQuery} />
+      <SearchForm onChange={filterUpdate} onSubmit={handleClean} />
 
       <NavContainer>
         <FindPetFilter />
