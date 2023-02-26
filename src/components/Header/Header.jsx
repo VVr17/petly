@@ -10,6 +10,9 @@ import {
   MenuButton,
   iconStyle,
   HeaderStyled,
+  WrapSelector,
+  Selector,
+  BtnFlag,
 } from './Header.styled';
 import { VscMenu } from 'react-icons/vsc';
 import { useSelector } from 'react-redux';
@@ -22,6 +25,8 @@ import MobMenu from 'components/MobMenu';
 import Container from 'components/Container';
 import { pageAnimation } from 'constants/animation';
 import { AnimatePresence } from 'framer-motion';
+import Uk from '../../assets/icons/ukraine.svg';
+import En from '../../assets/icons/united.svg';
 
 // eslint-disable-next-line react/prop-types
 const Header = ({ locale, handleLocaleChange }) => {
@@ -58,12 +63,18 @@ const Header = ({ locale, handleLocaleChange }) => {
             <PagesBox>
               <Nav closeMenu={closeMenu} />
             </PagesBox>
-            <div>
-              <select value={locale} onChange={handleLocaleChange}>
-                <option value="en">English</option>
-                <option value="uk">Українська</option>
-              </select>
-            </div>
+            <WrapSelector>
+              <Selector value={locale} onChange={handleLocaleChange}>
+                <option value="en">En</option>
+                <option value="uk">Uk</option>
+              </Selector>
+              <BtnFlag>
+                <img src={Uk} alt="Ukraine" width="60px" height="40px" />
+              </BtnFlag>
+              <BtnFlag>
+                <img src={En} alt="Ukraine" width="60px" height="40px" />
+              </BtnFlag>
+            </WrapSelector>
             <AuthBox>
               {isAuth ? (
                 <UserNav />

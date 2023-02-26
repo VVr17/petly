@@ -82,3 +82,27 @@ export const iconStyle = {
   backgroundColor: theme.colors.mainBackground,
   fill: theme.colors.mainText,
 };
+
+export const WrapSelector = styled.div`
+  display: flex;
+  width: 250px;
+  justify-content: flex-end;
+  gap: 8px;
+`;
+
+export const Selector = styled.select`
+  height: 44px;
+  min-width: 100px;
+  padding: 8px 16px;
+  border: 2px solid #f59256;
+  border-radius: 25px;
+`;
+
+export const BtnFlag = styled.button`
+  padding: 0;
+  width: 60px;
+  height: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 0;
+`;
