@@ -19,6 +19,7 @@ const News = () => {
     );
     if (newsFilter.length === 0) {
       toast.info('Nothing was found for your request');
+      toast.clearWaitingQueue();
     }
     return newsFilter;
   };
