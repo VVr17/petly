@@ -37,8 +37,9 @@ const UserPhone = () => {
     // create formData
     const data = new FormData();
     data.append('phone', values.phone);
-    await updateUser(data);
-    toast.info('Phone has been successfully updated');
+    const { data: response } = await updateUser(data);
+    if (response.code === 200)
+      toast.info('Phone has been successfully updated');
   };
 
   return (

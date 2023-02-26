@@ -35,8 +35,10 @@ const UserEmail = () => {
     // create formData
     const data = new FormData();
     data.append('email', values.email);
-    await updateUser(data);
-    toast.info('Email has been successfully updated');
+    const { data: response } = await updateUser(data);
+    console.log('response', response);
+    if (response.code === 200)
+      toast.info('Email has been successfully updated');
   };
 
   return (

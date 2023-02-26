@@ -37,8 +37,8 @@ const UserCity = () => {
     // create formData
     const data = new FormData();
     data.append('city', values.city);
-    await updateUser(data);
-    toast.info('City has been successfully updated');
+    const { data: response } = await updateUser(data);
+    if (response.code === 200) toast.info('City has been successfully updated');
   };
 
   return (

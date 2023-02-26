@@ -83,8 +83,9 @@ const UserBirthday = () => {
     // create formData
     const data = new FormData();
     data.append('birthday', dateMDY);
-    await updateUser(data);
-    toast.info('Birth date has been successfully updated');
+    const { data: response } = await updateUser(data);
+    if (response.code === 200)
+      toast.info('Birth date has been successfully updated');
   };
 
   return (
