@@ -33,11 +33,14 @@ import {
   Plug,
 } from './ModalNotice.styled';
 import Button from 'components/Ui-Kit/Button';
+import { selectStatusFilter } from 'redux/filter/filterSelectors';
+import { statusFilter } from 'redux/filter/filterConstans';
 
 const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
 
 const ModalNotice = ({ id, onClose }) => {
   const { data, isFetching, isError } = useGetNoticeByIdQuery(id);
+  const currentCategory = useSelector(selectStatusFilter);
   const noItem = '-----------';
 
   const onRedirect = () => {
@@ -60,12 +63,18 @@ const ModalNotice = ({ id, onClose }) => {
     if (isFavorite) {
       await deleteNoticeFromFavorite(noticeId);
       toast.info(`Notice has been removed from favorites`);
-      onClose();
+      // onClose();
+      if (currentCategory === statusFilter.favoriteAds) {
+        document.body.classList.remove('modal-open');
+      }
       return;
     }
     await addNoticeToFavorite(noticeId);
     toast.info(`Notice has been added to favorites`);
-    onClose();
+    // onClose();
+    if (currentCategory === statusFilter.favoriteAds) {
+      document.body.classList.remove('modal-open');
+    }
   };
   const isLoading = adding || removing;
 

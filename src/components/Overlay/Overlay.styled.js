@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 export const OverlayStyled = styled(motion.div)`
   padding: 20px 0;
   position: fixed;
+  overflow: scroll;
   top: 0;
   left: 0;
   right: 0;

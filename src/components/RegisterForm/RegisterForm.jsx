@@ -23,7 +23,7 @@ import {
   FormTitle,
   Paragraph,
   LoginLink,
-  ErrorMessage
+  ErrorMessage,
 } from './RegisterForm.styled';
 import Button from 'components/Ui-Kit/Button';
 
@@ -91,7 +91,12 @@ const RegistrationForm = () => {
             return (
               <FormWrapper>
                 {currentStep === 1 && <RegStepOne />}
-                {currentStep === 2 && <RegStepTwo value={values.city} setFieldValue={setFieldValue}/>}
+                {currentStep === 2 && (
+                  <RegStepTwo
+                    value={values.city}
+                    setFieldValue={setFieldValue}
+                  />
+                )}
                 <ButtonWrapper>
                   <Button name="filled" type="submit" disabled={isSubmitting}>
                     {currentStep < 2 ? 'Next' : 'Register'}

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { theme } from 'constants/theme';
+import { breakpoints, theme } from 'constants/theme';
 
 export const LoadImageCont = styled.div`
   position: relative;
@@ -12,12 +12,26 @@ export const LoadImageCont = styled.div`
   border-radius: 20px;
   background: ${theme.colors.mainBackground};
   margin-top: 12px;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   color: ${theme.colors.mainText};
 `;
 
 export const LoadImgLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  align-items: ${({ form }) => (form === 'userPet' ? 'center' : 'left')};
+
   cursor: pointer;
+  font-family: ${theme.fontFamily.manrope};
+  font-style: normal;
+  font-weight: ${theme.fontWeight.medium};
+  font-size: ${theme.fontSizes.s};
+  line-height: 1.37;
+  @media (min-width: ${breakpoints[1]}px) {
+    font-size: ${theme.fontSizes.l};
+    line-height: 1.08;
+    margin-top: ${({ form }) => (form === 'userPet' ? '0px' : '16px')};
+  }
 `;
 
 export const LoadImgInput = styled.input`

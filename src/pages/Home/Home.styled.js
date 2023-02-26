@@ -79,5 +79,8 @@ export const Background = styled(motion.div)`
 
   ${theme.mq.desktop} {
     background: bottom 0 center no-repeat url(${waveDesktop});
+    background-size: 1550px;
+    margin: auto;
+
   }
 `;

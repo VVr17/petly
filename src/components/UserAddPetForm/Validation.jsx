@@ -6,7 +6,7 @@ export const initialValues = {
   name: '',
   birthDate: '',
   breed: '',
-  imageFile: '',
+  petImage: '',
   comments: '',
 };
 
@@ -33,9 +33,9 @@ export const validationSchemaPartOne = Yup.object().shape({
 });
 
 export const validationSchemaPartTwo = Yup.object().shape({
-  imageFile: Yup.mixed().required('Please add the picture'),
+  petImage: Yup.mixed().required('Please add the picture'),
   comments: Yup.string()
-    .required('Comment is required')
+    .required('Comments is required')
     .min(8, 'Title should be at least 8 characters long')
     .max(200, 'Title should be up to 200 characters long'),
 });
