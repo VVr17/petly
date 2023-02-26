@@ -20,6 +20,10 @@ export const Container = styled.div`
 export const Box = styled.div`
   display: flex;
   align-items: center;
+
+  @media (min-width: ${breakpoints[2]}px) {
+    min-width: 805px;
+  }
 `;
 
 export const Title = styled.h2`
@@ -37,6 +41,17 @@ export const Title = styled.h2`
 
 export const List = styled.ul`
   list-style-type: none;
+`;
+
+export const ImageBox = styled.div`
+  margin-top: 30px;
+  text-align: center;
+`;
+
+export const Image = styled.img`
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 20px;
 `;
 
 export const iconStyle = {

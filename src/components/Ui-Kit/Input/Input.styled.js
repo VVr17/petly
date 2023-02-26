@@ -34,17 +34,18 @@ export const Label = styled.label`
   font-weight: ${theme.fontWeight.medium};
   font-size: ${theme.fontSizes.s};
   line-height: 1.44;
-  @media(min-width: ${breakpoints[1]}px) {
+  @media (min-width: ${breakpoints[1]}px) {
     font-size: ${theme.fontSizes.l};
+    line-height: 1.08;
     margin-top: 12px;
-  };
+  } ;
 `;
 
 export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
-  left: 30px;
-  bottom: -10px;
-  font-size: ${theme.fontSizes.xxxs};
+  left: 0;
+  bottom: -3px;
+  font-size: 8px;
   color: red;
   ${theme.mq.mobileOnly} {
     transform: translate(0px, 0px);

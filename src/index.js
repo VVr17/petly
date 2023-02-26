@@ -1,14 +1,12 @@
 import ReactDOM from 'react-dom/client';
 import React from 'react';
-import App from 'App';
+import App from 'components/App/App';
 import { theme } from 'constants/theme';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'styled-components';
 import { persistor, store } from 'redux/store';
-// import { ModalProvider } from 'styled-react-modal';
-// import { SpecialModalBackground } from './components/Modal/Modal.styled';
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 

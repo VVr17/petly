@@ -4,7 +4,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import { selectIsAuthState } from 'redux/user/userSelectors';
 import { selectStatusFilter } from 'redux/filter/filterSelectors';
-import { useGetNoticeByCategoryQuery } from 'redux/api/noticesApi';
+import {
+  useGetFavoritesNoticesQuery,
+  useGetNoticeByCategoryQuery,
+  useGetUserNoticesQuery,
+} from 'redux/api/noticesApi';
 import Loader from 'components/Loader';
 import NoticesCategoryList from 'components/NoticesCategoryList';
 import Section from 'components/Section';
@@ -19,30 +23,37 @@ import NotificationAddNotice from 'components/NotificationAddNotice';
 import AddPetForm from 'components/AddNoticeForm/AddPetForm';
 import { AnimatePresence } from 'framer-motion';
 import throttle from 'lodash.throttle';
+import { statusFilter } from 'redux/filter/filterConstans';
+import { useGetNotices } from 'hooks/useGetNotices';
 
 const Notices = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [visibleNotices, setvisibleNotices] = useState([]);
+  const { notices, isFetching, error } = useGetNotices();
   const [filter, setFilter] = useState('');
-
-  const category = useSelector(selectStatusFilter);
-  const {
-    data: notices,
-    error,
-    isLoading,
-    isFetching,
-  } = useGetNoticeByCategoryQuery(category, { skip: !category });
+  const [visibleNotices, setvisibleNotices] = useState([]);
 
   const filterUpdate = e => {
     const value = e.target.value;
     setFilter(value ? value.toLowerCase() : value);
   };
 
+  
+
   const filterNotices = notices => {
     const filteredNotices = notices.filter(notice => {
       return notice.title.toLowerCase().includes(filter);
     });
+    if (filteredNotices.length === 0) {
+      toast.info('Not find any ad');
+      toast.clearWaitingQueue();
+    }
     return filteredNotices;
+  };
+
+  
+
+  const handleClean = () => {
+    setFilter('');
   };
 
   const isAuth = useSelector(selectIsAuthState);
@@ -60,17 +71,10 @@ const Notices = () => {
     document.body.classList.remove('modal-open');
   };
 
-  // const notify = () => {
-  //   toast.info('Not found any ad');
-  // };
-
-  // const throttledNotify = useCallback(throttle(notify, 3000), []);
-
   useEffect(() => {
     if (notices) {
       const filteredNotices = filterNotices(notices);
       setvisibleNotices(filteredNotices);
-      // visibleNotices.length === 0 && throttledNotify();
     }
   }, [notices, filter]);
 
@@ -79,8 +83,7 @@ const Notices = () => {
   return (
     <Section>
       <TitlePage name={'Find your favorite pet'} />
-
-      <SearchForm onChange={filterUpdate} />
+      <SearchForm onChange={filterUpdate} onSubmit={handleClean} />
 
       <NavContainer>
         <FindPetFilter />

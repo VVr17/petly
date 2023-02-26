@@ -8,7 +8,7 @@ import StepTwo from './StepTwo/StepTwo';
 import LocationField from './StepTwo/Location';
 import PriceField from './StepTwo/PriceField';
 import CommentField from './StepTwo/CommentField';
-import UploadImageField from 'components/UploadImage';
+import UploadImageField from 'components/Ui-Kit/UploadImage';
 import FilterCategory from './FilterCategory';
 import SexField from './StepTwo/Sex';
 import { useAddNoticeMutation } from 'redux/api/noticesApi';
@@ -125,6 +125,7 @@ const AddPetForm = ({ onClose }) => {
 
                 <UploadImageField
                   name="petImage"
+                  label="Load the pet’s image:"
                   fileDataURL={fileDataURL}
                   handleChange={e => {
                     setFile(e.currentTarget.files[0]);
@@ -147,7 +148,12 @@ const AddPetForm = ({ onClose }) => {
                   Back
                 </Button>
               )}
-              <Button name="filled" type="submit" width="100%" disabled={isSubmitting}>
+              <Button
+                name="filled"
+                type="submit"
+                width="100%"
+                disabled={isSubmitting}
+              >
                 {currentStep < 2 ? 'Next' : 'Done'}
               </Button>
             </ButtonsContainer>

@@ -8,19 +8,20 @@ import {
 } from './SearchForm.styled';
 import PropTypes from 'prop-types';
 
-const SearchForm = ({ onChange }) => {
+const SearchForm = ({ onChange, onSubmit }) => {
   const [isSearch, setIsSearch] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setIsSearch(true);
     onChange(e);
-    if (e.target.value==='') {
+    if (e.target.value === '') {
       setIsSearch(false);
     }
-  }
+  };
 
-  const handleClean = (e) => {
+  const handleClean = e => {
     e.preventDefault();
+    onSubmit(e);
     e.currentTarget.reset();
     setIsSearch(false);
   };
@@ -47,7 +48,8 @@ const SearchForm = ({ onChange }) => {
 };
 
 SearchForm.propTypes = {
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default SearchForm;
