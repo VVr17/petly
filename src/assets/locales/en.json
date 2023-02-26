@@ -9,6 +9,11 @@
   "readMore":"Read more",
   "findFavoritePet":"Find your favorite pet",
   "addPet":"Add pet",
+  "sell":"sell",
+  "lostFound":"lost/found",
+  "goodHands":"in good hands",
+  "favorite":"favorite ads",
+  "myAds":"my ads",
   "toastNotFoundNews":"Nothing was found for your request",
   "toastNotFoundAd":"Not found any ad",
   "toastNotRegister":"You have to register or login to add Pet"
