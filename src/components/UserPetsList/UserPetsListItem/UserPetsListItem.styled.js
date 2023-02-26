@@ -95,9 +95,10 @@ export const Button = styled.button`
   border: none;
   outline: none;
   background-color: ${theme.colors.lightText};
-  transition: background-color ${theme.transitionTiming};
+  color: ${theme.colors.secondaryText};
+  transition: color ${theme.transitionTiming};
   &:hover, :focus{
-    background-color: ${theme.colors.accent};
+    color: ${theme.colors.accent};
   }
   @media (min-width: ${breakpoints[1]}px) {
     top: 0;
@@ -111,5 +112,5 @@ export const Button = styled.button`
 export const iconStyle = {
   height: '26px',
   width: '22px',
-  fill: theme.colors.secondaryText,
+  fill: "currentParent",
 };

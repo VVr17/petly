@@ -63,7 +63,7 @@ const LoginForm = () => {
                             </FormWrapper>);
                     }}
                 </Formik>
-                <Paragraph>Don&apos;t have an account? <LoginLink to="/register">Register</LoginLink></Paragraph>
+                <Paragraph>Don&apos;t have an account? <LoginLink to="/register">Regiser</LoginLink></Paragraph>
                 {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
             </ModalContent>
         </ModalWrapper>

@@ -7,7 +7,7 @@ import {
   LoadImgPlus,
   LoadImgInput,
 } from './UploadImage.styled';
-import Plus from '../../assets/images/desktop/plus.svg';
+import Plus from '../../../assets/images/desktop/plus.svg';
 import PropTypes from 'prop-types';
 import { ErrorStyle } from './UploadImage.styled';
 import { useField } from 'formik';

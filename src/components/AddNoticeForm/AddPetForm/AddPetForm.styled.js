@@ -155,25 +155,50 @@ export const DatePickerInput = styled.input`
 export const RadioContainer = styled.ul`
   display: flex;
   gap: 90px;
-  margin-top: 31px;
-  margin-bottom: 40px;
+  margin-top: 10px;
+  margin-bottom: 18px;
+  @media(min-width: ${breakpoints[1]}px) {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const RadioTitle = styled.p`
-  margin-top: 40px;
+  margin-top: 20px;
+  font-family: ${theme.fontFamily.manrope};
+  font-style: normal;
+  font-weight: ${theme.fontWeight.medium};
+  font-size: ${theme.fontSizes.s};
+  line-height: 1.44;
+  @media(min-width: ${breakpoints[1]}px) {
+    font-size: ${theme.fontSizes.l};
+    line-height: 1.08;
+    margin-top: 40px;
+  }
 `;
 
 export const RadioItem = styled.div`
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 14px;
+  @media(min-width: ${breakpoints[1]}px) {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 23px;
+  }
 `;
 
 export const RadioLabel = styled.label`
   cursor: pointer;
   font-family: ${theme.fontFamily.manrope};
   font-weight: ${theme.fontWeight.medium};
-  font-size: ${theme.fontSizes.m};
+  font-size: ${theme.fontSizes.s};
+  line-height: 1.44;
   color: ${({ isSelected }) => (isSelected ? '#F59256' : 'inherit')};
+  @media(min-width: ${breakpoints[1]}px) {
+    font-size: ${theme.fontSizes.m};
+    line-height: 1.25;
+  }
 `;
 
 export const RadioButton = styled(Field)`

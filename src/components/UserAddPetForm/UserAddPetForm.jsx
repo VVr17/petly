@@ -24,7 +24,7 @@ import {
   validationSchemaPartOne,
   validationSchemaPartTwo,
 } from './Validation';
-import UploadImageField from 'components/UploadImage/UploadImage';
+import UploadImageField from 'components/Ui-Kit/UploadImage/UploadImage';
 import CommentField from 'components/AddNoticeForm/AddPetForm/StepTwo/CommentField';
 
 const UserAddPetForm = ({ closeModal }) => {
