@@ -38,7 +38,6 @@ const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
 
 const UserBirthday = ({ user }) => {
   const [isDisabled, setIsDisabled] = useState(true);
-
   // const user = useSelector(selectUserState);
 
   const val = () => {
@@ -64,12 +63,12 @@ const UserBirthday = ({ user }) => {
   };
 
   const handleSubmit = values => {
-    // if (!isDisabled) {
-    //   return;
-    // }
-    // if (values.birthday === user.birthday) {
-    //   return;
-    // }
+    if (!isDisabled) {
+      return;
+    }
+    if (values.birthday === user.birthday) {
+      return;
+    }
     console.log(values);
     let dateMDY;
     if (values.birthday === null) {
