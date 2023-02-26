@@ -4,7 +4,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import { selectIsAuthState } from 'redux/user/userSelectors';
 import { selectStatusFilter } from 'redux/filter/filterSelectors';
-import { useGetNoticeByCategoryQuery } from 'redux/api/noticesApi';
+import {
+  useGetFavoritesNoticesQuery,
+  useGetNoticeByCategoryQuery,
+  useGetUserNoticesQuery,
+} from 'redux/api/noticesApi';
 import Loader from 'components/Loader';
 import NoticesCategoryList from 'components/NoticesCategoryList';
 import Section from 'components/Section';
@@ -19,7 +23,7 @@ import NotificationAddNotice from 'components/NotificationAddNotice';
 import AddPetForm from 'components/AddNoticeForm/AddPetForm';
 import { AnimatePresence } from 'framer-motion';
 import throttle from 'lodash.throttle';
-
+import { statusFilter } from 'redux/filter/filterConstans';
 
 const Notices = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,17 +33,50 @@ const Notices = () => {
   const category = useSelector(selectStatusFilter);
   const {
     data: notices,
-    error,
-    isLoading,
-    isFetching,
-  } = useGetNoticeByCategoryQuery(category, { skip: !category });
+    error: noticeError,
+    isFetching: fetchingNotices,
+  } = useGetNoticeByCategoryQuery(category, {
+    skip:
+      !category ||
+      category === statusFilter.favoriteAds ||
+      category === statusFilter.myAds,
+  });
+  const {
+    data: favoriteNotices,
+    error: favoriteError,
+    isFetching: fetchingFavorites,
+  } = useGetFavoritesNoticesQuery();
+  /**
+   * null, {
+    skip: category !== statusFilter.favoriteAds,
+  }
+   */
+  const {
+    data: myNotices,
+    error: myError,
+    isFetching: fetchingMy,
+  } = useGetUserNoticesQuery(null, {
+    skip: category !== statusFilter.myAds,
+  });
 
-  const filterUpdate = (e) => {
+  const chooseNotices = () => {
+    if (category === statusFilter.favoriteAds) {
+      return favoriteNotices;
+    }
+    if (category === statusFilter.myAds) {
+      return myNotices;
+    }
+    return notices;
+  };
+
+  const chosenNotices = chooseNotices();
+
+  const filterUpdate = e => {
     const value = e.target.value;
     setFilter(value ? value.toLowerCase() : value);
   };
 
-  const filterNotices = (notices) => {
+  const filterNotices = notices => {
     const filteredNotices = notices.filter(notice => {
       return notice.title.toLowerCase().includes(filter);
     });
@@ -68,13 +105,15 @@ const Notices = () => {
   // const throttledNotify = useCallback(throttle(notify, 3000), []);
 
   useEffect(() => {
-    if (notices) {
-      const filteredNotices = filterNotices(notices);
+    if (chosenNotices) {
+      const filteredNotices = filterNotices(chosenNotices);
       setvisibleNotices(filteredNotices);
       // visibleNotices.length === 0 && throttledNotify();
     }
-  }, [notices, filter]);
+  }, [chosenNotices, filter]);
 
+  const isFetching = fetchingNotices || fetchingFavorites || fetchingMy;
+  const error = noticeError || favoriteError || myError;
   const showNotices = visibleNotices && !error && !isFetching;
 
   return (
