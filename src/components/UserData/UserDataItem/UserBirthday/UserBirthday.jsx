@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { Formik, Form, useField } from 'formik';
 import { useUpdateUserMutation } from 'redux/api/userApi';
-import { FieldWrapper, MyDatePickerNew, Label, Title, ErrorStyle, } from '../UserDataItem.styled';
+import {
+  FieldWrapper,
+  MyDatePickerNew,
+  Label,
+  Title,
+  ErrorStyle,
+} from '../UserDataItem.styled';
 import { validationSchema } from './validation';
 import { convertStringToDate, convertDateToString } from 'helpers/date';
 import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
 import Loader from 'components/Loader';
 import PropTypes from 'prop-types';
-
 
 const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
   const [field] = useField(name);
@@ -38,7 +43,7 @@ const UserBirthday = ({ user }) => {
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
   const parsedDate = convertStringToDate(user?.birthday || '00.00.0000');
-  const initialValues = { birthday: user?.birthday || '' };
+  const initialValues = { birthday: user?.birthday || '00.00.0000' };
 
   const handleClick = () => {
     if (isDisabled) {
@@ -56,7 +61,7 @@ const UserBirthday = ({ user }) => {
       return;
     }
 
-  const dateMDY = convertDateToString(values.birthday);
+    const dateMDY = convertDateToString(values.birthday);
 
     // create formData
     const data = new FormData();
@@ -110,6 +115,6 @@ MyDatePicker.propTypes = {
 
 UserBirthday.propTypes = {
   user: PropTypes.object,
-}
+};
 
 export default UserBirthday;
