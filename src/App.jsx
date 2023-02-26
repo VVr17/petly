@@ -64,7 +64,7 @@ const App = () => {
         </Suspense>
       </AnimatePresence>
       <GlobalStyle />
-      <ToastifyGlobalStyle autoClose={5000} />
+      <ToastifyGlobalStyle autoClose={5000}  limit={1}/>
     </>
   );
 };

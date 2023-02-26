@@ -37,14 +37,20 @@ const Notices = () => {
     setFilter(value ? value.toLowerCase() : value);
   };
 
+  
+
   const filterNotices = notices => {
     const filteredNotices = notices.filter(notice => {
       return notice.title.toLowerCase().includes(filter);
     });
-    if (filteredNotices.length === 0)
-   { toast.info('Not find any ad');} 
+    if (filteredNotices.length === 0) {
+      toast.info('Not find any ad');
+      toast.clearWaitingQueue();
+    }
     return filteredNotices;
   };
+
+  
 
   const handleClean = () => {
     setFilter('');
@@ -67,8 +73,8 @@ const Notices = () => {
 
   useEffect(() => {
     if (notices) {
-      const filteredNotices = filterNotices(notices);     
-      setvisibleNotices(filteredNotices)          
+      const filteredNotices = filterNotices(notices);
+      setvisibleNotices(filteredNotices);
     }
   }, [notices, filter]);
 
