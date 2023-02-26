@@ -27,20 +27,26 @@ import {
 } from './RegisterForm.styled';
 import Button from 'components/Ui-Kit/Button';
 
-const RegistrationForm = () => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [signupUser, { isError, error }] = useSignupUserMutation();
-  const navigate = useNavigate();
-  const { isAuth } = useSelector(state => state.user);
 
+
+// Main component for registration form
+const RegistrationForm = () => {
+  const [currentStep, setCurrentStep] = useState(1); // Tracks the current registration step
+  const [signupUser, { isError, error }] = useSignupUserMutation(); // A function to sign up the user, and some response objects from the API
+  const navigate = useNavigate(); // A function to navigate to different pages
+  const { isAuth } = useSelector(state => state.user); // Determines whether the user is authenticated
+
+  // Function to move to the next registration step
   const handleNextClick = () => {
     setCurrentStep(currentStep + 1);
   };
 
+  // Function to go back one registration step
   const handleBackClick = () => {
     setCurrentStep(currentStep - 1);
   };
 
+  // Function to handle form submission
   const handleSubmit = (values, { setSubmitting }) => {
     setSubmitting(false);
 
@@ -55,10 +61,11 @@ const RegistrationForm = () => {
         password: values.password,
       };
 
-      signupUser(credentials);
+      signupUser(credentials); // Send the user's information to the server to create an account
     }
   };
 
+  // Use an effect to navigate to the user page if the user is authenticated
   useEffect(() => {
     if (isAuth) {
       console.log('Congratulations! You are successfully signed up!');
@@ -66,6 +73,7 @@ const RegistrationForm = () => {
     }
   });
 
+  // Render the registration form
   return (
     <ModalWrapper>
       <ModalContent>

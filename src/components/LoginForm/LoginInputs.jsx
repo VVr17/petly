@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import InputField from 'components/Ui-Kit/Input';
-import {
-  PasswordToggle,
-  PasswordWrapper,
-} from 'components/RegisterForm/RegStepOne.styled';
+import { PasswordToggle } from 'components/RegisterForm/RegStepOne.styled';
 import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
 
 const LoginInputs = () => {
@@ -32,10 +29,6 @@ const LoginInputs = () => {
           {showPassword ? <RxEyeOpen /> : <RxEyeClosed />}
         </PasswordToggle>
       </InputField>
-
-      {/* <PasswordToggle type="button" onClick={toggleShowPassword}>
-        {showPassword ? <RxEyeOpen /> : <RxEyeClosed />}
-      </PasswordToggle> */}
     </>
   );
 };
