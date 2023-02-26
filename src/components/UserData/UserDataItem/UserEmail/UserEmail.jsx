@@ -1,30 +1,24 @@
-import Loader from 'components/Loader';
-import UserInput from 'components/Ui-Kit/UserInput';
-import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import {
-  useGetCurrentUserQuery,
-  useUpdateUserMutation,
-} from 'redux/api/userApi';
-import { selectUserState } from 'redux/user/userSelectors';
-import { FieldWrapper, FormStyled } from '../UserField.styled';
+import { Formik, Form } from 'formik';
+import { useUpdateUserMutation } from 'redux/api/userApi';
 import { validationSchema } from './validation';
+import { FieldWrapper } from '../UserDataItem.styled';
+import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
+import UserInput from 'components/Ui-Kit/UserInput';
+import Loader from 'components/Loader';
+import PropTypes from 'prop-types';
 
-const UserEmail = () => {
+const UserEmail = ({ user }) => {
   const [isDisabled, setIsDisabled] = useState(true);
-  const user = useSelector(selectUserState);
-  const initialValues = { email: user.email || '' };
   const [updateUser, { isLoading }] = useUpdateUserMutation();
+
+  const initialValues = { email: user?.email || '' };
 
   const handleClick = (values, actions) => {
     if (isDisabled) {
       setIsDisabled(false);
       return;
     }
-
-    // if (!values.email) return;
     setIsDisabled(true);
   };
 
@@ -46,9 +40,8 @@ const UserEmail = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-      // encType="multipart/form-data"
     >
-      {({ isSubmitting, values, setFieldValue, errors }) => (
+      {({ isSubmitting, values, errors }) => (
         <Form>
           <FieldWrapper>
             <UserInput
@@ -56,7 +49,7 @@ const UserEmail = () => {
               name="email"
               type="email"
               disabled={isDisabled}
-              placeholder={user.email || ''}
+              placeholder={user?.email || ''}
             />
             <UserUpdateButton
               type="submit"
@@ -77,5 +70,9 @@ const UserEmail = () => {
     </Formik>
   );
 };
+
+UserEmail.propTypes = {
+  user: PropTypes.object,
+}
 
 export default UserEmail;

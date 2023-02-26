@@ -2,5 +2,5 @@
   "compilerOptions": {
     "baseUrl": "src"
   },
-  "include": ["src"]
+  "include": ["src", "src/components/UserData/UserDataItem/UserDataItem.styled.js"]
 }

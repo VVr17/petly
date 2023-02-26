@@ -7,7 +7,6 @@ export const Container = styled.div`
   @media (min-width: ${breakpoints[1]}px) {
     max-width: ${breakpoints[1]}px;
   }
-
   @media (min-width: ${breakpoints[2]}px) {
     max-width: 820px;
   }
@@ -63,15 +62,12 @@ export const UserInfo = styled.div`
   margin-bottom: 42px;
 
   ${theme.mq.tabletOnly} {
-    /* padding-left: 32px; */
-    /* width: 379px; */
     margin-bottom: 33px;
     margin-right: 52px;
   }
 
   ${theme.mq.desktop} {
     padding-left: 8px;
-    /* margin-left: 64px; */
   }
 `;
 
@@ -92,11 +88,6 @@ export const iconStyle = {
   width: '20px',
   fill: theme.colors.accent,
   color: theme.colors.accent,
-};
-
-export const editBtn = {
-  gap: '4px',
-  marginLeft: 'auto',
 };
 
 export const LogoutBtn = {

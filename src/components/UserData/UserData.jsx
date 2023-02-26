@@ -1,30 +1,20 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { selectUserState } from 'redux/user/userSelectors';
 import { logout } from '../../redux/user/userSlice';
-import { Container, UserCard, Title, Button, LogoutBtn, iconStyle, UserInfo } from './UserData.styled';
 import { IoLogOutOutline } from 'react-icons/io5';
 import { Box } from 'components/Box/Box';
-import UserPhoto from './UserDataItem/UserPhoto/UserPhoto';
-import UserName from './UserDataItem/UserName/UserName';
-import UserEmail from './UserDataItem/UserEmail/UserEmail';
-import UserBirthday from './UserDataItem/UserBirthday/UserBirthday';
-import UserPhone from './UserDataItem/UserPhone/UserPhone';
-import UserCity from './UserDataItem/UserCity/UserCity';
+import { Container, UserCard, Title, Button, LogoutBtn, iconStyle, UserInfo } from './UserData.styled';
+import { UserPhoto, UserName, UserEmail, UserBirthday, UserPhone, UserCity } from "./UserDataItem/index"
 
 const UserData = () => {
-  const { isAuth } = useSelector(state => state.user);
+  const user = useSelector(selectUserState);
+
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
   };
-
-  // useEffect(() => {
-  //   if (!isAuth) {
-  //     navigate('/login');
-  //   }
-  // });
 
   return (
     <Container>
@@ -33,11 +23,11 @@ const UserData = () => {
         <UserPhoto />
         <Box mt={['32px', '32px', '0', '0']}>
           <UserInfo>
-            <UserName />
-            <UserEmail />
-            <UserBirthday />
-            <UserPhone />
-            <UserCity />
+            <UserName user={user}/>
+            <UserEmail user={user}/>
+            <UserBirthday user={user}/>
+            <UserPhone user={user}/>
+            <UserCity user={user}/>
           </UserInfo>
           <Box
             display="flex"
