@@ -255,8 +255,8 @@ export const TextareaLabel = styled.label`
 
 export const Textarea = styled(Field)`
   width: 100%;
-  height: 40px;
-  border-radius: 40px;
+  height: ${({ form }) => (form === 'userPet' ? '100px' : '40px')};
+  border-radius: ${({ form }) => (form === 'userPet' ? '20px' : '40px')};
   margin-top: 8px;
   margin-bottom: 8px;
   cursor: pointer;
@@ -270,8 +270,9 @@ export const Textarea = styled(Field)`
   padding-right: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
+
   @media (min-width: ${breakpoints[1]}px) {
-    height: 110px;
+    height: 116px;
     border-radius: 20px;
     margin-top: 12px;
     padding-left: 18px;
