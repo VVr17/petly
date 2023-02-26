@@ -9,6 +9,7 @@ import Loader from 'components/Loader';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { selectUserState } from 'redux/user/userSelectors';
+import { toast } from 'react-toastify';
 
 const UserCity = () => {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -26,7 +27,7 @@ const UserCity = () => {
     setIsDisabled(true);
   };
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = async (values, actions) => {
     if (!isDisabled) {
       return;
     }
@@ -36,7 +37,8 @@ const UserCity = () => {
     // create formData
     const data = new FormData();
     data.append('city', values.city);
-    updateUser(data);
+    await updateUser(data);
+    toast.info('City has been successfully updated');
   };
 
   return (

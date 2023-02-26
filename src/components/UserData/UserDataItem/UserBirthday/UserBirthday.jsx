@@ -15,6 +15,7 @@ import Loader from 'components/Loader';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { selectUserState } from 'redux/user/userSelectors';
+import { toast } from 'react-toastify';
 
 const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
   const [field] = useField(name);
@@ -64,7 +65,7 @@ const UserBirthday = () => {
     setIsDisabled(true);
   };
 
-  const handleSubmit = values => {
+  const handleSubmit = async values => {
     if (!isDisabled) {
       return;
     }
@@ -82,7 +83,8 @@ const UserBirthday = () => {
     // create formData
     const data = new FormData();
     data.append('birthday', dateMDY);
-    updateUser(data);
+    await updateUser(data);
+    toast.info('Birth date has been successfully updated');
   };
 
   return (

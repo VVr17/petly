@@ -9,6 +9,7 @@ import Loader from 'components/Loader';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { selectUserState } from 'redux/user/userSelectors';
+import { toast } from 'react-toastify';
 
 const UserPhone = () => {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -26,7 +27,7 @@ const UserPhone = () => {
     setIsDisabled(true);
   };
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = async (values, actions) => {
     if (!isDisabled) {
       return;
     }
@@ -36,7 +37,8 @@ const UserPhone = () => {
     // create formData
     const data = new FormData();
     data.append('phone', values.phone);
-    updateUser(data);
+    await updateUser(data);
+    toast.info('Phone has been successfully updated');
   };
 
   return (
