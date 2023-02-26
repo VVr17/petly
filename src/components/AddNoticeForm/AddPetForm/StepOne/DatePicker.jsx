@@ -25,7 +25,7 @@ const MyDatePicker = ({ name }) => {
       showMonthDropdown
       showYearDropdown
       yearDropdownItemNumber={100}
-      dropdownMode="select"
+      scrollableYearDropdown
     />
   );
 };

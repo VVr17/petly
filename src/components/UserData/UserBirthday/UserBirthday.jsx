@@ -20,7 +20,7 @@ import Loader from 'components/Loader';
 const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
   const [field] = useField(name);
   const [startDate, setStartDate] = useState(val);
-
+  console.log(startDate);
   return (
     <MyDatePickerNew
       {...field}
@@ -36,7 +36,7 @@ const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
       showMonthDropdown
       showYearDropdown
       yearDropdownItemNumber={100}
-      dropdownMode="select"
+      scrollableYearDropdown
     />
   );
 };
@@ -45,7 +45,17 @@ const UserBirthday = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const user = useSelector(selectUserState);
 
-  const parsedDate = convertStringToDate(user.birthday || '00.00.0000');
+  const val = () => {
+    let date;
+    if (user.birthday === null) {
+      date = new Date();
+    } else {
+      date = convertStringToDate(user.birthday);
+    }
+    return date;
+  };
+
+  // const parsedDate = convertStringToDate(user.birthday || '00.00.0000');
 
   const initialValues = { birthday: user.birthday || '' };
 
@@ -91,7 +101,7 @@ const UserBirthday = () => {
 
               <MyDatePicker
                 isDisabled={isDisabled}
-                val={parsedDate}
+                val={val}
                 name="birthday"
                 handleChange={date => {
                   setFieldValue('birthday', date);
