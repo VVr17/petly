@@ -5,13 +5,15 @@ import Section from 'components/Section';
 import FriendsList from 'components/Friends/FriendsList/FriendsList';
 import TitlePage from 'components/Ui-Kit/TitlePage';
 import Loader from 'components/Loader/loader';
+import { useIntl } from 'react-intl';
 
 const FriendsPage = () => {
   const { data, isFetching, isError } = useGetFriendsQuery();
+  const { formatMessage } = useIntl();
 
   return (
     <Section>
-      <TitlePage name={'Our friends'} />
+      <TitlePage name={formatMessage({ id: 'ourFriends' })} />
       {isFetching && <Loader />}
       {!isFetching && isError && (
         <h2>Server error. Please, try again later.</h2>

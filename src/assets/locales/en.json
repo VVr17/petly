@@ -6,5 +6,10 @@
   "register":"Registration",
   "account":"Account",
   "search":"Search",
-  "readMore":"Read more"
+  "readMore":"Read more",
+  "findFavoritePet":"Find your favorite pet",
+  "addPet":"Add pet",
+  "toastNotFoundNews":"Nothing was found for your request",
+  "toastNotFoundAd":"Not found any ad",
+  "toastNotRegister":"You have to register or login to add Pet"
 }

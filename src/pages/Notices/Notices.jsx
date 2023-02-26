@@ -25,12 +25,14 @@ import { AnimatePresence } from 'framer-motion';
 import throttle from 'lodash.throttle';
 import { statusFilter } from 'redux/filter/filterConstans';
 import { useGetNotices } from 'hooks/useGetNotices';
+import { useIntl } from 'react-intl';
 
 const Notices = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { notices, isFetching, error } = useGetNotices();
   const [filter, setFilter] = useState('');
   const [visibleNotices, setvisibleNotices] = useState([]);
+  const { formatMessage } = useIntl();
 
   const filterUpdate = e => {
     const value = e.target.value;
@@ -41,8 +43,9 @@ const Notices = () => {
     const filteredNotices = notices.filter(notice => {
       return notice.title.toLowerCase().includes(filter);
     });
-    if (filteredNotices.length === 0)
-   { toast.info('Not find any ad');} 
+    if (filteredNotices.length === 0) {
+      toast.info(formatMessage({ id: 'toastNotFoundAd' }));
+    }
     return filteredNotices;
   };
 
@@ -56,7 +59,7 @@ const Notices = () => {
       setIsOpen(true);
       document.body.classList.add('modal-open');
     } else {
-      toast('You have to register or login to add Pet');
+      toast(formatMessage({ id: 'toastNotRegister' }));
     }
   };
 
@@ -67,8 +70,8 @@ const Notices = () => {
 
   useEffect(() => {
     if (notices) {
-      const filteredNotices = filterNotices(notices);     
-      setvisibleNotices(filteredNotices)          
+      const filteredNotices = filterNotices(notices);
+      setvisibleNotices(filteredNotices);
     }
   }, [notices, filter]);
 
@@ -76,7 +79,7 @@ const Notices = () => {
 
   return (
     <Section>
-      <TitlePage name={'Find your favorite pet'} />
+      <TitlePage name={formatMessage({ id: 'findFavoritePet' })} />
       <SearchForm onChange={filterUpdate} onSubmit={handleClean} />
 
       <NavContainer>
@@ -99,7 +102,7 @@ const Notices = () => {
                 </FormContainer>
               </ModalComponent>
             ) : (
-              <>{toast('You have to register or login to add Pet')}</>
+              <>{toast(formatMessage({ id: 'toastNotRegister' }))}</>
             )}
             )
           </>
