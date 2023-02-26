@@ -46,7 +46,7 @@ export const validationSchemaStepTwo = Yup.object().shape({
     .required('Name is required'),
   city: Yup.string()
     .matches(
-      /^[a-zA-Zа-яА-Я]+(?:[-\s]?[a-zA-Zа-яА-Я]+)*,\s*[a-zA-Zа-яА-Я'’\s-]+$/,
+      /^[a-zA-Zа-яА-ЯіІїЇ]+(?:[-\s]?[a-zA-Zа-яА-ЯіІїЇ]+)*,\s*[a-zA-Zа-яА-ЯіІїЇ'’\s-]+$/,
       'Should be "City, Region" separated by comma, only letters can be accepted'
     )
     .min(3, 'City should have at least 3 characters')

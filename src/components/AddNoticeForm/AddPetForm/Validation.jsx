@@ -45,7 +45,7 @@ export const validationSchemaStepTwo = Yup.object().shape({
   sex: Yup.string().required(),
   location: Yup.string()
     .matches(
-      /^\s*(?:\w+\s*,\s*){1,}(?:\w+\s*)$/,
+      /^[a-zA-Zа-яА-ЯіІїЇ]+(?:[-\s]?[a-zA-Zа-яА-ЯіІїЇ]+)*,\s*[a-zA-Zа-яА-ЯіІїЇ'’\s-]+$/,
       'Should be at least two words separated by coma'
     )
     .required('City is required'),
