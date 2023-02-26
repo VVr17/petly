@@ -85,26 +85,31 @@ export const TextComments = styled.p`
 
 export const Button = styled.button`
   position: absolute;
-  top: -5px;
+  top: -10px;
   right: 0;
-  width: 21px;
-  height: 21px;
+  padding: 5px 7px 5px 7px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
   padding: 0 0 0 0;
   border: none;
   outline: none;
   background-color: ${theme.colors.lightText};
+  transition: background-color ${theme.transitionTiming};
+  &:hover, :focus{
+    background-color: ${theme.colors.accent};
+  }
   @media (min-width: ${breakpoints[1]}px) {
     top: 0;
-    width: 45px;
-    height: 45px;
-    padding: 12px 14px 12px 14px;
-    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    padding: 9px 11px 9px 11px;
     background-color: ${theme.colors.mainBackground};
   }
 `;
 
 export const iconStyle = {
-  height: '21px',
-  width: '17px',
+  height: '26px',
+  width: '22px',
   fill: theme.colors.secondaryText,
 };
