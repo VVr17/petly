@@ -18,6 +18,7 @@ export const initialValues = {
 // Yup validation
 
 export const validationSchemaStepOne = Yup.object().shape({
+  category: Yup.string().required(),
   title: Yup.string()
     .required('Title is required')
     .min(2, 'Title should be at least 2 characters long')
@@ -54,12 +55,20 @@ export const validationSchemaStepTwo = Yup.object().shape({
     .min(1, 'Price can not be 0')
     .when('category', (category, schema) => {
       if (category === 'sell') {
-        return schema.required('Price is required');
+        return schema.required().typeError('Price is required');
       }
       return schema;
     }),
 
-  petImage: Yup.mixed().required('Please add the picture'),
+  petImage: Yup.mixed()
+    .test('fileFormat', 'Unsupported file format', value => {
+      if (value) {
+        const supportedFormats = ['image/jpeg', 'image/jpg', 'image/png'];
+        return supportedFormats.includes(value.type);
+      }
+      return false;
+    })
+    .required('Please add the picture'),
   comments: Yup.string()
     .required('Comment is required')
     .min(8, 'Title should be at least 8 characters long')

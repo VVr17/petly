@@ -17,7 +17,6 @@ import PropTypes from 'prop-types';
 const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
   const [field] = useField(name);
   const [startDate, setStartDate] = useState(val);
-  console.log(startDate);
   return (
     <MyDatePickerNew
       {...field}
@@ -104,7 +103,6 @@ const UserBirthday = ({ user }) => {
                 name="birthday"
                 handleChange={date => {
                   setFieldValue('birthday', date);
-                  console.log('handleChange', values);
                 }}
               />
 
