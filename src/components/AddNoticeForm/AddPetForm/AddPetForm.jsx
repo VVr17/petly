@@ -125,6 +125,7 @@ const AddPetForm = ({ onClose }) => {
 
                 <UploadImageField
                   name="petImage"
+                  label="Load the pet’s image:"
                   fileDataURL={fileDataURL}
                   handleChange={e => {
                     setFile(e.currentTarget.files[0]);
@@ -147,7 +148,12 @@ const AddPetForm = ({ onClose }) => {
                   Back
                 </Button>
               )}
-              <Button name="filled" type="submit" width="100%" disabled={isSubmitting}>
+              <Button
+                name="filled"
+                type="submit"
+                width="100%"
+                disabled={isSubmitting}
+              >
                 {currentStep < 2 ? 'Next' : 'Done'}
               </Button>
             </ButtonsContainer>
