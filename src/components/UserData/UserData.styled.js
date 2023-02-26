@@ -3,13 +3,6 @@ import { theme, breakpoints } from '../../constants/theme';
 
 export const Container = styled.div`
   width: 100%;
-
-  @media (min-width: ${breakpoints[1]}px) {
-    max-width: ${breakpoints[1]}px;
-  }
-  @media (min-width: ${breakpoints[2]}px) {
-    max-width: 820px;
-  }
 `;
 
 export const Title = styled.h2`
