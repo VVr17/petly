@@ -129,8 +129,8 @@ const AddPetForm = ({ onClose }) => {
             )}
             {currentStep === 2 && (
               <StepTwo>
-                <SexField value={values.sex} />
-                <LocationField />
+                <SexField value={values.sex}  />
+                <LocationField valueLocation={values.location} setFieldValue={setFieldValue}/>
 
                 {values.category === 'sell' && (
                   <CustomCont>
