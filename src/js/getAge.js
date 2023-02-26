@@ -1,22 +1,33 @@
 const getAge = birthDate => {
-    let today = new Date();
-    let d = birthDate.split('.');
-    let date = d[2] + '.' + d[1] + '.' + d[0];
-    let birthDateFormat = new Date(date);
-    let age = today.getFullYear() - birthDateFormat.getFullYear();
-    let m = today.getMonth() - birthDateFormat.getMonth();
+  let today = new Date();
+  let d = birthDate.split('.');
 
-    if (m < 0 || (m === 0 && today.getDate() < birthDateFormat.getDate())) {
-      age--;
-    }
-    if (age === 0 && m < 0) {
-      m = 12 + m;
-      if (d < 0 || (d === 0 && today.getDate() < birthDateFormat.getDate())) {
-        m--;
-      }
-    }
+  let year = today.getFullYear() - d[2];
+  let month = today.getMonth() - d[1] + 1;
+  let day = today.getDate() - d[0];
 
-    return age ? age + ' ' + 'years' : m + ' ' + 'months';
-  };
+  if (year === 0 && month === 0 && day > 0) {
+    return day + ' ' + 'day';
+  }
+  if (year === 0 && month > 0) {
+    return month + ' ' + 'months';
+  }
 
-  export default getAge;
+  if (year === 1 && month < 0) {
+    month = 12 + month;
+    return month + ' ' + 'months';
+  }
+  if (year >= 1 && month > 0) {
+    return year + ' ' + 'years' + ' ' + month + ' ' + 'months';
+  }
+  if (year >= 1 && month < 0) {
+    year = year - 1;
+    month = 12 + month;
+    return year + ' ' + 'years' + ' ' + month + ' ' + 'months';
+  }
+  if (year >= 1 && month === 0) {
+    return year + ' ' + 'years';
+  }
+};
+
+export default getAge;
