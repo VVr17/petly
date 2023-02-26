@@ -45,8 +45,8 @@ export const MenuBox = styled.div`
 `;
 
 export const LogoTitle = styled.div`
-transition: color ${theme.transitionTiming};
-`
+  transition: color ${theme.transitionTiming};
+`;
 
 export const Span = styled.span`
   font-family: ${theme.fontFamily.poppins};
@@ -57,30 +57,25 @@ export const Span = styled.span`
   transition: color ${theme.transitionTiming};
   @media (min-width: ${breakpoints[1]}px) {
     font-size: ${theme.fontSizes.xxl};
-  } ;  
+  } ;
 `;
-
 
 export const Link = styled(NavLink)`
   font-family: ${theme.fontFamily.poppins};
   font-size: ${theme.fontSizes.xl};
   font-weight: ${theme.fontWeight.bold};
   line-height: 1.5;
-  color: ${theme.colors.mainText};  
-  &:hover ${LogoTitle} {
-     color: ${theme.colors.accent};
-  };
-  &:hover ${Span} {
   color: ${theme.colors.mainText};
- };
+  &:hover ${LogoTitle} {
+    color: ${theme.colors.accent};
+  }
+  &:hover ${Span} {
+    color: ${theme.colors.mainText};
+  }
   @media (min-width: ${breakpoints[1]}px) {
-     font-size: ${theme.fontSizes.xxl};
-   };   
+    font-size: ${theme.fontSizes.xxl};
+  } ;
 `;
-
-
-
-
 
 export const MenuButton = styled.button`
   display: flex;
@@ -93,32 +88,31 @@ export const MenuButton = styled.button`
 `;
 
 export const iconStyle = {
-   height: '30px',
-   width: '40px',
-   backgroundColor: theme.colors.mainBackground,
-   fill: theme.colors.mainText,
+  height: '30px',
+  width: '40px',
+  backgroundColor: theme.colors.mainBackground,
+  fill: theme.colors.mainText,
 };
 
 export const WrapSelector = styled.div`
   display: flex;
-  width: 250px;
+  flex: 1;
+  padding-right: 20px;
   justify-content: flex-end;
   gap: 8px;
 `;
 
-export const Selector = styled.select`
-  height: 44px;
-  min-width: 100px;
-  padding: 8px 16px;
-  border: 2px solid #f59256;
-  border-radius: 25px;
-`;
-
 export const BtnFlag = styled.button`
   padding: 0;
-  width: 60px;
-  height: 40px;
-  border-radius: 8px;
+  width: 30px;
+  height: 20px;
+  border-radius: 4px;
   overflow: hidden;
   border: 0;
+
+  ${theme.mq.tablet} {
+    width: 60px;
+    height: 40px;
+    border-radius: 8px;
+  }
 `;

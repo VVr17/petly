@@ -1,5 +1,8 @@
 {
   "news":"News",
   "findPet":"Find pet",
-  "ourFriends":"Our friends"
+  "ourFriends":"Our friends",
+  "login":"Login",
+  "register":"Registration",
+  "account":"Account"
 }

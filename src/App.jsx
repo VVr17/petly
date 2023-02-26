@@ -25,7 +25,7 @@ import enMessages from './assets/locales/en.json';
 import ukMessages from './assets/locales/uk.json';
 
 const App = () => {
-  const [locale, setLocale] = useState('uk');
+  const [locale, setLocale] = useState('en');
   const location = useLocation();
   const token = useSelector(selectTokenState);
   const { data, isFetching } = useGetCurrentUserQuery(null, {
@@ -35,7 +35,7 @@ const App = () => {
   const messages = { en: enMessages, uk: ukMessages };
 
   const handleLocaleChange = e => {
-    setLocale(e.target.value);
+    setLocale(e);
   };
 
   if (isFetching) return <Loader />;

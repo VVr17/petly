@@ -4,12 +4,12 @@ import { Suspense } from 'react';
 import Header from '../Header';
 import { Box } from 'components/Box/Box';
 import Loader from 'components/Loader';
+import PropTypes from 'prop-types';
 
-// eslint-disable-next-line react/prop-types
-const SharedLayout = ({ locale, handleLocaleChange }) => {
+const SharedLayout = ({ handleLocaleChange }) => {
   return (
     <>
-      <Header locale={locale} handleLocaleChange={handleLocaleChange} />
+      <Header handleLocaleChange={handleLocaleChange} />
       <Box as="main">
         <Suspense fallback={<Loader />}>
           <Outlet />
@@ -17,6 +17,10 @@ const SharedLayout = ({ locale, handleLocaleChange }) => {
       </Box>
     </>
   );
+};
+
+SharedLayout.propTypes = {
+  handleLocaleChange: PropTypes.func.isRequired,
 };
 
 export default SharedLayout;
