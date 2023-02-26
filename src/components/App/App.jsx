@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { GlobalStyle } from 'App.styled';
 import { useGetCurrentUserQuery } from 'redux/api/userApi';
 import { selectTokenState } from 'redux/user/userSelectors';
 import Loader from 'components/Loader';
@@ -15,10 +14,11 @@ import {
   Register,
   SharedLayout,
   User,
-} from 'lazyLoading';
+} from './lazyLoading';
 import { AnimatePresence } from 'framer-motion';
 import { RestrictedRoute } from 'components/Routes/RestrictedRoute';
 import { PrivateRoute } from 'components/Routes/PrivateRoute';
+import { GlobalStyle } from './App.styled';
 import ToastifyGlobalStyle from 'components/Ui-Kit/ToastifyGlobalStyle.styled';
 
 const App = () => {
@@ -64,7 +64,7 @@ const App = () => {
         </Suspense>
       </AnimatePresence>
       <GlobalStyle />
-      <ToastifyGlobalStyle autoClose={5000}  limit={1}/>
+      <ToastifyGlobalStyle autoClose={5000} limit={1} />
     </>
   );
 };

@@ -8,7 +8,7 @@ import StepTwo from './StepTwo/StepTwo';
 import LocationField from './StepTwo/Location';
 import PriceField from './StepTwo/PriceField';
 import CommentField from './StepTwo/CommentField';
-import UploadImageField from 'components/UploadImage';
+import UploadImageField from 'components/Ui-Kit/UploadImage';
 import FilterCategory from './FilterCategory';
 import SexField from './StepTwo/Sex';
 import { useAddNoticeMutation } from 'redux/api/noticesApi';
