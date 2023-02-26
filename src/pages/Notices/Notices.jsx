@@ -65,7 +65,6 @@ const Notices = () => {
 
   // const throttledNotify = useCallback(throttle(notify, 3000), []);
 
-  console.log('notices', notices);
   useEffect(() => {
     if (notices) {
       const filteredNotices = filterNotices(notices);
