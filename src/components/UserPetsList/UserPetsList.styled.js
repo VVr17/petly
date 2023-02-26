@@ -22,7 +22,7 @@ export const Box = styled.div`
   align-items: center;
 
   @media (min-width: ${breakpoints[2]}px) {
-  min-width: 805px;
+    min-width: 805px;
   }
 `;
 
@@ -51,6 +51,7 @@ export const ImageBox = styled.div`
 export const Image = styled.img`
   width: 80%;
   margin: 0 auto;
+  border-radius: 20px;
 `;
 
 export const iconStyle = {
