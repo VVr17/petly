@@ -7,16 +7,19 @@ import {
   List,
   ImageBox,
   Image,
-  ImageSpan,
+  Button,
+  ButtonTitle,
+  ReactIcon
 } from './UserPetsList.styled';
+import { BsPlusCircleFill } from 'react-icons/bs';
 import { useGetCurrentUserQuery } from 'redux/api/userApi';
 import UserAddPetForm from 'components/UserAddPetForm';
 import UserPetsListItem from './UserPetsListItem';
 import Modal from 'components/Modal';
 import { AnimatePresence } from 'framer-motion';
-import AddPetButton from 'components/AddPetButton';
 import Pets from '../../assets/images/desktop/pet.jpg';
 import Loader from 'components/Loader';
+
 
 const UserPetsList = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +39,12 @@ const UserPetsList = () => {
     <Container>
       <Box>
         <Title>My pets:</Title>
-        <AddPetButton handleClick={handleIsOpen} />
+        <ButtonTitle>Add pet</ButtonTitle>
+        <Button whileTap={{ scale: 0.95 }} onClick={handleIsOpen}>
+          <ReactIcon>
+            <BsPlusCircleFill size="44px" />
+          </ReactIcon>
+        </Button>
       </Box>
       {isLoading && <Loader />}
       {!isLoading && data?.pets.length === 0 && (

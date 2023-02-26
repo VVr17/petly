@@ -1,16 +1,17 @@
 import React from 'react';
-import { BsPlusCircleFill } from 'react-icons/bs';
-import { Button, ButtonTitle, ReactIcon } from './AddPetButton.styled';
+import { VscAdd } from "react-icons/vsc";
+import {ButtonContainer, Button, ButtonTitle, ReactIcon, Title } from './AddPetButton.styled';
 
 // eslint-disable-next-line react/prop-types
 const AddPetButton = ({ handleClick }) => {
   return (
-    <Button whileTap={{ scale: 0.95 }} onClick={handleClick}>
-      <ButtonTitle>Add pet</ButtonTitle>
-      <ReactIcon>
-        <BsPlusCircleFill size="44px" />
-      </ReactIcon>
-    </Button>
+    <ButtonContainer>
+      <Title>Add pet</Title>
+      <Button whileTap={{ scale: 0.95 }} onClick={handleClick}>
+        <ButtonTitle>Add pet</ButtonTitle>
+        <VscAdd style={ReactIcon}/>
+      </Button>
+    </ButtonContainer>
   );
 };
 
