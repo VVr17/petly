@@ -1,21 +1,13 @@
-import { Formik, useField } from 'formik';
 import React, { useState } from 'react';
+import { Formik, Form, useField } from 'formik';
 import { useUpdateUserMutation } from 'redux/api/userApi';
-import { FieldWrapper } from '../UserField.styled';
-import {
-  Title,
-  Label,
-  ErrorStyle,
-  MyDatePickerNew,
-  FormStyled,
-} from './UserBirthday.styled';
-import PropTypes from 'prop-types';
-import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
-import { useSelector } from 'react-redux';
-import { selectUserState } from 'redux/user/userSelectors';
+import { FieldWrapper, MyDatePickerNew, Label, Title, ErrorStyle, } from '../UserDataItem.styled';
 import { validationSchema } from './validation';
 import { convertStringToDate, convertDateToString } from 'helpers/date';
+import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
 import Loader from 'components/Loader';
+import PropTypes from 'prop-types';
+
 
 const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
   const [field] = useField(name);
@@ -41,23 +33,18 @@ const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
   );
 };
 
-const UserBirthday = () => {
+const UserBirthday = ({ user }) => {
   const [isDisabled, setIsDisabled] = useState(true);
-  const user = useSelector(selectUserState);
-
-  const parsedDate = convertStringToDate(user.birthday || '00.00.0000');
-
-  const initialValues = { birthday: user.birthday || '' };
-
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
-  const handleClick = values => {
+  const parsedDate = convertStringToDate(user?.birthday || '00.00.0000');
+  const initialValues = { birthday: user?.birthday || '' };
+
+  const handleClick = () => {
     if (isDisabled) {
       setIsDisabled(false);
       return;
     }
-
-    // if (!values.birthday) return;
     setIsDisabled(true);
   };
 
@@ -69,7 +56,7 @@ const UserBirthday = () => {
       return;
     }
 
-    const dateMDY = convertDateToString(values.birthday);
+  const dateMDY = convertDateToString(values.birthday);
 
     // create formData
     const data = new FormData();
@@ -84,7 +71,7 @@ const UserBirthday = () => {
       onSubmit={handleSubmit}
     >
       {({ isSubmitting, values, setFieldValue }) => (
-        <FormStyled>
+        <Form>
           <FieldWrapper>
             <Label>
               <Title>Birthday</Title>
@@ -108,7 +95,7 @@ const UserBirthday = () => {
             />
             {isLoading && <Loader />}
           </FieldWrapper>
-        </FormStyled>
+        </Form>
       )}
     </Formik>
   );
@@ -120,5 +107,9 @@ MyDatePicker.propTypes = {
   val: PropTypes.any,
   handleChange: PropTypes.func,
 };
+
+UserBirthday.propTypes = {
+  user: PropTypes.object,
+}
 
 export default UserBirthday;

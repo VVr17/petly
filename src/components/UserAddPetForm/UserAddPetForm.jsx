@@ -15,7 +15,7 @@ import {
 import PropTypes from 'prop-types';
 import PartFirst from './PartFirst';
 import PartSecond from './PartSecond';
-import UserUploadImg from 'components/UserUploadImg';
+import UserUploadImg from 'components/UserUploadImg/UserUploadImg';
 import Button from 'components/Ui-Kit/Button';
 import { petsApi, useAddPetMutation } from 'redux/api/petsApi';
 import Loader from 'components/Loader';
