@@ -10,30 +10,37 @@ import Loader from 'components/Loader';
 const News = () => {
   const { data, error, isLoading } = useGetNewsQuery();
   let news = data ? data : [];
+  const [filter, setFilter] = useState('');
   const [filteredNews, setFilteredNews] = useState([]);
 
-  const searchQuery = (e, value) => {
-    e.preventDefault();
+  const searchQuery = news => {
     const newsFilter = news.filter(el =>
-      el.title
-        .concat(el.description)
-        .toLowerCase()
-        .includes(value.toLowerCase())
+      el.title.concat(el.description).toLowerCase().includes(filter)
     );
-    setFilteredNews(newsFilter);
+    return newsFilter;
+  };
+
+  const filterUpdate = e => {
+    const value = e.target.value;
+    setFilter(value ? value.toLowerCase() : value);
+  };
+
+  const handleClean = () => {
+    setFilter('');
   };
 
   useEffect(() => {
-    if (data) {
-      setFilteredNews(data);
+    if (news) {
+      const visibleNews = searchQuery(news);
+      setFilteredNews(visibleNews);
     }
-  }, [data]);
+  }, [data, filter]);
 
   return (
     <Section>
       <WrapperTitle>
         <TitlePage name={'News'} />
-        <SearchForm handleSubmit={searchQuery} />
+        <SearchForm onChange={filterUpdate} onSubmit={handleClean} />
       </WrapperTitle>
       {isLoading && <Loader />}
       {error && <div>{error.message}</div>}
