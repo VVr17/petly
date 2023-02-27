@@ -88,7 +88,6 @@ export const userApi = createApi({
           const {
             data: { data },
           } = await queryFulfilled;
-          console.log('data', data);
           dispatch(setUser(data));
           dispatch(setFavorites(data.favoriteNotices));
         } catch (error) {}

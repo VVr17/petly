@@ -16,7 +16,7 @@ export const validationSchemaStepOne = Yup.object().shape({
   email: Yup.string()
     .email('Please enter a valid email address, example: "mail@mail.com"')
     .matches(
-      /^([a-zA-Z][\w+-]+(?:\.\w+)?)@([\w-]+(?:\.[a-zA-Z]{2,10})+)$/,
+      /^([a-zA-Z][\w+-]+(?:\.\w+)?)@([\w-]+(?:\.[a-zA-Z]{2,3})+)$/,
       'Please enter a valid email address, example: "mail@mail.com"'
     )
     .required('Email is required')

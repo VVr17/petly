@@ -22,6 +22,7 @@ const UserEmail = () => {
       setIsDisabled(false);
       return;
     }
+    if (!values.email) return;
     setIsDisabled(true);
   };
 
