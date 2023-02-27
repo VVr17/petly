@@ -65,7 +65,7 @@ export const ContainerButton = styled.div`
   display: grid;
   gap: 12px;
   padding: 0 16px 12px;
-  margin-top: auto;
+  margin: auto auto 0;
   ${theme.mq.tabletOnly} {
     grid-template-columns: repeat(auto-fill, minmax(336px, 1fr));
     padding: 0 44px 12px;
