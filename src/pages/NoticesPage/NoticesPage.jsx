@@ -15,12 +15,14 @@ import AddNoticeFormHeader from 'components/Notices/AddNoticeForm';
 import AddPetForm from 'components/Notices/AddNoticeForm/AddPetForm';
 import { AnimatePresence } from 'framer-motion';
 import { useGetNotices } from 'hooks/useGetNotices';
+import { useIntl } from 'react-intl';
 
 const NoticesPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { notices, isFetching, error } = useGetNotices();
   const [filter, setFilter] = useState('');
   const [visibleNotices, setvisibleNotices] = useState([]);
+  const { formatMessage } = useIntl();
 
   const filterUpdate = e => {
     const value = e.target.value;
@@ -48,7 +50,7 @@ const NoticesPage = () => {
       setIsOpen(true);
       document.body.classList.add('modal-open');
     } else {
-      toast('You have to register or login to add Pet');
+      toast(formatMessage({ id: 'toastNotRegister' }));
     }
   };
 
@@ -68,7 +70,7 @@ const NoticesPage = () => {
 
   return (
     <Section>
-      <TitlePage name={'Find your favorite pet'} />
+      <TitlePage name={formatMessage({ id: 'findFavoritePet' })} />
       <SearchForm onChange={filterUpdate} onSubmit={handleClean} />
 
       <NavContainer>
@@ -91,7 +93,7 @@ const NoticesPage = () => {
                 </FormContainer>
               </ModalComponent>
             ) : (
-              <>{toast('You have to register or login to add Pet')}</>
+              <>{toast(formatMessage({ id: 'toastNotRegister' }))}</>
             )}
             )
           </>

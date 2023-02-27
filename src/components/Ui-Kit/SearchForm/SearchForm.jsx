@@ -7,9 +7,11 @@ import {
   AiOutlineCloseCircle,
 } from './SearchForm.styled';
 import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 
 const SearchForm = ({ onChange, onSubmit }) => {
   const [isSearch, setIsSearch] = useState(false);
+  const { formatMessage } = useIntl();
 
   const handleChange = e => {
     setIsSearch(true);
@@ -31,7 +33,7 @@ const SearchForm = ({ onChange, onSubmit }) => {
       <FormField
         name="search"
         type="text"
-        placeholder="Search"
+        placeholder={formatMessage({ id: 'search' })}
         onChange={handleChange}
       />
       {!isSearch ? (

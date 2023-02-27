@@ -10,6 +10,7 @@ import {
   WrapperCard,
   WrapperSignature,
 } from './NewsCard.styled';
+import { FormattedMessage } from 'react-intl';
 
 const NewsCard = ({ title, url, description, date }) => {
   function truncateString(str) {
@@ -33,7 +34,7 @@ const NewsCard = ({ title, url, description, date }) => {
       <WrapperSignature>
         <Date>{date}</Date>
         <Link to={url} target="_blank" rel="noopener noreferrer">
-          Read more
+          <FormattedMessage id="readMore" />
         </Link>
       </WrapperSignature>
     </WrapperCard>

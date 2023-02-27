@@ -7,18 +7,20 @@ import { CardList, Title, WrapperTitle } from './News.styled';
 import { useGetNewsQuery } from '../../redux/api/newsApi';
 import TitlePage from 'components/Ui-Kit/TitlePage';
 import Loader from 'components/Loader';
+import { useIntl } from 'react-intl';
 
 const NewsPage = () => {
   const { data: news, error, isLoading } = useGetNewsQuery();
   const [filter, setFilter] = useState('');
   const [filteredNews, setFilteredNews] = useState([]);
+  const { formatMessage } = useIntl();
 
   const searchQuery = news => {
     const newsFilter = news.filter(el =>
       el.title.concat(el.description).toLowerCase().includes(filter)
     );
     if (newsFilter.length === 0) {
-      toast.info('Nothing was found for your request');
+      toast.info(formatMessage({ id: 'toastNotFoundNews' }));
       toast.clearWaitingQueue();
     }
     return newsFilter;
@@ -43,7 +45,7 @@ const NewsPage = () => {
   return (
     <Section>
       <WrapperTitle>
-        <TitlePage name={'News'} />
+        <TitlePage name={formatMessage({ id: 'news' })} />
         <SearchForm onChange={filterUpdate} onSubmit={handleClean} />
       </WrapperTitle>
       {isLoading && <Loader />}

@@ -6,6 +6,7 @@ import { setStatusFilter } from '../../../redux/filter/filterSlice.js';
 import { selectStatusFilter } from '../../../redux/filter/filterSelectors.js';
 import Button from 'components/Ui-Kit/Button';
 import { Navigation, NavComponent } from './FindPetFilter.styled';
+import { FormattedMessage } from 'react-intl';
 
 const FindPetFilter = () => {
   const filter = useSelector(selectStatusFilter);
@@ -21,21 +22,21 @@ const FindPetFilter = () => {
           selected={filter === statusFilter.sell}
           onClick={() => handleStatusFilterChange(statusFilter.sell)}
         >
-          sell
+          <FormattedMessage id="sell" />
         </Button>
         <Button
           name="filter"
           selected={filter === statusFilter.lostAndFound}
           onClick={() => handleStatusFilterChange(statusFilter.lostAndFound)}
         >
-          lost/found
+          <FormattedMessage id="lostFound" />
         </Button>
         <Button
           name="filter"
           selected={filter === statusFilter.inGoodHands}
           onClick={() => handleStatusFilterChange(statusFilter.inGoodHands)}
         >
-          in good hands
+          <FormattedMessage id="goodHands" />
         </Button>
       </Navigation>
 
@@ -46,14 +47,14 @@ const FindPetFilter = () => {
             selected={filter === statusFilter.favoriteAds}
             onClick={() => handleStatusFilterChange(statusFilter.favoriteAds)}
           >
-            favorite ads
+            <FormattedMessage id="favorite" />
           </Button>
           <Button
             name="filter"
             selected={filter === statusFilter.myAds}
             onClick={() => handleStatusFilterChange(statusFilter.myAds)}
           >
-            my ads
+            <FormattedMessage id="myAds" />
           </Button>
         </Navigation>
       )}
