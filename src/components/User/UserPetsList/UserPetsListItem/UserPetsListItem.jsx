@@ -23,9 +23,9 @@ const UserPetsListItem = ({ pet }) => {
 
   const handleDelete = async petId => {
     try {
-      const response = await deletePetMutation(petId);
-      document.body.classList.remove('modal-open');
       setIsOpen(false);
+      document.body.classList.remove('modal-open');
+      const response = await deletePetMutation(petId);
     } catch (error) {
       console.log(error);
     }
