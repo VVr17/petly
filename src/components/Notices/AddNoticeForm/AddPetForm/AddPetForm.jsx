@@ -59,7 +59,7 @@ const AddPetForm = ({ onClose }) => {
 
   // form submit
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting }) => {
     if (currentStep < 2) {
       setCurrentStep(currentStep + 1);
     } else {
@@ -89,10 +89,10 @@ const AddPetForm = ({ onClose }) => {
       data.append('comments', values.comments);
 
       // send FormData to Backend
-      addNotice({ categoryName, noticeData: data });
-      toast.success('The ad has been added')
-      // close Modal
       onClose();
+      await addNotice({ categoryName, noticeData: data });
+      toast.success('The ad has been added');
+      // close Modal
     }
 
     setSubmitting(false);
