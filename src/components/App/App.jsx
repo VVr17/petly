@@ -21,8 +21,8 @@ import { PrivateRoute } from 'components/Routes/PrivateRoute';
 import { GlobalStyle } from './App.styled';
 import ToastifyGlobalStyle from 'components/Ui-Kit/ToastifyGlobalStyle.styled';
 import { IntlProvider, FormattedMessage, FormattedNumber } from 'react-intl';
-import enMessages from './assets/locales/en.json';
-import ukMessages from './assets/locales/uk.json';
+import enMessages from 'assets/locales/en.json';
+import ukMessages from 'assets/locales/uk.json';
 
 const App = () => {
   const [locale, setLocale] = useState('en');
