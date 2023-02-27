@@ -61,7 +61,7 @@ export const AuthLink = styled(NavLink)`
   transition: background-color ${theme.transitionTiming};
   transition: border-color ${theme.transitionTiming};
   &.active {
-    background-color: ${theme.colors.hover};
+    background-color: ${theme.colors.accent};
     border: 2px solid ${theme.colors.hover};
   }
   &:not(:last-child) {
