@@ -94,7 +94,7 @@ const NoticeCategoryItem = ({
     document.body.classList.remove('modal-open');
   };
 
-  const isLoading = adding || removing;
+  const isLoading = deleting || adding || removing;
 
   return (
     <>
@@ -183,7 +183,6 @@ const NoticeCategoryItem = ({
       <AnimatePresence>
         {delModalIsOpen && (
           <ModalComponent closeModal={closeModal} key="popUp">
-            {deleting && <Loader />}
             <ModalDelete closeModal={closeModal} onDelete={onDelete} />
           </ModalComponent>
         )}
