@@ -31,6 +31,9 @@ import {
 import Loader from 'components/Loader';
 import { selectFavoritesState } from 'redux/favorites/favoritesSelector';
 import ModalDelete from 'components/Modals/ModalDelete/ModalDelete';
+import { pageAnimation } from 'constants/animation';
+import { Box } from 'components/Box/Box';
+import { motion } from 'framer-motion';
 
 const NoticeCategoryItem = ({
   _id,
@@ -85,6 +88,8 @@ const NoticeCategoryItem = ({
 
   const onDelete = () => {
     deleteNotice(_id);
+    setModalIsOpen(false);
+    setDelModalIsOpen(false);
     document.body.classList.remove('modal-open');
   };
 
