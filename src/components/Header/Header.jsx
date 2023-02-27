@@ -29,7 +29,6 @@ import {
 
 const Header = ({ handleLocaleChange }) => {
   const [menuIsActive, setMenuIsActive] = useState(false);
-  const [loginIsActive, setLoginIsActive] = useState(true);
   const isAuth = useSelector(selectIsAuthState);
 
   const openMenu = () => {
@@ -39,15 +38,7 @@ const Header = ({ handleLocaleChange }) => {
 
   const closeMenu = () => {
     setMenuIsActive(false);
-    if (!loginIsActive) {
-      setLoginIsActive(true);
-    }
     document.body.classList.remove('modal-open');
-  };
-
-  const closeMenuRegister = () => {
-    setMenuIsActive(false);
-    setLoginIsActive(false);
   };
 
   return (
@@ -74,13 +65,9 @@ const Header = ({ handleLocaleChange }) => {
             </WrapSelector>
             <AuthBox>
               {isAuth ? (
-                <UserNav />
+                <UserNav closeMenu={closeMenu} />
               ) : (
-                <AuthNav
-                  closeMenu={closeMenu}
-                  loginIsActive={loginIsActive}
-                  closeMenuRegister={closeMenuRegister}
-                />
+                <AuthNav closeMenu={closeMenu} />
               )}
             </AuthBox>
             <MenuBox>
@@ -96,9 +83,7 @@ const Header = ({ handleLocaleChange }) => {
         {menuIsActive ? (
           <MobMenu
             closeMenu={closeMenu}
-            isAuth={isAuth}
-            loginIsActive={loginIsActive}
-            closeMenuRegister={closeMenuRegister}
+            // closeMenuRegister={closeMenuRegister}
             key="mobile"
           />
         ) : null}
