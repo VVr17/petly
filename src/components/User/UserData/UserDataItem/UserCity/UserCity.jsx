@@ -7,11 +7,14 @@ import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButto
 import UserInput from 'components/Ui-Kit/UserInput';
 import Loader from 'components/Loader';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { selectUserState } from 'redux/user/userSelectors';
+import { toast } from 'react-toastify';
 
-const UserCity = ({ user }) => {
+const UserCity = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [updateUser, { isLoading }] = useUpdateUserMutation();
-
+  const user = useSelector(selectUserState);
   const initialValues = { city: user?.city || '' };
 
   const handleClick = (values, actions) => {
@@ -24,7 +27,7 @@ const UserCity = ({ user }) => {
     setIsDisabled(true);
   };
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = async (values, actions) => {
     if (!isDisabled) {
       return;
     }
@@ -34,7 +37,8 @@ const UserCity = ({ user }) => {
     // create formData
     const data = new FormData();
     data.append('city', values.city);
-    updateUser(data);
+    const { data: response } = await updateUser(data);
+    if (response.code === 200) toast.info('City has been successfully updated');
   };
 
   return (

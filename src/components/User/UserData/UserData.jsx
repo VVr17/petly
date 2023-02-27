@@ -23,8 +23,6 @@ import {
 } from './UserDataItem/index';
 
 const UserData = () => {
-  const user = useSelector(selectUserState);
-
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -38,11 +36,11 @@ const UserData = () => {
         <UserPhoto />
         <Box mt={['32px', '32px', '0', '0']}>
           <UserInfo>
-            <UserName user={user} />
-            <UserEmail user={user} />
-            <UserBirthday user={user} />
-            <UserPhone user={user} />
-            <UserCity user={user} />
+            <UserName />
+            <UserEmail />
+            <UserBirthday />
+            <UserPhone />
+            <UserCity />
           </UserInfo>
           <Box
             display="flex"

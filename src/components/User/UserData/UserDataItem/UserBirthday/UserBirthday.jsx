@@ -13,6 +13,9 @@ import { convertStringToDate, convertDateToString } from 'helpers/date';
 import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
 import Loader from 'components/Loader';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { selectUserState } from 'redux/user/userSelectors';
+import { toast } from 'react-toastify';
 
 const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
   const [field] = useField(name);
@@ -28,37 +31,31 @@ const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
       }}
       dateFormat="dd.MM.yyyy"
       maxDate={new Date()}
+      placeholderText="00.00.0000"
       peekNextMonth
       showMonthDropdown
       showYearDropdown
-      yearDropdownItemNumber={100}
-      scrollableYearDropdown
+      dropdownMode="select"
     />
   );
 };
 
-const UserBirthday = ({ user }) => {
+const UserBirthday = () => {
   const [isDisabled, setIsDisabled] = useState(true);
-
-  // const user = useSelector(selectUserState);
+  const user = useSelector(selectUserState);
 
   const val = () => {
     let date;
     if (user.birthday === null) {
-      date = new Date();
+      date = null;
     } else {
       date = convertStringToDate(user.birthday);
     }
     return date;
   };
 
-  // const parsedDate = convertStringToDate(user.birthday || '00.00.0000');
-
-  // const initialValues = { birthday: user.birthday || '' };
-
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
-  const parsedDate = convertStringToDate(user?.birthday || '00.00.0000');
   const initialValues = { birthday: user?.birthday || '00.00.0000' };
 
   const handleClick = () => {
@@ -69,20 +66,27 @@ const UserBirthday = ({ user }) => {
     setIsDisabled(true);
   };
 
-  const handleSubmit = values => {
+  const handleSubmit = async values => {
     if (!isDisabled) {
       return;
     }
     if (values.birthday === user.birthday) {
       return;
     }
-
-    const dateMDY = convertDateToString(values.birthday);
+    console.log(values);
+    let dateMDY;
+    if (values.birthday === null) {
+      dateMDY = '00.00.0000';
+    } else {
+      dateMDY = convertDateToString(values.birthday);
+    }
 
     // create formData
     const data = new FormData();
     data.append('birthday', dateMDY);
-    updateUser(data);
+    const { data: response } = await updateUser(data);
+    if (response.code === 200)
+      toast.info('Birth date has been successfully updated');
   };
 
   return (
