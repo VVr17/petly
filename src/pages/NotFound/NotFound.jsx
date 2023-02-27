@@ -1,4 +1,4 @@
-import AuthPageContainer from 'components/AuthPageContainer';
+import AuthPageContainer from 'components/Auth/AuthPageContainer';
 import Section from 'components/Section';
 import React from 'react';
 import { Number, Text } from './NotFound.styled';
