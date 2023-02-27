@@ -10,10 +10,10 @@ import {
 } from './MobMenu.styled';
 import PropTypes from 'prop-types';
 import { VscChromeClose } from 'react-icons/vsc';
-import Nav from 'components/Header/Nav/Nav';
+import Nav from 'components/Header/Nav';
 import AuthNav from 'components/Header/AuthNav';
 import UserNav from 'components/Header/UserNav';
-import Overlay from 'components/Overlay';
+import Overlay from 'components/Modals/Overlay';
 import { mobileMenuAnimation } from 'constants/animation';
 
 const MobMenu = ({ closeMenu, isAuth, loginIsActive, closeMenuRegister }) => {

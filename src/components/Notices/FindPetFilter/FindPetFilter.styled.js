@@ -1,19 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { theme } from '../../../constants/theme';
-
-// export const Button = styled.button`
-//   border: none;
-//   position: absolute;
-//   background-color: ${theme.colors.lightText};
-//   bottom: 7px;
-//   right: 15px;
-//   cursor: pointer;
-//   &:hover,
-//   &:focus {
-//     color: ${theme.colors.accent};
-//   }
-// `;
+import { theme } from 'constants/theme';
 
 export const Navigation = styled.div`
   display: flex;

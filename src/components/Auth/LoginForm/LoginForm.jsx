@@ -1,11 +1,7 @@
-import React from 'react';
-import { useEffect } from 'react';
-
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
 import { useLoginUserMutation } from 'redux/api/userApi';
-
 import { Formik } from 'formik';
 import LoginInputs from './LoginInputs';
 import {
@@ -23,7 +19,6 @@ import {
   Paragraph,
   ErrorMessage,
 } from '../RegisterForm/RegisterForm.styled';
-
 import Button from 'components/Ui-Kit/Button';
 
 // main function

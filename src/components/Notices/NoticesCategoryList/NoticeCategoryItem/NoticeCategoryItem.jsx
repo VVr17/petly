@@ -11,7 +11,7 @@ import { selectIsAuthState, selectUserState } from 'redux/user/userSelectors';
 import getAge from 'js';
 import Button from 'components/Ui-Kit/Button';
 import ModalNotice from 'components/Notices/ModalNotice';
-import ModalComponent from 'components/Modal';
+import ModalComponent from 'components/Modals/Modal';
 import { AnimatePresence } from 'framer-motion';
 import { IoTrashSharp } from 'react-icons/io5';
 import { IoIosHeart } from 'react-icons/io';
@@ -30,7 +30,7 @@ import {
 } from './NoticeCategoryItem.styled';
 import Loader from 'components/Loader';
 import { selectFavoritesState } from 'redux/favorites/favoritesSelector';
-import ModalDelete from 'components/Notices/ModalDelete/ModalDelete';
+import ModalDelete from 'components/Modals/ModalDelete/ModalDelete';
 
 const NoticeCategoryItem = ({
   _id,
