@@ -31,6 +31,7 @@ const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
       }}
       dateFormat="dd.MM.yyyy"
       maxDate={new Date()}
+      placeholderText="00.00.0000"
       peekNextMonth
       showMonthDropdown
       showYearDropdown
