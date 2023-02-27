@@ -13,8 +13,8 @@ import {
 import { RiDeleteBin6Fill } from 'react-icons/ri';
 import { useDeletePetMutation } from 'redux/api/petsApi';
 import { AnimatePresence } from 'framer-motion';
-import ModalDelete from 'components/Notices/ModalDelete/ModalDelete';
-import ModalComponent from 'components/Modal';
+import ModalDelete from 'components/Modals/ModalDelete';
+import ModalComponent from 'components/Modals/Modal';
 
 const UserPetsListItem = ({ pet }) => {
   const { name, birthDate, breed, comments, photoURL } = pet;
@@ -35,7 +35,7 @@ const UserPetsListItem = ({ pet }) => {
 
   const closeModal = () => {
     setIsOpen(false);
-  }
+  };
 
   return (
     <>
@@ -64,11 +64,14 @@ const UserPetsListItem = ({ pet }) => {
         </InfoBox>
       </Item>
       <AnimatePresence>
-        {isOpen &&
+        {isOpen && (
           <ModalComponent closeModal={closeModal}>
-            <ModalDelete closeModal={closeModal} onDelete={()=>handleDelete(pet._id)} />
+            <ModalDelete
+              closeModal={closeModal}
+              onDelete={() => handleDelete(pet._id)}
+            />
           </ModalComponent>
-        }
+        )}
       </AnimatePresence>
     </>
   );

@@ -79,7 +79,6 @@ const UserPhoto = () => {
                 type="file"
                 accept="image/*"
                 onChange={e => {
-                  console.log('inside user handle change');
                   setFile(e.currentTarget.files[0]);
                   setFieldValue('userImage', e.currentTarget.files[0]);
                 }}
