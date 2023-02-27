@@ -1,6 +1,5 @@
 import React from 'react';
 import InputField from 'components/Ui-Kit/Input';
-import PropTypes from 'prop-types';
 
 const PriceField = () => {
   return (
@@ -14,6 +13,3 @@ const PriceField = () => {
   );
 };
 export default PriceField;
-// PriceField.propTypes = {
-//   handleBlur: PropTypes.func,
-// };

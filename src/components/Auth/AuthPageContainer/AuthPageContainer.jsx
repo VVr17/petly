@@ -1,7 +1,7 @@
 import React from 'react';
-import { Wrapper } from './AuthPageContainer.styled';
 import PropTypes from 'prop-types';
 import { pageAnimation } from 'constants/animation';
+import { Wrapper } from './AuthPageContainer.styled';
 
 const AuthPageContainer = ({ children }) => {
   return (

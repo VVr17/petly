@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
 import {
   LoadImgLabel,
@@ -7,8 +8,7 @@ import {
   LoadImgPlus,
   LoadImgInput,
 } from './UploadImage.styled';
-import Plus from '../../../assets/images/desktop/plus.svg';
-import PropTypes from 'prop-types';
+import Plus from 'assets/images/desktop/plus.svg';
 import { ErrorStyle } from './UploadImage.styled';
 import { useField } from 'formik';
 import { Box } from 'components/Box/Box';

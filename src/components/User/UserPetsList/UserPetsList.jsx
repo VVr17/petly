@@ -15,7 +15,7 @@ import { BsPlusCircleFill } from 'react-icons/bs';
 import { useGetCurrentUserQuery } from 'redux/api/userApi';
 import UserAddPetForm from 'components/User/UserAddPetForm';
 import UserPetsListItem from './UserPetsListItem';
-import Modal from 'components/Modal';
+import Modal from 'components/Modals/Modal';
 import { AnimatePresence } from 'framer-motion';
 import Pets from 'assets/images/desktop/pet.jpg';
 import Loader from 'components/Loader';

@@ -1,13 +1,8 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
 import { useSignupUserMutation } from 'redux/api/userApi';
-
 import { Formik } from 'formik';
-
 import {
   initialValues,
   validationSchemaStepOne,

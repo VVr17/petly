@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Check, Pencil } from './UserupdateButton.styled';
 import PropTypes from 'prop-types';
+import { Button, Check, Pencil } from './UserupdateButton.styled';
 
 const UserUpdateButton = ({ isdisabled, type = 'button', onClick }) => {
   return (

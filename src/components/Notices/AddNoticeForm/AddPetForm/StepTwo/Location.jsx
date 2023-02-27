@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import InputField from 'components/Ui-Kit/Input';
 import { List, ListItem } from './Location.styled';
-import PropTypes from 'prop-types';
 import cities from 'assets/files/uaCities.json';
 
 const LocationField = ({ valueLocation, setFieldValue }) => {

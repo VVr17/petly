@@ -14,7 +14,7 @@ import {
   TimeBtn,
 } from './FriendItem.styled.jsx';
 import TimeTable from './TimeTable';
-import defaultImage from '../../../assets/images/mobile/friend-default-image.png';
+import defaultImage from 'assets/images/mobile/friend-default-image.png';
 
 export const FriendItem = ({
   title,

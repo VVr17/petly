@@ -1,6 +1,6 @@
 import React from 'react';
-import { Container, AuthLink, Link } from './AuthNav.styled';
 import PropTypes from 'prop-types';
+import { Container, AuthLink, Link } from './AuthNav.styled';
 import { FormattedMessage } from 'react-intl';
 
 const AuthNav = ({ closeMenu, loginIsActive, closeMenuRegister }) => {
