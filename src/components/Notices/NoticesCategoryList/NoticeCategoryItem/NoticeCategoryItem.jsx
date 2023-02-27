@@ -88,8 +88,8 @@ const NoticeCategoryItem = ({
 
   const onDelete = async () => {
     await deleteNotice(_id);
-    setModalIsOpen(false);
     setDelModalIsOpen(false);
+    setModalIsOpen(false);
     toast.success('The ad has been removed');
     document.body.classList.remove('modal-open');
   };
