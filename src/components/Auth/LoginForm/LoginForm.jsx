@@ -20,13 +20,12 @@ import {
   ErrorMessage,
 } from '../RegisterForm/RegisterForm.styled';
 import Button from 'components/Ui-Kit/Button';
+import Loader from 'components/Loader';
 
 // main function
 
 const LoginForm = () => {
-  const [loginUser, { isError, error }] = useLoginUserMutation();
-  const navigate = useNavigate();
-  const { isAuth } = useSelector(state => state.user);
+  const [loginUser, { isLoading, isError, error }] = useLoginUserMutation();
 
   const handleSubmit = values => {
     const credentials = {
@@ -36,42 +35,38 @@ const LoginForm = () => {
     loginUser(credentials);
   };
 
-  useEffect(() => {
-    if (isAuth) {
-      console.log('Congratulations! You are successfully signed up!');
-      navigate('/user');
-    }
-  });
-
   return (
-    <ModalWrapper>
-      <ModalContent>
-        <FormTitle>Login</FormTitle>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          {({ isSubmitting }) => {
-            return (
-              <FormWrapper>
-                <LoginInputs />
-                <ButtonWrapper>
-                  <Button name="filled" type="submit" disabled={isSubmitting}>
-                    Submit
-                  </Button>
-                </ButtonWrapper>
-              </FormWrapper>
-            );
-          }}
-        </Formik>
-        <Paragraph>
-          Don&apos;t have an account?{' '}
-          <LoginLink to="/register">Register</LoginLink>
-        </Paragraph>
-        {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
-      </ModalContent>
-    </ModalWrapper>
+    <>
+      {isLoading && <Loader />}
+      <ModalWrapper>
+        <ModalContent>
+          <FormTitle>Login</FormTitle>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+          >
+            {({ isSubmitting }) => {
+              return (
+                <FormWrapper>
+                  <LoginInputs />
+                  <ButtonWrapper>
+                    <Button name="filled" type="submit" disabled={isSubmitting}>
+                      Submit
+                    </Button>
+                  </ButtonWrapper>
+                </FormWrapper>
+              );
+            }}
+          </Formik>
+          <Paragraph>
+            Don&apos;t have an account?{' '}
+            <LoginLink to="/register">Register</LoginLink>
+          </Paragraph>
+          {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
+        </ModalContent>
+      </ModalWrapper>
+    </>
   );
 };
 
