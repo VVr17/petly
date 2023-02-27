@@ -30,7 +30,7 @@ import {
 } from './NoticeCategoryItem.styled';
 import Loader from 'components/Loader';
 import { selectFavoritesState } from 'redux/favorites/favoritesSelector';
-import ModalDelete from '../ModalDelete/ModalDelete';
+import ModalDelete from 'components/Notices/ModalDelete/ModalDelete';
 
 const NoticeCategoryItem = ({
   _id,
