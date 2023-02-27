@@ -11,7 +11,7 @@ export const MyDatePickerNew = styled(DatePicker)`
   padding-left: 12px;
   padding-right: 12px;
 
-  cursor: pointer;
+  /* cursor: pointer; */
   border-radius: 40px;
   border: 1px solid
     ${({ theme, disabled }) =>
