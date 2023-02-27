@@ -12,12 +12,14 @@ export const loginInitialValues = {
 
 export const loginValidationSchema = Yup.object().shape({
   email: Yup.string()
-    .required('Email is required')
     .email('Please enter a valid email address, example: "mail@mail.com"')
     .matches(
       /^([a-zA-Z][\w+-]+(?:\.\w+)?)@([\w-]+(?:\.[a-zA-Z]{2,3})+)$/,
       'Please enter a valid email address, example: "mail@mail.com"'
-    ),
+    )
+    .required('Email is required')
+    .min(12, 'Email should be at least 12 characters long')
+    .max(63, 'Email should be up to 63 characters long'),
   password: Yup.string()
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{7,}$/,
