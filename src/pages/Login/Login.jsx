@@ -1,14 +1,13 @@
 import React from 'react';
-import LoginForm from 'components/LoginForm/LoginForm';
-import AuthPageContainer from 'components/AuthPageContainer';
+import LoginForm from 'components/Auth/LoginForm/LoginForm';
+import AuthPageContainer from 'components/Auth/AuthPageContainer';
 import Section from 'components/Section';
 
 const Login = () => {
-  
   return (
     <AuthPageContainer>
       <Section>
-          <LoginForm />
+        <LoginForm />
       </Section>
     </AuthPageContainer>
   );
