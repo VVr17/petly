@@ -86,14 +86,15 @@ const NoticeCategoryItem = ({
     toast.info(`Notice has been added to favorites`);
   };
 
-  const onDelete = () => {
-    deleteNotice(_id);
-    setModalIsOpen(false);
+  const onDelete = async () => {
+    await deleteNotice(_id);
     setDelModalIsOpen(false);
+    setModalIsOpen(false);
+    toast.success('The ad has been removed');
     document.body.classList.remove('modal-open');
   };
 
-  const isLoading = deleting || adding || removing;
+  const isLoading = adding || removing;
 
   return (
     <>
@@ -182,6 +183,7 @@ const NoticeCategoryItem = ({
       <AnimatePresence>
         {delModalIsOpen && (
           <ModalComponent closeModal={closeModal} key="popUp">
+            {deleting && <Loader />}
             <ModalDelete closeModal={closeModal} onDelete={onDelete} />
           </ModalComponent>
         )}
