@@ -80,13 +80,7 @@ const Header = ({ handleLocaleChange }) => {
       </HeaderStyled>
 
       <AnimatePresence>
-        {menuIsActive ? (
-          <MobMenu
-            closeMenu={closeMenu}
-            // closeMenuRegister={closeMenuRegister}
-            key="mobile"
-          />
-        ) : null}
+        {menuIsActive ? <MobMenu closeMenu={closeMenu} key="mobile" /> : null}
       </AnimatePresence>
     </>
   );
