@@ -1,16 +1,13 @@
 import { useState, React } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import {
   useDeleteNoticeMutation,
   useAddNoticeToFavoriteMutation,
-  useRemoveNoticeFromFavoriteMutation,
-  useGetUserNoticesQuery,
-  useGetFavoritesNoticesQuery,
+  useRemoveNoticeFromFavoriteMutation,  
 } from 'redux/api/noticesApi';
 import { selectIsAuthState, selectUserState } from 'redux/user/userSelectors';
-import { selectStatusFilter } from 'redux/filter/filterSelectors';
 import getAge from '../../../js';
 import Button from 'components/Ui-Kit/Button';
 import ModalNotice from 'components/ModalNotice';
@@ -31,11 +28,10 @@ import {
   ContainerButton,
   ToggleFavoriteButton,
 } from './NoticeCategoryItem.styled';
-import { useGetCurrentUserQuery } from 'redux/api/userApi';
-import { theme } from 'constants/theme';
 import Loader from 'components/Loader';
 import { selectFavoritesState } from 'redux/favorites/favoritesSelector';
-import { addFavorites } from 'redux/favorites/favoritesSlice';
+import ModalDelete from '../ModalDelete/ModalDelete'
+
 
 const NoticeCategoryItem = ({
   _id,
@@ -48,7 +44,9 @@ const NoticeCategoryItem = ({
   price,
   owner,
 }) => {
-  const dispatch = useDispatch();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [delModalIsOpen, setDelModalIsOpen] = useState(false);
+  
   const isAuth = useSelector(selectIsAuthState);
   const user = useSelector(selectUserState);
   const favorites = useSelector(selectFavoritesState);
@@ -59,7 +57,7 @@ const NoticeCategoryItem = ({
   const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
   const isFavorite = favorites?.includes(_id);
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  
   const [deleteNotice, { isLoading: deleting }] = useDeleteNoticeMutation();
   const [addNoticeToFavorite, { isLoading: adding }] =
     useAddNoticeToFavoriteMutation();
@@ -69,6 +67,7 @@ const NoticeCategoryItem = ({
 
   const closeModal = () => {
     setModalIsOpen(false);
+    setDelModalIsOpen(false);
     document.body.classList.remove('modal-open');
   };
 
@@ -86,13 +85,9 @@ const NoticeCategoryItem = ({
     toast.info(`Notice has been added to favorites`);
   };
 
-  const onDelete = () => {
-    const confirmed = confirm('Are you sure you want to delete this ad?');
-    if (confirmed) {
-      deleteNotice(_id);
-    } else {
-      return;
-    }
+  const onDelete = () => {    
+      deleteNotice(_id); 
+      document.body.classList.remove('modal-open');  
   };
 
   const isLoading = deleting || adding || removing;
@@ -162,7 +157,10 @@ const NoticeCategoryItem = ({
               name="learnMore"
               type="button"
               width="248px"
-              onClick={() => onDelete()}
+              onClick={() => {
+                setDelModalIsOpen(true);
+                document.body.classList.add('modal-open');
+              }}
             >
               Delete
               <IoTrashSharp style={{ marginLeft: '12px' }} />
@@ -177,7 +175,15 @@ const NoticeCategoryItem = ({
           </ModalComponent>
         )}
       </AnimatePresence>
-    </>
+
+    <AnimatePresence>
+    {delModalIsOpen && (
+      <ModalComponent closeModal={closeModal} key="popUp">
+        <ModalDelete closeModal={closeModal} onDelete={onDelete}/>
+      </ModalComponent>
+    )}
+  </AnimatePresence>
+</>
   );
 };
 
