@@ -18,7 +18,12 @@
   "confirmPas":"Confirm Password",
   "name":"Name",
   "city":"City, Region",
-  "phone":"Phone +380123456789",
+  "phoneInput":"Phone +380123456789",
+
+  "time":"Time",
+  "closed":"Closed",
+  "address":"Address",
+  "phone":"Phone",
 
   "readMore":"Read more",
   "findFavoritePet":"Find your favorite pet",

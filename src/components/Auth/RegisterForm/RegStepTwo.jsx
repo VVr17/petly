@@ -55,7 +55,7 @@ const RegStepTwo = ({ value, setFieldValue }) => {
       <InputField
         name="phone"
         type="phone"
-        placeholder={formatMessage({ id: 'phone' })}
+        placeholder={formatMessage({ id: 'phoneInput' })}
       />
     </>
   );
