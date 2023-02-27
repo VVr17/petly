@@ -15,6 +15,7 @@ import {
 } from './FriendItem.styled.jsx';
 import TimeTable from './TimeTable';
 import defaultImage from '../../../assets/images/mobile/friend-default-image.png';
+import { FormattedMessage } from 'react-intl';
 
 export const FriendItem = ({
   title,

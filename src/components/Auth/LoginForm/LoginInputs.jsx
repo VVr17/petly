@@ -5,12 +5,14 @@ import {
   PasswordWrapper,
 } from 'components/Auth/RegisterForm/RegStepOne.styled';
 import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
+import { useIntl } from 'react-intl';
 
 const LoginInputs = () => {
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
+  const { formatMessage } = useIntl();
 
   const passwordInputType = showPassword ? 'text' : 'password';
   return (
@@ -25,7 +27,7 @@ const LoginInputs = () => {
       <InputField
         name="password"
         type={passwordInputType}
-        placeholder="Password"
+        placeholder={formatMessage({ id: 'password' })}
         autocomplete="current-password"
       >
         <PasswordToggle type="button" onClick={toggleShowPassword}>

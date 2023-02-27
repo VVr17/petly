@@ -26,6 +26,7 @@ import {
   ErrorMessage,
 } from './RegisterForm.styled';
 import Button from 'components/Ui-Kit/Button';
+import { FormattedMessage } from 'react-intl';
 
 const RegistrationForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -69,7 +70,9 @@ const RegistrationForm = () => {
   return (
     <ModalWrapper>
       <ModalContent>
-        <FormTitle>Registration</FormTitle>
+        <FormTitle>
+          <FormattedMessage id="registration" />
+        </FormTitle>
         <Formik
           initialValues={initialValues}
           validationSchema={
@@ -91,11 +94,15 @@ const RegistrationForm = () => {
                 )}
                 <ButtonWrapper>
                   <Button name="filled" type="submit" disabled={isSubmitting}>
-                    {currentStep < 2 ? 'Next' : 'Register'}
+                    {currentStep < 2 ? (
+                      <FormattedMessage id="next" />
+                    ) : (
+                      <FormattedMessage id="register" />
+                    )}
                   </Button>
                   {currentStep > 1 && (
                     <Button name="transparent" onClick={handleBackClick}>
-                      Back
+                      <FormattedMessage id="back" />
                     </Button>
                   )}
                 </ButtonWrapper>
@@ -104,7 +111,10 @@ const RegistrationForm = () => {
           }}
         </Formik>
         <Paragraph>
-          Already have an account? <LoginLink to="/login">Login</LoginLink>
+          <FormattedMessage id="haveAnAccount" />{' '}
+          <LoginLink to="/login">
+            <FormattedMessage id="login" />
+          </LoginLink>
         </Paragraph>
         {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
       </ModalContent>

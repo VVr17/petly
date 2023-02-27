@@ -3,8 +3,10 @@ import InputField from 'components/Ui-Kit/Input';
 import PropTypes from 'prop-types';
 import cities from 'assets/files/uaCities.json';
 import { List, ListItem } from './RegStepTwo.styled';
+import { useIntl } from 'react-intl';
 
 const RegStepTwo = ({ value, setFieldValue }) => {
+  const { formatMessage } = useIntl();
   const [filteredCities, setFilteredCities] = useState([]);
   useEffect(() => {
     const inputValue = value || '';
@@ -29,9 +31,17 @@ const RegStepTwo = ({ value, setFieldValue }) => {
   };
   return (
     <>
-      <InputField name="name" type="name" placeholder="Name" />
+      <InputField
+        name="name"
+        type="name"
+        placeholder={formatMessage({ id: 'name' })}
+      />
 
-      <InputField name="city" type="city" placeholder="City, Region" />
+      <InputField
+        name="city"
+        type="city"
+        placeholder={formatMessage({ id: 'city' })}
+      />
       {filteredCities.length > 0 && (
         <List>
           {filteredCities.map((city, index) => (
@@ -42,7 +52,11 @@ const RegStepTwo = ({ value, setFieldValue }) => {
         </List>
       )}
 
-      <InputField name="phone" type="phone" placeholder="Phone +380123456789" />
+      <InputField
+        name="phone"
+        type="phone"
+        placeholder={formatMessage({ id: 'phone' })}
+      />
     </>
   );
 };

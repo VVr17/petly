@@ -7,10 +7,19 @@
   "registration":"Registration",
   "submit":"Submit",
   "register":"Register",
-  "questionHaveAnAccount":"Don&apos;t have an account?",
-
+  "questionHaveAnAccount":"Don't have an account?",
+  "haveAnAccount":"Already have an account?",
   "account":"Account",
+  "next":"Next",
+  "back":"Back",
+
   "search":"Search",
+  "password":"Password",
+  "confirmPas":"Confirm Password",
+  "name":"Name",
+  "city":"City, Region",
+  "phone":"Phone +380123456789",
+
   "readMore":"Read more",
   "findFavoritePet":"Find your favorite pet",
   "addPet":"Add pet",
@@ -19,6 +28,7 @@
   "goodHands":"in good hands",
   "favorite":"favorite ads",
   "myAds":"my ads",
+  "homeMsg":"Take good care of {break} your small pets",
 
   "toastNotFoundNews":"Nothing was found for your request",
   "toastNotFoundAd":"Not found any ad",
