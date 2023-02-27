@@ -12,6 +12,8 @@
   "account":"Account",
   "next":"Next",
   "back":"Back",
+  "cancel":"Cancel",
+  "done":"Done",
 
   "search":"Search",
   "password":"Password",
@@ -33,9 +35,36 @@
   "goodHands":"in good hands",
   "favorite":"favorite ads",
   "myAds":"my ads",
+  "yes":"Yes",
+  "no":"No",
+
+  "typeName":"Type name",
+  "titleAds":"Title of Ads",
+  "typeNamePet":"Type name pet",
+  "namePet":"Name pet",
+  "dateBirth":"Date of birth",
+  "selectDate":"Select the date",
+  "typeBreed":"Type breed",
+  "breed":"Breed",
+  "comment":"Comments",
+  "typeComment":"Type comment",
+  "location":"Location",
+  "typeLocation":"Type location",
+  "price":"Price",
+  "typePrice":"Type price",
+  "sex":"The sex",
+  "male":"Male",
+  "female":"Female",
+
   "homeMsg":"Take good care of {break} your small pets",
+  "chooseCategory":"Choose the category that suits you",
+  "questionOnDelete":"Do you really want to remove this ad?",
+
+  "errorPriceReq":"Price is required",
+  "errorImageReq":"Image is required",
 
   "toastNotFoundNews":"Nothing was found for your request",
   "toastNotFoundAd":"Not found any ad",
-  "toastNotRegister":"You have to register or login to add Pet"
+  "toastNotRegister":"You have to register or login to add Pet",
+  "toastAllFieldsFil":"All the fields must be filled"
 }

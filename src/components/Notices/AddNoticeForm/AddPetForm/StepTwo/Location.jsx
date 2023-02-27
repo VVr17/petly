@@ -3,9 +3,11 @@ import InputField from 'components/Ui-Kit/Input';
 import { List, ListItem } from './Location.styled';
 import PropTypes from 'prop-types';
 import cities from 'assets/files/uaCities.json';
+import { useIntl } from 'react-intl';
 
 const LocationField = ({ valueLocation, setFieldValue }) => {
   const [filteredCities, setFilteredCities] = useState([]);
+  const { formatMessage } = useIntl();
   useEffect(() => {
     const inputValue = valueLocation;
     if (inputValue) {
@@ -31,8 +33,8 @@ const LocationField = ({ valueLocation, setFieldValue }) => {
       <InputField
         name="location"
         type="text"
-        placeholder="Type location"
-        label="Location"
+        placeholder={formatMessage({ id: 'typeLocation' })}
+        label={formatMessage({ id: 'location' })}
         span="*"
       />
       {filteredCities.length > 0 && (

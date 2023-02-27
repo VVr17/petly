@@ -6,32 +6,33 @@ import MyDatePicker from './DatePicker';
 import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
 import PropTypes from 'prop-types';
 import { Label, ErrorStyle } from 'components/Ui-Kit/Input/Input.styled';
+import { useIntl } from 'react-intl';
 
 const StepOne = ({ children }) => {
+  const { formatMessage } = useIntl();
+
   return (
     <>
-      <Text>
-      Choose the category that suits you
-      </Text>
+      <Text>{formatMessage({ id: 'chooseCategory' })}</Text>
       {children}
 
       <InputField
         name="title"
         type="text"
-        placeholder="Type name"
-        label="Title of Ads"
+        placeholder={formatMessage({ id: 'typeName' })}
+        label={formatMessage({ id: 'titleAds' })}
         span="*"
       />
       <InputField
         name="name"
         type="text"
-        placeholder="Type name pet"
-        label="Name pet"
+        placeholder={formatMessage({ id: 'typeNamePet' })}
+        label={formatMessage({ id: 'namePet' })}
         span="*"
       />
       <DatePickerContainer>
         <Label name="birthDate">
-          Date of birth
+          {formatMessage({ id: 'dateBirth' })}
           <StyledSpan>*</StyledSpan>
         </Label>
         <MyDatePicker
@@ -44,8 +45,8 @@ const StepOne = ({ children }) => {
       <InputField
         name="breed"
         type="text"
-        placeholder="Type breed"
-        label="Breed"
+        placeholder={formatMessage({ id: 'typeBreed' })}
+        label={formatMessage({ id: 'breed' })}
         span="*"
       />
     </>
