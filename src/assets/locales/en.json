@@ -2,8 +2,13 @@
   "news":"News",
   "findPet":"Find pet",
   "ourFriends":"Our friends",
+
   "login":"Login",
-  "register":"Registration",
+  "registration":"Registration",
+  "submit":"Submit",
+  "register":"Register",
+  "questionHaveAnAccount":"Don&apos;t have an account?",
+
   "account":"Account",
   "search":"Search",
   "readMore":"Read more",
@@ -14,6 +19,7 @@
   "goodHands":"in good hands",
   "favorite":"favorite ads",
   "myAds":"my ads",
+
   "toastNotFoundNews":"Nothing was found for your request",
   "toastNotFoundAd":"Not found any ad",
   "toastNotRegister":"You have to register or login to add Pet"
