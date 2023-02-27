@@ -24,17 +24,21 @@ const UserPetsListItem = ({ pet }) => {
   const handleDelete = async petId => {
     try {
       const response = await deletePetMutation(petId);
+      document.body.classList.remove('modal-open');
+      setIsOpen(false);
     } catch (error) {
       console.log(error);
     }
   };
 
   const openModal = () => {
+    document.body.classList.add('modal-open');
     setIsOpen(true);
   };
 
   const closeModal = () => {
     setIsOpen(false);
+    document.body.classList.remove('modal-open');
   };
 
   return (
