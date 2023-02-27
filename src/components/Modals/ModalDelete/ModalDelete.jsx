@@ -8,7 +8,7 @@ const ModalDelete = ({ closeModal, onDelete }) => {
   
   return (
     <Container>
-      <Title>Do you want delete the ad?</Title>
+      <Title>Do you really want to remove this ad?</Title>
       <ContainerButton>
       <Button
         name='filter'  
