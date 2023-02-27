@@ -9,7 +9,7 @@ import TitlePage from 'components/Ui-Kit/TitlePage';
 import Loader from 'components/Loader';
 
 const NewsPage = () => {
-  const { data: newsPage, error, isLoading } = useGetNewsQuery();
+  const { data: news, error, isLoading } = useGetNewsQuery();
   const [filter, setFilter] = useState('');
   const [filteredNews, setFilteredNews] = useState([]);
 
