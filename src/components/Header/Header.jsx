@@ -29,7 +29,7 @@ import {
 
 const Header = ({ handleLocaleChange }) => {
   const [menuIsActive, setMenuIsActive] = useState(false);
-  const [loginIsActive, setLoginIsActive] = useState(true);
+  // const [loginIsActive, setLoginIsActive] = useState(true);
   const isAuth = useSelector(selectIsAuthState);
 
   const openMenu = () => {
@@ -39,15 +39,15 @@ const Header = ({ handleLocaleChange }) => {
 
   const closeMenu = () => {
     setMenuIsActive(false);
-    if (!loginIsActive) {
-      setLoginIsActive(true);
-    }
+    // if (!loginIsActive) {
+    //   setLoginIsActive(true);
+    // }
     document.body.classList.remove('modal-open');
   };
 
   const closeMenuRegister = () => {
     setMenuIsActive(false);
-    setLoginIsActive(false);
+    // setLoginIsActive(false);
   };
 
   return (
@@ -78,7 +78,7 @@ const Header = ({ handleLocaleChange }) => {
               ) : (
                 <AuthNav
                   closeMenu={closeMenu}
-                  loginIsActive={loginIsActive}
+                  // loginIsActive={loginIsActive}
                   closeMenuRegister={closeMenuRegister}
                 />
               )}
@@ -96,8 +96,8 @@ const Header = ({ handleLocaleChange }) => {
         {menuIsActive ? (
           <MobMenu
             closeMenu={closeMenu}
-            isAuth={isAuth}
-            loginIsActive={loginIsActive}
+            // isAuth={isAuth}
+            // loginIsActive={loginIsActive}
             closeMenuRegister={closeMenuRegister}
             key="mobile"
           />

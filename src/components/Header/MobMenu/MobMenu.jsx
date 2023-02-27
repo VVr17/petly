@@ -15,8 +15,12 @@ import AuthNav from 'components/Header/AuthNav';
 import UserNav from 'components/Header/UserNav';
 import Overlay from 'components/Modals/Overlay';
 import { mobileMenuAnimation } from 'constants/animation';
+import { useSelector } from 'react-redux';
+import { selectIsAuthState } from 'redux/user/userSelectors';
 
-const MobMenu = ({ closeMenu, isAuth, loginIsActive, closeMenuRegister }) => {
+const MobMenu = ({ closeMenu, closeMenuRegister }) => {
+  const isAuth = useSelector(selectIsAuthState);
+
   const handleBackdropClick = e => {
     if (e.currentTarget === e.target) {
       closeMenu();
@@ -44,7 +48,6 @@ const MobMenu = ({ closeMenu, isAuth, loginIsActive, closeMenuRegister }) => {
           ) : (
             <AuthNav
               closeMenu={closeMenu}
-              loginIsActive={loginIsActive}
               closeMenuRegister={closeMenuRegister}
             />
           )}
@@ -57,8 +60,6 @@ const MobMenu = ({ closeMenu, isAuth, loginIsActive, closeMenuRegister }) => {
 
 MobMenu.propTypes = {
   closeMenu: PropTypes.func.isRequired,
-  isAuth: PropTypes.bool.isRequired,
-  loginIsActive: PropTypes.bool.isRequired,
   closeMenuRegister: PropTypes.func.isRequired,
 };
 

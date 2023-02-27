@@ -3,18 +3,12 @@ import PropTypes from 'prop-types';
 import { Container, AuthLink, Link } from './AuthNav.styled';
 import { FormattedMessage } from 'react-intl';
 
-const AuthNav = ({ closeMenu, loginIsActive, closeMenuRegister }) => {
+const AuthNav = ({ closeMenu, closeMenuRegister }) => {
   return (
     <Container>
-      {loginIsActive ? (
-        <AuthLink to="/login" onClick={closeMenu}>
-          <FormattedMessage id="login" />
-        </AuthLink>
-      ) : (
-        <Link to="/login" onClick={closeMenu}>
-          <FormattedMessage id="login" />
-        </Link>
-      )}
+      <Link to="/login" onClick={closeMenu}>
+        <FormattedMessage id="login" />
+      </Link>
       <Link to="/register" onClick={closeMenuRegister}>
         <FormattedMessage id="register" />
       </Link>
@@ -26,6 +20,6 @@ export default AuthNav;
 
 AuthNav.propTypes = {
   closeMenu: PropTypes.func,
-  loginIsActive: PropTypes.bool.isRequired,
+  // loginIsActive: PropTypes.bool.isRequired,
   closeMenuRegister: PropTypes.func.isRequired,
 };
