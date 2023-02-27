@@ -63,7 +63,7 @@ const AddPetForm = ({ onClose }) => {
     if (currentStep < 2) {
       setCurrentStep(currentStep + 1);
     } else {
-      if (!values.price) {
+      if (!values.price && values.category === 'sell') {
         toast.error('All the fields must be filled');
         return;
       }
