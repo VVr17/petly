@@ -61,11 +61,16 @@ export const FriendLink = styled.a`
 // ========================= LIST (ul) ===========================
 
 export const FriendContentList = styled.ul`
+  width: 150px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   position: relative;
+
+  ${p => p.theme.mq.tablet} {
+    width: 180px;
+  }
 `;
 
 export const TimeList = styled.ul`
@@ -101,6 +106,7 @@ export const TimeList = styled.ul`
 
 export const FriendListItem = styled.li`
   width: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
