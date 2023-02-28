@@ -70,6 +70,14 @@ export const Link = styled(NavLink)`
   font-weight: ${theme.fontWeight.medium};
   line-height: 1.37;
   color: ${theme.colors.accent};
+  padding: 3px;
+
+  &:hover,
+  &:focus {
+  background-color: ${theme.colors.hover};
+  border-radius: 15px;
+  color: ${theme.colors.lightText};
+  }
 `;
 
 export const WrapperSignature = styled.div`

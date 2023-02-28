@@ -13,6 +13,15 @@ export const Button = styled.button`
   border-radius: 50%;
   border: inherit;
   background-color: ${theme.colors.mainBackground};
+  cursor: pointer;
+
+  &:hover {
+  background-color: ${theme.colors.hover};
+
+  svg {
+    fill: ${theme.colors.lightText};
+  }
+} 
 
   @media (min-width: ${breakpoints[1]}px) {
     width: 32px;

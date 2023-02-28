@@ -13,7 +13,7 @@ export const Modal = styled(motion.div)`
   background-color: ${theme.colors.mainBackground};
 
   ${theme.mq.tablet} {
-    width: 70%;
+    width: 100vw;
   }
   ${theme.mq.desktop} {
     display: none;

@@ -70,10 +70,21 @@ export const Button = styled.button`
   gap: 4px;
   margin-left: auto;
   margin-right: 12px;
-  padding: 0;
+  padding: 3px;
   border: none;
   background-color: white;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+  background-color: ${theme.colors.hover};
+  border-radius: 15px;
+  color: ${theme.colors.lightText};
+
+  path {
+    color: ${theme.colors.lightText};
+  }
+} 
 `;
 
 export const iconStyle = {
@@ -88,3 +99,4 @@ export const LogoutBtn = {
   opacity: 0.6,
   marginLeft: 0,
 };
+
