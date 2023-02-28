@@ -13,7 +13,7 @@ export const Modal = styled(motion.div)`
   background-color: ${theme.colors.mainBackground};
 
   ${theme.mq.tablet} {
-    width: 70%;
+    width: 100vw;
   }
   ${theme.mq.desktop} {
     display: none;
@@ -60,12 +60,19 @@ export const Button = styled.button`
   padding: 0 0 0 0;
   border: none;
   outline: none;
+  border-radius: 50%;
   background-color: ${theme.colors.mainBackground};
+  cursor: pointer;
+  transition: color ${theme.transitionTiming};
+
+  :hover {
+    color: ${theme.colors.accent};
+  }
 `;
 
 export const iconStyle = {
   height: '24px',
   width: '24px',
-  backgroundColor: theme.colors.mainBackground,
-  fill: theme.colors.mainText,
+  backgroundColor: 'inherit',
+  color: 'inherit',
 };

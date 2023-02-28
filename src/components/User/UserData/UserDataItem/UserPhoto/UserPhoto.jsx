@@ -111,7 +111,7 @@ const UserPhoto = () => {
               )}
             </ImageBox>
           }
-          {isLoading && <Loader />}
+          {/* {isLoading && <Loader />} */}
         </Form>
       )}
     </Formik>

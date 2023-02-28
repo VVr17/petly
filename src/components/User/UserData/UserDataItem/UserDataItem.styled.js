@@ -122,11 +122,11 @@ export const ImageBox = styled.div`
 
 export const LoadImgLabel = styled.label`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 4px;
   margin-left: auto;
   margin-right: 12px;
-  padding: 0;
+  padding: 3px;
   border: none;
   background-color: white;
   cursor: pointer;
@@ -141,6 +141,16 @@ export const LoadImgLabel = styled.label`
   ${theme.mq.desktop} {
     bottom: 0px;
     right: -84px;
+  }
+
+  &:hover,
+  &:focus {
+  background-color: ${theme.colors.hover};
+  border-radius: 15px;
+  color: ${theme.colors.lightText};
+
+  svg {
+    color: ${theme.colors.lightText};
   }
 `;
 
@@ -166,6 +176,7 @@ export const ImagePreview = styled.img`
   border-radius: 50%;
   background: ${theme.colors.mainBackground};
   object-fit: cover;
+  cursor: initial;
 `;
 
 export const LoadImgPlus = styled.img`
