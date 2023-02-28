@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { selectIsAuthState } from 'redux/user/userSelectors';
@@ -20,16 +21,12 @@ import ModalComponent from 'components/Modals/Modal/Modal';
 const NoticesPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [filter, setFilter] = useState('');
-  //TODO: should be filter on submit
-  // const { notices, isFetching, error, totalItems } = useGetNotices(filter);
-  const { notices, isFetching, error, totalItems } = useGetNotices();
+  const [isSearch, setIsSearch] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  // const query = searchParams.get('search') ?? '';
+  const { notices, isFetching, error, totalItems } = useGetNotices(filter);
   const [visibleNotices, setvisibleNotices] = useState([]);
   const { formatMessage } = useIntl();
-
-  const filterUpdate = e => {
-    const value = e.target.value;
-    setFilter(value ? value.toLowerCase() : value);
-  };
 
   const filterNotices = notices => {
     const filteredNotices = notices.filter(notice => {
@@ -40,6 +37,26 @@ const NoticesPage = () => {
       toast.clearWaitingQueue();
     }
     return filteredNotices;
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (isSearch) {
+      setIsSearch(false);
+      setFilter('');
+      setSearchParams('');
+      e.currentTarget.reset();
+    } else {
+      setIsSearch(true);
+      const searchForm = e.currentTarget.elements.search.value.toLowerCase();
+      if (searchForm === '') {
+        toast.error('Please, enter your request');
+      }
+      setSearchParams(searchForm !== '' ? { search: searchForm } : '');
+      setFilter(searchForm);
+
+      // onSubmit(e);
+    }
   };
 
   const handleClean = () => {
@@ -73,7 +90,7 @@ const NoticesPage = () => {
   return (
     <Section>
       <TitlePage name={formatMessage({ id: 'findFavoritePet' })} />
-      <SearchForm onChange={filterUpdate} onSubmit={handleClean} />
+      <SearchForm isSearch={isSearch} handleSubmit={handleSubmit} />
 
       <NavContainer>
         <FindPetFilter />

@@ -33,7 +33,7 @@ const SearchForm = ({ handleSubmit, isSearch }) => {
 };
 
 SearchForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func,
   isSearch: PropTypes.bool,
 };
 
