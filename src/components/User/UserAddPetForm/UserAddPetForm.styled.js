@@ -123,29 +123,18 @@ export const Span = styled.span`
 
 export const InputFile = styled(Field)``;
 
-export const ErrorStyle = styled(ErrorMessage)`
-  bottom: -20px;
-  position: absolute;
-  font-size: ${theme.fontSizes.xxxs};
-  color: red;
-  ${theme.mq.mobileOnly} {
-    transform: translate(0px, 0px);
-  }
-  @media (min-width: ${breakpoints[1]}) {
-    left: 30px;
-  } ;
-`;
-
 export const ErrorData = styled(ErrorMessage)`
-  left: 30px;
-  bottom: -5px;
   position: absolute;
-  font-size: ${theme.fontSizes.xxxs};
+  left: 0;
+  bottom: -3px;
+  font-size: ${theme.fontSizes.xxxxs};
   color: red;
+
   ${theme.mq.mobileOnly} {
     transform: translate(0px, 0px);
   }
-  @media (min-width: ${breakpoints[1]}) {
+  @media (min-width: ${breakpoints[1]}px) {
+    font-size: ${theme.fontSizes.xxxs};
     bottom: -10px;
   }
 `;
