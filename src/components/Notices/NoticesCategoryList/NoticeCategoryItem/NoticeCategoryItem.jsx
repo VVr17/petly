@@ -96,6 +96,19 @@ const NoticeCategoryItem = ({
     document.body.classList.remove('modal-open');
   };
 
+  const setCategory = category => {
+    switch (category) {
+      case 'sell':
+        return 'sell';
+      case 'in-good-hands':
+        return 'in good hands';
+      case 'lost-found':
+        return 'lost/found';
+      default:
+        return 'no category';
+    }
+  };
+
   const isLoading = deleting || adding || removing;
 
   return (
@@ -117,7 +130,7 @@ const NoticeCategoryItem = ({
           {<IoIosHeart size="28px" />}
         </ToggleFavoriteButton>
         <CategoryBox>
-          <CategoryName>{category}</CategoryName>
+          <CategoryName>{setCategory(category)}</CategoryName>
         </CategoryBox>
         <ContainerInfo>
           <Title>{title}</Title>
