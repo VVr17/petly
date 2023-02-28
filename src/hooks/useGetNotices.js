@@ -7,14 +7,14 @@ import {
 import { statusFilter } from 'redux/filter/filterConstans';
 import { selectStatusFilter } from 'redux/filter/filterSelectors';
 
-export const useGetNotices = filter => {
+export const useGetNotices = ({ filter, page }) => {
   const category = useSelector(selectStatusFilter);
   const {
     data: noticesData,
     error: noticeError,
     isFetching: fetchingNotices,
   } = useGetNoticeByCategoryQuery(
-    { categoryName: category, search: filter },
+    { categoryName: category, search: filter, page },
     {
       skip:
         !category ||
@@ -26,16 +26,22 @@ export const useGetNotices = filter => {
     data: favoriteNoticesData,
     error: favoriteError,
     isFetching: fetchingFavorites,
-  } = useGetFavoritesNoticesQuery(filter, {
-    skip: category !== statusFilter.favoriteAds,
-  });
+  } = useGetFavoritesNoticesQuery(
+    { search: filter, page },
+    {
+      skip: category !== statusFilter.favoriteAds,
+    }
+  );
   const {
     data: myNoticesData,
     error: myError,
     isFetching: fetchingMy,
-  } = useGetUserNoticesQuery(filter, {
-    skip: category !== statusFilter.myAds,
-  });
+  } = useGetUserNoticesQuery(
+    { search: filter, page },
+    {
+      skip: category !== statusFilter.myAds,
+    }
+  );
 
   if (category === statusFilter.favoriteAds) {
     return {

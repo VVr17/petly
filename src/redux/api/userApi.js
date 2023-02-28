@@ -75,7 +75,6 @@ export const userApi = createApi({
 
     updateUser: builder.mutation({
       query: userData => {
-        console.log('userData', userData);
         return {
           url: `${USER_URL}/current`,
           method: 'PUT',

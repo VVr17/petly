@@ -42,8 +42,8 @@ const LoginForm = () => {
       <ModalWrapper>
         <ModalContent>
           <FormTitle>
-          <FormattedMessage id="login" />
-        </FormTitle>
+            <FormattedMessage id="login" />
+          </FormTitle>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -65,10 +65,10 @@ const LoginForm = () => {
           <Paragraph>
             <FormattedMessage id="questionHaveAnAccount" />{' '}
             <LoginLink to="/register">
-            <FormattedMessage id="register" />
-          </LoginLink>
+              <FormattedMessage id="register" />
+            </LoginLink>
           </Paragraph>
-          {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
+          {isError && <ErrorMessage>Invalid password or email</ErrorMessage>}
         </ModalContent>
       </ModalWrapper>
     </>

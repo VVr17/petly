@@ -61,8 +61,8 @@ const RegistrationForm = () => {
       <ModalWrapper>
         <ModalContent>
           <FormTitle>
-          <FormattedMessage id="registration" />
-        </FormTitle>
+            <FormattedMessage id="registration" />
+          </FormTitle>
           <Formik
             initialValues={initialValues}
             validationSchema={
@@ -85,10 +85,10 @@ const RegistrationForm = () => {
                   <ButtonWrapper>
                     <Button name="filled" type="submit" disabled={isSubmitting}>
                       {currentStep < 2 ? (
-                      <FormattedMessage id="next" />
-                    ) : (
-                      <FormattedMessage id="register" />
-                    )}
+                        <FormattedMessage id="next" />
+                      ) : (
+                        <FormattedMessage id="register" />
+                      )}
                     </Button>
                     {currentStep > 1 && (
                       <Button name="transparent" onClick={handleBackClick}>
@@ -102,11 +102,11 @@ const RegistrationForm = () => {
           </Formik>
           <Paragraph>
             <FormattedMessage id="haveAnAccount" />{' '}
-          <LoginLink to="/login">
-            <FormattedMessage id="login" />
-          </LoginLink>
+            <LoginLink to="/login">
+              <FormattedMessage id="login" />
+            </LoginLink>
           </Paragraph>
-          {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
+          {isError && <ErrorMessage>Invalid password or email</ErrorMessage>}
         </ModalContent>
       </ModalWrapper>
     </>

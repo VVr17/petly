@@ -15,24 +15,26 @@ export const noticesApi = createApi({
   tagTypes: [TAGS_TYPES.notice],
   endpoints: builder => ({
     getNoticeByCategory: builder.query({
-      query: ({ categoryName, search }) =>
+      query: ({ categoryName, search, page = 1 }) =>
         search
-          ? `${NOTICES_URL}${CATEGORY_URL}/${categoryName}?search=${search}`
-          : `${NOTICES_URL}${CATEGORY_URL}/${categoryName}`,
+          ? `${NOTICES_URL}${CATEGORY_URL}/${categoryName}?page=${page}&search=${search}`
+          : `${NOTICES_URL}${CATEGORY_URL}/${categoryName}?page=${page}`,
       // transformResponse: response => response.data,
       providesTags: [TAGS_TYPES.notice],
     }),
     getFavoritesNotices: builder.query({
-      query: search =>
+      query: ({ search, page = 1 }) =>
         search
-          ? `${NOTICES_URL}/favorites?search=${search}`
-          : `${NOTICES_URL}/favorites`,
+          ? `${NOTICES_URL}/favorites?page=${page}&search=${search}`
+          : `${NOTICES_URL}/favorites?&page=${page}`,
       // transformResponse: response => response.data,
       providesTags: [TAGS_TYPES.favorites],
     }),
     getUserNotices: builder.query({
-      query: search =>
-        search ? `${NOTICES_URL}/user?search=${search}` : `${NOTICES_URL}/user`,
+      query: ({ search, page = 1 }) =>
+        search
+          ? `${NOTICES_URL}/user?page=${page}&search=${search}`
+          : `${NOTICES_URL}/user?page=${page}`,
       // transformResponse: response => response.data,
       providesTags: [TAGS_TYPES.notice],
     }),

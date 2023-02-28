@@ -24,7 +24,7 @@ const NoticesPage = () => {
   const [isSearch, setIsSearch] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   // const query = searchParams.get('search') ?? '';
-  const { notices, isFetching, error, totalItems } = useGetNotices(filter);
+  const { notices, isFetching, error, totalItems } = useGetNotices({ filter });
   const [visibleNotices, setvisibleNotices] = useState([]);
   const { formatMessage } = useIntl();
 

@@ -57,7 +57,7 @@ const UserPhoto = () => {
   }, [file]);
 
   const handleSubmit = values => {
-    console.log(values);
+    // handle submit
   };
 
   const initialValues = {
