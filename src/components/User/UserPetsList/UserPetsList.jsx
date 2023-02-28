@@ -19,6 +19,7 @@ import Modal from 'components/Modals/Modal';
 import { AnimatePresence } from 'framer-motion';
 import Pets from 'assets/images/desktop/pet.jpg';
 import Loader from 'components/Loader';
+import { FormattedMessage } from 'react-intl';
 
 const UserPetsList = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,8 +38,12 @@ const UserPetsList = () => {
   return (
     <Container>
       <Box>
-        <Title>My pets:</Title>
-        <ButtonTitle>Add pet</ButtonTitle>
+        <Title>
+          <FormattedMessage id="myPet" />:
+        </Title>
+        <ButtonTitle>
+          <FormattedMessage id="addPetBtn" />
+        </ButtonTitle>
         <Button whileTap={{ scale: 0.95 }} onClick={handleIsOpen}>
           <ReactIcon>
             <BsPlusCircleFill size="44px" />
@@ -48,7 +53,9 @@ const UserPetsList = () => {
       {isLoading && <Loader />}
       {!isLoading && data?.pets.length === 0 && (
         <ImageBox>
-          <Title>You have not added your pets yet.</Title>
+          <Title>
+            <FormattedMessage id="notAddedPet" />
+          </Title>
           <Image src={Pets} alt="pets"></Image>
         </ImageBox>
       )}

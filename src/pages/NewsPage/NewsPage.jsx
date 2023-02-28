@@ -3,11 +3,12 @@ import NewsCard from 'components/NewsCard/NewsCard';
 import Section from 'components/Section';
 import SearchForm from 'components/Ui-Kit/SearchForm/SearchForm';
 import React, { useEffect, useState } from 'react';
-import { CardList, Title, WrapperTitle } from './News.styled';
+import { CardList, WrapperTitle } from './News.styled';
 import { useGetNewsQuery } from '../../redux/api/newsApi';
 import TitlePage from 'components/Ui-Kit/TitlePage';
 import Loader from 'components/Loader';
 import { useIntl } from 'react-intl';
+import { sortArrayByDate } from 'helpers/sortNewsByDate';
 
 const NewsPage = () => {
   const { data: news, error, isLoading } = useGetNewsQuery();
@@ -37,7 +38,8 @@ const NewsPage = () => {
 
   useEffect(() => {
     if (news) {
-      const visibleNews = searchQuery(news);
+      const newsSortedByDate = sortArrayByDate(news);
+      const visibleNews = searchQuery(newsSortedByDate);
       setFilteredNews(visibleNews);
     }
   }, [news, filter]);

@@ -36,6 +36,7 @@ import {
 import Button from 'components/Ui-Kit/Button';
 import { selectStatusFilter } from 'redux/filter/filterSelectors';
 import { statusFilter } from 'redux/filter/filterConstans';
+import { useIntl } from 'react-intl';
 
 const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
 
@@ -43,6 +44,7 @@ const ModalNotice = ({ id, onClose }) => {
   const { data, isFetching, isError } = useGetNoticeByIdQuery(id);
   const currentCategory = useSelector(selectStatusFilter);
   const noItem = '-----------';
+  const { formatMessage } = useIntl();
 
   const onRedirect = () => {
     window.location = `tel:${data.owner.phone}`;
@@ -58,19 +60,21 @@ const ModalNotice = ({ id, onClose }) => {
 
   const toggleFavorite = async noticeId => {
     if (!isAuth) {
-      toast.info('Please, register or login to add notice to favorite');
+      toast.info(formatMessage({ id: 'toastRegisterLogin' }));
       return;
     }
     if (isFavorite) {
       await deleteNoticeFromFavorite(noticeId);
-      toast.info(`Notice has been removed from favorites`);
+      toast.info(formatMessage({ id: 'toastRemovedNotice' }));
+      // onClose();
       if (currentCategory === statusFilter.favoriteAds) {
         document.body.classList.remove('modal-open');
       }
       return;
     }
     await addNoticeToFavorite(noticeId);
-    toast.info(`Notice has been added to favorites`);
+    toast.info(formatMessage({ id: 'toastAddedNotice' }));
+    // onClose();
     if (currentCategory === statusFilter.favoriteAds) {
       document.body.classList.remove('modal-open');
     }
@@ -105,29 +109,43 @@ const ModalNotice = ({ id, onClose }) => {
                 <PetData>
                   <CategoryData>
                     <DataItem>
-                      <CategoryText>Name:</CategoryText>
+                      <CategoryText>
+                        {formatMessage({ id: 'name' })}:
+                      </CategoryText>
                     </DataItem>
                     <DataItem>
-                      <CategoryText>Birthday:</CategoryText>
+                      <CategoryText>
+                        {formatMessage({ id: 'birthday' })}:
+                      </CategoryText>
                     </DataItem>
                     <DataItem>
-                      <CategoryText>Breed:</CategoryText>
+                      <CategoryText>
+                        {formatMessage({ id: 'breed' })}:
+                      </CategoryText>
                     </DataItem>
                     <DataItem>
-                      <CategoryText>Location:</CategoryText>
+                      <CategoryText>
+                        {formatMessage({ id: 'location' })}:
+                      </CategoryText>
                     </DataItem>
                     <DataItem>
-                      <CategoryText>The sex:</CategoryText>
+                      <CategoryText>
+                        {formatMessage({ id: 'sex' })}:
+                      </CategoryText>
                     </DataItem>
                     <DataItem>
                       <CategoryText>Email:</CategoryText>
                     </DataItem>
                     <DataItem>
-                      <CategoryText>Phone:</CategoryText>
+                      <CategoryText>
+                        {formatMessage({ id: 'phone' })}:
+                      </CategoryText>
                     </DataItem>
                     {data.category === 'sell' && (
                       <DataItem>
-                        <CategoryText>Price:</CategoryText>
+                        <CategoryText>
+                          {formatMessage({ id: 'price' })}:
+                        </CategoryText>
                       </DataItem>
                     )}
                   </CategoryData>
@@ -178,13 +196,15 @@ const ModalNotice = ({ id, onClose }) => {
               </TextContent>
             </PetInfo>
             <Comments>
-              <CommentsTitle>Comments: </CommentsTitle>
+              <CommentsTitle>
+                {formatMessage({ id: 'comment' })}:{' '}
+              </CommentsTitle>
               {data.comments}
             </Comments>
 
             <Buttons>
               <Button onClick={onRedirect} name="contacts" type="button">
-                Contact
+                {formatMessage({ id: 'contact' })}
               </Button>
 
               <Button
@@ -193,7 +213,7 @@ const ModalNotice = ({ id, onClose }) => {
                 isFavorite={isFavorite}
                 onClick={() => toggleFavorite(id)}
               >
-                {!isFavorite ? 'Add to' : 'Remove from'}
+                {!isFavorite ? formatMessage({ id: 'addTo' }) : formatMessage({ id: 'removeFrom' })}
                 {<IoIosHeart fill="#F59256" size="20px" margin-left="10px" />}
               </Button>
             </Buttons>

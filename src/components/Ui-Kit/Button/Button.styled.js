@@ -60,13 +60,11 @@ export const ButtonStyled = styled(motion.button)`
   &:hover,
   &:focus {
     background-color: ${({ theme, name }) =>
-      name === 'learnMore' && 'contacts' ? 'transparent' : theme.colors.hover};
-    border-color: ${({ theme, name }) =>
-      name === 'learnMore' ? theme.colors.secondaryHover : theme.colors.hover};
+      name === 'contacts' ? 'transparent' : theme.colors.hover};
     color: ${({ theme, name }) =>
-      name === 'learnMore'
-        ? theme.colors.secondaryHover
-        : theme.colors.lightText};
+      name === 'learnMore' || 'filter'
+        ? theme.colors.lightText
+        : theme.colors.secondaryHover};
   }
 
   @media (min-width: ${breakpoints[1]}px) {

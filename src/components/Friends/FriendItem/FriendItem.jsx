@@ -15,6 +15,7 @@ import {
 } from './FriendItem.styled.jsx';
 import TimeTable from './TimeTable';
 import defaultImage from 'assets/images/mobile/friend-default-image.png';
+import { FormattedMessage } from 'react-intl';
 
 export const FriendItem = ({
   title,
@@ -65,22 +66,30 @@ export const FriendItem = ({
           >
             {workDays === undefined || workDays === null ? (
               <>
-                <FriendText>Time:</FriendText>
+                <FriendText>
+                  <FormattedMessage id="time" />:
+                </FriendText>
                 <p>--------------</p>
               </>
             ) : (
               <>
                 {workDays[0] && workDays[0].isOpen ? (
                   <>
-                    <FriendTime>Time:</FriendTime>
+                    <FriendTime>
+                      <FormattedMessage id="time" />:
+                    </FriendTime>
                     <TimeBtn>
                       {workDays[0].from}-{workDays[0].to}
                     </TimeBtn>
                   </>
                 ) : (
                   <>
-                    <FriendTime>Time:</FriendTime>
-                    <TimeBtn>Closed</TimeBtn>
+                    <FriendTime>
+                      <FormattedMessage id="time" />:
+                    </FriendTime>
+                    <TimeBtn>
+                      <FormattedMessage id="closed" />
+                    </TimeBtn>
                   </>
                 )}
                 {isVisible || <TimeTable shedule={newWorkDays} />}
@@ -88,7 +97,9 @@ export const FriendItem = ({
             )}
           </TextWrapper>
           <TextWrapper>
-            <FriendText>Address:</FriendText>
+            <FriendText>
+              <FormattedMessage id="address" />:
+            </FriendText>
             {addressUrl ? (
               <FriendLink href={addressUrl} target="_blank">
                 {address}
@@ -107,7 +118,9 @@ export const FriendItem = ({
             )}
           </TextWrapper>
           <TextWrapper>
-            <FriendText>Phone:</FriendText>
+            <FriendText>
+              <FormattedMessage id="phone" />:
+            </FriendText>
             {phone ? (
               <FriendLink href={`tel:${phone}`}>{phone}</FriendLink>
             ) : (

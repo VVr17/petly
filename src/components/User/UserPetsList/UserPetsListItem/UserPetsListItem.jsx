@@ -15,11 +15,13 @@ import { useDeletePetMutation } from 'redux/api/petsApi';
 import { AnimatePresence } from 'framer-motion';
 import ModalDelete from 'components/Modals/ModalDelete';
 import ModalComponent from 'components/Modals/Modal';
+import { useIntl } from 'react-intl';
 
 const UserPetsListItem = ({ pet }) => {
   const { name, birthDate, breed, comments, photoURL } = pet;
   const [deletePetMutation, { isLoading }] = useDeletePetMutation();
   const [isOpen, setIsOpen] = useState(false);
+  const { formatMessage } = useIntl();
 
   const handleDelete = async petId => {
     try {
@@ -50,19 +52,19 @@ const UserPetsListItem = ({ pet }) => {
             <RiDeleteBin6Fill style={iconStyle} />
           </Button>
           <Text>
-            <Span>Name: </Span>
+            <Span>{formatMessage({ id: 'name' })}: </Span>
             {name}
           </Text>
           <Text>
-            <Span>Date of birth: </Span>
+            <Span>{formatMessage({ id: 'dateBirth' })}: </Span>
             {birthDate}
           </Text>
           <Text>
-            <Span>Breed: </Span>
+            <Span>{formatMessage({ id: 'breed' })}: </Span>
             {breed}
           </Text>
           <TextComments>
-            <Span>Comments: </Span>
+            <Span>{formatMessage({ id: 'comment' })}: </Span>
             {comments}
           </TextComments>
         </InfoBox>

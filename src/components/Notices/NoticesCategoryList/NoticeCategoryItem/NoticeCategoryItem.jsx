@@ -34,6 +34,7 @@ import ModalDelete from 'components/Modals/ModalDelete/ModalDelete';
 import { pageAnimation } from 'constants/animation';
 import { Box } from 'components/Box/Box';
 import { motion } from 'framer-motion';
+import { useIntl } from 'react-intl';
 
 const NoticeCategoryItem = ({
   _id,
@@ -53,6 +54,7 @@ const NoticeCategoryItem = ({
   const user = useSelector(selectUserState);
   const favorites = useSelector(selectFavoritesState);
   const showButtonDelete = user ? owner === user._id : false;
+  const { formatMessage } = useIntl();
 
   const place = location.split(',');
   const city = place[0];
@@ -74,16 +76,16 @@ const NoticeCategoryItem = ({
 
   const toggleFavorite = async noticeId => {
     if (!isAuth) {
-      toast('Please, register or login to add notice to favorite');
+      toast(formatMessage({ id: 'toastRegisterLogin' }));
       return;
     }
     if (isFavorite) {
       await deleteNoticeFromFavorite(noticeId);
-      toast.info(`Notice has been removed from favorites`);
+      toast.info(formatMessage({ id: 'toastRemovedNotice' }));
       return;
     }
     await addNoticeToFavorite(noticeId);
-    toast.info(`Notice has been added to favorites`);
+    toast.info(formatMessage({ id: 'toastAddedNotice' }));
   };
 
   const onDelete = async () => {
@@ -135,21 +137,21 @@ const NoticeCategoryItem = ({
           <table>
             <tbody>
               <tr>
-                <Thead>Breed:</Thead>
+                <Thead>{formatMessage({ id: 'breed' })}:</Thead>
                 <Text>{breed}</Text>
               </tr>
               <tr>
-                <Thead>Place:</Thead>
+                <Thead>{formatMessage({ id: 'place' })}:</Thead>
                 <Text>{city}</Text>
               </tr>
               <tr>
-                <Thead>Age:</Thead>
+                <Thead>{formatMessage({ id: 'age' })}:</Thead>
                 <Text>{getAge(birthDate)}</Text>
               </tr>
 
               {category === 'sell' && (
                 <tr>
-                  <Thead>Price:</Thead>
+                  <Thead>{formatMessage({ id: 'price' })}:</Thead>
                   <Text>{price} $</Text>
                 </tr>
               )}
@@ -167,7 +169,7 @@ const NoticeCategoryItem = ({
               document.body.classList.add('modal-open');
             }}
           >
-            Learn more
+            {formatMessage({ id: 'learnMore' })}
           </Button>
           {showButtonDelete && (
             <Button
@@ -179,7 +181,7 @@ const NoticeCategoryItem = ({
                 document.body.classList.add('modal-open');
               }}
             >
-              Delete
+              {formatMessage({ id: 'delete' })}
               <IoTrashSharp style={{ marginLeft: '12px' }} />
             </Button>
           )}

@@ -6,13 +6,14 @@ import {
   ButtonFilterInput,
 } from './AddPetForm.styled';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 
 const FilterCategory = ({ value }) => {
   return (
     <ButtonFilterList>
       <ButtonFilterItem>
         <ButtonFilterLabel name="filter" selected={value === 'lost-found'}>
-          lost/found
+          <FormattedMessage id="lostFound" />
           <ButtonFilterInput
             type="radio"
             name="category"
@@ -23,7 +24,7 @@ const FilterCategory = ({ value }) => {
       </ButtonFilterItem>
       <ButtonFilterItem>
         <ButtonFilterLabel name="filter" selected={value === 'in-good-hands'}>
-          in good hands
+          <FormattedMessage id="goodHands" />
           <ButtonFilterInput
             type="radio"
             name="category"
@@ -34,7 +35,7 @@ const FilterCategory = ({ value }) => {
       </ButtonFilterItem>
       <ButtonFilterItem>
         <ButtonFilterLabel name="filter" selected={value === 'sell'}>
-          sell
+          <FormattedMessage id="sell" />
           <ButtonFilterInput
             type="radio"
             name="category"

@@ -10,8 +10,10 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { selectUserState } from 'redux/user/userSelectors';
 import { toast } from 'react-toastify';
+import { useIntl } from 'react-intl';
 
 const UserName = ({ isUpdating, setIsUpdating }) => {
+  const { formatMessage } = useIntl();
   const [isDisabled, setIsDisabled] = useState(true);
   const [updateUser, { isLoading }] = useUpdateUserMutation();
   const user = useSelector(selectUserState);
@@ -40,7 +42,8 @@ const UserName = ({ isUpdating, setIsUpdating }) => {
     const data = new FormData();
     data.append('name', values.name);
     const { data: response } = await updateUser(data);
-    if (response.code === 200) toast.info('Name has been successfully updated');
+    if (response.code === 200)
+      toast.info(formatMessage({ id: 'toastNameUpdated' }));
   };
 
   return (
@@ -54,7 +57,7 @@ const UserName = ({ isUpdating, setIsUpdating }) => {
         <Form>
           <FieldWrapper>
             <UserInput
-              label="Name"
+              label={formatMessage({ id: 'name' })}
               name="name"
               type="name"
               disabled={isDisabled}

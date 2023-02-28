@@ -2,11 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'components/Ui-Kit/Button';
 import { Container, Title, ContainerButton } from './ModalDelete.styled';
+import { FormattedMessage } from 'react-intl';
 
 const ModalDelete = ({ closeModal, onDelete }) => {
   return (
     <Container>
-      <Title>Do you really want to delete it?</Title>
+      <Title>
+        <FormattedMessage id="questionOnDelete" />
+      </Title>
       <ContainerButton>
         <Button
           name="filter"
@@ -14,7 +17,7 @@ const ModalDelete = ({ closeModal, onDelete }) => {
           onClick={onDelete}
           whileTap={{ scale: 0.95 }}
         >
-          Yes
+          <FormattedMessage id="yes" />
         </Button>
         <Button
           autofocus="autofocus"
@@ -23,7 +26,7 @@ const ModalDelete = ({ closeModal, onDelete }) => {
           onClick={closeModal}
           whileTap={{ scale: 0.95 }}
         >
-          No
+          <FormattedMessage id="no" />
         </Button>
       </ContainerButton>
     </Container>

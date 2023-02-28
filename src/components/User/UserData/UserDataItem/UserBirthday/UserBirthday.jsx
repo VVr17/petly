@@ -16,6 +16,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { selectUserState } from 'redux/user/userSelectors';
 import { toast } from 'react-toastify';
+import { useIntl } from 'react-intl';
 
 const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
   const [field] = useField(name);
@@ -43,6 +44,7 @@ const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
 const UserBirthday = ({ isUpdating, setIsUpdating }) => {
   const [isDisabled, setIsDisabled] = useState(true);
   const user = useSelector(selectUserState);
+  const { formatMessage } = useIntl();
 
   const val = () => {
     let date;
@@ -88,7 +90,7 @@ const UserBirthday = ({ isUpdating, setIsUpdating }) => {
     data.append('birthday', dateMDY);
     const { data: response } = await updateUser(data);
     if (response.code === 200)
-      toast.info('Birth date has been successfully updated');
+      toast.info(formatMessage({ id: 'toastBirthUpdated' }));
   };
 
   return (
@@ -101,7 +103,7 @@ const UserBirthday = ({ isUpdating, setIsUpdating }) => {
         <Form>
           <FieldWrapper>
             <Label>
-              <Title>Birthday</Title>
+              <Title>{formatMessage({ id: 'birthday' })}</Title>
 
               <MyDatePicker
                 isDisabled={isDisabled}

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { VscAdd } from 'react-icons/vsc';
 import {
   ButtonContainer,
@@ -8,14 +7,19 @@ import {
   ReactIcon,
   Title,
 } from './AddPetButton.styled';
+import { FormattedMessage } from 'react-intl';
 
 const AddPetButton = ({ handleClick }) => {
   return (
     <ButtonContainer>
-      <Title>Add pet</Title>
+      <Title>
+        <FormattedMessage id="addPetBtn" />
+      </Title>
       <Button whileTap={{ scale: 0.95 }} onClick={handleClick}>
-        <ButtonTitle>Add pet</ButtonTitle>
-        <VscAdd style={ReactIcon} />
+        <ButtonTitle>
+          <FormattedMessage id="addPetBtn" />
+        </ButtonTitle>
+        <VscAdd style={ReactIcon}  />
       </Button>
     </ButtonContainer>
   );

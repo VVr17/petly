@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import InputField from 'components/Ui-Kit/Input';
 import { PasswordToggle, PasswordWrapper } from './RegStepOne.styled';
 import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
+import { useIntl } from 'react-intl';
 
 const RegStepOne = () => {
   
   // Define state variable for password visibility
   const [showPassword, setShowPassword] = useState(false);
+  const { formatMessage } = useIntl();
 
   // Function to toggle password visibility
   const toggleShowPassword = () => {
@@ -28,7 +30,7 @@ const RegStepOne = () => {
       <InputField
         name="password"
         type={passwordInputType}
-        placeholder="Password"
+        placeholder={formatMessage({ id: 'password' })}
         autocomplete="new-password"
       >
         <PasswordToggle type="button" onClick={toggleShowPassword}>
@@ -39,7 +41,7 @@ const RegStepOne = () => {
       <InputField
         name="confirmPassword"
         type={passwordInputType}
-        placeholder="Confirm Password"
+        placeholder={formatMessage({ id: 'confirmPas' })}
         autocomplete="new-password"
       />
     </>

@@ -7,14 +7,14 @@ import { breakpoints } from 'constants/theme';
 import portraitMobile from 'assets/images/mobile/portrait-and-favorite-pet.png';
 import portraitTablet from 'assets/images/tablet/portrait-and-favorite-pet.png';
 import portraitDesktop from 'assets/images/desktop/portrait-and-favorite-pet.png';
+import { FormattedMessage } from 'react-intl';
 
 const Home = () => {
   return (
     <Background {...pageAnimation} transition={{ duration: 0.3 }}>
       <WrapContainer>
         <Title>
-          Take good care of <br />
-          your small pets
+          <FormattedMessage id="homeMsg" values={{ break: <br /> }} />
         </Title>
         <Images
           src={portraitMobile}
