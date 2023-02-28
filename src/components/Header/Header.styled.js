@@ -85,6 +85,7 @@ export const MenuButton = styled.button`
   outline: none;
   background-color: ${theme.colors.mainBackground};
   padding: 5px 0 5px 0;
+  cursor: pointer;
 `;
 
 export const iconStyle = {
