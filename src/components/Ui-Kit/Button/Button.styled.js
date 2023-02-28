@@ -21,8 +21,6 @@ export const ButtonStyled = styled(motion.button)`
   align-items: center;
   justify-content: center;
   margin-bottom: ${({ name }) => name === 'contacts' && '12px'};
-  /* background-color: ${({ theme, name, selected }) =>
-    name === 'filled' || selected ? theme.colors.accent : 'transparent'}; */
 
   background-color: ${({ theme, name, selected }) => {
     switch (name) {
@@ -59,8 +57,7 @@ export const ButtonStyled = styled(motion.button)`
 
   &:hover,
   &:focus {
-    background-color: ${({ theme, name }) =>
-      name === 'contacts' ? 'transparent' : theme.colors.hover};
+    background-color: ${({ theme }) => theme.colors.hover};
     color: ${({ theme, name }) =>
       name === 'learnMore' || 'filter'
         ? theme.colors.lightText
