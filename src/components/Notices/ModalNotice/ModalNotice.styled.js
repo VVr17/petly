@@ -172,3 +172,12 @@ export const Plug = styled.div`
     height: 465px;
   }
 `;
+
+export const LinkModal = styled.a`
+   color: ${theme.colors.mainText};
+   &:hover,
+   &:focus {
+      color: ${theme.colors.secondaryHover};
+      transition: color ${theme.transitionTiming};
+   }
+`;

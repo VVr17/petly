@@ -1,5 +1,5 @@
 import Container from 'components/Container';
-import { useState, React } from 'react';
+import  React  from 'react';
 import { useSelector } from 'react-redux';
 import {
   useAddNoticeToFavoriteMutation,
@@ -7,7 +7,7 @@ import {
   useGetNoticeByIdQuery,
 } from 'redux/api/noticesApi';
 import { selectFavoritesState } from 'redux/favorites/favoritesSelector';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { selectIsAuthState } from 'redux/user/userSelectors';
 import PropTypes from 'prop-types';
 import Loader from 'components/Loader';
@@ -31,6 +31,7 @@ import {
   NoticeContainer,
   Buttons,
   Plug,
+  LinkModal,
 } from './ModalNotice.styled';
 import Button from 'components/Ui-Kit/Button';
 import { selectStatusFilter } from 'redux/filter/filterSelectors';
@@ -63,7 +64,6 @@ const ModalNotice = ({ id, onClose }) => {
     if (isFavorite) {
       await deleteNoticeFromFavorite(noticeId);
       toast.info(`Notice has been removed from favorites`);
-      // onClose();
       if (currentCategory === statusFilter.favoriteAds) {
         document.body.classList.remove('modal-open');
       }
@@ -71,11 +71,11 @@ const ModalNotice = ({ id, onClose }) => {
     }
     await addNoticeToFavorite(noticeId);
     toast.info(`Notice has been added to favorites`);
-    // onClose();
     if (currentCategory === statusFilter.favoriteAds) {
       document.body.classList.remove('modal-open');
     }
   };
+
   const isLoading = adding || removing;
 
   return (
@@ -92,7 +92,11 @@ const ModalNotice = ({ id, onClose }) => {
               <ImgWrapper>
                 <PetsImg src={data.photoURL || altPosterUrl} />
                 <Category>
-                  <CategoryName>{data.category}</CategoryName>
+                  <CategoryName>
+                    {(data && data.category === 'sell' && 'sell') ||
+                      (data.category === 'lost-found' && 'lost/found') ||
+                      (data.category === 'in-good-hands' && 'in good hands')}
+                  </CategoryName>
                 </Category>
               </ImgWrapper>
 
@@ -150,10 +154,18 @@ const ModalNotice = ({ id, onClose }) => {
                       <ValueText>{data.sex}</ValueText>
                     </DataItem>
                     <DataItem>
-                      <ValueText>{data.owner.email}</ValueText>
+                      <ValueText>
+                        <LinkModal href={`mailto:${data.owner.email}`}>
+                          {data.owner.email}
+                        </LinkModal>
+                      </ValueText>
                     </DataItem>
                     <DataItem>
-                      <ValueText>{data.owner.phone}</ValueText>
+                      <ValueText>
+                        <LinkModal href={`tel:${data.owner.phone}`}>
+                          {data.owner.phone}
+                        </LinkModal>
+                      </ValueText>
                     </DataItem>
 
                     {data.category === 'sell' && (
