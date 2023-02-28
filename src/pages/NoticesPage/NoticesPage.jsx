@@ -32,20 +32,10 @@ const NoticesPage = () => {
   const [isSearch, setIsSearch] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   // const query = searchParams.get('search') ?? '';
-  const { notices, isFetching, error, totalItems } = useGetNotices({ filter });
-  const [visibleNotices, setvisibleNotices] = useState([]);
+  const { notices, isFetching, isLoading, error, totalItems } = useGetNotices({
+    filter,
+  });
   const { formatMessage } = useIntl();
-
-  const filterNotices = notices => {
-    const filteredNotices = notices.filter(notice => {
-      return notice.title.toLowerCase().includes(filter);
-    });
-    if (filteredNotices.length === 0) {
-      toast.info(formatMessage({ id: 'toastNotFoundAd' }));
-      toast.clearWaitingQueue();
-    }
-    return filteredNotices;
-  };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -67,10 +57,6 @@ const NoticesPage = () => {
     }
   };
 
-  const handleClean = () => {
-    setFilter('');
-  };
-
   const handleClick = () => {
     if (isAuth) {
       setIsOpen(true);
@@ -85,15 +71,6 @@ const NoticesPage = () => {
     document.body.classList.remove('modal-open');
   };
 
-  useEffect(() => {
-    if (notices) {
-      const filteredNotices = filterNotices(notices);
-      setvisibleNotices(filteredNotices);
-    }
-  }, [notices, filter]);
-
-  const showNotices = visibleNotices && !error && !isFetching;
-
   return (
     <Section>
       <TitlePage name={formatMessage({ id: 'findFavoritePet' })} />
@@ -105,10 +82,10 @@ const NoticesPage = () => {
       </NavContainer>
 
       {isFetching && <Loader />}
-      {!isFetching && visibleNotices.length !== 0 && (
-        <NoticesCategoryList notices={visibleNotices} />
+      {!isFetching && !isLoading && notices.length !== 0 && (
+        <NoticesCategoryList notices={notices} />
       )}
-      {!isFetching && visibleNotices.length === 0 && (
+      {!isFetching && notices.length === 0 && (
         <ImageBox>
           <Title>
             <FormattedMessage id="notAddedFavorite" />
