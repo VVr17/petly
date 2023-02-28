@@ -8,6 +8,7 @@ import {
   Title,
 } from './AddPetButton.styled';
 import { FormattedMessage } from 'react-intl';
+import PropTypes from 'prop-types';
 
 const AddPetButton = ({ handleClick }) => {
   return (
@@ -19,7 +20,7 @@ const AddPetButton = ({ handleClick }) => {
         <ButtonTitle>
           <FormattedMessage id="addPetBtn" />
         </ButtonTitle>
-        <VscAdd style={ReactIcon}  />
+        <VscAdd style={ReactIcon} />
       </Button>
     </ButtonContainer>
   );
