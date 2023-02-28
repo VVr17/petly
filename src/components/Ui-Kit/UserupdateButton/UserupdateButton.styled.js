@@ -19,7 +19,12 @@ export const Button = styled.button`
     color ${theme.transitionTiming};
 
   &:hover {
-    background-color: ${theme.colors.hover};
+    background-color: ${theme.colors.accent};
+    color: ${theme.colors.lightText};
+  }
+
+  :disabled {
+    background-color: ${theme.colors.disabled};
     color: ${theme.colors.lightText};
   }
 

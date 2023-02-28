@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUserState } from 'redux/user/userSelectors';
 import { logout } from 'redux/user/userSlice';
@@ -24,6 +24,7 @@ import {
 
 const UserData = () => {
   const dispatch = useDispatch();
+  const [isUpdating, setIsUpdating] = useState(false);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -36,11 +37,14 @@ const UserData = () => {
         <UserPhoto />
         <Box mt={['32px', '32px', '0', '0']}>
           <UserInfo>
-            <UserName />
-            <UserEmail />
-            <UserBirthday />
-            <UserPhone />
-            <UserCity />
+            <UserName isUpdating={isUpdating} setIsUpdating={setIsUpdating} />
+            <UserEmail isUpdating={isUpdating} setIsUpdating={setIsUpdating} />
+            <UserBirthday
+              isUpdating={isUpdating}
+              setIsUpdating={setIsUpdating}
+            />
+            <UserPhone isUpdating={isUpdating} setIsUpdating={setIsUpdating} />
+            <UserCity isUpdating={isUpdating} setIsUpdating={setIsUpdating} />
           </UserInfo>
           <Box
             display="flex"

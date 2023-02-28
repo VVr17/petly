@@ -126,11 +126,17 @@ export const LoadImgLabel = styled.label`
   gap: 4px;
   margin-left: auto;
   margin-right: 12px;
-  padding: 3px;
   border: none;
   background-color: white;
   cursor: pointer;
   font-size: 12px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 15px;
+  transition: background-color ${theme.transitionTiming},
+    color ${theme.transitionTiming};
 
   ${theme.mq.tablet} {
     position: absolute;
@@ -143,10 +149,14 @@ export const LoadImgLabel = styled.label`
     right: -84px;
   }
 
+  svg {
+    /* color: inherit; */
+    transition: color ${theme.transitionTiming};
+  }
+
   &:hover,
   &:focus {
-    background-color: ${theme.colors.hover};
-    border-radius: 15px;
+    background-color: ${theme.colors.accent};
     color: ${theme.colors.lightText};
 
     svg {
