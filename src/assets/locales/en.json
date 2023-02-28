@@ -80,6 +80,8 @@
 
   "errorPriceReq":"Price is required",
   "errorImageReq":"Image is required",
+  "errorServer":"Server error. Please, try again later.",
+  "errorNotFoundPage":"Oops, this page couldn’t be found",
 
   "toastNotFoundNews":"Nothing was found for your request",
   "toastNotFoundAd":"Not found any ad",
