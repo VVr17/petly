@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
@@ -10,16 +10,24 @@ import Section from 'components/Section';
 import TitlePage from 'components/Ui-Kit/TitlePage';
 import FindPetFilter from 'components/Notices/FindPetFilter';
 import SearchForm from 'components/Ui-Kit/SearchForm';
-import { NavContainer, FormContainer } from './NoticesPage.styled';
+import {
+  NavContainer,
+  FormContainer,
+  ImageBox,
+  Title,
+  Image,
+} from './NoticesPage.styled';
 import AddPetButton from 'components/Ui-Kit/AddPetButton';
 import AddNoticeFormHeader from 'components/Notices/AddNoticeForm';
 import AddPetForm from 'components/Notices/AddNoticeForm/AddPetForm';
 import { AnimatePresence } from 'framer-motion';
 import { useGetNotices } from 'hooks/useGetNotices';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import ModalComponent from 'components/Modals/Modal/Modal';
+import Pets from 'assets/images/desktop/pet.jpg';
 
 const NoticesPage = () => {
+  const isAuth = useSelector(selectIsAuthState);
   const [isOpen, setIsOpen] = useState(false);
   const [filter, setFilter] = useState('');
   const [isSearch, setIsSearch] = useState(false);
@@ -65,7 +73,6 @@ const NoticesPage = () => {
     }
   };
 
-  const isAuth = useSelector(selectIsAuthState);
   const handleClick = () => {
     if (isAuth) {
       setIsOpen(true);
@@ -109,9 +116,22 @@ const NoticesPage = () => {
       </NavContainer>
 
       {isFetching && <Loader />}
+
       {showNotices && <NoticesCategoryList notices={visibleNotices} />}
       {total > 1 && (
         <Paginate total={total} handlePageClock={handlePageClick} page={page} />
+      )}
+
+      {!isFetching && visibleNotices.length !== 0 && (
+        <NoticesCategoryList notices={visibleNotices} />
+      )}
+      {!isFetching && visibleNotices.length === 0 && (
+        <ImageBox>
+          <Title>
+            <FormattedMessage id="notAddedFavorite" />
+          </Title>
+          <Image src={Pets} alt="pets"></Image>
+        </ImageBox>
       )}
 
       <AnimatePresence>
