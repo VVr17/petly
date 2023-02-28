@@ -109,6 +109,7 @@ export const BtnFlag = styled.button`
   border-radius: 4px;
   overflow: hidden;
   border: 0;
+  cursor: pointer;
 
   ${theme.mq.tablet} {
     width: 60px;
