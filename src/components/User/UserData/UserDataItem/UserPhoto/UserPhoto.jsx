@@ -17,6 +17,7 @@ import {
 import Plus from 'assets/images/desktop/plus.svg';
 import Loader from 'components/Loader';
 import { toast } from 'react-toastify';
+import { FormattedMessage } from 'react-intl';
 
 const UserPhoto = () => {
   const [fileDataURL, setFileDataURL] = useState(null);
@@ -76,7 +77,7 @@ const UserPhoto = () => {
             <ImageBox>
               <LoadImgLabel htmlFor="upload">
                 <Camera />
-                Edit photo
+                <FormattedMessage id="editPhoto" />
               </LoadImgLabel>
               <LoadImgInput
                 id="upload"

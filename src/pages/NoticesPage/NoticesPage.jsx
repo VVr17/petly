@@ -36,7 +36,7 @@ const NoticesPage = () => {
       return notice.title.toLowerCase().includes(filter);
     });
     if (filteredNotices.length === 0) {
-      toast.info('Not find any ad');
+      toast.info(formatMessage({ id: 'toastNotFoundAd' }));
       toast.clearWaitingQueue();
     }
     return filteredNotices;

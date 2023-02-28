@@ -8,15 +8,18 @@ import {
 import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
 import { useField } from 'formik';
 import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 
 const CommentField = ({ name, form }) => {
   const [field, meta, helpers] = useField(name);
+  const { formatMessage } = useIntl();
 
   return (
     <>
       <TextareaContainer>
         <TextareaLabel>
-          Comments<StyledSpan>*</StyledSpan>
+          {formatMessage({ id: 'comment' })}
+          <StyledSpan>*</StyledSpan>
         </TextareaLabel>
         <Textarea
           {...field}
@@ -24,7 +27,7 @@ const CommentField = ({ name, form }) => {
           form={form}
           as="textarea"
           type="text"
-          placeholder="Type comment"
+          placeholder={formatMessage({ id: 'typeComment' })}
         />
         <ErrorStyle name={name} component="div" />
       </TextareaContainer>

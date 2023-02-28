@@ -10,12 +10,14 @@ import PropTypes from 'prop-types';
 import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
 import Male from 'assets/images/desktop/male.svg';
 import Female from 'assets/images/desktop/female.svg';
+import { FormattedMessage } from 'react-intl';
 
 const SexField = ({ value }) => {
   return (
     <>
       <RadioTitle>
-        The sex<StyledSpan>*</StyledSpan>
+        <FormattedMessage id="sex" />
+        <StyledSpan>*</StyledSpan>
       </RadioTitle>
       <RadioContainer>
         <li>
@@ -29,7 +31,7 @@ const SexField = ({ value }) => {
             <RadioItem>
               <img src={Male} alt="Male" />
             </RadioItem>
-            Male
+            <FormattedMessage id="male" />
           </RadioLabel>
         </li>
 
@@ -44,7 +46,7 @@ const SexField = ({ value }) => {
             <RadioItem>
               <img src={Female} alt="Female" width="60px" height="60px" />
             </RadioItem>
-            Female
+            <FormattedMessage id="female" />
           </RadioLabel>
         </li>
       </RadioContainer>

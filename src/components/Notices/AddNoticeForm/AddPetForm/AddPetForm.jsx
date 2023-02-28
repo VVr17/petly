@@ -25,6 +25,7 @@ import {
 } from './Validation';
 import Loader from 'components/Loader';
 import { convertDateToString } from 'helpers/date';
+import { useIntl } from 'react-intl';
 
 // Main function
 
@@ -34,6 +35,7 @@ const AddPetForm = ({ onClose }) => {
   const [file, setFile] = useState(null);
   const [fileDataURL, setFileDataURL] = useState(null);
   const [addNotice, { isLoading }] = useAddNoticeMutation();
+  const { formatMessage } = useIntl();
 
   // effect to make an url from file to render in preview
   useEffect(() => {
@@ -64,7 +66,7 @@ const AddPetForm = ({ onClose }) => {
       setCurrentStep(currentStep + 1);
     } else {
       if (!values.price && values.category === 'sell') {
-        toast.error('All the fields must be filled');
+        toast.error(formatMessage({ id: 'toastAllFieldsFil' }));
         return;
       }
       // Date converting to string
@@ -139,7 +141,9 @@ const AddPetForm = ({ onClose }) => {
                   <CustomCont>
                     <PriceField errors={errors} touched={touched} />
                     {touched.price && values.price === '' && (
-                      <ErrorMess>Price is required</ErrorMess>
+                      <ErrorMess>
+                        {formatMessage({ id: 'errorPriceReq' })}
+                      </ErrorMess>
                     )}
                   </CustomCont>
                 )}
@@ -154,7 +158,9 @@ const AddPetForm = ({ onClose }) => {
                     }}
                   />
                   {values.petImage === null && (
-                    <ErrorMess component="div">Image is required</ErrorMess>
+                    <ErrorMess component="div">
+                      {formatMessage({ id: 'errorImageReq' })}
+                    </ErrorMess>
                   )}
                 </CustomCont>
 
@@ -165,12 +171,12 @@ const AddPetForm = ({ onClose }) => {
             <ButtonsContainer>
               {currentStep === 1 && (
                 <Button name="transparent" width="100%" onClick={onClose}>
-                  Cancel
+                  {formatMessage({ id: 'cancel' })}
                 </Button>
               )}
               {currentStep === 2 && (
                 <Button name="transparent" width="100%" onClick={goBack}>
-                  Back
+                  {formatMessage({ id: 'back' })}
                 </Button>
               )}
               <Button
@@ -179,7 +185,9 @@ const AddPetForm = ({ onClose }) => {
                 width="100%"
                 disabled={isSubmitting}
               >
-                {currentStep < 2 ? 'Next' : 'Done'}
+                {currentStep < 2
+                  ? formatMessage({ id: 'next' })
+                  : formatMessage({ id: 'done' })}
               </Button>
             </ButtonsContainer>
           </FormWrapper>

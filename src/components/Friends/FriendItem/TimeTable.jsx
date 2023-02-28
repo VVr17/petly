@@ -6,6 +6,7 @@ import {
   FriendText,
   HoursItemText,
 } from './FriendItem.styled';
+import { FormattedMessage } from 'react-intl';
 
 const TimeTable = ({ shedule }) => {
   return (
@@ -17,7 +18,9 @@ const TimeTable = ({ shedule }) => {
               {item.day}:{item.from}-{item.to}
             </HoursItemText>
           ) : (
-            <HoursItemText>{item.day}:Closed</HoursItemText>
+            <HoursItemText>
+              {item.day}:<FormattedMessage id="closed" />
+            </HoursItemText>
           )}
         </TimeItem>
       ))}

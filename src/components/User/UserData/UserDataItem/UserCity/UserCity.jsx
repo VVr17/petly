@@ -12,8 +12,10 @@ import { selectUserState } from 'redux/user/userSelectors';
 import { toast } from 'react-toastify';
 import cities from 'assets/files/uaCities.json';
 import { List, ListItem } from './UserCity.styled';
+import { useIntl } from 'react-intl';
 
 const UserCity = ({ isUpdating, setIsUpdating }) => {
+  const { formatMessage } = useIntl();
   const [isDisabled, setIsDisabled] = useState(true);
   const [updateUser, { isLoading }] = useUpdateUserMutation();
   const user = useSelector(selectUserState);
@@ -43,7 +45,8 @@ const UserCity = ({ isUpdating, setIsUpdating }) => {
     const data = new FormData();
     data.append('city', values.city);
     const { data: response } = await updateUser(data);
-    if (response.code === 200) toast.info('City has been successfully updated');
+    if (response.code === 200)
+      toast.info(formatMessage({ id: 'toastCityUpdated' }));
   };
   return (
     <Formik
@@ -55,7 +58,7 @@ const UserCity = ({ isUpdating, setIsUpdating }) => {
         <Form>
           <FieldWrapper>
             <UserInput
-              label="City"
+              label={formatMessage({ id: 'cityLabel' })}
               name="city"
               type="city"
               disabled={isDisabled}

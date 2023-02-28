@@ -15,7 +15,7 @@ const AuthNav = ({ closeMenu }) => {
         <FormattedMessage id="login" />
       </Link>
       <Link to="/register" onClick={closeMenu}>
-        <FormattedMessage id="register" />
+        <FormattedMessage id="registration" />
       </Link>
     </Container>
   );

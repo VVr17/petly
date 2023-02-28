@@ -21,6 +21,7 @@ import {
 } from '../RegisterForm/RegisterForm.styled';
 import Button from 'components/Ui-Kit/Button';
 import Loader from 'components/Loader';
+import { FormattedMessage } from 'react-intl';
 
 // main function
 
@@ -40,7 +41,9 @@ const LoginForm = () => {
       {isLoading && <Loader />}
       <ModalWrapper>
         <ModalContent>
-          <FormTitle>Login</FormTitle>
+          <FormTitle>
+          <FormattedMessage id="login" />
+        </FormTitle>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -52,7 +55,7 @@ const LoginForm = () => {
                   <LoginInputs />
                   <ButtonWrapper>
                     <Button name="filled" type="submit" disabled={isSubmitting}>
-                      Submit
+                      <FormattedMessage id="submit" />
                     </Button>
                   </ButtonWrapper>
                 </FormWrapper>
@@ -60,8 +63,10 @@ const LoginForm = () => {
             }}
           </Formik>
           <Paragraph>
-            Don&apos;t have an account?{' '}
-            <LoginLink to="/register">Register</LoginLink>
+            <FormattedMessage id="questionHaveAnAccount" />{' '}
+            <LoginLink to="/register">
+            <FormattedMessage id="register" />
+          </LoginLink>
           </Paragraph>
           {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
         </ModalContent>
