@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactPaginate from 'react-paginate';
+
 import { MyPaginate, Prev, Next } from './Pagination.styled';
 import Container from 'components/Container';
 

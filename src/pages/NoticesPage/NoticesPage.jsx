@@ -94,7 +94,7 @@ const NoticesPage = () => {
       <SearchForm isSearch={isSearch} handleSubmit={handleSubmit} />
 
       <NavContainer>
-        <FindPetFilter />
+        <FindPetFilter page={page} setPage={setPage} />
         <AddPetButton handleClick={handleClick} />
       </NavContainer>
 
