@@ -326,11 +326,16 @@ export const Textarea = styled(Field)`
 // common error
 export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
-  bottom: 0;
-  left: -3px;
-  font-size: 8px;
+  left: 0;
+  bottom: -3px;
+  font-size: ${theme.fontSizes.xxxxs};
   color: red;
+
   ${theme.mq.mobileOnly} {
     transform: translate(0px, 0px);
+  }
+  @media (min-width: ${breakpoints[1]}px) {
+    font-size: ${theme.fontSizes.xxxs};
+    bottom: -10px;
   }
 `;

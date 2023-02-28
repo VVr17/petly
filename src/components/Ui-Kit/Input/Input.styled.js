@@ -45,10 +45,14 @@ export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
   left: 0;
   bottom: -3px;
-  font-size: 8px;
+  font-size: ${theme.fontSizes.xxxs};
   color: red;
   ${theme.mq.mobileOnly} {
     transform: translate(0px, 0px);
+  }
+  @media (min-width: ${breakpoints[1]}px) {
+    font-size: ${theme.fontSizes.xxxs};
+    bottom: -10px;
   }
 `;
 

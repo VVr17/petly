@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { theme, breakpoints } from '../../../constants/theme';
 import { Field, ErrorMessage } from 'formik';
-import { RiPencilFill } from 'react-icons/ri';
-import { BsCheckLg } from 'react-icons/bs';
 
 export const Label = styled.label`
   position: relative;
@@ -13,18 +11,11 @@ export const Label = styled.label`
 `;
 
 export const Title = styled.span`
-  width: 56px;
-  /* width: 85px; */
-  margin-right: 26px;
-  /* overflow-x: hidden; */
+  min-width: 56px;
+  margin-right: 8px;
 
   ${theme.mq.tablet} {
-    width: 90px;
-    margin-right: 36px;
-  }
-
-  ${theme.mq.desktop} {
-    width: 83px;
+    min-width: 83px;
     margin-right: 24px;
   }
 `;
@@ -57,24 +48,20 @@ export const Input = styled(Field)`
   ${theme.mq.mobileOnly} {
     font-size: ${theme.fontSizes.xxxs};
   }
-
-  @media (min-width: ${breakpoints[1]}px) {
-    /* width: 216px; */
-    /* height: 32px; */
-    /* margin-right: 24px; */
-    /* padding-left: 10px; */
-  }
 `;
 
 export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
-  bottom: -8px;
-  left: 0px;
-  font-size: 7px;
-  max-height: 9px;
-  overflow-y: hidden;
+  left: 0;
+  bottom: -3px;
+  font-size: ${theme.fontSizes.xxxxs};
   color: red;
+
   ${theme.mq.mobileOnly} {
     transform: translate(0px, 0px);
+  }
+  @media (min-width: ${breakpoints[1]}px) {
+    font-size: ${theme.fontSizes.xxxs};
+    bottom: -10px;
   }
 `;

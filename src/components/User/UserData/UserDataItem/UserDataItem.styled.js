@@ -9,9 +9,7 @@ export const MyDatePickerNew = styled(DatePicker)`
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 12px;
-  padding-right: 12px;
-
-  /* cursor: pointer; */
+  
   border-radius: 40px;
   border: 1px solid
     ${({ theme, disabled }) =>
@@ -90,12 +88,14 @@ export const Label = styled.label`
 
 export const Title = styled.span`
   width: 90px;
+  white-space: nowrap;
 
   ${theme.mq.mobileOnly} {
     font-size: ${theme.fontSizes.xxxs};
   }
 
   ${theme.mq.tablet} {
+    width: 90px;
     margin-right: 26px;
   }
 
