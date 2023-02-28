@@ -1,0 +1,31 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import ReactPaginate from 'react-paginate';
+import { MyPaginate, Prev, Next } from './Pagination.styled';
+import Container from 'components/Container';
+
+const Paginate = ({ total, handlePageClick, page }) => {
+  return (
+    <Container>
+      <MyPaginate
+        pageCount={total}
+        onPageChange={handlePageClick}
+        nextLabel={<Next />}
+        previousLabel={<Prev />}
+        pageRangeDisplayed={5}
+        marginPagesDisplayed={2}
+        breakLabel="..."
+        renderOnZeroPageCount={null}
+        initialPage={page - 1}
+      />
+    </Container>
+  );
+};
+
+Paginate.propTypes = {
+  total: PropTypes.number.isRequired,
+  handlePageClick: PropTypes.func.isRequired,
+  page: PropTypes.number.isRequired,
+};
+
+export default Paginate;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
+import Paginate from 'components/Pagination/Pagination';
 import { selectIsAuthState } from 'redux/user/userSelectors';
 import Loader from 'components/Loader';
 import NoticesCategoryList from 'components/Notices/NoticesCategoryList';
@@ -24,6 +25,7 @@ import { useGetNotices } from 'hooks/useGetNotices';
 import { FormattedMessage, useIntl } from 'react-intl';
 import ModalComponent from 'components/Modals/Modal/Modal';
 import Pets from 'assets/images/desktop/pet.jpg';
+import { topScroll } from 'helpers/topScroll';
 
 const NoticesPage = () => {
   const isAuth = useSelector(selectIsAuthState);
@@ -31,11 +33,19 @@ const NoticesPage = () => {
   const [filter, setFilter] = useState('');
   const [isSearch, setIsSearch] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  // const query = searchParams.get('search') ?? '';
+  const [page, setPage] = useState(1);
+  // const page = Number(searchParams.get('page') ?? 1);
+
+  const query = searchParams.get('search') ?? '';
+
   const { notices, isFetching, isLoading, error, totalItems } = useGetNotices({
     filter,
+    page,
   });
+  const [visibleNotices, setvisibleNotices] = useState([]);
+
   const { formatMessage } = useIntl();
+  const total = Math.round(totalItems / 12);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -50,11 +60,18 @@ const NoticesPage = () => {
       if (searchForm === '') {
         toast.error(formatMessage({ id: 'toastEnterRequest' }));
       }
-      setSearchParams(searchForm !== '' ? { search: searchForm } : '');
+      setSearchParams(
+        searchForm !== '' ? { search: searchForm, page: page } : ''
+      );
       setFilter(searchForm);
 
       // onSubmit(e);
     }
+  };
+
+  const handlePageClick = e => {
+    setPage(e.selected + 1);
+    topScroll();
   };
 
   const handleClick = () => {
@@ -82,6 +99,11 @@ const NoticesPage = () => {
       </NavContainer>
 
       {isFetching && <Loader />}
+
+      {!isFetching && visibleNotices.length !== 0 && (
+        <NoticesCategoryList notices={visibleNotices} />
+      )}
+
       {!isFetching && !isLoading && notices.length !== 0 && (
         <NoticesCategoryList notices={notices} />
       )}
@@ -92,6 +114,9 @@ const NoticesPage = () => {
           </Title>
           <Image src={Pets} alt="pets"></Image>
         </ImageBox>
+      )}
+      {totalItems > 12 && (
+        <Paginate total={total} handlePageClick={handlePageClick} page={page} />
       )}
 
       <AnimatePresence>
