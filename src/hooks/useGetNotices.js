@@ -10,7 +10,7 @@ import { selectStatusFilter } from 'redux/filter/filterSelectors';
 export const useGetNotices = () => {
   const category = useSelector(selectStatusFilter);
   const {
-    data: notices,
+    data: noticesData,
     error: noticeError,
     isFetching: fetchingNotices,
   } = useGetNoticeByCategoryQuery(category, {
@@ -20,14 +20,14 @@ export const useGetNotices = () => {
       category === statusFilter.myAds,
   });
   const {
-    data: favoriteNotices,
+    data: favoriteNoticesData,
     error: favoriteError,
     isFetching: fetchingFavorites,
   } = useGetFavoritesNoticesQuery(null, {
     skip: category !== statusFilter.favoriteAds,
   });
   const {
-    data: myNotices,
+    data: myNoticesData,
     error: myError,
     isFetching: fetchingMy,
   } = useGetUserNoticesQuery(null, {
@@ -36,21 +36,24 @@ export const useGetNotices = () => {
 
   if (category === statusFilter.favoriteAds) {
     return {
-      notices: favoriteNotices,
+      notices: favoriteNoticesData?.data,
+      totalItems: favoriteNoticesData?.totalItems,
       isFetching: fetchingFavorites,
       error: favoriteError,
     };
   }
   if (category === statusFilter.myAds) {
     return {
-      notices: myNotices,
+      notices: myNoticesData?.data,
       isFetching: fetchingMy,
       error: myError,
+      totalItems: myNoticesData?.totalItems,
     };
   }
   return {
-    notices,
+    notices: noticesData?.data,
     isFetching: fetchingNotices,
     error: noticeError,
+    totalItems: noticesData?.totalItems,
   };
 };
