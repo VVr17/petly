@@ -90,8 +90,9 @@ const NoticesPage = () => {
   useEffect(() => {
     if (notices) {
       const filteredNotices = filterNotices(notices);
+      console.log(filteredNotices);
       if (page > 1) {
-        setvisibleNotices(prevNotices => [...prevNotices, filteredNotices]);
+        setvisibleNotices(prevNotices => [...prevNotices, ...filteredNotices]);
       }
       setvisibleNotices(filteredNotices);
       setTotal(Math.round(totalItems / 12));
@@ -118,9 +119,6 @@ const NoticesPage = () => {
       {isFetching && <Loader />}
 
       {showNotices && <NoticesCategoryList notices={visibleNotices} />}
-      {total > 1 && (
-        <Paginate total={total} handlePageClock={handlePageClick} page={page} />
-      )}
 
       {!isFetching && visibleNotices.length !== 0 && (
         <NoticesCategoryList notices={visibleNotices} />
@@ -132,6 +130,9 @@ const NoticesPage = () => {
           </Title>
           <Image src={Pets} alt="pets"></Image>
         </ImageBox>
+      )}
+      {total > 1 && (
+        <Paginate total={total} handlePageClick={handlePageClick} page={page} />
       )}
 
       <AnimatePresence>
