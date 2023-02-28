@@ -5,7 +5,7 @@
     "lng": "30.5236", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Kyyiv, Misto", 
+    "admin_name": "Kyyivs'ka Oblast'", 
     "capital": "primary", 
     "population": "2963199", 
     "population_proper": "2963199"
@@ -115,7 +115,7 @@
     "lng": "33.5333", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Sevastopol’, Misto", 
+    "admin_name": "Krym", 
     "capital": "admin", 
     "population": "428753", 
     "population_proper": "428753"
@@ -159,7 +159,7 @@
     "lng": "34.1000", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "admin", 
     "population": "341799", 
     "population_proper": "341799"
@@ -456,7 +456,7 @@
     "lng": "33.3583", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "106158", 
     "population_proper": "106158"
@@ -566,7 +566,7 @@
     "lng": "34.1553", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "79458", 
     "population_proper": "79458"
@@ -1138,7 +1138,7 @@
     "lng": "34.3933", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "minor", 
     "population": "38714", 
     "population_proper": "38714"
@@ -1413,7 +1413,7 @@
     "lng": "34.3978", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "29668", 
     "population_proper": "29668"
@@ -1545,7 +1545,7 @@
     "lng": "33.8608", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "minor", 
     "population": "27351", 
     "population_proper": "27351"
@@ -1600,7 +1600,7 @@
     "lng": "33.8003", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "minor", 
     "population": "25769", 
     "population_proper": "25769"
@@ -1655,7 +1655,7 @@
     "lng": "33.5772", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "minor", 
     "population": "24885", 
     "population_proper": "24885"
@@ -2084,7 +2084,7 @@
     "lng": "34.9725", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "16756", 
     "population_proper": "16756"
@@ -2117,7 +2117,7 @@
     "lng": "34.6022", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "minor", 
     "population": "16428", 
     "population_proper": "16428"
@@ -2139,7 +2139,7 @@
     "lng": "30.3331", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Kyyiv, Misto", 
+    "admin_name": "Kyyivs'ka Oblast'", 
     "capital": "", 
     "population": "16337", 
     "population_proper": "16337"
@@ -3184,7 +3184,7 @@
     "lng": "33.6083", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Sevastopol’, Misto", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "10196", 
     "population_proper": "10196"
@@ -3415,7 +3415,7 @@
     "lng": "34.7344", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "minor", 
     "population": "9460", 
     "population_proper": "9460"
@@ -3558,7 +3558,7 @@
     "lng": "34.2875", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "9117", 
     "population_proper": "9117"
@@ -3767,7 +3767,7 @@
     "lng": "34.1833", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "8571", 
     "population_proper": "8571"
@@ -4317,7 +4317,7 @@
     "lng": "35.2033", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "minor", 
     "population": "7067", 
     "population_proper": "7067"
@@ -4933,7 +4933,7 @@
     "lng": "34.3397", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "6089", 
     "population_proper": "6089"
@@ -4955,7 +4955,7 @@
     "lng": "34.0544", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "6034", 
     "population_proper": "6034"
@@ -5285,7 +5285,7 @@
     "lng": "34.0872", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "5455", 
     "population_proper": "5455"
@@ -5604,7 +5604,7 @@
     "lng": "33.1200", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "4998", 
     "population_proper": "4998"
@@ -5967,7 +5967,7 @@
     "lng": "33.2747", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "4332", 
     "population_proper": "4332"
@@ -6418,7 +6418,7 @@
     "lng": "34.0111", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "3901", 
     "population_proper": "3901"
@@ -6660,7 +6660,7 @@
     "lng": "30.4544", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Kyyiv, Misto", 
+    "admin_name": "Kyyivs'ka Oblast'", 
     "capital": "", 
     "population": "3761", 
     "population_proper": "3761"
@@ -6902,7 +6902,7 @@
     "lng": "35.1583", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "3442", 
     "population_proper": "3442"
@@ -7573,7 +7573,7 @@
     "lng": "35.2406", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "2807", 
     "population_proper": "2807"
@@ -7628,7 +7628,7 @@
     "lng": "35.3306", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "2779", 
     "population_proper": "2779"
@@ -7892,7 +7892,7 @@
     "lng": "35.3553", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "2572", 
     "population_proper": "2572"
@@ -8046,7 +8046,7 @@
     "lng": "34.2353", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "2466", 
     "population_proper": "2466"
@@ -8200,7 +8200,7 @@
     "lng": "34.8014", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "2394", 
     "population_proper": "2394"
@@ -8299,7 +8299,7 @@
     "lng": "34.3533", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "2333", 
     "population_proper": "2333"
@@ -8310,7 +8310,7 @@
     "lng": "33.7056", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Sevastopol’, Misto", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "2331", 
     "population_proper": "2331"
@@ -8321,7 +8321,7 @@
     "lng": "34.0000", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "2325", 
     "population_proper": "2325"
@@ -9102,7 +9102,7 @@
     "lng": "34.3064", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "2055", 
     "population_proper": "2055"
@@ -9916,7 +9916,7 @@
     "lng": "34.6778", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "1867", 
     "population_proper": "1867"
@@ -9971,7 +9971,7 @@
     "lng": "33.7444", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "1843", 
     "population_proper": "1843"
@@ -10851,7 +10851,7 @@
     "lng": "35.2958", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "1581", 
     "population_proper": "1581"
@@ -11236,7 +11236,7 @@
     "lng": "33.5635", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Sevastopol’, Misto", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "1498", 
     "population_proper": "1498"
@@ -11610,7 +11610,7 @@
     "lng": "32.5333", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "1441", 
     "population_proper": "1441"
@@ -11709,7 +11709,7 @@
     "lng": "33.9153", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "1433", 
     "population_proper": "1433"
@@ -12226,7 +12226,7 @@
     "lng": "33.6911", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "1357", 
     "population_proper": "1357"
@@ -13491,7 +13491,7 @@
     "lng": "34.3711", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "1180", 
     "population_proper": "1180"
@@ -14272,7 +14272,7 @@
     "lng": "34.9128", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "1100", 
     "population_proper": "1100"
@@ -14459,7 +14459,7 @@
     "lng": "35.0986", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "1079", 
     "population_proper": "1079"
@@ -14503,7 +14503,7 @@
     "lng": "34.2931", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "1074", 
     "population_proper": "1074"
@@ -14514,7 +14514,7 @@
     "lng": "34.1439", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "", 
     "population": "1074", 
     "population_proper": "1074"
@@ -15383,7 +15383,7 @@
     "lng": "34.3011", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "minor", 
     "population": "", 
     "population_proper": ""
@@ -15504,7 +15504,7 @@
     "lng": "34.9292", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "minor", 
     "population": "", 
     "population_proper": ""
@@ -15658,7 +15658,7 @@
     "lng": "33.4909", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "minor", 
     "population": "", 
     "population_proper": ""
@@ -15724,7 +15724,7 @@
     "lng": "33.8608", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "minor", 
     "population": "", 
     "population_proper": ""
@@ -15812,7 +15812,7 @@
     "lng": "35.7748", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "minor", 
     "population": "", 
     "population_proper": ""
@@ -15823,7 +15823,7 @@
     "lng": "32.7062", 
     "country": "Ukraine", 
     "iso2": "UA", 
-    "admin_name": "Krym, Avtonomna Respublika", 
+    "admin_name": "Krym", 
     "capital": "minor", 
     "population": "", 
     "population_proper": ""
@@ -16158,5 +16158,4 @@
     "population": "", 
     "population_proper": ""
   }
-
 ]
