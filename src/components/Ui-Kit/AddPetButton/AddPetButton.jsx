@@ -9,7 +9,6 @@ import {
 } from './AddPetButton.styled';
 import { FormattedMessage } from 'react-intl';
 
-// eslint-disable-next-line react/prop-types
 const AddPetButton = ({ handleClick }) => {
   return (
     <ButtonContainer>
@@ -20,10 +19,14 @@ const AddPetButton = ({ handleClick }) => {
         <ButtonTitle>
           <FormattedMessage id="addPetBtn" />
         </ButtonTitle>
-        <VscAdd style={ReactIcon} />
+        <VscAdd style={ReactIcon}  />
       </Button>
     </ButtonContainer>
   );
+};
+
+AddPetButton.propTypes = {
+  handleClick: PropTypes.func,
 };
 
 export default AddPetButton;

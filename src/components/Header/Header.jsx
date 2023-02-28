@@ -1,5 +1,17 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { AnimatePresence } from 'framer-motion';
+import { VscMenu } from 'react-icons/vsc';
+import { selectIsAuthState } from 'redux/user/userSelectors';
+import Nav from 'components/Header/Nav';
+import AuthNav from 'components/Header/AuthNav';
+import UserNav from 'components/Header/UserNav';
+import MobMenu from 'components/Header/MobMenu';
+import Container from 'components/Container';
+import { pageAnimation } from 'constants/animation';
+import Uk from '../../assets/icons/ukraine.svg';
+import En from '../../assets/icons/united.svg';
 import {
   Navigation,
   PagesBox,
@@ -14,23 +26,9 @@ import {
   WrapSelector,
   BtnFlag,
 } from './Header.styled';
-import { VscMenu } from 'react-icons/vsc';
-import { useSelector } from 'react-redux';
-import { selectIsAuthState } from 'redux/user/userSelectors';
-import PropTypes from 'prop-types';
-import Nav from 'components/Header/Nav';
-import AuthNav from 'components/Header/AuthNav';
-import UserNav from 'components/Header/UserNav';
-import MobMenu from 'components/Header/MobMenu';
-import Container from 'components/Container';
-import { pageAnimation } from 'constants/animation';
-import { AnimatePresence } from 'framer-motion';
-import Uk from '../../assets/icons/ukraine.svg';
-import En from '../../assets/icons/united.svg';
 
 const Header = ({ handleLocaleChange }) => {
   const [menuIsActive, setMenuIsActive] = useState(false);
-  const [loginIsActive, setLoginIsActive] = useState(true);
   const isAuth = useSelector(selectIsAuthState);
 
   const openMenu = () => {
@@ -40,15 +38,7 @@ const Header = ({ handleLocaleChange }) => {
 
   const closeMenu = () => {
     setMenuIsActive(false);
-    if (!loginIsActive) {
-      setLoginIsActive(true);
-    }
     document.body.classList.remove('modal-open');
-  };
-
-  const closeMenuRegister = () => {
-    setMenuIsActive(false);
-    setLoginIsActive(false);
   };
 
   return (
@@ -75,13 +65,9 @@ const Header = ({ handleLocaleChange }) => {
             </WrapSelector>
             <AuthBox>
               {isAuth ? (
-                <UserNav />
+                <UserNav closeMenu={closeMenu} />
               ) : (
-                <AuthNav
-                  closeMenu={closeMenu}
-                  loginIsActive={loginIsActive}
-                  closeMenuRegister={closeMenuRegister}
-                />
+                <AuthNav closeMenu={closeMenu} />
               )}
             </AuthBox>
             <MenuBox>
@@ -94,15 +80,7 @@ const Header = ({ handleLocaleChange }) => {
       </HeaderStyled>
 
       <AnimatePresence>
-        {menuIsActive ? (
-          <MobMenu
-            closeMenu={closeMenu}
-            isAuth={isAuth}
-            loginIsActive={loginIsActive}
-            closeMenuRegister={closeMenuRegister}
-            key="mobile"
-          />
-        ) : null}
+        {menuIsActive ? <MobMenu closeMenu={closeMenu} key="mobile" /> : null}
       </AnimatePresence>
     </>
   );

@@ -1,11 +1,7 @@
-import React from 'react';
-import { useEffect } from 'react';
-
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
 import { useLoginUserMutation } from 'redux/api/userApi';
-
 import { Formik } from 'formik';
 import LoginInputs from './LoginInputs';
 import {
@@ -23,16 +19,14 @@ import {
   Paragraph,
   ErrorMessage,
 } from '../RegisterForm/RegisterForm.styled';
-
 import Button from 'components/Ui-Kit/Button';
+import Loader from 'components/Loader';
 import { FormattedMessage } from 'react-intl';
 
 // main function
 
 const LoginForm = () => {
-  const [loginUser, { isError, error }] = useLoginUserMutation();
-  const navigate = useNavigate();
-  const { isAuth } = useSelector(state => state.user);
+  const [loginUser, { isLoading, isError, error }] = useLoginUserMutation();
 
   const handleSubmit = values => {
     const credentials = {
@@ -42,46 +36,42 @@ const LoginForm = () => {
     loginUser(credentials);
   };
 
-  useEffect(() => {
-    if (isAuth) {
-      console.log('Congratulations! You are successfully signed up!');
-      navigate('/user');
-    }
-  });
-
   return (
-    <ModalWrapper>
-      <ModalContent>
-        <FormTitle>
+    <>
+      {isLoading && <Loader />}
+      <ModalWrapper>
+        <ModalContent>
+          <FormTitle>
           <FormattedMessage id="login" />
         </FormTitle>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          {({ isSubmitting }) => {
-            return (
-              <FormWrapper>
-                <LoginInputs />
-                <ButtonWrapper>
-                  <Button name="filled" type="submit" disabled={isSubmitting}>
-                    <FormattedMessage id="submit" />
-                  </Button>
-                </ButtonWrapper>
-              </FormWrapper>
-            );
-          }}
-        </Formik>
-        <Paragraph>
-          <FormattedMessage id="questionHaveAnAccount" />{' '}
-          <LoginLink to="/register">
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+          >
+            {({ isSubmitting }) => {
+              return (
+                <FormWrapper>
+                  <LoginInputs />
+                  <ButtonWrapper>
+                    <Button name="filled" type="submit" disabled={isSubmitting}>
+                      <FormattedMessage id="submit" />
+                    </Button>
+                  </ButtonWrapper>
+                </FormWrapper>
+              );
+            }}
+          </Formik>
+          <Paragraph>
+            <FormattedMessage id="questionHaveAnAccount" />{' '}
+            <LoginLink to="/register">
             <FormattedMessage id="register" />
           </LoginLink>
-        </Paragraph>
-        {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
-      </ModalContent>
-    </ModalWrapper>
+          </Paragraph>
+          {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
+        </ModalContent>
+      </ModalWrapper>
+    </>
   );
 };
 

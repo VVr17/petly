@@ -70,9 +70,24 @@ export const Link = styled(NavLink)`
   font-weight: ${theme.fontWeight.medium};
   line-height: 1.37;
   color: ${theme.colors.accent};
+  background-color: transparent;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 15px;
+  transition: background-color ${theme.transitionTiming},
+    color ${theme.transitionTiming};
+
+  &:hover,
+  &:focus {
+    background-color: ${theme.colors.accent};
+    color: ${theme.colors.lightText};
+  }
 `;
 
 export const WrapperSignature = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;

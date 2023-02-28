@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { StyledModal, ButtonCloseModal } from './Modal.styled';
 import { AiOutlineClose } from 'react-icons/ai';
-import PropTypes from 'prop-types';
-import Overlay from 'components/Overlay';
+import Overlay from 'components/Modals/Overlay';
 import { popUpMenuAnimation } from 'constants/animation';
 
 const ModalComponent = ({ closeModal, children }) => {
@@ -40,33 +40,8 @@ const ModalComponent = ({ closeModal, children }) => {
   );
 };
 
-// const ModalComponent = ({ isOpen, toggleModal, children }) => {
-//   const [isOpen, setIsOpen] = useState(false)
-
-// function toggleModal(e) {
-//   setIsOpen(!isOpen)
-// }
-
-//   return (
-//     <StyledModal
-//       isOpen={isOpen}
-//       onBackgroundClick={toggleModal}
-//       onEscapeKeydown={toggleModal}
-//     >
-//       <ButtonCloseModal onClick={toggleModal}>
-//         <AiOutlineClose size={36} />
-//       </ButtonCloseModal>
-//       {children}
-//       {/* <AddNoticeFormFirst /> */}
-//       <div>Modal2</div>
-//     </StyledModal>
-//   );
-// };
-
 ModalComponent.propTypes = {
   closeModal: PropTypes.func.isRequired,
-  // isOpen: PropTypes.bool.isRequired,
-  // toggleModal: PropTypes.func.isRequired,
   children: PropTypes.node,
 };
 

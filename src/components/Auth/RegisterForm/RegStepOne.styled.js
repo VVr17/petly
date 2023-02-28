@@ -16,5 +16,5 @@ export const PasswordToggle = styled.button`
   font-size: 20px;
   color: ${theme.colors.secondaryText};
   cursor: pointer;
-  z-index: 100;
+  z-index: 10;
 `;

@@ -16,6 +16,7 @@ import {
 } from 'redux/api/userApi';
 import Plus from 'assets/images/desktop/plus.svg';
 import Loader from 'components/Loader';
+import { toast } from 'react-toastify';
 import { FormattedMessage } from 'react-intl';
 
 const UserPhoto = () => {
@@ -28,10 +29,8 @@ const UserPhoto = () => {
     let fileReader,
       isCancel = false;
     if (file) {
-      console.log('file inside user', file);
       const data = new FormData();
       data.append('userImage', file);
-      updateUser(data);
 
       fileReader = new FileReader();
       fileReader.onload = e => {
@@ -40,7 +39,14 @@ const UserPhoto = () => {
           setFileDataURL(result);
         }
       };
+
       fileReader.readAsDataURL(file);
+
+      const uploadPhoto = async () => {
+        await updateUser(data);
+        toast.info('User photo has been successfully updated');
+      };
+      uploadPhoto();
     }
     return () => {
       isCancel = true;
@@ -80,7 +86,6 @@ const UserPhoto = () => {
                 type="file"
                 accept="image/*"
                 onChange={e => {
-                  console.log('inside user handle change');
                   setFile(e.currentTarget.files[0]);
                   setFieldValue('userImage', e.currentTarget.files[0]);
                 }}

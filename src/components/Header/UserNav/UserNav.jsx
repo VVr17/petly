@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Container, Link, iconStyle } from './UserNav.styled';
 import { BsFillPersonFill } from 'react-icons/bs';
-import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 const UserNav = ({ closeMenu }) => {

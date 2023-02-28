@@ -1,6 +1,7 @@
 import React, { Suspense, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import { useGetCurrentUserQuery } from 'redux/api/userApi';
 import { selectTokenState } from 'redux/user/userSelectors';
 import Loader from 'components/Loader';
@@ -15,14 +16,13 @@ import {
   SharedLayout,
   User,
 } from './lazyLoading';
-import { AnimatePresence } from 'framer-motion';
 import { RestrictedRoute } from 'components/Routes/RestrictedRoute';
 import { PrivateRoute } from 'components/Routes/PrivateRoute';
-import { GlobalStyle } from './App.styled';
-import ToastifyGlobalStyle from 'components/Ui-Kit/ToastifyGlobalStyle.styled';
 import { IntlProvider, FormattedMessage, FormattedNumber } from 'react-intl';
 import enMessages from 'assets/locales/en.json';
 import ukMessages from 'assets/locales/uk.json';
+import ToastifyGlobalStyle from './ToastifyGlobalStyle.styled';
+import { GlobalStyle } from './App.styled';
 
 const App = () => {
   const [locale, setLocale] = useState('en');

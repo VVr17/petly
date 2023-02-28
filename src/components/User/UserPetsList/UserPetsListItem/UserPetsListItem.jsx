@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Item,
@@ -12,56 +12,79 @@ import {
 } from './UserPetsListItem.styled';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
 import { useDeletePetMutation } from 'redux/api/petsApi';
-import { toast } from 'react-toastify';
+import { AnimatePresence } from 'framer-motion';
+import ModalDelete from 'components/Modals/ModalDelete';
+import ModalComponent from 'components/Modals/Modal';
 import { useIntl } from 'react-intl';
 
 const UserPetsListItem = ({ pet }) => {
   const { name, birthDate, breed, comments, photoURL } = pet;
   const [deletePetMutation, { isLoading }] = useDeletePetMutation();
+  const [isOpen, setIsOpen] = useState(false);
   const { formatMessage } = useIntl();
 
   const handleDelete = async petId => {
-    if (confirm('Do you want to delete your pet')) {
-      try {
-        const response = await deletePetMutation(petId);
-        toast.info(formatMessage({ id: 'toastPetDelete' }));
-      } catch (error) {
-        console.log(error);
-      }
+    try {
+      setIsOpen(false);
+      document.body.classList.remove('modal-open');
+      const response = await deletePetMutation(petId);
+    } catch (error) {
+      console.log(error);
     }
   };
 
+  const openModal = () => {
+    document.body.classList.add('modal-open');
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+    document.body.classList.remove('modal-open');
+  };
+
   return (
-    <Item>
-      <Image src={photoURL} alt="photo" />
-      <InfoBox>
-        <Button onClick={() => handleDelete(pet._id)}>
-          <RiDeleteBin6Fill style={iconStyle} />
-        </Button>
-        <Text>
-          <Span>{formatMessage({ id: 'name' })}: </Span>
-          {name}
-        </Text>
-        <Text>
-          <Span>{formatMessage({ id: 'dateBirth' })}: </Span>
-          {birthDate}
-        </Text>
-        <Text>
-          <Span>{formatMessage({ id: 'breed' })}: </Span>
-          {breed}
-        </Text>
-        <TextComments>
-          <Span>{formatMessage({ id: 'comment' })}: </Span>
-          {comments}
-        </TextComments>
-      </InfoBox>
-    </Item>
+    <>
+      <Item>
+        <Image src={photoURL} alt="photo" />
+        <InfoBox>
+          <Button onClick={openModal}>
+            <RiDeleteBin6Fill style={iconStyle} />
+          </Button>
+          <Text>
+            <Span>{formatMessage({ id: 'name' })}: </Span>
+            {name}
+          </Text>
+          <Text>
+            <Span>{formatMessage({ id: 'dateBirth' })}: </Span>
+            {birthDate}
+          </Text>
+          <Text>
+            <Span>{formatMessage({ id: 'breed' })}: </Span>
+            {breed}
+          </Text>
+          <TextComments>
+            <Span>{formatMessage({ id: 'comment' })}: </Span>
+            {comments}
+          </TextComments>
+        </InfoBox>
+      </Item>
+      <AnimatePresence>
+        {isOpen && (
+          <ModalComponent closeModal={closeModal}>
+            <ModalDelete
+              closeModal={closeModal}
+              onDelete={() => handleDelete(pet._id)}
+            />
+          </ModalComponent>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
 UserPetsListItem.propTypes = {
   pet: PropTypes.object.isRequired,
-  // handleDelete: PropTypes.func.isRequired,
 };
 
 export default UserPetsListItem;

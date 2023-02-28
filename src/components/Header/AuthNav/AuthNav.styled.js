@@ -18,26 +18,32 @@ export const Link = styled(NavLink)`
   font-weight: ${theme.fontWeight.medium};
   font-size: ${theme.fontSizes.xxs};
   line-height: 1.35;
-  color: ${theme.colors.mainText};
+
+  background-color: ${({ theme, isactive }) =>
+    isactive ? theme.colors.accent : 'transparent'};
+  color: ${({ theme, isactive }) =>
+    isactive ? theme.colors.lightText : theme.colors.mainText};
   border: 2px solid ${theme.colors.accent};
+
   border-radius: 40px;
   transition: color ${theme.transitionTiming};
   transition: background-color ${theme.transitionTiming};
-  transition: border-color ${theme.transitionTiming};
+
   &:not(:last-child) {
     margin-right: 20px;
   }
+
   &.active {
     color: ${theme.colors.lightText};
     background-color: ${theme.colors.accent};
-    border: 2px solid ${theme.colors.accent};
   }
+
   &:hover,
   :focus {
     color: ${theme.colors.lightText};
     background-color: ${theme.colors.accent};
-    border: 2px solid ${theme.colors.accent};
   }
+
   @media (min-width: ${breakpoints[1]}px) {
     padding: 10px 28px 10px 28px;
     font-size: ${theme.fontSizes.xs};
@@ -54,16 +60,17 @@ export const AuthLink = styled(NavLink)`
   font-weight: ${theme.fontWeight.medium};
   font-size: ${theme.fontSizes.xxs};
   line-height: 1.35;
-  color: ${theme.colors.lightText};
-  background-color: ${theme.colors.accent};
-  border: 2px solid ${theme.colors.accent};
+  /* color: ${theme.colors.lightText}; */
+  /* background-color: ${theme.colors.accent}; */
+  /* border: 2px solid ${theme.colors.accent}; */
   border-radius: 40px;
   transition: background-color ${theme.transitionTiming};
   transition: border-color ${theme.transitionTiming};
-  &.active {
-    background-color: ${theme.colors.hover};
-    border: 2px solid ${theme.colors.hover};
-  }
+
+  /* &.active {
+    background-color: ${theme.colors.accent};
+    border: 2px solid ${theme.colors.accent};
+  } */
   &:not(:last-child) {
     margin-right: 20px;
   }

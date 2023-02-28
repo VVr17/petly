@@ -10,17 +10,19 @@ import FindPetFilter from 'components/Notices/FindPetFilter';
 import SearchForm from 'components/Ui-Kit/SearchForm';
 import { NavContainer, FormContainer } from './NoticesPage.styled';
 import AddPetButton from 'components/Ui-Kit/AddPetButton';
-import ModalComponent from 'components/Modal';
 import AddNoticeFormHeader from 'components/Notices/AddNoticeForm';
 import AddPetForm from 'components/Notices/AddNoticeForm/AddPetForm';
 import { AnimatePresence } from 'framer-motion';
 import { useGetNotices } from 'hooks/useGetNotices';
 import { useIntl } from 'react-intl';
+import ModalComponent from 'components/Modals/Modal/Modal';
 
 const NoticesPage = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { notices, isFetching, error } = useGetNotices();
   const [filter, setFilter] = useState('');
+  //TODO: should be filter on submit
+  // const { notices, isFetching, error, totalItems } = useGetNotices(filter);
+  const { notices, isFetching, error, totalItems } = useGetNotices();
   const [visibleNotices, setvisibleNotices] = useState([]);
   const { formatMessage } = useIntl();
 

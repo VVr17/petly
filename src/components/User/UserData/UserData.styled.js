@@ -70,21 +70,43 @@ export const Button = styled.button`
   gap: 4px;
   margin-left: auto;
   margin-right: 12px;
-  padding: 0;
   border: none;
-  background-color: white;
+  background-color: transparent;
   cursor: pointer;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 15px;
+  border-radius: 15px;
+  color: ${theme.colors.logoutColor};
+  transition: background-color ${theme.transitionTiming},
+    color ${theme.transitionTiming};
+
+  svg {
+    transition: color ${theme.transitionTiming};
+    color: ${theme.colors.accent};
+  }
+
+  &:hover,
+  &:focus {
+    background-color: ${theme.colors.accent};
+    color: ${theme.colors.lightText};
+
+    svg {
+      color: ${theme.colors.lightText};
+    }
+  }
 `;
 
 export const iconStyle = {
   height: '20px',
   width: '20px',
-  fill: theme.colors.accent,
-  color: theme.colors.accent,
+  // fill: theme.colors.accent,
+  // color: theme.colors.accent,
 };
 
 export const LogoutBtn = {
   fontSize: '16px',
-  opacity: 0.6,
   marginLeft: 0,
 };

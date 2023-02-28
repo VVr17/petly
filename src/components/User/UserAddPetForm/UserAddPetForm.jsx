@@ -26,6 +26,7 @@ import {
 } from './Validation';
 import UploadImageField from 'components/Ui-Kit/UploadImage/UploadImage';
 import CommentField from 'components/Notices/AddNoticeForm/AddPetForm/StepTwo/CommentField';
+import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
 
 const UserAddPetForm = ({ closeModal }) => {
@@ -75,8 +76,10 @@ const UserAddPetForm = ({ closeModal }) => {
       data.append('comments', values.comments);
       try {
         const response = await addPetMutation(data);
+        toast.success('Your pet has been successfully added');
       } catch (error) {
         console.error('Failed to add pet:', error);
+        toast.error('Something went wrong. Please try again later');
       }
       closeModal();
     }

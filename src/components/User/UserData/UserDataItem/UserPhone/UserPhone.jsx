@@ -12,7 +12,7 @@ import { selectUserState } from 'redux/user/userSelectors';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
 
-const UserPhone = () => {
+const UserPhone = ({ isUpdating, setIsUpdating }) => {
   const { formatMessage } = useIntl();
   const [isDisabled, setIsDisabled] = useState(true);
   const [updateUser, { isLoading }] = useUpdateUserMutation();
@@ -22,11 +22,13 @@ const UserPhone = () => {
   const handleClick = values => {
     if (isDisabled) {
       setIsDisabled(false);
+      setIsUpdating(true);
       return;
     }
 
     if (!values.phone) return;
     setIsDisabled(true);
+    setIsUpdating(false);
   };
 
   const handleSubmit = async (values, actions) => {
@@ -62,7 +64,8 @@ const UserPhone = () => {
             />
             <UserUpdateButton
               type="submit"
-              isdisabled={isDisabled}
+              disabled={isUpdating && isDisabled}
+              isInputDisabled={isDisabled}
               onClick={() => {
                 if (!values.phone) {
                   values.phone = user.phone;
@@ -81,7 +84,8 @@ const UserPhone = () => {
 };
 
 UserPhone.propTypes = {
-  user: PropTypes.object,
+  isUpdating: PropTypes.bool,
+  setIsUpdating: PropTypes.func,
 };
 
 export default UserPhone;

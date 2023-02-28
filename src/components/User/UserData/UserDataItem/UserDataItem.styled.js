@@ -11,7 +11,7 @@ export const MyDatePickerNew = styled(DatePicker)`
   padding-left: 12px;
   padding-right: 12px;
 
-  cursor: pointer;
+  /* cursor: pointer; */
   border-radius: 40px;
   border: 1px solid
     ${({ theme, disabled }) =>
@@ -122,15 +122,21 @@ export const ImageBox = styled.div`
 
 export const LoadImgLabel = styled.label`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 4px;
   margin-left: auto;
   margin-right: 12px;
-  padding: 0;
   border: none;
   background-color: white;
   cursor: pointer;
   font-size: 12px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 15px;
+  transition: background-color ${theme.transitionTiming},
+    color ${theme.transitionTiming};
 
   ${theme.mq.tablet} {
     position: absolute;
@@ -141,6 +147,21 @@ export const LoadImgLabel = styled.label`
   ${theme.mq.desktop} {
     bottom: 0px;
     right: -84px;
+  }
+
+  svg {
+    /* color: inherit; */
+    transition: color ${theme.transitionTiming};
+  }
+
+  &:hover,
+  &:focus {
+    background-color: ${theme.colors.accent};
+    color: ${theme.colors.lightText};
+
+    svg {
+      color: ${theme.colors.lightText};
+    }
   }
 `;
 
@@ -166,6 +187,7 @@ export const ImagePreview = styled.img`
   border-radius: 50%;
   background: ${theme.colors.mainBackground};
   object-fit: cover;
+  cursor: initial;
 `;
 
 export const LoadImgPlus = styled.img`

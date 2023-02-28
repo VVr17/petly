@@ -1,12 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { statusFilter } from '../../../redux/filter/filterConstans.js';
-import { setStatusFilter } from '../../../redux/filter/filterSlice.js';
-import { selectStatusFilter } from '../../../redux/filter/filterSelectors.js';
+import { setStatusFilter } from 'redux/filter/filterSlice.js';
+import { selectStatusFilter } from 'redux/filter/filterSelectors.js';
 import Button from 'components/Ui-Kit/Button';
-import { Navigation, NavComponent } from './FindPetFilter.styled';
+import { Navigation } from './FindPetFilter.styled';
 import { FormattedMessage } from 'react-intl';
+import { privateFilter, publicFilter } from 'helpers/noticeFilter';
 
 const FindPetFilter = () => {
   const filter = useSelector(selectStatusFilter);
@@ -15,50 +15,34 @@ const FindPetFilter = () => {
   const { isAuth } = useSelector(state => state.user);
 
   return (
-    <Navigation>
+    <>
       <Navigation>
-        <Button
-          name="filter"
-          selected={filter === statusFilter.sell}
-          onClick={() => handleStatusFilterChange(statusFilter.sell)}
-        >
-          <FormattedMessage id="sell" />
-        </Button>
-        <Button
-          name="filter"
-          selected={filter === statusFilter.lostAndFound}
-          onClick={() => handleStatusFilterChange(statusFilter.lostAndFound)}
-        >
-          <FormattedMessage id="lostFound" />
-        </Button>
-        <Button
-          name="filter"
-          selected={filter === statusFilter.inGoodHands}
-          onClick={() => handleStatusFilterChange(statusFilter.inGoodHands)}
-        >
-          <FormattedMessage id="goodHands" />
-        </Button>
+        {publicFilter.map(({ status, filterId }) => (
+          <Button
+            key={filterId}
+            name="filter"
+            selected={filter === status}
+            onClick={() => handleStatusFilterChange(status)}
+          >
+            <FormattedMessage id={filterId} />
+          </Button>
+        ))}
+        {isAuth && (
+          <>
+            {privateFilter.map(({ status, filterId }) => (
+              <Button
+                key={filterId}
+                name="filter"
+                selected={filter === status}
+                onClick={() => handleStatusFilterChange(status)}
+              >
+                <FormattedMessage id={filterId} />
+              </Button>
+            ))}
+          </>
+        )}
       </Navigation>
-
-      {isAuth && (
-        <Navigation>
-          <Button
-            name="filter"
-            selected={filter === statusFilter.favoriteAds}
-            onClick={() => handleStatusFilterChange(statusFilter.favoriteAds)}
-          >
-            <FormattedMessage id="favorite" />
-          </Button>
-          <Button
-            name="filter"
-            selected={filter === statusFilter.myAds}
-            onClick={() => handleStatusFilterChange(statusFilter.myAds)}
-          >
-            <FormattedMessage id="myAds" />
-          </Button>
-        </Navigation>
-      )}
-    </Navigation>
+    </>
   );
 };
 export default FindPetFilter;

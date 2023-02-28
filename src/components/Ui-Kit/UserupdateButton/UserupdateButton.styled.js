@@ -13,6 +13,20 @@ export const Button = styled.button`
   border-radius: 50%;
   border: inherit;
   background-color: ${theme.colors.mainBackground};
+  color: ${theme.colors.accent};
+  cursor: pointer;
+  transition: background-color ${theme.transitionTiming},
+    color ${theme.transitionTiming};
+
+  &:hover {
+    background-color: ${theme.colors.accent};
+    color: ${theme.colors.lightText};
+  }
+
+  :disabled {
+    background-color: ${theme.colors.disabled};
+    color: ${theme.colors.lightText};
+  }
 
   @media (min-width: ${breakpoints[1]}px) {
     width: 32px;
@@ -22,7 +36,6 @@ export const Button = styled.button`
 `;
 
 export const Pencil = styled(RiPencilFill)`
-  fill: ${theme.colors.accent};
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -34,7 +47,6 @@ export const Pencil = styled(RiPencilFill)`
 `;
 
 export const Check = styled(BsCheckLg)`
-  fill: ${theme.colors.accent};
   display: inline-block;
   width: 16px;
   height: 16px;

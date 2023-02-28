@@ -5,13 +5,17 @@ import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
 import { useIntl } from 'react-intl';
 
 const RegStepOne = () => {
+  
+  // Define state variable for password visibility
   const [showPassword, setShowPassword] = useState(false);
   const { formatMessage } = useIntl();
 
+  // Function to toggle password visibility
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
+  // Determine password input type based on password visibility
   const passwordInputType = showPassword ? 'text' : 'password';
 
   return (

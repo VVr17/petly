@@ -61,11 +61,11 @@ const AddPetForm = ({ onClose }) => {
 
   // form submit
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting }) => {
     if (currentStep < 2) {
       setCurrentStep(currentStep + 1);
     } else {
-      if (!values.price) {
+      if (!values.price && values.category === 'sell') {
         toast.error(formatMessage({ id: 'toastAllFieldsFil' }));
         return;
       }
@@ -91,10 +91,10 @@ const AddPetForm = ({ onClose }) => {
       data.append('comments', values.comments);
 
       // send FormData to Backend
-      addNotice({ categoryName, noticeData: data });
-
-      // close Modal
       onClose();
+      await addNotice({ categoryName, noticeData: data });
+      toast.success('The ad has been added');
+      // close Modal
     }
 
     setSubmitting(false);

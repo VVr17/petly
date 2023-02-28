@@ -34,10 +34,6 @@ const LoginInputs = () => {
           {showPassword ? <RxEyeOpen /> : <RxEyeClosed />}
         </PasswordToggle>
       </InputField>
-
-      {/* <PasswordToggle type="button" onClick={toggleShowPassword}>
-        {showPassword ? <RxEyeOpen /> : <RxEyeClosed />}
-      </PasswordToggle> */}
     </>
   );
 };

@@ -7,11 +7,7 @@ import {
   TAGS_TYPES,
 } from 'constants/api';
 import baseQuery from 'redux/baseQuery';
-import {
-  addFavorites,
-  removeFavorites,
-  setFavorites,
-} from 'redux/favorites/favoritesSlice';
+import { addFavorites, removeFavorites } from 'redux/favorites/favoritesSlice';
 
 export const noticesApi = createApi({
   reducerPath: 'noticesApi',
@@ -19,18 +15,25 @@ export const noticesApi = createApi({
   tagTypes: [TAGS_TYPES.notice],
   endpoints: builder => ({
     getNoticeByCategory: builder.query({
-      query: categoryName => `${NOTICES_URL}${CATEGORY_URL}/${categoryName}`,
-      transformResponse: response => response.data,
+      query: ({ categoryName, search }) =>
+        search
+          ? `${NOTICES_URL}${CATEGORY_URL}/${categoryName}?search=${search}`
+          : `${NOTICES_URL}${CATEGORY_URL}/${categoryName}`,
+      // transformResponse: response => response.data,
       providesTags: [TAGS_TYPES.notice],
     }),
     getFavoritesNotices: builder.query({
-      query: () => `${NOTICES_URL}/favorites`,
-      transformResponse: response => response.data,
+      query: search =>
+        search
+          ? `${NOTICES_URL}/favorites?search=${search}`
+          : `${NOTICES_URL}/favorites`,
+      // transformResponse: response => response.data,
       providesTags: [TAGS_TYPES.favorites],
     }),
     getUserNotices: builder.query({
-      query: () => `${NOTICES_URL}/user`,
-      transformResponse: response => response.data,
+      query: search =>
+        search ? `${NOTICES_URL}/user?search=${search}` : `${NOTICES_URL}/user`,
+      // transformResponse: response => response.data,
       providesTags: [TAGS_TYPES.notice],
     }),
     getNoticeById: builder.query({

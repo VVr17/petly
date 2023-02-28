@@ -26,15 +26,20 @@ export const Link = styled(NavLink)`
   font-size: ${theme.fontSizes.xxl};
   line-height: 1.37;
   color: ${theme.colors.secondText};
-  transition: color ${theme.transitionTiming};
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: color ${theme.transitionTiming},
+    text-decoration-color ${theme.transitionTiming};
+
   &.active {
     color: ${theme.colors.accent};
-    text-decoration: underline;
+    text-decoration-color: ${theme.colors.accent};
   }
+
   &:hover,
   :focus {
     color: ${theme.colors.accent};
-    text-decoration: underline;
+    text-decoration-color: ${theme.colors.accent};
   }
   &:not(:last-child) {
     margin-bottom: 40px;

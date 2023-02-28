@@ -10,13 +10,17 @@ import {
 } from './MobMenu.styled';
 import PropTypes from 'prop-types';
 import { VscChromeClose } from 'react-icons/vsc';
-import Nav from 'components/Header/Nav/Nav';
+import Nav from 'components/Header/Nav';
 import AuthNav from 'components/Header/AuthNav';
 import UserNav from 'components/Header/UserNav';
-import Overlay from 'components/Overlay';
+import Overlay from 'components/Modals/Overlay';
 import { mobileMenuAnimation } from 'constants/animation';
+import { useSelector } from 'react-redux';
+import { selectIsAuthState } from 'redux/user/userSelectors';
 
-const MobMenu = ({ closeMenu, isAuth, loginIsActive, closeMenuRegister }) => {
+const MobMenu = ({ closeMenu }) => {
+  const isAuth = useSelector(selectIsAuthState);
+
   const handleBackdropClick = e => {
     if (e.currentTarget === e.target) {
       closeMenu();
@@ -42,11 +46,7 @@ const MobMenu = ({ closeMenu, isAuth, loginIsActive, closeMenuRegister }) => {
           {isAuth ? (
             <UserNav closeMenu={closeMenu} />
           ) : (
-            <AuthNav
-              closeMenu={closeMenu}
-              loginIsActive={loginIsActive}
-              closeMenuRegister={closeMenuRegister}
-            />
+            <AuthNav closeMenu={closeMenu} />
           )}
         </AuthBox>
         <Nav closeMenu={closeMenu} />
@@ -57,9 +57,6 @@ const MobMenu = ({ closeMenu, isAuth, loginIsActive, closeMenuRegister }) => {
 
 MobMenu.propTypes = {
   closeMenu: PropTypes.func.isRequired,
-  isAuth: PropTypes.bool.isRequired,
-  loginIsActive: PropTypes.bool.isRequired,
-  closeMenuRegister: PropTypes.func.isRequired,
 };
 
 export default MobMenu;

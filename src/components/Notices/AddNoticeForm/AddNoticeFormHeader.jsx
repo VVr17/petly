@@ -12,6 +12,4 @@ const AddNoticeFormHeader = () => {
   );
 };
 
-// const AddPetFormSecond = () => {};
-
 export default AddNoticeFormHeader;
