@@ -14,6 +14,7 @@ const NewsPage = () => {
   const { data: news, error, isLoading } = useGetNewsQuery();
   const [filter, setFilter] = useState('');
   const [filteredNews, setFilteredNews] = useState([]);
+  const [isSearch, setIsSearch] = useState(false);
   const { formatMessage } = useIntl();
 
   const searchQuery = news => {
@@ -27,13 +28,22 @@ const NewsPage = () => {
     return newsFilter;
   };
 
-  const filterUpdate = e => {
-    const value = e.target.value;
-    setFilter(value ? value.toLowerCase() : value);
-  };
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (isSearch) {
+      setIsSearch(false);
+      setFilter('');
+      e.currentTarget.reset();
+    } else {
+      setIsSearch(true);
+      const searchForm = e.currentTarget.elements.search.value.toLowerCase();
+      if (searchForm === '') {
+        toast.error('Please, enter your request');
+      }
+      setFilter(searchForm);
 
-  const handleClean = () => {
-    setFilter('');
+      // onSubmit(e);
+    }
   };
 
   useEffect(() => {
@@ -48,7 +58,7 @@ const NewsPage = () => {
     <Section>
       <WrapperTitle>
         <TitlePage name={formatMessage({ id: 'news' })} />
-        <SearchForm onChange={filterUpdate} onSubmit={handleClean} />
+        <SearchForm isSearch={isSearch} handleSubmit={handleSubmit} />
       </WrapperTitle>
       {isLoading && <Loader />}
       {error && <div>{error.message}</div>}

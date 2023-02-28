@@ -9,35 +9,18 @@ import {
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 
-const SearchForm = ({ onChange, onSubmit }) => {
-  const [isSearch, setIsSearch] = useState(false);
+const SearchForm = ({ handleSubmit, isSearch }) => {
   const { formatMessage } = useIntl();
 
-  const handleChange = e => {
-    setIsSearch(true);
-    onChange(e);
-    if (e.target.value === '') {
-      setIsSearch(false);
-    }
-  };
-
-  const handleClean = e => {
-    e.preventDefault();
-    onSubmit(e);
-    // e.currentTarget.reset();
-    setIsSearch(false);
-  };
-
   return (
-    <FormWrapper onSubmit={handleClean}>
+    <FormWrapper onSubmit={handleSubmit}>
       <FormField
         name="search"
         type="text"
         placeholder={formatMessage({ id: 'search' })}
-        onChange={handleChange}
       />
       {!isSearch ? (
-        <Button type="button">
+        <Button type="submit">
           <AiOutlineSearch />
         </Button>
       ) : (
@@ -50,8 +33,8 @@ const SearchForm = ({ onChange, onSubmit }) => {
 };
 
 SearchForm.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  isSearch: PropTypes.bool,
 };
 
 export default SearchForm;
