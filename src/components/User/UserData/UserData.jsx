@@ -4,6 +4,7 @@ import { selectUserState } from 'redux/user/userSelectors';
 import { logout } from 'redux/user/userSlice';
 import { IoLogOutOutline } from 'react-icons/io5';
 import { Box } from 'components/Box/Box';
+import { FormattedMessage } from 'react-intl';
 import {
   Container,
   UserCard,
@@ -31,7 +32,9 @@ const UserData = () => {
 
   return (
     <Container>
-      <Title>My information:</Title>
+      <Title>
+        <FormattedMessage id="myInfo" />:
+      </Title>
       <UserCard>
         <UserPhoto />
         <Box mt={['32px', '32px', '0', '0']}>
@@ -48,7 +51,7 @@ const UserData = () => {
           >
             <Button style={LogoutBtn} type="button" onClick={handleLogout}>
               <IoLogOutOutline style={iconStyle} />
-              Log out
+              <FormattedMessage id="logOut" />
             </Button>
           </Box>
         </Box>

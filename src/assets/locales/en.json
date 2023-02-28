@@ -23,9 +23,12 @@
   "confirmPas":"Confirm Password",
   "name":"Name",
   "city":"City, Region",
+  "cityLabel":"City",
   "phoneInput":"Phone +380123456789",
   "birthday":"Birthday",
   "contact":"Contact",
+  "logOut":"Log out",
+  "editPhoto":"Edit photo",
 
   "time":"Time",
   "closed":"Closed",
@@ -34,6 +37,7 @@
 
   "addPet":"Add pet",
   "myPet":"My pets",
+  "myInfo":"My information",
 
   "readMore":"Read more",
   "learnMore":"Learn more",
@@ -84,5 +88,10 @@
   "toastRegisterLogin":"Please, register or login to add notice to favorite",
   "toastRemovedNotice":"Notice has been removed from favorites",
   "toastAddedNotice":"Notice has been added to favorites",
-  "toastPetDelete":"Pet has been deleted"
+  "toastPetDelete":"Pet has been deleted",
+  "toastBirthUpdated":"Birth date has been successfully updated",
+  "toastCityUpdated":"City has been successfully updated",
+  "toastEmailUpdated":"Email has been successfully updated",
+  "toastNameUpdated":"Name has been successfully updated",
+  "toastPhoneUpdated":"Phone has been successfully updated"
 }

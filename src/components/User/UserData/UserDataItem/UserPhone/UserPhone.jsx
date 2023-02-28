@@ -10,8 +10,10 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { selectUserState } from 'redux/user/userSelectors';
 import { toast } from 'react-toastify';
+import { useIntl } from 'react-intl';
 
 const UserPhone = () => {
+  const { formatMessage } = useIntl();
   const [isDisabled, setIsDisabled] = useState(true);
   const [updateUser, { isLoading }] = useUpdateUserMutation();
   const user = useSelector(selectUserState);
@@ -39,7 +41,7 @@ const UserPhone = () => {
     data.append('phone', values.phone);
     const { data: response } = await updateUser(data);
     if (response.code === 200)
-      toast.info('Phone has been successfully updated');
+      toast.info(formatMessage({ id: 'toastPhoneUpdated' }));
   };
 
   return (
@@ -52,7 +54,7 @@ const UserPhone = () => {
         <Form>
           <FieldWrapper>
             <UserInput
-              label="Phone"
+              label={formatMessage({ id: 'phone' })}
               name="phone"
               type="phone"
               disabled={isDisabled}
