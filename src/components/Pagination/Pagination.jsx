@@ -16,7 +16,7 @@ const Paginate = ({ total, handlePageClick, page }) => {
         marginPagesDisplayed={2}
         breakLabel="..."
         renderOnZeroPageCount={null}
-        initialPage={page - 1}
+        forcePage={page - 1}
       />
     </Container>
   );
