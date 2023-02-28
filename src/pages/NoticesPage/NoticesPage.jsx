@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
@@ -24,12 +24,11 @@ import { useGetNotices } from 'hooks/useGetNotices';
 import { FormattedMessage, useIntl } from 'react-intl';
 import ModalComponent from 'components/Modals/Modal/Modal';
 import Pets from 'assets/images/desktop/pet.jpg';
-import { selectStatusFilter } from 'redux/filter/filterSelectors';
 
 const NoticesPage = () => {
+  const isAuth = useSelector(selectIsAuthState);
   const [isOpen, setIsOpen] = useState(false);
   const [filter, setFilter] = useState('');
-  const category = useSelector(selectStatusFilter);
   const [isSearch, setIsSearch] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   // const query = searchParams.get('search') ?? '';
@@ -72,7 +71,6 @@ const NoticesPage = () => {
     setFilter('');
   };
 
-  const isAuth = useSelector(selectIsAuthState);
   const handleClick = () => {
     if (isAuth) {
       setIsOpen(true);
@@ -95,7 +93,7 @@ const NoticesPage = () => {
   }, [notices, filter]);
 
   const showNotices = visibleNotices && !error && !isFetching;
-  console.log('visibleNotices', visibleNotices);
+
   return (
     <Section>
       <TitlePage name={formatMessage({ id: 'findFavoritePet' })} />
@@ -118,7 +116,6 @@ const NoticesPage = () => {
           <Image src={Pets} alt="pets"></Image>
         </ImageBox>
       )}
-      {/* {showNotices && <NoticesCategoryList notices={visibleNotices} />} */}
 
       <AnimatePresence>
         {isOpen && (
