@@ -29,6 +29,7 @@ export const Box = styled.div`
 
 export const Title = styled.h2`
   margin-right: auto;
+  margin-bottom: 16px;
   font-family: ${theme.fontFamily.manrope};
   font-style: normal;
   font-weight: ${theme.fontWeight.medium};

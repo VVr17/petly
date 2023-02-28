@@ -9,18 +9,27 @@ import Section from 'components/Section';
 import TitlePage from 'components/Ui-Kit/TitlePage';
 import FindPetFilter from 'components/Notices/FindPetFilter';
 import SearchForm from 'components/Ui-Kit/SearchForm';
-import { NavContainer, FormContainer } from './NoticesPage.styled';
+import {
+  NavContainer,
+  FormContainer,
+  ImageBox,
+  Title,
+  Image,
+} from './NoticesPage.styled';
 import AddPetButton from 'components/Ui-Kit/AddPetButton';
 import AddNoticeFormHeader from 'components/Notices/AddNoticeForm';
 import AddPetForm from 'components/Notices/AddNoticeForm/AddPetForm';
 import { AnimatePresence } from 'framer-motion';
 import { useGetNotices } from 'hooks/useGetNotices';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import ModalComponent from 'components/Modals/Modal/Modal';
+import Pets from 'assets/images/desktop/pet.jpg';
+import { selectStatusFilter } from 'redux/filter/filterSelectors';
 
 const NoticesPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [filter, setFilter] = useState('');
+  const category = useSelector(selectStatusFilter);
   const [isSearch, setIsSearch] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   // const query = searchParams.get('search') ?? '';
@@ -86,7 +95,7 @@ const NoticesPage = () => {
   }, [notices, filter]);
 
   const showNotices = visibleNotices && !error && !isFetching;
-
+  console.log('visibleNotices', visibleNotices);
   return (
     <Section>
       <TitlePage name={formatMessage({ id: 'findFavoritePet' })} />
@@ -98,7 +107,18 @@ const NoticesPage = () => {
       </NavContainer>
 
       {isFetching && <Loader />}
-      {showNotices && <NoticesCategoryList notices={visibleNotices} />}
+      {!isFetching && visibleNotices.length !== 0 && (
+        <NoticesCategoryList notices={visibleNotices} />
+      )}
+      {!isFetching && visibleNotices.length === 0 && (
+        <ImageBox>
+          <Title>
+            <FormattedMessage id="notAddedFavorite" />
+          </Title>
+          <Image src={Pets} alt="pets"></Image>
+        </ImageBox>
+      )}
+      {/* {showNotices && <NoticesCategoryList notices={visibleNotices} />} */}
 
       <AnimatePresence>
         {isOpen && (
