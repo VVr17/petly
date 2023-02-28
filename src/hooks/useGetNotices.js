@@ -7,30 +7,33 @@ import {
 import { statusFilter } from 'redux/filter/filterConstans';
 import { selectStatusFilter } from 'redux/filter/filterSelectors';
 
-export const useGetNotices = () => {
+export const useGetNotices = filter => {
   const category = useSelector(selectStatusFilter);
   const {
     data: noticesData,
     error: noticeError,
     isFetching: fetchingNotices,
-  } = useGetNoticeByCategoryQuery(category, {
-    skip:
-      !category ||
-      category === statusFilter.favoriteAds ||
-      category === statusFilter.myAds,
-  });
+  } = useGetNoticeByCategoryQuery(
+    { categoryName: category, search: filter },
+    {
+      skip:
+        !category ||
+        category === statusFilter.favoriteAds ||
+        category === statusFilter.myAds,
+    }
+  );
   const {
     data: favoriteNoticesData,
     error: favoriteError,
     isFetching: fetchingFavorites,
-  } = useGetFavoritesNoticesQuery(null, {
+  } = useGetFavoritesNoticesQuery(filter, {
     skip: category !== statusFilter.favoriteAds,
   });
   const {
     data: myNoticesData,
     error: myError,
     isFetching: fetchingMy,
-  } = useGetUserNoticesQuery(null, {
+  } = useGetUserNoticesQuery(filter, {
     skip: category !== statusFilter.myAds,
   });
 

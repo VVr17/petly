@@ -19,8 +19,10 @@ import ModalComponent from 'components/Modals/Modal/Modal';
 
 const NoticesPage = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { notices, isFetching, error, totalItems } = useGetNotices();
   const [filter, setFilter] = useState('');
+  //TODO: should be filter on submit
+  // const { notices, isFetching, error, totalItems } = useGetNotices(filter);
+  const { notices, isFetching, error, totalItems } = useGetNotices();
   const [visibleNotices, setvisibleNotices] = useState([]);
   const { formatMessage } = useIntl();
 
