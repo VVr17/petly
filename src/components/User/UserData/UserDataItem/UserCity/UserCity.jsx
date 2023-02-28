@@ -69,7 +69,7 @@ const UserCity = () => {
                 handleClick(values);
               }}
             />
-            {/* {isLoading && <Loader />} */}
+            {isLoading && <Loader />}
           </FieldWrapper>
         </Form>
       )}

@@ -16,6 +16,7 @@ import {
 } from 'redux/api/userApi';
 import Plus from 'assets/images/desktop/plus.svg';
 import Loader from 'components/Loader';
+import { toast } from 'react-toastify';
 
 const UserPhoto = () => {
   const [fileDataURL, setFileDataURL] = useState(null);
@@ -27,10 +28,8 @@ const UserPhoto = () => {
     let fileReader,
       isCancel = false;
     if (file) {
-      console.log('file inside user', file);
       const data = new FormData();
       data.append('userImage', file);
-      updateUser(data);
 
       fileReader = new FileReader();
       fileReader.onload = e => {
@@ -39,7 +38,14 @@ const UserPhoto = () => {
           setFileDataURL(result);
         }
       };
+
       fileReader.readAsDataURL(file);
+
+      const uploadPhoto = async () => {
+        await updateUser(data);
+        toast.info('User photo has been successfully updated');
+      };
+      uploadPhoto();
     }
     return () => {
       isCancel = true;
@@ -111,7 +117,7 @@ const UserPhoto = () => {
               )}
             </ImageBox>
           }
-          {/* {isLoading && <Loader />} */}
+          {isLoading && <Loader />}
         </Form>
       )}
     </Formik>

@@ -117,7 +117,7 @@ const UserBirthday = () => {
               isdisabled={isDisabled}
               onClick={() => handleClick(values)}
             />
-            {/* {isLoading && <Loader />} */}
+            {isLoading && <Loader />}
           </FieldWrapper>
         </Form>
       )}

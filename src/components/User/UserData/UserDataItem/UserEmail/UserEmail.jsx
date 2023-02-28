@@ -70,7 +70,7 @@ const UserEmail = () => {
                 handleClick(values);
               }}
             />
-            {/* {isLoading && <Loader />} */}
+            {isLoading && <Loader />}
           </FieldWrapper>
         </Form>
       )}

@@ -70,7 +70,7 @@ const UserName = () => {
                 handleClick(values);
               }}
             />
-            {/* {isLoading && <Loader />} */}
+            {isLoading && <Loader />}
           </FieldWrapper>
         </Form>
       )}
