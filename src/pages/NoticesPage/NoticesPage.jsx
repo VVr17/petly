@@ -25,6 +25,7 @@ import { useGetNotices } from 'hooks/useGetNotices';
 import { FormattedMessage, useIntl } from 'react-intl';
 import ModalComponent from 'components/Modals/Modal/Modal';
 import Pets from 'assets/images/desktop/pet.jpg';
+import { topScroll } from 'helpers/topScroll';
 
 const NoticesPage = () => {
   const isAuth = useSelector(selectIsAuthState);
@@ -32,17 +33,19 @@ const NoticesPage = () => {
   const [filter, setFilter] = useState('');
   const [isSearch, setIsSearch] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const page = Number(searchParams.get('page') ?? 1);
-  const [total, setTotal] = useState(0);
-  // const query = searchParams.get('search') ?? '';
+  const [page, setPage] = useState(1);
+  // const page = Number(searchParams.get('page') ?? 1);
 
-  const { notices, isFetching, error, totalItems } = useGetNotices({
+  const query = searchParams.get('search') ?? '';
+
+  const { notices, isFetching, isLoading, error, totalItems } = useGetNotices({
     filter,
     page,
   });
   const [visibleNotices, setvisibleNotices] = useState([]);
 
   const { formatMessage } = useIntl();
+  const total = Math.round(totalItems / 12);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -57,11 +60,18 @@ const NoticesPage = () => {
       if (searchForm === '') {
         toast.error('Please, enter your request');
       }
-      setSearchParams(searchForm !== '' ? { search: searchForm } : '');
+      setSearchParams(
+        searchForm !== '' ? { search: searchForm, page: page } : ''
+      );
       setFilter(searchForm);
 
       // onSubmit(e);
     }
+  };
+
+  const handlePageClick = e => {
+    setPage(e.selected + 1);
+    topScroll();
   };
 
   const handleClick = () => {
@@ -90,8 +100,6 @@ const NoticesPage = () => {
 
       {isFetching && <Loader />}
 
-      {showNotices && <NoticesCategoryList notices={visibleNotices} />}
-
       {!isFetching && visibleNotices.length !== 0 && (
         <NoticesCategoryList notices={visibleNotices} />
       )}
@@ -107,7 +115,7 @@ const NoticesPage = () => {
           <Image src={Pets} alt="pets"></Image>
         </ImageBox>
       )}
-      {total > 1 && (
+      {totalItems > 12 && (
         <Paginate total={total} handlePageClick={handlePageClick} page={page} />
       )}
 

@@ -1,35 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
+import { MyPaginate, Prev, Next } from './Pagination.styled';
+import Container from 'components/Container';
 
 const Paginate = ({ total, handlePageClick, page }) => {
   return (
-    <div>
-      <div>
-        <ReactPaginate
-          pageCount={total}
-          onPageChange={handlePageClick}
-          nextLabel=">"
-          previousLabel="<"
-          pageRangeDisplayed={5}
-          marginPagesDisplayed={2}
-          //   pageClassName={styles.page}
-          //   pageLinkClassName={styles.link}
-          //   previousClassName={styles.page}
-          //   previousLinkClassName={styles.link}
-          //   nextClassName={styles.page}
-          //   nextLinkClassName={styles.link}
-          breakLabel="..."
-          //   breakClassName={styles.page}
-          //   breakLinkClassName={styles.link}
-          //   containerClassName={styles.paginate}
-          //   activeClassName={styles.active}
-          renderOnZeroPageCount={null}
-          //   disabledClassName={styles.disable}
-          initialPage={page - 1}
-        />
-      </div>
-    </div>
+    <Container>
+      <MyPaginate
+        pageCount={total}
+        onPageChange={handlePageClick}
+        nextLabel={<Next />}
+        previousLabel={<Prev />}
+        pageRangeDisplayed={5}
+        marginPagesDisplayed={2}
+        breakLabel="..."
+        renderOnZeroPageCount={null}
+        initialPage={page - 1}
+      />
+    </Container>
   );
 };
 
