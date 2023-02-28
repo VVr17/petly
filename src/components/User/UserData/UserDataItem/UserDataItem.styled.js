@@ -145,12 +145,13 @@ export const LoadImgLabel = styled.label`
 
   &:hover,
   &:focus {
-  background-color: ${theme.colors.hover};
-  border-radius: 15px;
-  color: ${theme.colors.lightText};
-
-  svg {
+    background-color: ${theme.colors.hover};
+    border-radius: 15px;
     color: ${theme.colors.lightText};
+
+    svg {
+      color: ${theme.colors.lightText};
+    }
   }
 `;
 
