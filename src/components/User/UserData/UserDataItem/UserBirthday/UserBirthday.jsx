@@ -5,9 +5,9 @@ import {
   FieldWrapper,
   MyDatePickerNew,
   Label,
-  Title,
   ErrorStyle,
 } from '../UserDataItem.styled';
+import { Title } from 'components/Ui-Kit/UserInput/UserInput.styled';
 import { validationSchema } from './validation';
 import { convertStringToDate, convertDateToString } from 'helpers/date';
 import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
