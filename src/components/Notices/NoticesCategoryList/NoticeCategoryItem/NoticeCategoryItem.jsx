@@ -92,20 +92,20 @@ const NoticeCategoryItem = ({
     setDelModalIsOpen(false);
     setModalIsOpen(false);
     await deleteNotice(_id);
-    toast.success('The ad has been removed');
+    toast.success(formatMessage({ id: 'toastAdRemoved' }));
     document.body.classList.remove('modal-open');
   };
 
   const setCategory = category => {
     switch (category) {
       case 'sell':
-        return 'sell';
+        return formatMessage({ id: 'sell' });
       case 'in-good-hands':
-        return 'in good hands';
+        return formatMessage({ id: 'goodHands' });
       case 'lost-found':
-        return 'lost/found';
+        return formatMessage({ id: 'lostFound' });
       default:
-        return 'no category';
+        return formatMessage({ id: 'noCategory' });
     }
   };
 
