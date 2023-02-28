@@ -24,7 +24,7 @@ const SearchForm = ({ onChange, onSubmit }) => {
   const handleClean = e => {
     e.preventDefault();
     onSubmit(e);
-    e.currentTarget.reset();
+    // e.currentTarget.reset();
     setIsSearch(false);
   };
 
