@@ -22,6 +22,7 @@ export const useGetNotices = ({ filter, page }) => {
         category === statusFilter.myAds,
     }
   );
+
   const {
     data: favoriteNoticesData,
     error: favoriteError,
