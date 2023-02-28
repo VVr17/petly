@@ -42,7 +42,6 @@ const NoticesPage = () => {
     filter,
     page,
   });
-  const [visibleNotices, setvisibleNotices] = useState([]);
 
   const { formatMessage } = useIntl();
   const total = Math.round(totalItems / 12);
@@ -99,10 +98,6 @@ const NoticesPage = () => {
       </NavContainer>
 
       {isFetching && <Loader />}
-
-      {!isFetching && visibleNotices.length !== 0 && (
-        <NoticesCategoryList notices={visibleNotices} />
-      )}
 
       {!isFetching && !isLoading && notices.length !== 0 && (
         <NoticesCategoryList notices={notices} />
