@@ -93,7 +93,7 @@ const AddPetForm = ({ onClose }) => {
       // send FormData to Backend
       onClose();
       await addNotice({ categoryName, noticeData: data });
-      toast.success('The ad has been added');
+      toast.success(formatMessage({ id: 'toastAdAdded' }));
       // close Modal
     }
 

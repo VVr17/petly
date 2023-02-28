@@ -48,6 +48,7 @@
   "goodHands": "in good hands",
   "favorite": "favorite ads",
   "myAds": "my ads",
+  "noCategory":"no category",
   "yes": "Yes",
   "no": "No",
 
@@ -96,5 +97,11 @@
   "toastCityUpdated": "City has been successfully updated",
   "toastEmailUpdated": "Email has been successfully updated",
   "toastNameUpdated": "Name has been successfully updated",
-  "toastPhoneUpdated": "Phone has been successfully updated"
+  "toastPhoneUpdated": "Phone has been successfully updated",
+  "toastAdRemoved":"The ad has been removed",
+  "toastAddedPet":"Your pet has been successfully added",
+  "toastError":"Something went wrong. Please try again later",
+  "toastPhotoUpdated":"User photo has been successfully updated",
+  "toastEnterRequest":"Please, enter your request",
+  "toastAdAdded":"The ad has been added"
 }
