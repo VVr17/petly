@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
+import Paginate from 'components/Pagination/Pagination';
 import { selectIsAuthState } from 'redux/user/userSelectors';
 import Loader from 'components/Loader';
 import NoticesCategoryList from 'components/Notices/NoticesCategoryList';
@@ -23,8 +24,13 @@ const NoticesPage = () => {
   const [filter, setFilter] = useState('');
   const [isSearch, setIsSearch] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const page = Number(searchParams.get('page') ?? 1);
+  const [total, setTotal] = useState(0);
   // const query = searchParams.get('search') ?? '';
-  const { notices, isFetching, error, totalItems } = useGetNotices({ filter });
+  const { notices, isFetching, error, totalItems } = useGetNotices({
+    filter,
+    page,
+  });
   const [visibleNotices, setvisibleNotices] = useState([]);
   const { formatMessage } = useIntl();
 
@@ -59,10 +65,6 @@ const NoticesPage = () => {
     }
   };
 
-  const handleClean = () => {
-    setFilter('');
-  };
-
   const isAuth = useSelector(selectIsAuthState);
   const handleClick = () => {
     if (isAuth) {
@@ -81,9 +83,18 @@ const NoticesPage = () => {
   useEffect(() => {
     if (notices) {
       const filteredNotices = filterNotices(notices);
+      if (page > 1) {
+        setvisibleNotices(prevNotices => [...prevNotices, filteredNotices]);
+      }
       setvisibleNotices(filteredNotices);
+      setTotal(Math.round(totalItems / 12));
+      setSearchParams({ page: page });
     }
-  }, [notices, filter]);
+  }, [notices, filter, page]);
+
+  const handlePageClick = e => {
+    setSearchParams({ page: e.selected + 1 });
+  };
 
   const showNotices = visibleNotices && !error && !isFetching;
 
@@ -99,6 +110,9 @@ const NoticesPage = () => {
 
       {isFetching && <Loader />}
       {showNotices && <NoticesCategoryList notices={visibleNotices} />}
+      {total > 1 && (
+        <Paginate total={total} handlePageClock={handlePageClick} page={page} />
+      )}
 
       <AnimatePresence>
         {isOpen && (
