@@ -35,23 +35,14 @@ const NoticesPage = () => {
   const page = Number(searchParams.get('page') ?? 1);
   const [total, setTotal] = useState(0);
   // const query = searchParams.get('search') ?? '';
+
   const { notices, isFetching, error, totalItems } = useGetNotices({
     filter,
     page,
   });
   const [visibleNotices, setvisibleNotices] = useState([]);
-  const { formatMessage } = useIntl();
 
-  const filterNotices = notices => {
-    const filteredNotices = notices.filter(notice => {
-      return notice.title.toLowerCase().includes(filter);
-    });
-    if (filteredNotices.length === 0) {
-      toast.info(formatMessage({ id: 'toastNotFoundAd' }));
-      toast.clearWaitingQueue();
-    }
-    return filteredNotices;
-  };
+  const { formatMessage } = useIntl();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -87,25 +78,6 @@ const NoticesPage = () => {
     document.body.classList.remove('modal-open');
   };
 
-  useEffect(() => {
-    if (notices) {
-      const filteredNotices = filterNotices(notices);
-      console.log(filteredNotices);
-      if (page > 1) {
-        setvisibleNotices(prevNotices => [...prevNotices, ...filteredNotices]);
-      }
-      setvisibleNotices(filteredNotices);
-      setTotal(Math.round(totalItems / 12));
-      setSearchParams({ page: page });
-    }
-  }, [notices, filter, page]);
-
-  const handlePageClick = e => {
-    setSearchParams({ page: e.selected + 1 });
-  };
-
-  const showNotices = visibleNotices && !error && !isFetching;
-
   return (
     <Section>
       <TitlePage name={formatMessage({ id: 'findFavoritePet' })} />
@@ -123,7 +95,11 @@ const NoticesPage = () => {
       {!isFetching && visibleNotices.length !== 0 && (
         <NoticesCategoryList notices={visibleNotices} />
       )}
-      {!isFetching && visibleNotices.length === 0 && (
+
+      {!isFetching && !isLoading && notices.length !== 0 && (
+        <NoticesCategoryList notices={notices} />
+      )}
+      {!isFetching && notices.length === 0 && (
         <ImageBox>
           <Title>
             <FormattedMessage id="notAddedFavorite" />
