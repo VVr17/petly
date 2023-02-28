@@ -38,7 +38,7 @@ const NewsPage = () => {
       setIsSearch(true);
       const searchForm = e.currentTarget.elements.search.value.toLowerCase();
       if (searchForm === '') {
-        toast.error('Please, enter your request');
+        toast.error(formatMessage({ id: 'toastEnterRequest' }));
       }
       setFilter(searchForm);
 

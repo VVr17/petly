@@ -48,6 +48,7 @@
   "goodHands": "в добрі руки",
   "favorite": "улюблені оголошення",
   "myAds": "мої оголошення",
+  "noCategory":"без категорії",
   "yes": "Так",
   "no": "Ні",
 
@@ -96,5 +97,11 @@
   "toastCityUpdated": "Місто успішно оновлено",
   "toastEmailUpdated": "Електронну пошту успішно оновлено",
   "toastNameUpdated": "Ім'я успішно оновлено",
-  "toastPhoneUpdated": "Телефон успішно оновлено"
+  "toastPhoneUpdated": "Телефон успішно оновлено",
+  "toastAdRemoved":"Оголошення видалено",
+  "toastAddedPet":"Вашого улюбленця успішно додано",
+  "toastError":"Щось пішло не так. Будь-ласка спробуйте пізніше",
+  "toastPhotoUpdated":"Фото користувача успішно оновлено",
+  "toastEnterRequest":"Будь ласка, введіть свій запит",
+  "toastAdAdded":"Оголошення додано"
 }

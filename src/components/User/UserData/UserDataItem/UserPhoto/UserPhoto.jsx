@@ -17,13 +17,14 @@ import {
 import Plus from 'assets/images/desktop/plus.svg';
 import Loader from 'components/Loader';
 import { toast } from 'react-toastify';
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 const UserPhoto = () => {
   const [fileDataURL, setFileDataURL] = useState(null);
   const [file, setFile] = useState(null);
   const { data } = useGetCurrentUserQuery();
   const [updateUser, { isLoading }] = useUpdateUserMutation();
+  const { formatMessage } = useIntl();
 
   useEffect(() => {
     let fileReader,
@@ -44,7 +45,7 @@ const UserPhoto = () => {
 
       const uploadPhoto = async () => {
         await updateUser(data);
-        toast.info('User photo has been successfully updated');
+        toast.info(formatMessage({ id: 'toastPhotoUpdated' }));
       };
       uploadPhoto();
     }
@@ -77,7 +78,7 @@ const UserPhoto = () => {
             <ImageBox>
               <LoadImgLabel htmlFor="upload">
                 <Camera />
-                <FormattedMessage id="editPhoto" />
+                {formatMessage({ id: 'editPhoto' })}
               </LoadImgLabel>
               <LoadImgInput
                 id="upload"

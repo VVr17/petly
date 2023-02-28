@@ -76,10 +76,10 @@ const UserAddPetForm = ({ closeModal }) => {
       data.append('comments', values.comments);
       try {
         const response = await addPetMutation(data);
-        toast.success('Your pet has been successfully added');
+        toast.success(formatMessage({ id: 'toastAddedPet' }));
       } catch (error) {
         console.error('Failed to add pet:', error);
-        toast.error('Something went wrong. Please try again later');
+        toast.error(formatMessage({ id: 'toastError' }));
       }
       closeModal();
     }
