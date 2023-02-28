@@ -26,12 +26,14 @@ import {
 } from './Validation';
 import UploadImageField from 'components/Ui-Kit/UploadImage/UploadImage';
 import CommentField from 'components/Notices/AddNoticeForm/AddPetForm/StepTwo/CommentField';
+import { useIntl } from 'react-intl';
 
 const UserAddPetForm = ({ closeModal }) => {
   const [currentPart, setCurrentPart] = useState(1);
   const [file, setFile] = useState(null);
   const [fileDataURL, setFileDataURL] = useState(null);
   const [addPetMutation, { isLoading }] = useAddPetMutation();
+  const { formatMessage } = useIntl();
 
   useEffect(() => {
     let fileReader,
@@ -92,7 +94,7 @@ const UserAddPetForm = ({ closeModal }) => {
   return (
     <Container>
       {isLoading && <Loader />}
-      <Title>Add pet</Title>
+      <Title>{formatMessage({ id: 'addPet' })}</Title>
       <Formik
         initialValues={initialValues}
         validationSchema={
@@ -112,7 +114,7 @@ const UserAddPetForm = ({ closeModal }) => {
                   <UploadImageField
                     name="petImage"
                     form="userPet"
-                    label="Add photo and some comments"
+                    label={formatMessage({ id: 'addPhotoComment' })}
                     fileDataURL={fileDataURL}
                     handleChange={e => {
                       setFile(e.currentTarget.files[0]);
@@ -131,7 +133,7 @@ const UserAddPetForm = ({ closeModal }) => {
                   width="100%"
                   onClick={closeModal}
                 >
-                  <Span>Cancel</Span>
+                  <Span>{formatMessage({ id: 'cancel' })}</Span>
                 </Button>
               )}
               {currentPart === 2 && (
@@ -141,7 +143,7 @@ const UserAddPetForm = ({ closeModal }) => {
                   width="100%"
                   onClick={handleBack}
                 >
-                  <Span>Back</Span>
+                  <Span>{formatMessage({ id: 'back' })}</Span>
                 </Button>
               )}
               <Button
@@ -150,7 +152,11 @@ const UserAddPetForm = ({ closeModal }) => {
                 width="100%"
                 disabled={isSubmitting}
               >
-                {currentPart < 2 ? <Span>Next</Span> : <Span>Done</Span>}
+                {currentPart < 2 ? (
+                  <Span>{formatMessage({ id: 'next' })}</Span>
+                ) : (
+                  <Span>{formatMessage({ id: 'done' })}</Span>
+                )}
               </Button>
             </ControlBox>
           </FormStyled>

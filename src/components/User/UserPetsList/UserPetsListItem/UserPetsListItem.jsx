@@ -13,16 +13,18 @@ import {
 import { RiDeleteBin6Fill } from 'react-icons/ri';
 import { useDeletePetMutation } from 'redux/api/petsApi';
 import { toast } from 'react-toastify';
+import { useIntl } from 'react-intl';
 
 const UserPetsListItem = ({ pet }) => {
   const { name, birthDate, breed, comments, photoURL } = pet;
   const [deletePetMutation, { isLoading }] = useDeletePetMutation();
+  const { formatMessage } = useIntl();
 
   const handleDelete = async petId => {
     if (confirm('Do you want to delete your pet')) {
       try {
         const response = await deletePetMutation(petId);
-        toast.info(`Pet has been deleted`);
+        toast.info(formatMessage({ id: 'toastPetDelete' }));
       } catch (error) {
         console.log(error);
       }
@@ -37,19 +39,19 @@ const UserPetsListItem = ({ pet }) => {
           <RiDeleteBin6Fill style={iconStyle} />
         </Button>
         <Text>
-          <Span>Name: </Span>
+          <Span>{formatMessage({ id: 'name' })}: </Span>
           {name}
         </Text>
         <Text>
-          <Span>Date of birth: </Span>
+          <Span>{formatMessage({ id: 'dateBirth' })}: </Span>
           {birthDate}
         </Text>
         <Text>
-          <Span>Breed: </Span>
+          <Span>{formatMessage({ id: 'breed' })}: </Span>
           {breed}
         </Text>
         <TextComments>
-          <Span>Comments: </Span>
+          <Span>{formatMessage({ id: 'comment' })}: </Span>
           {comments}
         </TextComments>
       </InfoBox>
