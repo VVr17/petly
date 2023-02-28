@@ -40,7 +40,7 @@ const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
   );
 };
 
-const UserBirthday = () => {
+const UserBirthday = ({ isUpdating, setIsUpdating }) => {
   const [isDisabled, setIsDisabled] = useState(true);
   const user = useSelector(selectUserState);
 
@@ -61,9 +61,11 @@ const UserBirthday = () => {
   const handleClick = () => {
     if (isDisabled) {
       setIsDisabled(false);
+      setIsUpdating(true);
       return;
     }
     setIsDisabled(true);
+    setIsUpdating(false);
   };
 
   const handleSubmit = async values => {
@@ -73,7 +75,7 @@ const UserBirthday = () => {
     if (values.birthday === user.birthday) {
       return;
     }
-    console.log(values);
+    // console.log(values);
     let dateMDY;
     if (values.birthday === null) {
       dateMDY = '00.00.0000';
@@ -114,7 +116,8 @@ const UserBirthday = () => {
             </Label>
             <UserUpdateButton
               type="submit"
-              isdisabled={isDisabled}
+              disabled={isUpdating && isDisabled}
+              isInputDisabled={isDisabled}
               onClick={() => handleClick(values)}
             />
             {isLoading && <Loader />}
@@ -133,7 +136,8 @@ MyDatePicker.propTypes = {
 };
 
 UserBirthday.propTypes = {
-  user: PropTypes.object,
+  isUpdating: PropTypes.bool,
+  setIsUpdating: PropTypes.func,
 };
 
 export default UserBirthday;

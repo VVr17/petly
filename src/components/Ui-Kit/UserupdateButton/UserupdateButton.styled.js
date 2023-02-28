@@ -23,6 +23,11 @@ export const Button = styled.button`
     color: ${theme.colors.lightText};
   }
 
+  :disabled {
+    background-color: ${theme.colors.disabled};
+    color: ${theme.colors.lightText};
+  }
+
   @media (min-width: ${breakpoints[1]}px) {
     width: 32px;
     height: 32px;

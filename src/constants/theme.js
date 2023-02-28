@@ -16,6 +16,7 @@ export const theme = {
     secondaryHover: 'rgba(255, 97, 1, 1)', //hover for button LearnMore
     borderColor: 'rgba(245, 146, 86, 0.5)',
     logoutColor: ' rgba(17, 17, 17, 0.6)',
+    disabled: 'rgba(0, 0, 0, 0.1)',
   },
 
   space: [
