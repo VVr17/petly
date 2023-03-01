@@ -5,6 +5,8 @@ Web-application to find you pet
 You will be able:
 
 * without registration:
+  - to read news;
+  - to browse notices;
   - to find your lost pet;
   - to buy pet;
 
