@@ -11,7 +11,7 @@ export const List = styled.ul`
     overflow-y: scroll;
     width: 420px;
     background-color: ${theme.colors.cardBackground};
-    border: 2px solid #74c16a;
+    border: 2px solid ${theme.colors.accent};
     border-radius: 8px;
     box-shadow: ${theme.boxShadow.notice};
     z-index: 1;
@@ -33,6 +33,6 @@ export const ListItem = styled.li`
     cursor: pointer;
 
     &:hover {
-    background-color: rgba(34,139,34,0.2);
+    background-color: ${theme.colors.borderColor};
     }
 `;
