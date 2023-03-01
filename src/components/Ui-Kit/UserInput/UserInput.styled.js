@@ -53,15 +53,17 @@ export const Input = styled(Field)`
 export const ErrorStyle = styled(ErrorMessage)`
   position: absolute;
   left: 0;
-  bottom: -3px;
+  bottom: -11px;
   font-size: ${theme.fontSizes.xxxxs};
   color: red;
+  max-height: 14px;
+  overflow-y: hidden;
 
   ${theme.mq.mobileOnly} {
     transform: translate(0px, 0px);
   }
   @media (min-width: ${breakpoints[1]}px) {
     font-size: ${theme.fontSizes.xxxs};
-    bottom: -10px;
+    /* bottom: -10px; */
   }
 `;

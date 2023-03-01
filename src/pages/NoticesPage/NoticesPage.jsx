@@ -34,8 +34,6 @@ const NoticesPage = () => {
   const [isSearch, setIsSearch] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(1);
-  // const page = Number(searchParams.get('page') ?? 1);
-
   const query = searchParams.get('search') ?? '';
 
   const { notices, isFetching, isLoading, error, totalItems } = useGetNotices({
