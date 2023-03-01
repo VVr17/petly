@@ -12,9 +12,9 @@ You will be able:
 
 * after registration :
   - to update your account;
-  - to add your own pet in you account;
+  - to add your own pet in your account;
+  - to create notices to categories: 'sell', 'in-good-hands', 'lost/found'
   - to add notices to your favorites;
-  = to add notices to categories: 'sell', 'in-good-hands', 'lost/found'
 
 // Stack: React, Redux Toolkit
 // Libraries: RTK query, Redux Persist, React-router, Formk + Yup, Styled-Components, Framer Motion
