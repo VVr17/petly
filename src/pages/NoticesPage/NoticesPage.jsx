@@ -42,7 +42,7 @@ const NoticesPage = () => {
   });
 
   const { formatMessage } = useIntl();
-  const total = Math.round(totalItems / 12);
+  const total = Math.ceil(totalItems / 12);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -109,7 +109,7 @@ const NoticesPage = () => {
           <Image src={Pets} alt="pets"></Image>
         </ImageBox>
       )}
-      {totalItems > 12 && (
+      {!isFetching && notices && totalItems > 12 && (
         <Paginate total={total} handlePageClick={handlePageClick} page={page} />
       )}
 
