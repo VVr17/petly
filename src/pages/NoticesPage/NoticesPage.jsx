@@ -63,8 +63,9 @@ const NoticesPage = () => {
         searchForm !== '' ? { search: searchForm, page: page } : ''
       );
       setFilter(searchForm);
-
-      // onSubmit(e);
+      if (page > 1) {
+        setPage(1);
+      }
     }
   };
 
