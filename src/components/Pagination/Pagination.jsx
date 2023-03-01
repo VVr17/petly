@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactPaginate from 'react-paginate';
+
 import { MyPaginate, Prev, Next } from './Pagination.styled';
 import Container from 'components/Container';
 
@@ -16,7 +16,7 @@ const Paginate = ({ total, handlePageClick, page }) => {
         marginPagesDisplayed={2}
         breakLabel="..."
         renderOnZeroPageCount={null}
-        initialPage={page - 1}
+        forcePage={page - 1}
       />
     </Container>
   );
