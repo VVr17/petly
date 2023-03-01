@@ -39,7 +39,7 @@ export const FriendItem = ({
   return (
     <FriendListItem>
       <FriendTitle>
-        <FriendLinkTitle href={url} target="_blank">
+        <FriendLinkTitle href={addressUrl} target="_blank">
           {title}
         </FriendLinkTitle>
       </FriendTitle>
