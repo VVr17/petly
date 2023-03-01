@@ -56,6 +56,7 @@ const NoticesPage = () => {
       const searchForm = e.currentTarget.elements.search.value.toLowerCase();
       if (searchForm === '') {
         toast.error(formatMessage({ id: 'toastEnterRequest' }));
+        setIsSearch(false);
       }
       setSearchParams(
         searchForm !== '' ? { search: searchForm, page: page } : ''
@@ -64,6 +65,13 @@ const NoticesPage = () => {
       if (page > 1) {
         setPage(1);
       }
+    }
+  };
+
+  const handleChange = e => {
+    const value = e.currentTarget.value;
+    if (value === '') {
+      setIsSearch(false);
     }
   };
 
@@ -89,7 +97,11 @@ const NoticesPage = () => {
   return (
     <Section>
       <TitlePage name={formatMessage({ id: 'findFavoritePet' })} />
-      <SearchForm isSearch={isSearch} handleSubmit={handleSubmit} />
+      <SearchForm
+        isSearch={isSearch}
+        handleSubmit={handleSubmit}
+        handleChange={handleChange}
+      />
 
       <NavContainer>
         <FindPetFilter page={page} setPage={setPage} />
