@@ -57,6 +57,7 @@ export const ButtonStyled = styled(motion.button)`
 
   &:hover,
   &:focus {
+    border-color: ${({ theme }) => theme.colors.hover};
     background-color: ${({ theme }) => theme.colors.hover};
     color: ${({ theme, name }) =>
       name === 'learnMore' || 'filter'
