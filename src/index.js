@@ -15,7 +15,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/pet-support-front">
+        <BrowserRouter basename="/petly">
           <ThemeProvider theme={theme}>
             {/* <ModalProvider backgroundComponent={SpecialModalBackground}> */}
             <App />
