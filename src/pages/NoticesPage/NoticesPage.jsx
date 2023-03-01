@@ -109,7 +109,7 @@ const NoticesPage = () => {
           <Image src={Pets} alt="pets"></Image>
         </ImageBox>
       )}
-      {!isFetching && notices && totalItems > 12 && (
+      {totalItems > 12 && (
         <Paginate total={total} handlePageClick={handlePageClick} page={page} />
       )}
 
