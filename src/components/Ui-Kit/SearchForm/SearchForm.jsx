@@ -9,7 +9,7 @@ import {
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 
-const SearchForm = ({ handleSubmit, isSearch }) => {
+const SearchForm = ({ handleSubmit, isSearch, handleChange }) => {
   const { formatMessage } = useIntl();
 
   return (
@@ -17,6 +17,7 @@ const SearchForm = ({ handleSubmit, isSearch }) => {
       <FormField
         name="search"
         type="text"
+        onChange={handleChange}
         placeholder={formatMessage({ id: 'search' })}
       />
       {!isSearch ? (
@@ -35,6 +36,7 @@ const SearchForm = ({ handleSubmit, isSearch }) => {
 SearchForm.propTypes = {
   handleSubmit: PropTypes.func,
   isSearch: PropTypes.bool,
+  handleChange: PropTypes.func,
 };
 
 export default SearchForm;

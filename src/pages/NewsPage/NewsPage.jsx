@@ -28,6 +28,13 @@ const NewsPage = () => {
     return newsFilter;
   };
 
+  const handleChange = e => {
+    const value = e.currentTarget.value;
+    if (value === '') {
+      setIsSearch(false);
+    }
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
     if (isSearch) {
@@ -39,6 +46,7 @@ const NewsPage = () => {
       const searchForm = e.currentTarget.elements.search.value.toLowerCase();
       if (searchForm === '') {
         toast.error(formatMessage({ id: 'toastEnterRequest' }));
+        setIsSearch(false);
       }
       setFilter(searchForm);
 
@@ -58,7 +66,11 @@ const NewsPage = () => {
     <Section>
       <WrapperTitle>
         <TitlePage name={formatMessage({ id: 'news' })} />
-        <SearchForm isSearch={isSearch} handleSubmit={handleSubmit} />
+        <SearchForm
+          isSearch={isSearch}
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+        />
       </WrapperTitle>
       {isLoading && <Loader />}
       {error && <div>{error.message}</div>}
