@@ -72,6 +72,7 @@ const NoticesPage = () => {
     const value = e.currentTarget.value;
     if (value === '') {
       setIsSearch(false);
+      setFilter('');
     }
   };
 

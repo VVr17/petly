@@ -32,6 +32,7 @@ const NewsPage = () => {
     const value = e.currentTarget.value;
     if (value === '') {
       setIsSearch(false);
+      setFilter('');
     }
   };
 
