@@ -35,6 +35,7 @@ import { pageAnimation } from 'constants/animation';
 import { Box } from 'components/Box/Box';
 import { motion } from 'framer-motion';
 import { useIntl } from 'react-intl';
+import { useGetCategory } from 'hooks/useGetCategory';
 
 const NoticeCategoryItem = ({
   _id,
@@ -49,7 +50,7 @@ const NoticeCategoryItem = ({
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [delModalIsOpen, setDelModalIsOpen] = useState(false);
-
+  const noticeCategory = useGetCategory(category);
   const isAuth = useSelector(selectIsAuthState);
   const user = useSelector(selectUserState);
   const favorites = useSelector(selectFavoritesState);
@@ -96,19 +97,6 @@ const NoticeCategoryItem = ({
     document.body.classList.remove('modal-open');
   };
 
-  const setCategory = category => {
-    switch (category) {
-      case 'sell':
-        return formatMessage({ id: 'sell' });
-      case 'in-good-hands':
-        return formatMessage({ id: 'goodHands' });
-      case 'lost-found':
-        return formatMessage({ id: 'lostFound' });
-      default:
-        return formatMessage({ id: 'noCategory' });
-    }
-  };
-
   const isLoading = deleting || adding || removing;
 
   return (
@@ -130,7 +118,7 @@ const NoticeCategoryItem = ({
           {<IoIosHeart size="28px" />}
         </ToggleFavoriteButton>
         <CategoryBox>
-          <CategoryName>{setCategory(category)}</CategoryName>
+          <CategoryName>{noticeCategory}</CategoryName>
         </CategoryBox>
         <ContainerInfo>
           <Title>{title}</Title>
