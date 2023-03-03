@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useLoginUserMutation } from 'redux/api/userApi';
@@ -28,12 +28,12 @@ import { FormattedMessage } from 'react-intl';
 const LoginForm = () => {
   const [loginUser, { isLoading, isError, error }] = useLoginUserMutation();
 
-  const handleSubmit = values => {
+  const handleSubmit = async values => {
     const credentials = {
       email: values.email,
       password: values.password,
     };
-    loginUser(credentials);
+    const response = await loginUser(credentials);
   };
 
   return (
@@ -68,7 +68,7 @@ const LoginForm = () => {
               <FormattedMessage id="register" />
             </LoginLink>
           </Paragraph>
-          {isError && <ErrorMessage>Invalid password or email</ErrorMessage>}
+          {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
         </ModalContent>
       </ModalWrapper>
     </>
