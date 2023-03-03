@@ -1,5 +1,5 @@
-import React, { Suspense, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { Suspense, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { useGetCurrentUserQuery } from 'redux/api/userApi';
@@ -23,14 +23,23 @@ import enMessages from 'assets/locales/en.json';
 import ukMessages from 'assets/locales/uk.json';
 import ToastifyGlobalStyle from './ToastifyGlobalStyle.styled';
 import { GlobalStyle } from './App.styled';
+import { setToken } from 'redux/user/userSlice';
 
 const App = () => {
   const [locale, setLocale] = useState('en');
   const location = useLocation();
+  const dispatch = useDispatch();
   const token = useSelector(selectTokenState);
-  const { data, isFetching } = useGetCurrentUserQuery(null, {
+  const { data, isFetching, isError, error } = useGetCurrentUserQuery(null, {
     skip: token === null,
   });
+
+  // TODO: check when token is expired to delete token from LS
+  // useEffect(() => {
+  //   if (isError) {
+  //     dispatch(setToken(null));
+  //   }
+  // }, []);
 
   const messages = { en: enMessages, uk: ukMessages };
 

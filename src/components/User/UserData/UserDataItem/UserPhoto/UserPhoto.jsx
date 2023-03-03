@@ -22,7 +22,7 @@ import { useIntl } from 'react-intl';
 const UserPhoto = () => {
   const [fileDataURL, setFileDataURL] = useState(null);
   const [file, setFile] = useState(null);
-  const { data } = useGetCurrentUserQuery();
+  const { data, isFetching } = useGetCurrentUserQuery();
   const [updateUser, { isLoading }] = useUpdateUserMutation();
   const { formatMessage } = useIntl();
 
@@ -97,7 +97,7 @@ const UserPhoto = () => {
                 </LoadImageCont>
               ) : (
                 <>
-                  {data && data?.photoURL ? (
+                  {!isFetching && data && data?.photoURL ? (
                     <LoadImageCont>
                       <ImagePreview src={data?.photoURL} alt="Preview" />
                     </LoadImageCont>
