@@ -17,9 +17,7 @@ root.render(
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="/petly">
           <ThemeProvider theme={theme}>
-            {/* <ModalProvider backgroundComponent={SpecialModalBackground}> */}
             <App />
-            {/* </ModalProvider> */}
           </ThemeProvider>
         </BrowserRouter>
       </PersistGate>
