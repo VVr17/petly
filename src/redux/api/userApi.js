@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { TAGS_TYPES, USER_URL } from 'constants/api';
 import baseQuery from 'redux/baseQuery';
-import { addFavorites, setFavorites } from 'redux/favorites/favoritesSlice';
+import { setFavorites } from 'redux/favorites/favoritesSlice';
 import { setUser, setToken, logout, setIsAuth } from '../user/userSlice';
 
 export const userApi = createApi({
@@ -19,7 +19,15 @@ export const userApi = createApi({
           dispatch(setUser(data));
           dispatch(setIsAuth(true));
           dispatch(setFavorites(data.favoriteNotices));
-        } catch (error) {}
+        } catch (error) {
+          const {
+            error: { status, data },
+          } = error;
+          if (status === 401 && data.message.includes('Token error')) {
+            dispatch(setToken(null));
+            dispatch(setIsAuth(false));
+          }
+        }
       },
     }),
 
@@ -81,7 +89,7 @@ export const userApi = createApi({
           body: userData,
         };
       },
-      // invalidatesTags: [TAGS_TYPES.user],
+      invalidatesTags: [TAGS_TYPES.user],
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const {

@@ -1,5 +1,5 @@
 import Container from 'components/Container';
-import  React  from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import {
   useAddNoticeToFavoriteMutation,
@@ -37,11 +37,17 @@ import Button from 'components/Ui-Kit/Button';
 import { selectStatusFilter } from 'redux/filter/filterSelectors';
 import { statusFilter } from 'redux/filter/filterConstans';
 import { useIntl } from 'react-intl';
+import {
+  useGetNoticeInfo,
+  useGetNoticeModalKeys,
+} from 'hooks/useGetNoticeInfo';
 
 const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
 
 const ModalNotice = ({ id, onClose }) => {
-  const { data, isFetching, isError } = useGetNoticeByIdQuery(id);
+  // const { data, isFetching, isError } = useGetNoticeByIdQuery(id);
+  const { noticeInfo, ownerInfo, isFetching, isError, error, generalInfo } =
+    useGetNoticeInfo(id);
   const currentCategory = useSelector(selectStatusFilter);
   const noItem = '-----------';
   const { formatMessage } = useIntl();
@@ -66,7 +72,6 @@ const ModalNotice = ({ id, onClose }) => {
     if (isFavorite) {
       await deleteNoticeFromFavorite(noticeId);
       toast.info(formatMessage({ id: 'toastRemovedNotice' }));
-      // onClose();
       if (currentCategory === statusFilter.favoriteAds) {
         document.body.classList.remove('modal-open');
       }
@@ -74,7 +79,6 @@ const ModalNotice = ({ id, onClose }) => {
     }
     await addNoticeToFavorite(noticeId);
     toast.info(formatMessage({ id: 'toastAddedNotice' }));
-    // onClose();
     if (currentCategory === statusFilter.favoriteAds) {
       document.body.classList.remove('modal-open');
     }
@@ -85,113 +89,39 @@ const ModalNotice = ({ id, onClose }) => {
   return (
     <>
       <NoticeContainer>
-        {isLoading && <Loader />}
-        {isFetching && <Loader />}
+        {(isLoading || isFetching) && <Loader />}
         {isFetching && <Plug />}
         {isError && <div>{isError.message}</div>}
 
-        {data && (
+        {noticeInfo && ownerInfo && (
           <>
             <PetInfo>
               <ImgWrapper>
-                <PetsImg src={data.photoURL || altPosterUrl} />
+                <PetsImg src={generalInfo.photoURL || altPosterUrl} />
                 <Category>
-                  <CategoryName>
-                    {(data && data.category === 'sell' && 'sell') ||
-                      (data.category === 'lost-found' && 'lost/found') ||
-                      (data.category === 'in-good-hands' && 'in good hands')}
-                  </CategoryName>
+                  <CategoryName>{generalInfo.category}</CategoryName>
                 </Category>
               </ImgWrapper>
 
               <TextContent>
-                <Title>{data.title}</Title>
+                <Title>{generalInfo.title}</Title>
                 <PetData>
-                  <CategoryData>
-                    <DataItem>
-                      <CategoryText>
-                        {formatMessage({ id: 'name' })}:
-                      </CategoryText>
-                    </DataItem>
-                    <DataItem>
-                      <CategoryText>
-                        {formatMessage({ id: 'birthday' })}:
-                      </CategoryText>
-                    </DataItem>
-                    <DataItem>
-                      <CategoryText>
-                        {formatMessage({ id: 'breed' })}:
-                      </CategoryText>
-                    </DataItem>
-                    <DataItem>
-                      <CategoryText>
-                        {formatMessage({ id: 'location' })}:
-                      </CategoryText>
-                    </DataItem>
-                    <DataItem>
-                      <CategoryText>
-                        {formatMessage({ id: 'sex' })}:
-                      </CategoryText>
-                    </DataItem>
-                    <DataItem>
-                      <CategoryText>Email:</CategoryText>
-                    </DataItem>
-                    <DataItem>
-                      <CategoryText>
-                        {formatMessage({ id: 'phone' })}:
-                      </CategoryText>
-                    </DataItem>
-                    {data.category === 'sell' && (
-                      <DataItem>
-                        <CategoryText>
-                          {formatMessage({ id: 'price' })}:
-                        </CategoryText>
-                      </DataItem>
-                    )}
-                  </CategoryData>
-                  <ValueData>
-                    <DataItem>
-                      <ValueText>{data.name}</ValueText>
-                    </DataItem>
-                    <DataItem>
-                      <ValueText>{data.birthDate}</ValueText>
-                    </DataItem>
-                    <DataItem>
-                      {data.breed === 'Unknown' ? (
-                        <ValueText>{noItem}</ValueText>
-                      ) : (
-                        <ValueText>{data.breed}</ValueText>
-                      )}
-                    </DataItem>
-                    <DataItem>
-                      <ValueText>
-                        {data && data.location.split(',')[0]}
-                      </ValueText>
-                    </DataItem>
-                    <DataItem>
-                      <ValueText>{data.sex}</ValueText>
-                    </DataItem>
-                    <DataItem>
-                      <ValueText>
-                        <LinkModal href={`mailto:${data.owner.email}`}>
-                          {data.owner.email}
-                        </LinkModal>
-                      </ValueText>
-                    </DataItem>
-                    <DataItem>
-                      <ValueText>
-                        <LinkModal href={`tel:${data.owner.phone}`}>
-                          {data.owner.phone}
-                        </LinkModal>
-                      </ValueText>
-                    </DataItem>
-
-                    {data.category === 'sell' && (
-                      <DataItem>
-                        <ValueText>{data.price} $</ValueText>
-                      </DataItem>
-                    )}
-                  </ValueData>
+                  <table>
+                    <tbody>
+                      {noticeInfo.map(({ field, value }) => (
+                        <tr key={field}>
+                          <th>{field}:</th>
+                          <td>{value}</td>
+                        </tr>
+                      ))}
+                      {ownerInfo.map(({ field, value }) => (
+                        <tr key={field}>
+                          <th>{field}:</th>
+                          <td>{value}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </PetData>
               </TextContent>
             </PetInfo>
@@ -199,7 +129,7 @@ const ModalNotice = ({ id, onClose }) => {
               <CommentsTitle>
                 {formatMessage({ id: 'comment' })}:{' '}
               </CommentsTitle>
-              {data.comments}
+              {generalInfo.comments}
             </Comments>
 
             <Buttons>
@@ -213,7 +143,9 @@ const ModalNotice = ({ id, onClose }) => {
                 isFavorite={isFavorite}
                 onClick={() => toggleFavorite(id)}
               >
-                {!isFavorite ? formatMessage({ id: 'addTo' }) : formatMessage({ id: 'removeFrom' })}
+                {!isFavorite
+                  ? formatMessage({ id: 'addTo' })
+                  : formatMessage({ id: 'removeFrom' })}
                 {<IoIosHeart fill="#F59256" size="20px" margin-left="10px" />}
               </Button>
             </Buttons>

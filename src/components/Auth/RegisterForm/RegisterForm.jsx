@@ -37,7 +37,7 @@ const RegistrationForm = () => {
     setCurrentStep(currentStep - 1);
   };
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting }) => {
     setSubmitting(false);
 
     if (currentStep < 2) {
@@ -51,7 +51,8 @@ const RegistrationForm = () => {
         password: values.password,
       };
 
-      signupUser(credentials);
+      const response = await signupUser(credentials);
+      console.log('response', response);
     }
   };
 
@@ -106,7 +107,7 @@ const RegistrationForm = () => {
               <FormattedMessage id="login" />
             </LoginLink>
           </Paragraph>
-          {isError && <ErrorMessage>Invalid password or email</ErrorMessage>}
+          {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
         </ModalContent>
       </ModalWrapper>
     </>
