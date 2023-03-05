@@ -1,26 +1,11 @@
 import styled from 'styled-components';
-import { theme, breakpoints } from '../../../constants/theme';
-import Modal from 'styled-react-modal';
+import { theme } from '../../../constants/theme';
 import { motion } from 'framer-motion';
-
-export const Overlay = styled(motion.div)`
-  padding: 20px 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: overlay;
-  width: 100vw;
-  height: 100vh;
-  z-index: 30;
-  opacity: ${theme.colors.secondaryText};
-  background-color: ${theme.colors.secondaryText};
-`;
 
 export const StyledModal = styled(motion.div)`
   position: relative;
   width: fit-content;
+  max-width: 360px;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -28,9 +13,11 @@ export const StyledModal = styled(motion.div)`
   justify-content: center;
   border-radius: 20px;
   background-color: ${theme.colors.lightText};
-  @media (min-width: ${breakpoints[1]}px) {
+
+  ${theme.mq.tablet} {
     border-radius: 40px;
     top: 7%;
+    max-width: 704px;
   }
 `;
 
@@ -51,7 +38,8 @@ export const ButtonCloseModal = styled.button`
   &:focus {
     color: ${theme.colors.accent};
   }
-  @media (min-width: ${breakpoints[1]}px) {
+
+  ${theme.mq.tablet} {
     width: 44px;
     height: 44px;
     top: 28px;

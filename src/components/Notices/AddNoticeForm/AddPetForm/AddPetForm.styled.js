@@ -37,6 +37,7 @@ export const ButtonsContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 12px;
+
   @media (min-width: ${breakpoints[1]}px) {
     flex-direction: row;
     width: 380px;
@@ -157,6 +158,7 @@ export const RadioContainer = styled.ul`
   gap: 90px;
   margin-top: 10px;
   margin-bottom: 18px;
+
   @media (min-width: ${breakpoints[1]}px) {
     margin-top: 20px;
     margin-bottom: 20px;
