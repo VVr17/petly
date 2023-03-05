@@ -34,13 +34,6 @@ const App = () => {
     skip: token === null,
   });
 
-  // TODO: check when token is expired to delete token from LS
-  // useEffect(() => {
-  //   if (isError) {
-  //     dispatch(setToken(null));
-  //   }
-  // }, []);
-
   const messages = { en: enMessages, uk: ukMessages };
 
   const handleLocaleChange = e => {

@@ -4,37 +4,38 @@ import { theme, breakpoints } from 'constants/theme';
 export const NoticeContainer = styled.div`
   width: 240px;
   margin: 60px 20px 40px 20px;
-  @media (min-width: ${breakpoints[1]}px) {
+  ${theme.mq.tablet} {
     width: 660px;
   }
 `;
 
 export const PetInfo = styled.div`
-  margin-bottom: 20px;
-  @media (min-width: ${breakpoints[1]}px) {
+  margin-bottom: 28px;
+  width: 100%;
+
+  ${theme.mq.tablet} {
     display: flex;
   }
 `;
 
 export const ImgWrapper = styled.div`
   position: relative;
+
+  ${theme.mq.mobileOnly} {
+    margin-bottom: 20px;
+  }
 `;
 
 export const PetsImg = styled.img`
-  margin-bottom: 20px;
   border-radius: 0px 0px 40px 40px;
   object-fit: cover;
 
-  @media (min-width: ${breakpoints[0]}px) {
-    width: 240px;
-    height: 240px;
-  }
+  width: 240px;
+  height: 240px;
 
-  @media (min-width: ${breakpoints[1]}px) {
+  ${theme.mq.tablet} {
     width: 288px;
     height: 328px;
-    margin-right: 20px;
-    margin-bottom: 28px;
   }
 `;
 
@@ -43,14 +44,14 @@ export const Category = styled.span`
   top: 20px;
   background: ${theme.colors.secondaryBackground};
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
   border-radius: 0px 20px 20px 0;
 
-  @media (min-width: ${breakpoints[0]}px) {
-    width: 158px;
-    height: 28px;
-  }
+  width: 158px;
+  height: 28px;
 `;
 
 export const CategoryName = styled.p`
@@ -62,24 +63,25 @@ export const CategoryName = styled.p`
 `;
 
 export const TextContent = styled.div`
-  @media (min-width: ${breakpoints[1]}px) {
+  ${theme.mq.tablet} {
     margin-left: 20px;
   }
 `;
 
-export const Title = styled.h1`
-  display: inline-block;
+export const Title = styled.h2`
+  display: block;
+  width: 100%;
   font-weight: 700;
   font-size: 24px;
   line-height: 33px;
   letter-spacing: -0.01em;
   margin-bottom: 16px;
-  width: 250px;
 
-  @media (min-width: ${breakpoints[1]}px) {
+  ${theme.mq.tablet} {
     font-size: 28px;
     line-height: 38px;
     margin-bottom: 20px;
+    width: 300px;
   }
 `;
 
@@ -87,51 +89,34 @@ export const PetData = styled.div`
   display: flex;
   margin-bottom: 28px;
 
-  @media (min-width: ${breakpoints[1]}px) {
+  ${theme.mq.tablet} {
     margin-bottom: 0;
   }
-`;
 
-export const CategoryData = styled.ul`
-  flex-grow: 1;
+  tr {
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.36;
+    height: 27px;
 
-  @media (min-width: ${breakpoints[1]}px) {
-    flex-grow: 0;
-  }
-`;
-
-export const DataItem = styled.li`
-  &:not(:last-child) {
-    margin-bottom: 8px;
+    ${theme.mq.tablet} {
+      font-size: 16px;
+    }
   }
 
-  @media (min-width: ${breakpoints[1]}px) {
-    flex-grow: 0;
-    margin-right: 51px;
+  th {
+    font-weight: 600;
+    display: block;
+    margin-right: 30px;
+
+    ${theme.mq.tablet} {
+      margin-right: 50px;
+    }
   }
-`;
 
-export const CategoryText = styled.p`
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 19px;
-
-  @media (min-width: ${breakpoints[1]}px) {
-    font-size: 16px;
-    line-height: 22px;
-  }
-`;
-
-export const ValueData = styled.ul``;
-
-export const ValueText = styled.p`
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 19px;
-  white-space: nowrap;
-  @media (min-width: ${breakpoints[1]}px) {
-    font-size: 16px;
-    line-height: 22px;
+  td {
+    font-weight: 500;
+    white-space: nowrap;
   }
 `;
 
@@ -141,7 +126,7 @@ export const Comments = styled.p`
   line-height: 19px;
   margin-bottom: 40px;
 
-  @media (min-width: ${breakpoints[1]}px) {
+  ${theme.mq.tablet} {
     font-size: 16px;
     line-height: 22px;
     margin-bottom: 32px;
@@ -156,7 +141,7 @@ export const Buttons = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (min-width: ${breakpoints[1]}px) {
+  ${theme.mq.tablet} {
     display: flex;
     flex-direction: row-reverse;
     justify-content: end;
@@ -168,16 +153,16 @@ export const Plug = styled.div`
   display: block;
   height: 665px;
   width: 300px;
-  @media (min-width: ${breakpoints[1]}px) {
+  ${theme.mq.tablet} {
     height: 465px;
   }
 `;
 
 export const LinkModal = styled.a`
-   color: ${theme.colors.mainText};
-   &:hover,
-   &:focus {
-      color: ${theme.colors.secondaryHover};
-      transition: color ${theme.transitionTiming};
-   }
+  color: ${theme.colors.mainText};
+  &:hover,
+  &:focus {
+    color: ${theme.colors.secondaryHover};
+    transition: color ${theme.transitionTiming};
+  }
 `;

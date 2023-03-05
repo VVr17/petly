@@ -19,7 +19,6 @@ export const noticesApi = createApi({
         search
           ? `${NOTICES_URL}${CATEGORY_URL}/${categoryName}?page=${page}&search=${search}`
           : `${NOTICES_URL}${CATEGORY_URL}/${categoryName}?page=${page}`,
-      // transformResponse: response => response.data,
       providesTags: [TAGS_TYPES.notice],
     }),
     getFavoritesNotices: builder.query({
@@ -27,7 +26,6 @@ export const noticesApi = createApi({
         search
           ? `${NOTICES_URL}/favorites?page=${page}&search=${search}`
           : `${NOTICES_URL}/favorites?&page=${page}`,
-      // transformResponse: response => response.data,
       providesTags: [TAGS_TYPES.favorites],
     }),
     getUserNotices: builder.query({
@@ -35,7 +33,6 @@ export const noticesApi = createApi({
         search
           ? `${NOTICES_URL}/user?page=${page}&search=${search}`
           : `${NOTICES_URL}/user?page=${page}`,
-      // transformResponse: response => response.data,
       providesTags: [TAGS_TYPES.notice],
     }),
     getNoticeById: builder.query({
