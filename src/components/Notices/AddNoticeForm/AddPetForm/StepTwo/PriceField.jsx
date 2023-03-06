@@ -1,6 +1,6 @@
 import React from 'react';
-import InputField from 'components/Ui-Kit/Input';
 import { useIntl } from 'react-intl';
+import InputField from 'components/Ui-Kit/Input';
 
 const PriceField = () => {
   const { formatMessage } = useIntl();

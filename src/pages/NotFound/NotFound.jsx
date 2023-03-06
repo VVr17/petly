@@ -1,8 +1,8 @@
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import AuthPageContainer from 'components/Auth/AuthPageContainer';
 import Section from 'components/Section';
-import React from 'react';
 import { Number, Text } from './NotFound.styled';
-import { FormattedMessage } from 'react-intl';
 
 const NotFound = () => {
   return (

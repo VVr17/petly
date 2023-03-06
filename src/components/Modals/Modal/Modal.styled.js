@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 
 export const StyledModal = styled(motion.div)`
   position: relative;
-  /* width: fit-content; */
   max-width: 360px;
   margin: auto;
   display: flex;

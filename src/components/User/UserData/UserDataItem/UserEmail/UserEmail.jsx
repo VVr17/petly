@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { Formik, Form } from 'formik';
-import { useUpdateUserMutation } from 'redux/api/userApi';
-import { validationSchema } from './validation';
-import { FieldWrapper } from '../UserDataItem.styled';
-import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
-import UserInput from 'components/Ui-Kit/UserInput';
-import Loader from 'components/Loader';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { selectUserState } from 'redux/user/userSelectors';
+import PropTypes from 'prop-types';
+import { Formik, Form } from 'formik';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
+import { useUpdateUserMutation } from 'redux/api/userApi';
+import { validationSchema } from './validation';
+import UserUpdateButton from 'components/Ui-Kit/UserupdateButton';
+import UserInput from 'components/Ui-Kit/UserInput';
+import Loader from 'components/Loader';
+import { selectUserState } from 'redux/user/userSelectors';
+import { FieldWrapper } from '../UserDataItem.styled';
 
 const UserEmail = ({ isUpdating, setIsUpdating }) => {
   const { formatMessage } = useIntl();

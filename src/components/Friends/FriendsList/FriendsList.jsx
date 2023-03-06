@@ -4,7 +4,7 @@ import { FriendItem } from '../FriendItem/FriendItem';
 import { useGetFriendsQuery } from 'redux/api/friendsApi.js';
 
 const FriendsList = () => {
-  const { data: friends, isFetching, isError } = useGetFriendsQuery();
+  const { data: friends } = useGetFriendsQuery();
 
   return (
     <FriendsUl>

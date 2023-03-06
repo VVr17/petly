@@ -1,5 +1,5 @@
 import React from 'react';
-import RegistrationForm from 'components/Auth/RegisterForm/RegisterForm';
+import RegistrationForm from 'components/Auth/RegisterForm';
 import AuthPageContainer from 'components/Auth/AuthPageContainer';
 import Section from 'components/Section';
 

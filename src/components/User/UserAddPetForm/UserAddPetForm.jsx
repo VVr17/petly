@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Formik } from 'formik';
-import {
-  Container,
-  Title,
-  FormStyled,
-  LabelStyled,
-  ControlBox,
-  Span,
-  Label,
-  FieldStyled,
-  CommentsBox,
-  ErrorStyle,
-} from './UserAddPetForm.styled';
 import PropTypes from 'prop-types';
+import { Formik } from 'formik';
+import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 import PartFirst from './PartFirst';
 import PartSecond from './PartSecond';
 import Button from 'components/Ui-Kit/Button';
 import { useAddPetMutation } from 'redux/api/petsApi';
 import Loader from 'components/Loader';
-import { convertDateToString } from '../../../helpers/date';
+import { convertDateToString } from 'helpers/date';
 import {
   initialValues,
   validationSchemaPartOne,
@@ -26,8 +16,13 @@ import {
 } from './Validation';
 import UploadImageField from 'components/Ui-Kit/UploadImage/UploadImage';
 import CommentField from 'components/Notices/AddNoticeForm/AddPetForm/StepTwo/CommentField';
-import { toast } from 'react-toastify';
-import { useIntl } from 'react-intl';
+import {
+  Container,
+  Title,
+  FormStyled,
+  ControlBox,
+  Span,
+} from './UserAddPetForm.styled';
 
 const UserAddPetForm = ({ closeModal }) => {
   const [currentPart, setCurrentPart] = useState(1);

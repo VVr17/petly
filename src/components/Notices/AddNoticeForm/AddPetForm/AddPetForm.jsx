@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Formik } from 'formik';
 import PropTypes from 'prop-types';
-import Button from 'components/Ui-Kit/Button';
+import { Formik } from 'formik';
+import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import {
-  FormWrapper,
-  ButtonsContainer,
-  ErrorMess,
-  CustomCont,
-} from './AddPetForm.styled';
+import Button from 'components/Ui-Kit/Button';
 import StepOne from './StepOne/StepOne';
 import StepTwo from './StepTwo/StepTwo';
 import LocationField from './StepTwo/Location';
@@ -25,7 +20,12 @@ import {
 } from './Validation';
 import Loader from 'components/Loader';
 import { convertDateToString } from 'helpers/date';
-import { useIntl } from 'react-intl';
+import {
+  FormWrapper,
+  ButtonsContainer,
+  ErrorMess,
+  CustomCont,
+} from './AddPetForm.styled';
 
 // Main function
 

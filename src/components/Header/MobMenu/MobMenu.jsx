@@ -1,4 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+import { VscChromeClose } from 'react-icons/vsc';
+import Nav from 'components/Header/Nav';
+import AuthNav from 'components/Header/AuthNav';
+import UserNav from 'components/Header/UserNav';
+import Overlay from 'components/Modals/Overlay';
+import { mobileMenuAnimation } from 'constants/animation';
+import { selectIsAuthState } from 'redux/user/userSelectors';
 import {
   Modal,
   Container,
@@ -8,15 +17,6 @@ import {
   Link,
   Span,
 } from './MobMenu.styled';
-import PropTypes from 'prop-types';
-import { VscChromeClose } from 'react-icons/vsc';
-import Nav from 'components/Header/Nav';
-import AuthNav from 'components/Header/AuthNav';
-import UserNav from 'components/Header/UserNav';
-import Overlay from 'components/Modals/Overlay';
-import { mobileMenuAnimation } from 'constants/animation';
-import { useSelector } from 'react-redux';
-import { selectIsAuthState } from 'redux/user/userSelectors';
 
 const MobMenu = ({ closeMenu }) => {
   const isAuth = useSelector(selectIsAuthState);

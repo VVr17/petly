@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
+import { AnimatePresence } from 'framer-motion';
+import { RiDeleteBin6Fill } from 'react-icons/ri';
+import { useDeletePetMutation } from 'redux/api/petsApi';
+import ModalDelete from 'components/Modals/ModalDelete';
+import ModalComponent from 'components/Modals/Modal';
 import {
   Item,
   InfoBox,
@@ -10,12 +16,6 @@ import {
   Button,
   iconStyle,
 } from './UserPetsListItem.styled';
-import { RiDeleteBin6Fill } from 'react-icons/ri';
-import { useDeletePetMutation } from 'redux/api/petsApi';
-import { AnimatePresence } from 'framer-motion';
-import ModalDelete from 'components/Modals/ModalDelete';
-import ModalComponent from 'components/Modals/Modal';
-import { useIntl } from 'react-intl';
 
 const UserPetsListItem = ({ pet }) => {
   const { name, birthDate, breed, comments, photoURL } = pet;

@@ -1,9 +1,9 @@
 import React from 'react';
+import { useIntl } from 'react-intl';
 import InputField from 'components/Ui-Kit/Input/Input';
 import MyDataPicker from 'components/Notices/AddNoticeForm/AddPetForm/StepOne/DatePicker';
 import { Label, DateBox, ErrorData } from './UserAddPetForm.styled';
 import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
-import { useIntl } from 'react-intl';
 
 const PartFirst = () => {
   const { formatMessage } = useIntl();

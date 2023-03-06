@@ -9,7 +9,5 @@ export const Section = styled(motion.section)`
 export const UserWrapper = styled.div`
   @media (min-width: ${breakpoints[2]}px) {
     display: flex;
-    /* justify-content; center; */
-    /* align-items-center; */
   } ;
 `;

@@ -1,7 +1,11 @@
 import { useState, React } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import { AnimatePresence } from 'framer-motion';
+import { IoTrashSharp } from 'react-icons/io5';
+import { IoIosHeart } from 'react-icons/io';
 import {
   useDeleteNoticeMutation,
   useAddNoticeToFavoriteMutation,
@@ -12,9 +16,10 @@ import getAge from 'js';
 import Button from 'components/Ui-Kit/Button';
 import ModalNotice from 'components/Notices/ModalNotice';
 import ModalComponent from 'components/Modals/Modal';
-import { AnimatePresence } from 'framer-motion';
-import { IoTrashSharp } from 'react-icons/io5';
-import { IoIosHeart } from 'react-icons/io';
+import Loader from 'components/Loader';
+import { selectFavoritesState } from 'redux/favorites/favoritesSelector';
+import ModalDelete from 'components/Modals/ModalDelete/ModalDelete';
+import { useGetCategory } from 'hooks/useGetCategory';
 import {
   CardNotice,
   ImageBox,
@@ -28,14 +33,6 @@ import {
   ContainerButton,
   ToggleFavoriteButton,
 } from './NoticeCategoryItem.styled';
-import Loader from 'components/Loader';
-import { selectFavoritesState } from 'redux/favorites/favoritesSelector';
-import ModalDelete from 'components/Modals/ModalDelete/ModalDelete';
-import { pageAnimation } from 'constants/animation';
-import { Box } from 'components/Box/Box';
-import { motion } from 'framer-motion';
-import { useIntl } from 'react-intl';
-import { useGetCategory } from 'hooks/useGetCategory';
 
 const NoticeCategoryItem = ({
   _id,

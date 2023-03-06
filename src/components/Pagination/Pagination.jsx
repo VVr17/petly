@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import { MyPaginate, Prev, Next } from './Pagination.styled';
 import Container from 'components/Container';
+import { MyPaginate, Prev, Next } from './Pagination.styled';
 
 const Paginate = ({ total, handlePageClick, page }) => {
   return (

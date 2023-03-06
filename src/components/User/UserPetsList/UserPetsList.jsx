@@ -1,5 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+import { AnimatePresence } from 'framer-motion';
+import { BsPlusCircleFill } from 'react-icons/bs';
+import { useGetCurrentUserQuery } from 'redux/api/userApi';
+import UserAddPetForm from 'components/User/UserAddPetForm';
+import UserPetsListItem from './UserPetsListItem';
+import Modal from 'components/Modals/Modal';
+import Pets from 'assets/images/desktop/pet.jpg';
+import Loader from 'components/Loader';
 import {
   Container,
   Title,
@@ -11,15 +20,6 @@ import {
   ButtonTitle,
   ReactIcon,
 } from './UserPetsList.styled';
-import { BsPlusCircleFill } from 'react-icons/bs';
-import { useGetCurrentUserQuery } from 'redux/api/userApi';
-import UserAddPetForm from 'components/User/UserAddPetForm';
-import UserPetsListItem from './UserPetsListItem';
-import Modal from 'components/Modals/Modal';
-import { AnimatePresence } from 'framer-motion';
-import Pets from 'assets/images/desktop/pet.jpg';
-import Loader from 'components/Loader';
-import { FormattedMessage } from 'react-intl';
 
 const UserPetsList = () => {
   const [isOpen, setIsOpen] = useState(false);

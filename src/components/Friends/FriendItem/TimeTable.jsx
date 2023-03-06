@@ -1,12 +1,12 @@
 import { React } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import {
   TimeList,
   TimeItem,
   FriendText,
   HoursItemText,
 } from './FriendItem.styled';
-import { FormattedMessage } from 'react-intl';
 
 const TimeTable = ({ shedule }) => {
   return (

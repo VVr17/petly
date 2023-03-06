@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUserState } from 'redux/user/userSelectors';
+import { useDispatch } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import { logout } from 'redux/user/userSlice';
 import { IoLogOutOutline } from 'react-icons/io5';
 import { Box } from 'components/Box/Box';
-import { FormattedMessage } from 'react-intl';
+import {
+  UserPhoto,
+  UserName,
+  UserEmail,
+  UserBirthday,
+  UserPhone,
+  UserCity,
+} from './UserDataItem/index';
 import {
   Container,
   UserCard,
@@ -14,14 +21,6 @@ import {
   iconStyle,
   UserInfo,
 } from './UserData.styled';
-import {
-  UserPhoto,
-  UserName,
-  UserEmail,
-  UserBirthday,
-  UserPhone,
-  UserCity,
-} from './UserDataItem/index';
 
 const UserData = () => {
   const dispatch = useDispatch();

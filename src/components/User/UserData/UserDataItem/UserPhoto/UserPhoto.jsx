@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, Form } from 'formik';
+import { toast } from 'react-toastify';
+import { useIntl } from 'react-intl';
 import { validationSchema } from './validation';
+import {
+  useUpdateUserMutation,
+  useGetCurrentUserQuery,
+} from 'redux/api/userApi';
+import Plus from 'assets/images/desktop/plus.svg';
+import Loader from 'components/Loader';
 import {
   ImageBox,
   LoadImgInput,
@@ -10,14 +18,6 @@ import {
   LoadImgLabel,
   Camera,
 } from '../UserDataItem.styled';
-import {
-  useUpdateUserMutation,
-  useGetCurrentUserQuery,
-} from 'redux/api/userApi';
-import Plus from 'assets/images/desktop/plus.svg';
-import Loader from 'components/Loader';
-import { toast } from 'react-toastify';
-import { useIntl } from 'react-intl';
 
 const UserPhoto = () => {
   const [fileDataURL, setFileDataURL] = useState(null);
