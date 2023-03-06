@@ -7,10 +7,12 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 280px;
-  margin: 40px 0 40px 0;
+  width: 100%;
+  padding: 40px 20px;
+
   @media (min-width: ${breakpoints[1]}px) {
-    width: 610px;
+    width: 608px;
+    padding: 40px 80px;
   }
 `;
 
@@ -21,6 +23,7 @@ export const Title = styled.h2`
   font-size: ${theme.fontSizes.l};
   line-height: 1.37;
   margin-bottom: 20px;
+
   @media (min-width: ${breakpoints[1]}px) {
     font-size: 36px;
   }
@@ -29,10 +32,8 @@ export const Title = styled.h2`
 export const FormStyled = styled(Form)`
   display: flex;
   flex-direction: column;
-  width: 240px;
-  @media (min-width: ${breakpoints[1]}px) {
-    min-width: 448px;
-  }
+  min-width: 240px;
+  width: 100%;
 `;
 
 export const CommentsBox = styled.div`

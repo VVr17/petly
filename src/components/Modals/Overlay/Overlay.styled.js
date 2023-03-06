@@ -3,7 +3,7 @@ import { theme } from '../../../constants/theme';
 import { motion } from 'framer-motion';
 
 export const OverlayStyled = styled(motion.div)`
-  padding: 20px 0;
+  padding: 20px;
   position: fixed;
   overflow: scroll;
   top: 0;

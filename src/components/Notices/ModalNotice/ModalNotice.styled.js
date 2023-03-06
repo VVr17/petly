@@ -2,24 +2,28 @@ import styled from 'styled-components';
 import { theme, breakpoints } from 'constants/theme';
 
 export const NoticeContainer = styled.div`
-  width: 240px;
-  margin: 60px 20px 40px 20px;
-  ${theme.mq.tablet} {
-    width: 660px;
-  }
-`;
-
-export const PetInfo = styled.div`
-  margin-bottom: 28px;
   width: 100%;
+  padding: 60px 20px 40px 20px;
 
   ${theme.mq.tablet} {
-    display: flex;
+    width: 704px;
+    padding: 32px 20px 40px 20px;
   }
 `;
 
 export const ImgWrapper = styled.div`
   position: relative;
+  width: 240px;
+  height: 240px;
+
+  ${theme.mq.mobileOnly} {
+    margin: 0 auto;
+  }
+
+  ${theme.mq.tablet} {
+    width: 288px;
+    height: 328px;
+  }
 
   ${theme.mq.mobileOnly} {
     margin-bottom: 20px;
@@ -60,6 +64,15 @@ export const CategoryName = styled.p`
   line-height: 16px;
   letter-spacing: 0.04em;
   color: ${theme.colors.mainText};
+`;
+
+export const PetInfo = styled.div`
+  margin-bottom: 28px;
+  width: 100%;
+
+  ${theme.mq.tablet} {
+    display: flex;
+  }
 `;
 
 export const TextContent = styled.div`

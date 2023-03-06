@@ -12,7 +12,7 @@ import { addFavorites, removeFavorites } from 'redux/favorites/favoritesSlice';
 export const noticesApi = createApi({
   reducerPath: 'noticesApi',
   baseQuery,
-  tagTypes: [TAGS_TYPES.notice],
+  tagTypes: [TAGS_TYPES.notice, TAGS_TYPES.favorites],
   endpoints: builder => ({
     getNoticeByCategory: builder.query({
       query: ({ categoryName, search, page = 1 }) =>
