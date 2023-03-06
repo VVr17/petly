@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export const StyledModal = styled(motion.div)`
   position: relative;
-  width: fit-content;
+  /* width: fit-content; */
   max-width: 360px;
   margin: auto;
   display: flex;
@@ -15,6 +15,7 @@ export const StyledModal = styled(motion.div)`
   background-color: ${theme.colors.lightText};
 
   ${theme.mq.tablet} {
+    width: fit-content;
     border-radius: 40px;
     top: 7%;
     max-width: 704px;

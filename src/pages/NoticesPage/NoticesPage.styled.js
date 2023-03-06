@@ -11,7 +11,7 @@ export const FormContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 100%;
+  max-width: 100%;
   padding: 40px 20px;
 
   ${theme.mq.tablet} {
