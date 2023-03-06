@@ -8,7 +8,6 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  /* width: 280px; */
   padding: 40px 20px;
 
   @media (min-width: ${breakpoints[1]}px) {
@@ -35,9 +34,6 @@ export const FormStyled = styled(Form)`
   flex-direction: column;
   min-width: 240px;
   width: 100%;
-  /* @media (min-width: ${breakpoints[1]}px) {
-    min-width: 448px;
-  } */
 `;
 
 export const CommentsBox = styled.div`
