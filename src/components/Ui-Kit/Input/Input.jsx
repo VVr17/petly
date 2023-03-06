@@ -18,6 +18,8 @@ const InputField = ({
   autocomplete,
   children,
   as,
+  onBlur,
+  onFocus
 }) => {
   return (
     <FieldWrapper>
@@ -32,6 +34,8 @@ const InputField = ({
         placeholder={placeholder}
         autoComplete={autocomplete}
         as={as}
+        onBlur={onBlur}
+        onFocus={onFocus}
       />
       <ErrorStyle name={name} component="div" />
       {children}
@@ -51,4 +55,6 @@ InputField.propTypes = {
   autocomplete: PropTypes.string,
   children: PropTypes.node,
   as: PropTypes.string,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
 };
