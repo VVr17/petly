@@ -8,6 +8,7 @@ import { List, ListItem } from './RegStepTwo.styled';
 const RegStepTwo = ({ value, setFieldValue }) => {
   const { formatMessage } = useIntl();
   const [filteredCities, setFilteredCities] = useState([]);
+  const [blurTimeout, setBlurTimeout] = useState(null);
 
   // Update the list of filtered cities whenever the value of the input field changes
   useEffect(() => {
@@ -21,6 +22,20 @@ const RegStepTwo = ({ value, setFieldValue }) => {
       setFilteredCities([]);
     }
   }, [value]);
+
+  // Handler for when the input field loses focus
+  const handleInputBlur = () => {
+    setBlurTimeout(
+      setTimeout(() => {
+        setFilteredCities([]);
+      }, 100)
+    );
+  };
+
+  // Handler for when the input field gains focus
+  const handleInputFocus = () => {
+    clearTimeout(blurTimeout);
+  };
 
   // Handler for when a city is selected from the filtered list
   const handleCityClick = city => {
@@ -40,6 +55,8 @@ const RegStepTwo = ({ value, setFieldValue }) => {
         name="city"
         type="city"
         placeholder={formatMessage({ id: 'city' })}
+        onBlur={handleInputBlur}
+        onFocus={handleInputFocus}
       />
       {filteredCities.length > 0 && (
         <List>

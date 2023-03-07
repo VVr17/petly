@@ -7,7 +7,10 @@ import { List, ListItem } from './Location.styled';
 
 const LocationField = ({ valueLocation, setFieldValue }) => {
   const [filteredCities, setFilteredCities] = useState([]);
+  const [blurTimeout, setBlurTimeout] = useState(null);
   const { formatMessage } = useIntl();
+
+
   useEffect(() => {
     const inputValue = valueLocation;
     if (inputValue) {
@@ -23,6 +26,18 @@ const LocationField = ({ valueLocation, setFieldValue }) => {
     }
   }, [valueLocation]);
 
+  // Handler for when the input field loses focus
+  const handleInputBlur = () => {
+      setBlurTimeout(setTimeout(() => {
+      setFilteredCities([]);
+    }, 100));
+  };
+
+  // Handler for when the input field gains focus
+  const handleInputFocus = () => {
+    clearTimeout(blurTimeout);
+  };
+
   const handleCityClick = city => {
     setFieldValue('location', city);
     setFilteredCities([]);
@@ -36,6 +51,8 @@ const LocationField = ({ valueLocation, setFieldValue }) => {
         placeholder={formatMessage({ id: 'typeLocation' })}
         label={formatMessage({ id: 'location' })}
         span="*"
+        onBlur={handleInputBlur}
+        onFocus={handleInputFocus}
       />
       {filteredCities.length > 0 && (
         <List>
