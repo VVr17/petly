@@ -10,8 +10,8 @@ import UserNav from 'components/Header/UserNav';
 import MobMenu from 'components/Header/MobMenu';
 import Container from 'components/Container';
 import { pageAnimation } from 'constants/animation';
-import Uk from '../../assets/icons/ukraine.svg';
-import En from '../../assets/icons/united.svg';
+import Uk from 'assets/icons/ukraine.svg';
+import En from 'assets/icons/united.svg';
 import {
   Navigation,
   PagesBox,

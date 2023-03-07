@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import { useLoginUserMutation } from 'redux/api/userApi';
 import { Formik } from 'formik';
+import { FormattedMessage } from 'react-intl';
 import LoginInputs from './LoginInputs';
 import {
   loginInitialValues as initialValues,
   loginValidationSchema as validationSchema,
 } from './LoginValidation';
+import Button from 'components/Ui-Kit/Button';
+import Loader from 'components/Loader';
 // styles from RegisterForm
 import {
   ModalContent,
@@ -19,9 +20,6 @@ import {
   Paragraph,
   ErrorMessage,
 } from '../RegisterForm/RegisterForm.styled';
-import Button from 'components/Ui-Kit/Button';
-import Loader from 'components/Loader';
-import { FormattedMessage } from 'react-intl';
 
 // main function
 

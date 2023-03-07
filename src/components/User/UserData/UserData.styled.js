@@ -18,7 +18,6 @@ export const Title = styled.h2`
 `;
 
 export const UserCard = styled.div`
-  /* width: 280px; */
   margin-top: 18px;
   margin-left: auto;
   margin-right: auto;
@@ -102,8 +101,6 @@ export const Button = styled.button`
 export const iconStyle = {
   height: '20px',
   width: '20px',
-  // fill: theme.colors.accent,
-  // color: theme.colors.accent,
 };
 
 export const LogoutBtn = {

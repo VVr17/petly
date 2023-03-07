@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import {
   ButtonFilterList,
   ButtonFilterItem,
   ButtonFilterLabel,
   ButtonFilterInput,
 } from './AddPetForm.styled';
-import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
 
 const FilterCategory = ({ value }) => {
   return (

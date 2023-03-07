@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { StyledModal, ButtonCloseModal } from './Modal.styled';
 import { AiOutlineClose } from 'react-icons/ai';
 import Overlay from 'components/Modals/Overlay';
 import { popUpMenuAnimation } from 'constants/animation';
+import { StyledModal, ButtonCloseModal } from './Modal.styled';
 
 const ModalComponent = ({ closeModal, children }) => {
   useEffect(() => {

@@ -27,6 +27,10 @@ export const Text = styled.p`
   font-size: ${theme.fontSizes.m};
   margin: 20px 0;
   text-align: center;
+
+  ${theme.mq.mobileOnly} {
+    max-width: 290px;
+  }
 `;
 
 // container of buttons
@@ -37,9 +41,10 @@ export const ButtonsContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 12px;
+
   @media (min-width: ${breakpoints[1]}px) {
     flex-direction: row;
-    width: 380px;
+    /* width: 380px; */
     margin-left: auto;
     margin-right: auto;
   }
@@ -48,6 +53,10 @@ export const ButtonsContainer = styled.div`
 export const ButtonFilterList = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  ${theme.mq.mobileOnly} {
+    max-width: 290px;
+  }
+
   @media (min-width: ${breakpoints[1]}px) {
     margin-bottom: 8px;
   } ;
@@ -157,6 +166,7 @@ export const RadioContainer = styled.ul`
   gap: 90px;
   margin-top: 10px;
   margin-bottom: 18px;
+
   @media (min-width: ${breakpoints[1]}px) {
     margin-top: 20px;
     margin-bottom: 20px;

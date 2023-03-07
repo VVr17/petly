@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { VscAdd } from 'react-icons/vsc';
+import { FormattedMessage } from 'react-intl';
 import {
   ButtonContainer,
   Button,
@@ -7,8 +9,6 @@ import {
   ReactIcon,
   Title,
 } from './AddPetButton.styled';
-import { FormattedMessage } from 'react-intl';
-import PropTypes from 'prop-types';
 
 const AddPetButton = ({ handleClick }) => {
   return (

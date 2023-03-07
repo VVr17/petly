@@ -3,7 +3,7 @@ import {
   AiOutlineSearch as StyledAiOutlineSearch,
   AiOutlineCloseCircle as StyledAiOutlineCloseCircle,
 } from 'react-icons/ai';
-import { theme, breakpoints } from '../../../constants/theme';
+import { theme } from 'constants/theme';
 
 export const FormWrapper = styled.form`
   position: relative;

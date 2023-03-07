@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useSignupUserMutation } from 'redux/api/userApi';
 import { Formik } from 'formik';
+import { FormattedMessage } from 'react-intl';
 import {
   initialValues,
   validationSchemaStepOne,
@@ -10,6 +9,8 @@ import {
 } from './Validation';
 import RegStepOne from './RegStepOne';
 import RegStepTwo from './RegStepTwo';
+import Button from 'components/Ui-Kit/Button';
+import Loader from 'components/Loader';
 import {
   ModalContent,
   ModalWrapper,
@@ -20,10 +21,6 @@ import {
   LoginLink,
   ErrorMessage,
 } from './RegisterForm.styled';
-import Button from 'components/Ui-Kit/Button';
-import Loader from 'components/Loader';
-import { toast } from 'react-toastify';
-import { FormattedMessage } from 'react-intl';
 
 const RegistrationForm = () => {
   const [currentStep, setCurrentStep] = useState(1);

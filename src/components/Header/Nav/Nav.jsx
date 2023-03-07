@@ -1,8 +1,8 @@
 import React from 'react';
-import { Container, Link } from './Nav.styled';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { mainNav } from 'constants/nav';
+import { Container, Link } from './Nav.styled';
 
 const Nav = ({ closeMenu }) => {
   return (

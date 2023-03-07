@@ -1,14 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { useField } from 'formik';
+import { useIntl } from 'react-intl';
+import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
 import {
   TextareaLabel,
   Textarea,
   TextareaContainer,
   ErrorStyle,
 } from '../AddPetForm.styled';
-import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
-import { useField } from 'formik';
-import PropTypes from 'prop-types';
-import { useIntl } from 'react-intl';
 
 const CommentField = ({ name, form }) => {
   const [field, meta, helpers] = useField(name);

@@ -1,9 +1,9 @@
-import { theme } from 'constants/theme';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import { theme } from 'constants/theme';
 import waveMobile from 'assets/images/mobile/wave.png';
 import waveTablet from 'assets/images/tablet/wave.png';
 import waveDesktop from 'assets/images/desktop/wave-bubbel-heart.png';
-import { motion } from 'framer-motion';
 
 export const Title = styled.h1`
   padding-top: 50px;
@@ -81,6 +81,5 @@ export const Background = styled(motion.div)`
     background: bottom 0 center no-repeat url(${waveDesktop});
     background-size: 1550px;
     margin: auto;
-
   }
 `;

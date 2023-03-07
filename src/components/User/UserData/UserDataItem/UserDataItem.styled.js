@@ -9,7 +9,7 @@ export const MyDatePickerNew = styled(DatePicker)`
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 12px;
-  
+
   border-radius: 40px;
   border: 1px solid
     ${({ theme, disabled }) =>
@@ -43,15 +43,11 @@ export const ErrorStyle = styled(ErrorMessage)`
   max-height: 10px;
   overflow-x: hidden;
   overflow-y: hidden;
-  /* ${theme.mq.mobileOnly} {
-    transform: translate(0px, 0px);
-  } */
 `;
 
 export const FieldWrapper = styled.div`
   max-width: 379px;
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
   font-family: ${theme.fontFamily.manrope};
   font-style: normal;
@@ -150,7 +146,6 @@ export const LoadImgLabel = styled.label`
   }
 
   svg {
-    /* color: inherit; */
     transition: color ${theme.transitionTiming};
   }
 

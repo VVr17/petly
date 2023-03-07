@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import Button from 'components/Ui-Kit/Button';
 import { Container, Title, ContainerButton } from './ModalDelete.styled';
-import { FormattedMessage } from 'react-intl';
 
 const ModalDelete = ({ closeModal, onDelete }) => {
   return (

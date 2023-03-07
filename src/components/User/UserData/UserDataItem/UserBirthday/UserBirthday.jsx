@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { Formik, Form, useField } from 'formik';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { useIntl } from 'react-intl';
 import { useUpdateUserMutation } from 'redux/api/userApi';
+import { Title } from 'components/Ui-Kit/UserInput/UserInput.styled';
+import { validationSchema } from './validation';
+import { convertStringToDate, convertDateToString } from 'helpers/date';
+import UserUpdateButton from 'components/Ui-Kit/UserupdateButton';
+import Loader from 'components/Loader';
+import { selectUserState } from 'redux/user/userSelectors';
 import {
   FieldWrapper,
   MyDatePickerNew,
   Label,
   ErrorStyle,
 } from '../UserDataItem.styled';
-import { Title } from 'components/Ui-Kit/UserInput/UserInput.styled';
-import { validationSchema } from './validation';
-import { convertStringToDate, convertDateToString } from 'helpers/date';
-import UserUpdateButton from 'components/Ui-Kit/UserupdateButton/UserUpdateButton';
-import Loader from 'components/Loader';
-import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
-import { selectUserState } from 'redux/user/userSelectors';
-import { toast } from 'react-toastify';
-import { useIntl } from 'react-intl';
 
 const MyDatePicker = ({ name = '', isDisabled, val, handleChange }) => {
   const [field] = useField(name);

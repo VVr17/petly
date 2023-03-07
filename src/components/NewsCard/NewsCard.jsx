@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+import { truncateString } from 'helpers/truncateString';
 import {
   Date,
   LinearGradient,
@@ -10,8 +12,6 @@ import {
   WrapperCard,
   WrapperSignature,
 } from './NewsCard.styled';
-import { FormattedMessage } from 'react-intl';
-import { truncateString } from 'helpers/truncateString';
 
 const NewsCard = ({ title, url, description, date }) => {
   const trimTitle = truncateString(title);

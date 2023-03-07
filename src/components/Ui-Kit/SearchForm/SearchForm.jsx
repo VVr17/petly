@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 import {
   FormWrapper,
   FormField,
@@ -6,8 +8,6 @@ import {
   AiOutlineSearch,
   AiOutlineCloseCircle,
 } from './SearchForm.styled';
-import PropTypes from 'prop-types';
-import { useIntl } from 'react-intl';
 
 const SearchForm = ({ handleSubmit, isSearch, handleChange }) => {
   const { formatMessage } = useIntl();

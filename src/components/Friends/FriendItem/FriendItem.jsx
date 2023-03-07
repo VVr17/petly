@@ -1,5 +1,8 @@
 import { React, useState } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+import TimeTable from './TimeTable';
+import defaultImage from 'assets/images/mobile/friend-default-image.png';
 import {
   FriendTitle,
   FriendContentWrapper,
@@ -13,9 +16,6 @@ import {
   FriendContentList,
   TimeBtn,
 } from './FriendItem.styled.jsx';
-import TimeTable from './TimeTable';
-import defaultImage from 'assets/images/mobile/friend-default-image.png';
-import { FormattedMessage } from 'react-intl';
 
 export const FriendItem = ({
   title,

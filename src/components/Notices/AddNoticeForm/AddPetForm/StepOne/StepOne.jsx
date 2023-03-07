@@ -1,12 +1,12 @@
 import React from 'react';
-import 'react-datepicker/dist/react-datepicker.css';
-import InputField from 'components/Ui-Kit/Input';
-import { Text, DatePickerContainer } from '../AddPetForm.styled';
-import MyDatePicker from './DatePicker';
-import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
 import PropTypes from 'prop-types';
-import { Label, ErrorStyle } from 'components/Ui-Kit/Input/Input.styled';
+import MyDatePicker from './DatePicker';
+import InputField from 'components/Ui-Kit/Input';
 import { useIntl } from 'react-intl';
+import 'react-datepicker/dist/react-datepicker.css';
+import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
+import { Text, DatePickerContainer } from '../AddPetForm.styled';
+import { Label, ErrorStyle } from 'components/Ui-Kit/Input/Input.styled';
 
 const StepOne = ({ children }) => {
   const { formatMessage } = useIntl();

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import InputField from 'components/Ui-Kit/Input';
-import { PasswordToggle, PasswordWrapper } from './RegStepOne.styled';
-import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
 import { useIntl } from 'react-intl';
+import InputField from 'components/Ui-Kit/Input';
+import { PasswordToggle } from './RegStepOne.styled';
+import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
 
 const RegStepOne = () => {
-  
   // Define state variable for password visibility
   const [showPassword, setShowPassword] = useState(false);
   const { formatMessage } = useIntl();

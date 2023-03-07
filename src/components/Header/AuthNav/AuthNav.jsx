@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, AuthLink, Link } from './AuthNav.styled';
 import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 import { getLoginFilled } from 'constants/loginIsFilled';
+import { Container, Link } from './AuthNav.styled';
 
 const AuthNav = ({ closeMenu }) => {
   const location = useLocation();

@@ -60,17 +60,10 @@ export const AuthLink = styled(NavLink)`
   font-weight: ${theme.fontWeight.medium};
   font-size: ${theme.fontSizes.xxs};
   line-height: 1.35;
-  /* color: ${theme.colors.lightText}; */
-  /* background-color: ${theme.colors.accent}; */
-  /* border: 2px solid ${theme.colors.accent}; */
   border-radius: 40px;
   transition: background-color ${theme.transitionTiming};
   transition: border-color ${theme.transitionTiming};
 
-  /* &.active {
-    background-color: ${theme.colors.accent};
-    border: 2px solid ${theme.colors.accent};
-  } */
   &:not(:last-child) {
     margin-right: 20px;
   }

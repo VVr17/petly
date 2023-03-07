@@ -1,13 +1,12 @@
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { pageAnimation } from 'constants/animation';
 import React from 'react';
-import { Background, Images, Title, WrapContainer } from './Home.styled';
+import { FormattedMessage } from 'react-intl';
+import { pageAnimation } from 'constants/animation';
 import { breakpoints } from 'constants/theme';
 import portraitMobile from 'assets/images/mobile/portrait-and-favorite-pet.png';
 import portraitTablet from 'assets/images/tablet/portrait-and-favorite-pet.png';
 import portraitDesktop from 'assets/images/desktop/portrait-and-favorite-pet.png';
-import { FormattedMessage } from 'react-intl';
+import 'react-toastify/dist/ReactToastify.css';
+import { Background, Images, Title, WrapContainer } from './Home.styled';
 
 const Home = () => {
   return (

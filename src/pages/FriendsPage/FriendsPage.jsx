@@ -1,12 +1,12 @@
 import { React } from 'react';
 import { useGetFriendsQuery } from 'redux/api/friendsApi';
-
-import Section from 'components/Section';
-import FriendsList from 'components/Friends/FriendsList/FriendsList';
-import TitlePage from 'components/Ui-Kit/TitlePage';
-import Loader from 'components/Loader/loader';
 import { useIntl } from 'react-intl';
 import { FormattedMessage } from 'react-intl';
+
+import Section from 'components/Section';
+import FriendsList from 'components/Friends/FriendsList';
+import TitlePage from 'components/Ui-Kit/TitlePage';
+import Loader from 'components/Loader/loader';
 
 const FriendsPage = () => {
   const { data, isFetching, isError } = useGetFriendsQuery();

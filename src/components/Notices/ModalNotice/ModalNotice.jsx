@@ -1,17 +1,20 @@
-import Container from 'components/Container';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 import {
   useAddNoticeToFavoriteMutation,
   useRemoveNoticeFromFavoriteMutation,
-  useGetNoticeByIdQuery,
 } from 'redux/api/noticesApi';
 import { selectFavoritesState } from 'redux/favorites/favoritesSelector';
 import { toast } from 'react-toastify';
 import { selectIsAuthState } from 'redux/user/userSelectors';
-import PropTypes from 'prop-types';
 import Loader from 'components/Loader';
 import { IoIosHeart } from 'react-icons/io';
+import Button from 'components/Ui-Kit/Button';
+import { selectStatusFilter } from 'redux/filter/filterSelectors';
+import { statusFilter } from 'redux/filter/filterConstans';
+import { useGetNoticeInfo } from 'hooks/useGetNoticeInfo';
 import {
   ImgWrapper,
   PetsImg,
@@ -21,26 +24,12 @@ import {
   PetInfo,
   Title,
   PetData,
-  CategoryData,
-  DataItem,
-  CategoryText,
-  ValueData,
-  ValueText,
   Comments,
   CommentsTitle,
   NoticeContainer,
   Buttons,
   Plug,
-  LinkModal,
 } from './ModalNotice.styled';
-import Button from 'components/Ui-Kit/Button';
-import { selectStatusFilter } from 'redux/filter/filterSelectors';
-import { statusFilter } from 'redux/filter/filterConstans';
-import { useIntl } from 'react-intl';
-import {
-  useGetNoticeInfo,
-  useGetNoticeModalKeys,
-} from 'hooks/useGetNoticeInfo';
 
 const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
 

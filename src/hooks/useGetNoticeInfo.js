@@ -44,7 +44,7 @@ export const useGetNoticeInfo = id => {
   if (category === 'sell') {
     noticeInfo.push({
       field: formatMessage({ id: 'price' }),
-      value: price,
+      value: `${price}$`,
     });
   }
 

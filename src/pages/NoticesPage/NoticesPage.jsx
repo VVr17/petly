@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
+import { AnimatePresence } from 'framer-motion';
+import { FormattedMessage, useIntl } from 'react-intl';
 import Paginate from 'components/Pagination/Pagination';
 import { selectIsAuthState } from 'redux/user/userSelectors';
 import Loader from 'components/Loader';
@@ -10,6 +12,13 @@ import Section from 'components/Section';
 import TitlePage from 'components/Ui-Kit/TitlePage';
 import FindPetFilter from 'components/Notices/FindPetFilter';
 import SearchForm from 'components/Ui-Kit/SearchForm';
+import AddPetButton from 'components/Ui-Kit/AddPetButton';
+import AddNoticeFormHeader from 'components/Notices/AddNoticeForm';
+import AddPetForm from 'components/Notices/AddNoticeForm/AddPetForm';
+import { useGetNotices } from 'hooks/useGetNotices';
+import ModalComponent from 'components/Modals/Modal';
+import Pets from 'assets/images/desktop/pet.jpg';
+import { topScroll } from 'helpers/topScroll';
 import {
   NavContainer,
   FormContainer,
@@ -17,15 +26,6 @@ import {
   Title,
   Image,
 } from './NoticesPage.styled';
-import AddPetButton from 'components/Ui-Kit/AddPetButton';
-import AddNoticeFormHeader from 'components/Notices/AddNoticeForm';
-import AddPetForm from 'components/Notices/AddNoticeForm/AddPetForm';
-import { AnimatePresence } from 'framer-motion';
-import { useGetNotices } from 'hooks/useGetNotices';
-import { FormattedMessage, useIntl } from 'react-intl';
-import ModalComponent from 'components/Modals/Modal/Modal';
-import Pets from 'assets/images/desktop/pet.jpg';
-import { topScroll } from 'helpers/topScroll';
 
 const NoticesPage = () => {
   const isAuth = useSelector(selectIsAuthState);

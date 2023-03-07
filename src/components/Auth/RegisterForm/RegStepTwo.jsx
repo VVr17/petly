@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import InputField from 'components/Ui-Kit/Input';
 import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
+import InputField from 'components/Ui-Kit/Input';
 import cities from 'assets/files/uaCities.json';
 import { List, ListItem } from './RegStepTwo.styled';
-import { useIntl } from 'react-intl';
 
 const RegStepTwo = ({ value, setFieldValue }) => {
   const { formatMessage } = useIntl();
@@ -15,7 +15,7 @@ const RegStepTwo = ({ value, setFieldValue }) => {
     const inputValue = value || '';
     if (inputValue) {
       const filtered = cities
-        .filter((city) => city.city.toLowerCase().startsWith(value.toLowerCase()))
+        .filter(city => city.city.toLowerCase().startsWith(value.toLowerCase()))
         .map(({ city, admin_name }) => `${city}, ${admin_name}`);
       setFilteredCities(filtered);
     } else {
@@ -23,25 +23,25 @@ const RegStepTwo = ({ value, setFieldValue }) => {
     }
   }, [value]);
 
-
-// Handler for when the input field loses focus
+  // Handler for when the input field loses focus
   const handleInputBlur = () => {
-      setBlurTimeout(setTimeout(() => {
-      setFilteredCities([]);
-    }, 100));
+    setBlurTimeout(
+      setTimeout(() => {
+        setFilteredCities([]);
+      }, 100)
+    );
   };
-  
-// Handler for when the input field gains focus
+
+  // Handler for when the input field gains focus
   const handleInputFocus = () => {
     clearTimeout(blurTimeout);
   };
 
   // Handler for when a city is selected from the filtered list
-  const handleCityClick = (city) => {
+  const handleCityClick = city => {
     setFieldValue('city', city);
     setFilteredCities([]);
   };
-
 
   return (
     <>

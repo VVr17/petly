@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useField } from 'formik';
 import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
+import Plus from 'assets/images/desktop/plus.svg';
+import { ErrorStyle } from './UploadImage.styled';
+import { Box } from 'components/Box/Box';
 import {
   LoadImgLabel,
   LoadImageCont,
@@ -8,13 +12,9 @@ import {
   LoadImgPlus,
   LoadImgInput,
 } from './UploadImage.styled';
-import Plus from 'assets/images/desktop/plus.svg';
-import { ErrorStyle } from './UploadImage.styled';
-import { useField } from 'formik';
-import { Box } from 'components/Box/Box';
 
 const UploadImageField = ({ handleChange, fileDataURL, name, label, form }) => {
-  const [field, meta, helpers] = useField(name);
+  const [meta] = useField(name);
   const { value } = meta;
 
   return (

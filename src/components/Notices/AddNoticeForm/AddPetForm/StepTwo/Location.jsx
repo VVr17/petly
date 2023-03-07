@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import InputField from 'components/Ui-Kit/Input';
-import { List, ListItem } from './Location.styled';
-import cities from 'assets/files/uaCities.json';
 import { useIntl } from 'react-intl';
+import InputField from 'components/Ui-Kit/Input';
+import cities from 'assets/files/uaCities.json';
+import { List, ListItem } from './Location.styled';
 
 const LocationField = ({ valueLocation, setFieldValue }) => {
   const [filteredCities, setFilteredCities] = useState([]);
