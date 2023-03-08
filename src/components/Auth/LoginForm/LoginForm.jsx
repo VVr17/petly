@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoginUserMutation } from 'redux/api/userApi';
 import { Formik } from 'formik';
 import { FormattedMessage } from 'react-intl';
@@ -20,6 +20,8 @@ import {
   Paragraph,
   ErrorMessage,
 } from '../RegisterForm/RegisterForm.styled';
+import { useGoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 
 // main function
 
@@ -33,6 +35,39 @@ const LoginForm = () => {
     };
     const response = await loginUser(credentials);
   };
+
+  const [googleToken, setGoogleToken] = useState(null);
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: codeResponse => {
+      setGoogleToken(codeResponse.access_token);
+    },
+    onError: error => {
+      console.log('Login Failed:', error);
+    },
+  });
+
+  useEffect(() => {
+    const getUserInfo = async () => {
+      if (googleToken) {
+        try {
+          const response = await axios.get(
+            `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${googleToken}`,
+            {
+              headers: {
+                Authorization: `Bearer ${googleToken}`,
+                Accept: 'application/json',
+              },
+            }
+          );
+          console.log('userData', response.data);
+        } catch (error) {
+          console.log('error', error);
+        }
+      }
+    };
+    getUserInfo();
+  }, [googleToken]);
 
   return (
     <>
@@ -67,6 +102,13 @@ const LoginForm = () => {
             </LoginLink>
           </Paragraph>
           {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
+          <button
+            onClick={() => {
+              googleLogin();
+            }}
+          >
+            GOOGLE SIGN IN
+          </button>
         </ModalContent>
       </ModalWrapper>
     </>

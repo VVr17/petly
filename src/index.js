@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import React from 'react';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import App from 'components/App/App';
 import { theme } from 'constants/theme';
 import { BrowserRouter } from 'react-router-dom';
@@ -10,17 +11,20 @@ import { persistor, store } from 'redux/store';
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
+//clientId={process.env.GOOGLE_CLIENT_ID}
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/petly">
-          <ThemeProvider theme={theme}>
-            <App />
-          </ThemeProvider>
-        </BrowserRouter>
-      </PersistGate>
-    </Provider>
+    <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <BrowserRouter basename="/petly">
+            <ThemeProvider theme={theme}>
+              <App />
+            </ThemeProvider>
+          </BrowserRouter>
+        </PersistGate>
+      </Provider>
+    </GoogleOAuthProvider>
   </React.StrictMode>
 );
