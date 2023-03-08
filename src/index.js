@@ -11,11 +11,10 @@ import { persistor, store } from 'redux/store';
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
-//clientId={process.env.GOOGLE_CLIENT_ID}
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID}>
+    <GoogleOAuthProvider clientId="577392226611-1491oaqks97jruapcfhae971ukl4il3f.apps.googleusercontent.com">
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <BrowserRouter basename="/petly">
