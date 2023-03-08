@@ -79,7 +79,6 @@ export const userApi = createApi({
           const {
             data: { data },
           } = await queryFulfilled;
-          console.log('data', data);
           dispatch(setUser(data.user));
           dispatch(setToken(data.token));
         } catch (error) {}
