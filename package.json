@@ -2,7 +2,6 @@
   "name": "pet-support-front",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://VVr17.github.io/petly/",
   "dependencies": {
     "@react-oauth/google": "^0.8.0",
     "@reduxjs/toolkit": "^1.9.2",
