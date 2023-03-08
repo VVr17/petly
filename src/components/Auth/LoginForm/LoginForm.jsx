@@ -21,12 +21,13 @@ import {
   ErrorMessage,
 } from '../RegisterForm/RegisterForm.styled';
 import { useGoogleLogin } from '@react-oauth/google';
-import axios from 'axios';
+import { getUserData } from 'api/googleAuth';
 
 // main function
 
 const LoginForm = () => {
   const [loginUser, { isLoading, isError, error }] = useLoginUserMutation();
+  const [googleToken, setGoogleToken] = useState(null);
 
   const handleSubmit = async values => {
     const credentials = {
@@ -35,8 +36,6 @@ const LoginForm = () => {
     };
     const response = await loginUser(credentials);
   };
-
-  const [googleToken, setGoogleToken] = useState(null);
 
   const googleLogin = useGoogleLogin({
     onSuccess: codeResponse => {
@@ -50,20 +49,8 @@ const LoginForm = () => {
   useEffect(() => {
     const getUserInfo = async () => {
       if (googleToken) {
-        try {
-          const response = await axios.get(
-            `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${googleToken}`,
-            {
-              headers: {
-                Authorization: `Bearer ${googleToken}`,
-                Accept: 'application/json',
-              },
-            }
-          );
-          console.log('userData', response.data);
-        } catch (error) {
-          console.log('error', error);
-        }
+        const { user, error } = await getUserData(googleToken);
+        console.log('userData', user);
       }
     };
     getUserInfo();

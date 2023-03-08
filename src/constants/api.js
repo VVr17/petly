@@ -7,6 +7,7 @@ export const FAVORITES_URL = '/favorites';
 export const ID_URL = '/id';
 export const PETS_URL = '/api/pets';
 export const SERVICES_URL = '/api/services';
+export const GOOGLE_URL = 'https://www.googleapis.com/oauth2/v1/userinfo';
 
 export const TAGS_TYPES = {
   user: 'User',
