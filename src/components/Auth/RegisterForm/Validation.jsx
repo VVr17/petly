@@ -41,23 +41,21 @@ export const validationSchemaStepTwo = Yup.object().shape({
       /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/,
       'Only letters can be accepted'
     )
-    .max(12, 'Name should be up to 12 characters long')
+    .max(32, 'Name should be up to 32 characters long')
     .required('Name is required'),
   city: Yup.string()
     .matches(
       /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?:[-\s]?[a-zA-Zа-яА-ЯіІїЇґҐ]+)*,\s*[a-zA-Zа-яА-ЯіІїЇґҐ'’\s-]+$/,
       'Should be "City, Region" separated by comma, only letters can be accepted'
     )
-    .min(3, 'City should have at least 3 characters')
-    .required('City is required'),
+    .min(3, 'City should have at least 3 characters'),
   phone: Yup.string()
     .matches(
       /^\+380\d{9}$/,
       'Number should begin with +380 and contain 13 digits'
     )
     .min(13, 'Phone number should be 13 digits')
-    .max(13, 'Phone number should be 13 digits')
-    .required('Phone number is required'),
+    .max(13, 'Phone number should be 13 digits'),
 });
 
 // name without space ^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$

@@ -67,6 +67,25 @@ export const userApi = createApi({
       },
     }),
 
+    loginGoogleAuthUser: builder.mutation({
+      query: credentials => ({
+        url: `${USER_URL}/google/login`,
+        method: 'POST',
+        body: credentials,
+      }),
+      invalidatesTags: [TAGS_TYPES.user],
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          const {
+            data: { data },
+          } = await queryFulfilled;
+          console.log('data', data);
+          dispatch(setUser(data.user));
+          dispatch(setToken(data.token));
+        } catch (error) {}
+      },
+    }),
+
     logoutUser: builder.mutation({
       query: credentials => ({
         url: `${USER_URL}/logout`,
@@ -109,4 +128,5 @@ export const {
   useLoginUserMutation,
   useLogoutUserMutation,
   useUpdateUserMutation,
+  useLoginGoogleAuthUserMutation,
 } = userApi;

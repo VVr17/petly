@@ -13,7 +13,7 @@ export const getUserData = async googleToken => {
       }
     );
     const { email, name, picture } = response.data;
-    return { user: { email, name, photoUrl: picture }, error: null };
+    return { user: { email, name, photoURL: picture }, error: null };
   } catch (error) {
     console.log('error', error.message);
     return { user: null, error: error.message };

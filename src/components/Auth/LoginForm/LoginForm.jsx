@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useLoginUserMutation } from 'redux/api/userApi';
+import {
+  useLoginGoogleAuthUserMutation,
+  useLoginUserMutation,
+} from 'redux/api/userApi';
 import { Formik } from 'formik';
 import { FormattedMessage } from 'react-intl';
 import LoginInputs from './LoginInputs';
@@ -22,11 +25,16 @@ import {
 } from '../RegisterForm/RegisterForm.styled';
 import { useGoogleLogin } from '@react-oauth/google';
 import { getUserData } from 'api/googleAuth';
+import { FcGoogle } from 'react-icons/fc';
 
 // main function
 
 const LoginForm = () => {
   const [loginUser, { isLoading, isError, error }] = useLoginUserMutation();
+  const [
+    loginGoogleUser,
+    { isLoading: isGoogleLoading, isError: isGoogleError, error: googleError },
+  ] = useLoginGoogleAuthUserMutation();
   const [googleToken, setGoogleToken] = useState(null);
 
   const handleSubmit = async values => {
@@ -50,7 +58,7 @@ const LoginForm = () => {
     const getUserInfo = async () => {
       if (googleToken) {
         const { user, error } = await getUserData(googleToken);
-        console.log('userData', user);
+        loginGoogleUser(user);
       }
     };
     getUserInfo();
@@ -58,7 +66,7 @@ const LoginForm = () => {
 
   return (
     <>
-      {isLoading && <Loader />}
+      {(isLoading || isGoogleLoading) && <Loader />}
       <ModalWrapper>
         <ModalContent>
           <FormTitle>
@@ -77,6 +85,17 @@ const LoginForm = () => {
                     <Button name="filled" type="submit" disabled={isSubmitting}>
                       <FormattedMessage id="submit" />
                     </Button>
+                    <Button
+                      type="button"
+                      name="transparent"
+                      width="100%"
+                      onClick={() => {
+                        googleLogin();
+                      }}
+                    >
+                      <FcGoogle />
+                      Sign in with GOOGLE
+                    </Button>
                   </ButtonWrapper>
                 </FormWrapper>
               );
@@ -89,13 +108,9 @@ const LoginForm = () => {
             </LoginLink>
           </Paragraph>
           {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
-          <button
-            onClick={() => {
-              googleLogin();
-            }}
-          >
-            GOOGLE SIGN IN
-          </button>
+          {isGoogleError && (
+            <ErrorMessage>{googleError.data.message}</ErrorMessage>
+          )}
         </ModalContent>
       </ModalWrapper>
     </>

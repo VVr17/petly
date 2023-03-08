@@ -69,4 +69,10 @@ export const ButtonStyled = styled(motion.button)`
     margin-left: ${({ name }) => name === 'contacts' && '12px'};
     margin-bottom: ${({ name }) => name === 'contacts' && '0px'};
   }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    margin-right: ${({ theme }) => theme.space[2]};
+  }
 `;

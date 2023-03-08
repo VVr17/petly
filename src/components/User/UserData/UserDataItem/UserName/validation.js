@@ -7,6 +7,6 @@ export const validationSchema = Yup.object().shape({
       /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/,
       'Only letters can be accepted'
     )
-    .max(12, 'Name should be up to 12 characters long')
+    .max(32, 'Name should be up to 32 characters long')
     .required('Name is required'),
 });
