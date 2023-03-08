@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { useSignupUserMutation } from 'redux/api/userApi';
+import {
+  useLoginGoogleAuthUserMutation,
+  useSignupUserMutation,
+} from 'redux/api/userApi';
 import { Formik } from 'formik';
 import { FormattedMessage } from 'react-intl';
 import {
@@ -21,10 +24,32 @@ import {
   LoginLink,
   ErrorMessage,
 } from './RegisterForm.styled';
+import { FcGoogle } from 'react-icons/fc';
+import { useGoogleLogin } from '@react-oauth/google';
+import { getUserData } from 'api/googleAuth';
 
 const RegistrationForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [signupUser, { isLoading, isError, error }] = useSignupUserMutation();
+  const [
+    loginGoogleUser,
+    { isLoading: isGoogleLoading, isError: isGoogleError, error: googleError },
+  ] = useLoginGoogleAuthUserMutation();
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: async codeResponse => {
+      const { user, error } = await getUserData(codeResponse.access_token);
+      if (error) {
+        toast.error('Oops, something went wrong. Please, try again later');
+      }
+
+      loginGoogleUser(user);
+    },
+    onError: error => {
+      console.log('Login Failed:', error);
+      toast.error('Oops, login failed. Please, try again later');
+    },
+  });
 
   const handleNextClick = () => {
     setCurrentStep(currentStep + 1);
@@ -55,7 +80,7 @@ const RegistrationForm = () => {
 
   return (
     <>
-      {isLoading && <Loader />}
+      {(isLoading || isGoogleLoading) && <Loader />}
       <ModalWrapper>
         <ModalContent>
           <FormTitle>
@@ -93,6 +118,19 @@ const RegistrationForm = () => {
                         <FormattedMessage id="back" />
                       </Button>
                     )}
+                    {currentStep === 1 && (
+                      <Button
+                        type="button"
+                        name="transparent"
+                        width="100%"
+                        onClick={() => {
+                          googleLogin();
+                        }}
+                      >
+                        <FcGoogle />
+                        Sign in with GOOGLE
+                      </Button>
+                    )}
                   </ButtonWrapper>
                 </FormWrapper>
               );
@@ -105,6 +143,9 @@ const RegistrationForm = () => {
             </LoginLink>
           </Paragraph>
           {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
+          {isGoogleError && (
+            <ErrorMessage>{googleError.data.message}</ErrorMessage>
+          )}
         </ModalContent>
       </ModalWrapper>
     </>

@@ -26,6 +26,7 @@ import {
 import { useGoogleLogin } from '@react-oauth/google';
 import { getUserData } from 'api/googleAuth';
 import { FcGoogle } from 'react-icons/fc';
+import { toast } from 'react-toastify';
 
 // main function
 
@@ -35,7 +36,21 @@ const LoginForm = () => {
     loginGoogleUser,
     { isLoading: isGoogleLoading, isError: isGoogleError, error: googleError },
   ] = useLoginGoogleAuthUserMutation();
-  const [googleToken, setGoogleToken] = useState(null);
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: async codeResponse => {
+      const { user, error } = await getUserData(codeResponse.access_token);
+      if (error) {
+        toast.error('Oops, something went wrong. Please, try again later');
+      }
+
+      loginGoogleUser(user);
+    },
+    onError: error => {
+      console.log('Login Failed:', error);
+      toast.error('Oops, login failed. Please, try again later');
+    },
+  });
 
   const handleSubmit = async values => {
     const credentials = {
@@ -44,25 +59,6 @@ const LoginForm = () => {
     };
     const response = await loginUser(credentials);
   };
-
-  const googleLogin = useGoogleLogin({
-    onSuccess: codeResponse => {
-      setGoogleToken(codeResponse.access_token);
-    },
-    onError: error => {
-      console.log('Login Failed:', error);
-    },
-  });
-
-  useEffect(() => {
-    const getUserInfo = async () => {
-      if (googleToken) {
-        const { user, error } = await getUserData(googleToken);
-        loginGoogleUser(user);
-      }
-    };
-    getUserInfo();
-  }, [googleToken]);
 
   return (
     <>
@@ -94,7 +90,7 @@ const LoginForm = () => {
                       }}
                     >
                       <FcGoogle />
-                      Sign in with GOOGLE
+                      Log in with GOOGLE
                     </Button>
                   </ButtonWrapper>
                 </FormWrapper>
