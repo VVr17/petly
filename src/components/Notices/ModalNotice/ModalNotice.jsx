@@ -1,20 +1,22 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { IoIosHeart } from 'react-icons/io';
+import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
 import {
   useAddNoticeToFavoriteMutation,
   useRemoveNoticeFromFavoriteMutation,
 } from 'redux/api/noticesApi';
 import { selectFavoritesState } from 'redux/favorites/favoritesSelector';
-import { toast } from 'react-toastify';
 import { selectIsAuthState } from 'redux/user/userSelectors';
-import Loader from 'components/Loader';
-import { IoIosHeart } from 'react-icons/io';
-import Button from 'components/Ui-Kit/Button';
 import { selectStatusFilter } from 'redux/filter/filterSelectors';
 import { statusFilter } from 'redux/filter/filterConstans';
 import { useGetNoticeInfo } from 'hooks/useGetNoticeInfo';
+import Button from 'components/Ui-Kit/Button';
+import Loader from 'components/Loader';
+import { noImageFallback } from 'constants/noImageFallback';
+import { noDataFallback } from 'constants/noDataFallback';
 import {
   ImgWrapper,
   PetsImg,
@@ -29,20 +31,17 @@ import {
   NoticeContainer,
   Buttons,
   Plug,
+  LinkModal,
 } from './ModalNotice.styled';
 
-const altPosterUrl = `https://via.placeholder.com/280x288.png?text=No+photo`;
-
 const ModalNotice = ({ id, onClose }) => {
-  // const { data, isFetching, isError } = useGetNoticeByIdQuery(id);
   const { noticeInfo, ownerInfo, isFetching, isError, error, generalInfo } =
     useGetNoticeInfo(id);
   const currentCategory = useSelector(selectStatusFilter);
-  const noItem = '-----------';
   const { formatMessage } = useIntl();
 
   const onRedirect = () => {
-    window.location = `tel:${data.owner.phone}`;
+    window.location = `${ownerInfo[1].href}`;
   };
 
   const isAuth = useSelector(selectIsAuthState);
@@ -86,7 +85,7 @@ const ModalNotice = ({ id, onClose }) => {
           <>
             <PetInfo>
               <ImgWrapper>
-                <PetsImg src={generalInfo.photoURL || altPosterUrl} />
+                <PetsImg src={generalInfo.photoURL || noImageFallback} />
                 <Category>
                   <CategoryName>{generalInfo.category}</CategoryName>
                 </Category>
@@ -103,10 +102,16 @@ const ModalNotice = ({ id, onClose }) => {
                           <td>{value}</td>
                         </tr>
                       ))}
-                      {ownerInfo.map(({ field, value }) => (
+                      {ownerInfo.map(({ field, value, href }) => (
                         <tr key={field}>
                           <th>{field}:</th>
-                          <td>{value}</td>
+                          <td>
+                            {value ? (
+                              <LinkModal href={href}>{value}</LinkModal>
+                            ) : (
+                              noDataFallback
+                            )}
+                          </td>
                         </tr>
                       ))}
                     </tbody>

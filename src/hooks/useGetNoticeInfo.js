@@ -1,3 +1,4 @@
+import { noDataFallback } from 'constants/noDataFallback';
 import { useIntl } from 'react-intl';
 import { useGetNoticeByIdQuery } from 'redux/api/noticesApi';
 import { useGetCategory } from './useGetCategory';
@@ -49,8 +50,12 @@ export const useGetNoticeInfo = id => {
   }
 
   const ownerInfo = [
-    { field: 'Email', value: owner.email },
-    { field: formatMessage({ id: 'phone' }), value: owner.phone },
+    { field: 'Email', value: owner.email, href: `mailto:${owner.email}` },
+    {
+      field: formatMessage({ id: 'phone' }),
+      value: owner.phone,
+      href: `tel:${owner.phone}`,
+    },
   ];
 
   return {

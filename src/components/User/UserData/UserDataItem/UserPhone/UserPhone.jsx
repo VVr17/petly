@@ -11,6 +11,7 @@ import UserInput from 'components/Ui-Kit/UserInput';
 import Loader from 'components/Loader';
 import { selectUserState } from 'redux/user/userSelectors';
 import { FieldWrapper } from '../UserDataItem.styled';
+import { noDataFallback } from 'constants/noDataFallback';
 
 const UserPhone = ({ isUpdating, setIsUpdating }) => {
   const { formatMessage } = useIntl();
@@ -26,7 +27,6 @@ const UserPhone = ({ isUpdating, setIsUpdating }) => {
       return;
     }
 
-    if (!values.phone) return;
     setIsDisabled(true);
     setIsUpdating(false);
   };
@@ -60,7 +60,7 @@ const UserPhone = ({ isUpdating, setIsUpdating }) => {
               name="phone"
               type="phone"
               disabled={isDisabled}
-              placeholder={user.phone || ''}
+              placeholder={user.phone || noDataFallback}
             />
             <UserUpdateButton
               type="submit"

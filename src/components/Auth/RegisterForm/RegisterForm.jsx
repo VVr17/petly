@@ -5,6 +5,8 @@ import {
 } from 'redux/api/userApi';
 import { Formik } from 'formik';
 import { FormattedMessage } from 'react-intl';
+import { FcGoogle } from 'react-icons/fc';
+import { useGoogleLogin } from '@react-oauth/google';
 import {
   initialValues,
   validationSchemaStepOne,
@@ -14,6 +16,7 @@ import RegStepOne from './RegStepOne';
 import RegStepTwo from './RegStepTwo';
 import Button from 'components/Ui-Kit/Button';
 import Loader from 'components/Loader';
+import { getUserData } from 'api/googleAuth';
 import {
   ModalContent,
   ModalWrapper,
@@ -24,9 +27,6 @@ import {
   LoginLink,
   ErrorMessage,
 } from './RegisterForm.styled';
-import { FcGoogle } from 'react-icons/fc';
-import { useGoogleLogin } from '@react-oauth/google';
-import { getUserData } from 'api/googleAuth';
 
 const RegistrationForm = () => {
   const [currentStep, setCurrentStep] = useState(1);

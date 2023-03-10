@@ -11,6 +11,7 @@ import UserInput from 'components/Ui-Kit/UserInput';
 import Loader from 'components/Loader';
 import { selectUserState } from 'redux/user/userSelectors';
 import { FieldWrapper } from '../UserDataItem.styled';
+import { noDataFallback } from 'constants/noDataFallback';
 
 const UserCity = ({ isUpdating, setIsUpdating }) => {
   const { formatMessage } = useIntl();
@@ -18,7 +19,6 @@ const UserCity = ({ isUpdating, setIsUpdating }) => {
   const [updateUser, { isLoading }] = useUpdateUserMutation();
   const user = useSelector(selectUserState);
   const initialValues = { city: user?.city || '' };
-  const [filteredCities, setFilteredCities] = useState([]);
 
   const handleClick = (values, actions) => {
     if (isDisabled) {
@@ -27,7 +27,6 @@ const UserCity = ({ isUpdating, setIsUpdating }) => {
       return;
     }
 
-    if (!values.city) return;
     setIsDisabled(true);
     setIsUpdating(false);
   };
@@ -60,7 +59,7 @@ const UserCity = ({ isUpdating, setIsUpdating }) => {
               name="city"
               type="city"
               disabled={isDisabled}
-              placeholder={user.city || ''}
+              placeholder={user.city || noDataFallback}
             />
             <UserUpdateButton
               type="submit"

@@ -5,6 +5,9 @@ import {
 } from 'redux/api/userApi';
 import { Formik } from 'formik';
 import { FormattedMessage } from 'react-intl';
+import { useGoogleLogin } from '@react-oauth/google';
+import { FcGoogle } from 'react-icons/fc';
+import { toast } from 'react-toastify';
 import LoginInputs from './LoginInputs';
 import {
   loginInitialValues as initialValues,
@@ -12,6 +15,7 @@ import {
 } from './LoginValidation';
 import Button from 'components/Ui-Kit/Button';
 import Loader from 'components/Loader';
+import { getUserData } from 'api/googleAuth';
 // styles from RegisterForm
 import {
   ModalContent,
@@ -23,10 +27,6 @@ import {
   Paragraph,
   ErrorMessage,
 } from '../RegisterForm/RegisterForm.styled';
-import { useGoogleLogin } from '@react-oauth/google';
-import { getUserData } from 'api/googleAuth';
-import { FcGoogle } from 'react-icons/fc';
-import { toast } from 'react-toastify';
 
 // main function
 
