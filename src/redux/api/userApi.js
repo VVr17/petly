@@ -16,12 +16,14 @@ export const userApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          const updatedData = { ...data };
-          if (!updatedData.phone) updatedData.phone = '';
-          if (!updatedData?.city) updatedData.city = '';
+          const updatedData = {
+            ...data,
+            phone: data.phone || '',
+            city: data.city || '',
+          };
           dispatch(setUser(updatedData));
           dispatch(setIsAuth(true));
-          dispatch(setFavorites(updatedData.favoriteNotices));
+          dispatch(setFavorites(data.favoriteNotices));
         } catch (error) {
           const {
             error: { status, data },
