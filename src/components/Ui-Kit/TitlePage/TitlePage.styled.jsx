@@ -1,7 +1,7 @@
 import { theme } from 'constants/theme';
 import styled from 'styled-components';
 
-export const Title = styled.h2`
+export const Title = styled.h1`
   font-family: ${theme.fontFamily.manrope};
   font-size: ${theme.fontSizes.l};
   font-weight: ${theme.fontWeight.bold};

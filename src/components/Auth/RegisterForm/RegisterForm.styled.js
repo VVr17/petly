@@ -33,7 +33,7 @@ export const ModalContent = styled.div`
   }
 `;
 
-export const FormTitle = styled.h2`
+export const FormTitle = styled.h1`
   font-family: ${theme.fontFamily.manrope};
   font-weight: ${theme.fontWeight.medium};
   font-size: 36px;
