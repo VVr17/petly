@@ -7,6 +7,7 @@ import { IntlProvider } from 'react-intl';
 import { selectTokenState } from 'redux/user/userSelectors';
 import Loader from 'components/Loader';
 import {
+  EmailVerified,
   Friends,
   Home,
   Login,
@@ -86,6 +87,11 @@ const App = () => {
                 <Route
                   path="notices"
                   element={<Notices />}
+                  key={location.key}
+                />
+                <Route
+                  path="EmailVerified"
+                  element={<EmailVerified />}
                   key={location.key}
                 />
                 <Route path="*" element={<NotFound />} key={location.key} />

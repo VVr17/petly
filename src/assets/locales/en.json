@@ -48,7 +48,7 @@
   "goodHands": "in good hands",
   "favorite": "favorite ads",
   "myAds": "my ads",
-  "noCategory":"no category",
+  "noCategory": "no category",
   "yes": "Yes",
   "no": "No",
 
@@ -85,6 +85,11 @@
   "errorServer": "Server error. Please, try again later.",
   "errorNotFoundPage": "Oops, this page couldn’t be found",
 
+  "emailVerifiedWelcome": "Welcome to Petly",
+  "emailVerifiedText1": "Your email has been confirmed.",
+  "emailVerifiedText2": "You now have access to all functionality of our application",
+  "emailVerifiedLoginButton": "Log in to your new account",
+
   "toastNotFoundNews": "Nothing was found for your request",
   "toastNotFoundAd": "Not found any ad",
   "toastNotRegister": "You have to register or login to add Pet",
@@ -98,10 +103,10 @@
   "toastEmailUpdated": "Email has been successfully updated",
   "toastNameUpdated": "Name has been successfully updated",
   "toastPhoneUpdated": "Phone has been successfully updated",
-  "toastAdRemoved":"The ad has been removed",
-  "toastAddedPet":"Your pet has been successfully added",
-  "toastError":"Something went wrong. Please try again later",
-  "toastPhotoUpdated":"User photo has been successfully updated",
-  "toastEnterRequest":"Please, enter your request",
-  "toastAdAdded":"The ad has been added"
+  "toastAdRemoved": "The ad has been removed",
+  "toastAddedPet": "Your pet has been successfully added",
+  "toastError": "Something went wrong. Please try again later",
+  "toastPhotoUpdated": "User photo has been successfully updated",
+  "toastEnterRequest": "Please, enter your request",
+  "toastAdAdded": "The ad has been added"
 }
