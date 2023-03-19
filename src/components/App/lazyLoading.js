@@ -8,4 +8,5 @@ export const News = React.lazy(() => import('pages/NewsPage'));
 export const Notices = React.lazy(() => import('pages/NoticesPage'));
 export const SharedLayout = React.lazy(() => import('components/SharedLayout'));
 export const User = React.lazy(() => import('pages/UserPage'));
+export const EmailVerified = React.lazy(() => import('pages/EmailVerified'));
 export const NotFound = React.lazy(() => import('pages/NotFound'));
