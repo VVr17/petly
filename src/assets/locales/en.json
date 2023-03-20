@@ -89,6 +89,7 @@
   "emailVerifiedText1": "Your email has been confirmed.",
   "emailVerifiedText2": "You now have access to all functionality of our application",
   "emailVerifiedLoginButton": "Log in to your new account",
+  "emailVerificationToast": "Please, check your inbox and verify your email",
 
   "toastNotFoundNews": "Nothing was found for your request",
   "toastNotFoundAd": "Not found any ad",

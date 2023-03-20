@@ -4,7 +4,7 @@ import {
   useSignupUserMutation,
 } from 'redux/api/userApi';
 import { Formik } from 'formik';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { FcGoogle } from 'react-icons/fc';
 import { useGoogleLogin } from '@react-oauth/google';
 import {
@@ -29,6 +29,8 @@ import {
 } from './RegisterForm.styled';
 
 const RegistrationForm = () => {
+  const { formatMessage } = useIntl();
+
   const [currentStep, setCurrentStep] = useState(1);
   const [signupUser, { isLoading, isError, error }] = useSignupUserMutation();
   const [
@@ -67,14 +69,14 @@ const RegistrationForm = () => {
     } else {
       const credentials = {
         name: values.name,
-        city: values.city,
-        phone: values.phone,
+        city: values.city || null,
+        phone: values.phone || null,
         email: values.email,
         password: values.password,
       };
 
       const response = await signupUser(credentials);
-      console.log('response', response);
+      toast.info(formatMessage({ id: 'emailVerificationToast' }));
     }
   };
 

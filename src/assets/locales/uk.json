@@ -89,6 +89,7 @@
   "emailVerifiedText1": "Ваш email підтверджено.",
   "emailVerifiedText2": "Тепер ви можете користуватися нашим додатком в повному обсязі",
   "emailVerifiedLoginButton": "Увійти в свій новий аккаунт",
+  "emailVerificationToast": "Будь-ласка, переврте свою пошту для веріфікації email",
 
   "toastNotFoundNews": "За вашим запитом нічого не знайдено",
   "toastNotFoundAd": "Не знайдено жодного оголошення",

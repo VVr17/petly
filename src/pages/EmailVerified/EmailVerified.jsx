@@ -1,12 +1,10 @@
-import AuthPageContainer from 'components/Auth/AuthPageContainer';
-import { Box } from 'components/Box/Box';
-import Section from 'components/Section';
-import Button from 'components/Ui-Kit/Button';
-import { Background, WrapContainer } from 'pages/Home/Home.styled';
-import { Text } from 'pages/NotFound/NotFound.styled';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
+import { Box } from 'components/Box/Box';
+import Button from 'components/Ui-Kit/Button';
+import { Background, WrapContainer } from 'pages/Home/Home.styled';
+import { Text, TextWrapper } from 'pages/NotFound/NotFound.styled';
 
 const EmailVerified = () => {
   const navigate = useNavigate();
@@ -14,7 +12,7 @@ const EmailVerified = () => {
   return (
     <Background>
       <WrapContainer>
-        <Box py="32px">
+        <TextWrapper>
           <Box display="flex" flexDirection="column" gridGap="16px" mb="32px">
             <Text>
               <FormattedMessage id="emailVerifiedWelcome" />
@@ -36,7 +34,7 @@ const EmailVerified = () => {
               <FormattedMessage id="emailVerifiedLoginButton" />
             </Button>
           </Box>
-        </Box>
+        </TextWrapper>
       </WrapContainer>
     </Background>
   );
