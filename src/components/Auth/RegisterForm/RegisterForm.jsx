@@ -62,7 +62,7 @@ const RegistrationForm = () => {
     setCurrentStep(currentStep - 1);
   };
 
-  const handleSubmit = async (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     setSubmitting(false);
 
     if (currentStep < 2) {
@@ -76,8 +76,8 @@ const RegistrationForm = () => {
         password: values.password,
       };
 
+      resetForm();
       const response = await signupUser(credentials);
-      // console.log('response', response);
       toast.info(formatMessage({ id: 'emailVerificationToast' }));
     }
   };
