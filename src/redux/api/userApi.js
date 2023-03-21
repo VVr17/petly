@@ -43,15 +43,15 @@ export const userApi = createApi({
         body: credentials,
       }),
       invalidatesTags: [TAGS_TYPES.user],
-      async onQueryStarted(args, { dispatch, queryFulfilled }) {
-        try {
-          const {
-            data: { data },
-          } = await queryFulfilled;
-          dispatch(setUser(data.user));
-          dispatch(setToken(data.token));
-        } catch (error) {}
-      },
+      // async onQueryStarted(args, { dispatch, queryFulfilled }) {
+      //   try {
+      //     const {
+      //       data: { data },
+      //     } = await queryFulfilled;
+      //     dispatch(setUser(data.user));
+      //     dispatch(setToken(data.token));
+      //   } catch (error) {}
+      // },
     }),
 
     loginUser: builder.mutation({

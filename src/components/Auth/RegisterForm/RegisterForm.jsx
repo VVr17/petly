@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import {
-  useLoginGoogleAuthUserMutation,
-  useSignupUserMutation,
-} from 'redux/api/userApi';
 import { Formik } from 'formik';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { FcGoogle } from 'react-icons/fc';
+import { toast } from 'react-toastify';
 import { useGoogleLogin } from '@react-oauth/google';
 import {
   initialValues,
@@ -17,6 +14,10 @@ import RegStepTwo from './RegStepTwo';
 import Button from 'components/Ui-Kit/Button';
 import Loader from 'components/Loader';
 import { getUserData } from 'api/googleAuth';
+import {
+  useLoginGoogleAuthUserMutation,
+  useSignupUserMutation,
+} from 'redux/api/userApi';
 import {
   ModalContent,
   ModalWrapper,
@@ -76,6 +77,7 @@ const RegistrationForm = () => {
       };
 
       const response = await signupUser(credentials);
+      // console.log('response', response);
       toast.info(formatMessage({ id: 'emailVerificationToast' }));
     }
   };
