@@ -1,20 +1,59 @@
-# PET-SUPPORT
+# Web-application to find you pet
 
-Web-application to find you pet
+# "Petly" - pet finder
+"Petly" is a web application that helps you find your lost pet or adopt a new pet. 
+The application allows users to read news, browse notices, and create notices to categories such as "sell," "in-good-hands," and "lost/found."
 
-You will be able:
+# Features
+  * Read news: Users can read the latest news about pets without registering.
+  * Browse notices: Users can browse notices of pets available for adoption or sale without registering.
+  * Find lost pet: Users can search for lost pets by browsing notices.
+  * Adopt/Buy pet: Users can adopt or buy a new pet by browsing notices.
+  * Update account: Registered users can update their account information, including their contact details and preferences.
+  * Add own pet: Registered users can add their own pets to their account and create notices to sell or give them away.
+  * Create notices: Registered users can create notices to sell, give away, or search for their lost pets.
+  * Add notices to favorites: Registered users can save notices to their favorites list for later reference.
 
-* without registration:
-  - to read news;
-  - to browse notices;
-  - to find your lost pet;
-  - to buy pet;
+# Getting Started
+To use "Petly", you must have Node.js and npm installed on your computer. 
+Clone the repository and install the dependencies:
 
-* after registration :
-  - to update your account;
-  - to add your own pet in your account;
-  - to create notices to categories: 'sell', 'in-good-hands', 'lost/found'
-  - to add notices to your favorites;
+  * git clone https://github.com/VVr17/petly
+      * cd petly
+      * npm install
 
-// Stack: React, Redux Toolkit
-// Libraries: RTK query, Redux Persist, React-router, Formk + Yup, Styled-Components, Framer Motion
+  * After installing the dependencies, start the development server:
+      * npm start
+
+  * To build the production-ready version of the application, run:
+      * npm run build
+      
+# Technologies Used
+"Ptly" is built using the following technologies:
+
+  * React
+  * Redux Toolkit
+  * React Router
+  * Styled Components
+  * Formik
+  * Yup
+  * Axios
+  * Framer Motion
+  * React Datepicker
+  * React Paginate
+  * React Icons
+  * React Intl
+  * React Toastify
+
+# Contributing
+If you find a bug or want to contribute to the project, please follow these steps:
+    
+   * Fork the repository
+   * Create a new branch (git checkout -b feature/my-feature)
+   * Make the changes
+   * Commit your changes (git commit -am 'Add my feature')
+   * Push to the branch (git push origin feature/my-feature)
+   * Create a new Pull Request
+
+# License
+"Petly" is released under the MIT License. See LICENSE for more information.
