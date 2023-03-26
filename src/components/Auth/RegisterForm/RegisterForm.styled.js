@@ -90,3 +90,19 @@ export const ErrorMessage = styled.div`
     font-size: 12px;
   }
 `;
+
+export const ResendEmailStyled = styled.button`
+  margin: 0 auto;
+  display: block;
+  border: none;
+  cursor: pointer;
+  font-family: ${theme.fontFamily.manrope};
+  font-weight: ${theme.fontWeight.normal};
+  font-size: ${theme.fontSizes.xxxs};
+  align-items: center;
+  text-align: center;
+  color: #3091eb;
+  text-decoration: none;
+  border: none;
+  background: transparent;
+`;

@@ -16,7 +16,6 @@ export const Wrapper = styled.div`
   }
 
   ${theme.mq.desktop} {
-    position: fixed;
-    background: bottom 65px center no-repeat url(${waveDesktop});
+    background: bottom 0 center no-repeat url(${waveDesktop});
   }
 `;

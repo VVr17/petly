@@ -17,6 +17,9 @@
   "addTo": "Додати до",
   "removeFrom": "Видалити з",
   "delete": "Видалити",
+  "googleSignIn": "Зареєструватися з GOOGLE",
+  "googleLogIn": "Увійти з GOOGLE",
+  "resendEmail": "Надіслати підтвердження email повторно",
 
   "search": "Пошук",
   "password": "Паспорт",

@@ -45,6 +45,15 @@ export const userApi = createApi({
       invalidatesTags: [TAGS_TYPES.user],
     }),
 
+    resendEmail: builder.mutation({
+      query: email => ({
+        url: `${USER_URL}/verify`,
+        method: 'POST',
+        body: email,
+      }),
+      invalidatesTags: [TAGS_TYPES.user],
+    }),
+
     loginUser: builder.mutation({
       query: credentials => ({
         url: `${USER_URL}/login`,
@@ -124,4 +133,5 @@ export const {
   useLogoutUserMutation,
   useUpdateUserMutation,
   useLoginGoogleAuthUserMutation,
+  useResendEmailMutation,
 } = userApi;

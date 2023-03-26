@@ -17,6 +17,9 @@
   "addTo": "Add to",
   "removeFrom": "Remove from",
   "delete": "Delete",
+  "googleSignIn": "Sign in with GOOGLE",
+  "googleLogIn": "Log in with GOOGLE",
+  "resendEmail": "Resend email verification",
 
   "search": "Search",
   "password": "Password",

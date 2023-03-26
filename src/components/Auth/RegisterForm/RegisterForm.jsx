@@ -16,6 +16,7 @@ import Loader from 'components/Loader';
 import { getUserData } from 'api/googleAuth';
 import {
   useLoginGoogleAuthUserMutation,
+  useResendEmailMutation,
   useSignupUserMutation,
 } from 'redux/api/userApi';
 import {
@@ -27,6 +28,7 @@ import {
   Paragraph,
   LoginLink,
   ErrorMessage,
+  ResendEmailStyled,
 } from './RegisterForm.styled';
 
 const RegistrationForm = () => {
@@ -34,6 +36,7 @@ const RegistrationForm = () => {
 
   const [currentStep, setCurrentStep] = useState(1);
   const [signupUser, { isLoading, isError, error }] = useSignupUserMutation();
+  const [resendEmail] = useResendEmailMutation();
   const [
     loginGoogleUser,
     { isLoading: isGoogleLoading, isError: isGoogleError, error: googleError },
@@ -60,6 +63,13 @@ const RegistrationForm = () => {
 
   const handleBackClick = () => {
     setCurrentStep(currentStep - 1);
+  };
+
+  const handleResendEmailClick = async () => {
+    // console.log('resend email');
+    const email = 'email';
+    const response = await resendEmail(email);
+    toast.info(formatMessage({ id: 'emailVerificationToast' }));
   };
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
@@ -132,7 +142,7 @@ const RegistrationForm = () => {
                         }}
                       >
                         <FcGoogle />
-                        Sign in with GOOGLE
+                        <FormattedMessage id="googleSignIn" />
                       </Button>
                     )}
                   </ButtonWrapper>
@@ -146,6 +156,12 @@ const RegistrationForm = () => {
               <FormattedMessage id="login" />
             </LoginLink>
           </Paragraph>
+          <Paragraph>
+            <ResendEmailStyled onClick={handleResendEmailClick}>
+              <FormattedMessage id="resendEmail" />
+            </ResendEmailStyled>
+          </Paragraph>
+
           {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
           {isGoogleError && (
             <ErrorMessage>{googleError.data.message}</ErrorMessage>

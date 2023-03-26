@@ -90,7 +90,7 @@ const LoginForm = () => {
                       }}
                     >
                       <FcGoogle />
-                      Log in with GOOGLE
+                      <FormattedMessage id="googleLogIn" />
                     </Button>
                   </ButtonWrapper>
                 </FormWrapper>
