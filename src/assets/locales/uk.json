@@ -8,6 +8,7 @@
   "submit": "Надіслати",
   "register": "Зареєструватися",
   "questionHaveAnAccount": "Немає облікового запису?",
+  "questionForgotPassword": "Забули свій пароль?",
   "haveAnAccount": "Вже є аккаунт?",
   "account": "Профіль",
   "next": "Далі",
@@ -17,6 +18,9 @@
   "addTo": "Додати до",
   "removeFrom": "Видалити з",
   "delete": "Видалити",
+
+  "forgotPassword": "Скинути пароль",
+  "backToLogin": "Повернутися до входу",
 
   "search": "Пошук",
   "password": "Паспорт",
@@ -90,6 +94,7 @@
   "emailVerifiedText2": "Тепер ви можете користуватися нашим додатком в повному обсязі",
   "emailVerifiedLoginButton": "Увійти в свій новий аккаунт",
   "emailVerificationToast": "Будь-ласка, переврте свою пошту для веріфікації email",
+  "emailResetToast": "Лист надіслано. Будь ласка, перевірте свою поштову скриньку.",
 
   "toastNotFoundNews": "За вашим запитом нічого не знайдено",
   "toastNotFoundAd": "Не знайдено жодного оголошення",

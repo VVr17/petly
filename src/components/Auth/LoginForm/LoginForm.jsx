@@ -103,6 +103,11 @@ const LoginForm = () => {
               <FormattedMessage id="register" />
             </LoginLink>
           </Paragraph>
+          <Paragraph>
+        <LoginLink to="/forgot-password">
+          <FormattedMessage id="questionForgotPassword" />
+        </LoginLink>
+      </Paragraph>
           {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
           {isGoogleError && (
             <ErrorMessage>{googleError.data.message}</ErrorMessage>

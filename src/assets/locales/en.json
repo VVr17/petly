@@ -8,6 +8,7 @@
   "submit": "Submit",
   "register": "Register",
   "questionHaveAnAccount": "Don't have an account?",
+  "questionForgotPassword": "Forgot your password?",
   "haveAnAccount": "Already have an account?",
   "account": "Account",
   "next": "Next",
@@ -17,6 +18,9 @@
   "addTo": "Add to",
   "removeFrom": "Remove from",
   "delete": "Delete",
+
+  "forgotPassword": "Reset Your Password",
+  "backToLogin": "Back to login",
 
   "search": "Search",
   "password": "Password",
@@ -90,6 +94,7 @@
   "emailVerifiedText2": "You now have access to all functionality of our application",
   "emailVerifiedLoginButton": "Log in to your new account",
   "emailVerificationToast": "Please, check your inbox and verify your email",
+  "emailResetToast": "An email has been sent. Please check your inbox.",
 
   "toastNotFoundNews": "Nothing was found for your request",
   "toastNotFoundAd": "Not found any ad",
