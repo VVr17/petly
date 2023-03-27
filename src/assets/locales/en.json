@@ -17,6 +17,10 @@
   "addTo": "Add to",
   "removeFrom": "Remove from",
   "delete": "Delete",
+  "googleSignIn": "Sign in with GOOGLE",
+  "googleLogIn": "Log in with GOOGLE",
+  "resendEmail": "Resend email verification",
+  "resendEmailMessage": "Please, enter your email",
 
   "search": "Search",
   "password": "Password",
@@ -89,7 +93,7 @@
   "emailVerifiedText1": "Your email has been confirmed.",
   "emailVerifiedText2": "You now have access to all functionality of our application",
   "emailVerifiedLoginButton": "Log in to your new account",
-  "emailVerificationToast": "Please, check your inbox and verify your email",
+  "emailVerificationToast": "Verification email has been sent to you. Please, check your inbox and verify your email",
 
   "toastNotFoundNews": "Nothing was found for your request",
   "toastNotFoundAd": "Not found any ad",
