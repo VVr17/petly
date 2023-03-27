@@ -49,7 +49,7 @@ export const userApi = createApi({
       query: email => ({
         url: `${USER_URL}/verify`,
         method: 'POST',
-        body: email,
+        body: { email },
       }),
       invalidatesTags: [TAGS_TYPES.user],
     }),

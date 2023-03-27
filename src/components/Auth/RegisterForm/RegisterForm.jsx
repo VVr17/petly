@@ -30,13 +30,15 @@ import {
   ErrorMessage,
   ResendEmailStyled,
 } from './RegisterForm.styled';
+import ModalComponent from 'components/Modals/Modal/Modal';
+import { AnimatePresence } from 'framer-motion';
+import ResendEmailFrom from '../ResendEmailForm/ResendEmailForm';
 
 const RegistrationForm = () => {
   const { formatMessage } = useIntl();
-
+  const [isResendEmailOpen, setIsResendEmailOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [signupUser, { isLoading, isError, error }] = useSignupUserMutation();
-  const [resendEmail] = useResendEmailMutation();
   const [
     loginGoogleUser,
     { isLoading: isGoogleLoading, isError: isGoogleError, error: googleError },
@@ -65,11 +67,8 @@ const RegistrationForm = () => {
     setCurrentStep(currentStep - 1);
   };
 
-  const handleResendEmailClick = async () => {
-    // console.log('resend email');
-    const email = 'email';
-    const response = await resendEmail(email);
-    toast.info(formatMessage({ id: 'emailVerificationToast' }));
+  const handleCloseResendEmail = () => {
+    setIsResendEmailOpen(false);
   };
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
@@ -87,7 +86,7 @@ const RegistrationForm = () => {
       };
 
       resetForm();
-      const response = await signupUser(credentials);
+      await signupUser(credentials);
       toast.info(formatMessage({ id: 'emailVerificationToast' }));
     }
   };
@@ -157,7 +156,7 @@ const RegistrationForm = () => {
             </LoginLink>
           </Paragraph>
           <Paragraph>
-            <ResendEmailStyled onClick={handleResendEmailClick}>
+            <ResendEmailStyled onClick={() => setIsResendEmailOpen(true)}>
               <FormattedMessage id="resendEmail" />
             </ResendEmailStyled>
           </Paragraph>
@@ -168,6 +167,13 @@ const RegistrationForm = () => {
           )}
         </ModalContent>
       </ModalWrapper>
+      <AnimatePresence>
+        {isResendEmailOpen && (
+          <ModalComponent closeModal={handleCloseResendEmail} key="popUp">
+            <ResendEmailFrom onClose={handleCloseResendEmail} />
+          </ModalComponent>
+        )}
+      </AnimatePresence>
     </>
   );
 };

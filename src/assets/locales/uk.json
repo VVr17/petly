@@ -20,6 +20,7 @@
   "googleSignIn": "Зареєструватися з GOOGLE",
   "googleLogIn": "Увійти з GOOGLE",
   "resendEmail": "Надіслати підтвердження email повторно",
+  "resendEmailMessage": "Будь-ласка, введіть Ваш email",
 
   "search": "Пошук",
   "password": "Паспорт",
@@ -92,7 +93,7 @@
   "emailVerifiedText1": "Ваш email підтверджено.",
   "emailVerifiedText2": "Тепер ви можете користуватися нашим додатком в повному обсязі",
   "emailVerifiedLoginButton": "Увійти в свій новий аккаунт",
-  "emailVerificationToast": "Будь-ласка, переврте свою пошту для веріфікації email",
+  "emailVerificationToast": "Email для веріфікації було надіслано Вам на пошту. Будь-ласка, перевірте свою пошту та підтвердить Ваш email",
 
   "toastNotFoundNews": "За вашим запитом нічого не знайдено",
   "toastNotFoundAd": "Не знайдено жодного оголошення",
