@@ -18,6 +18,10 @@
   "addTo": "Додати до",
   "removeFrom": "Видалити з",
   "delete": "Видалити",
+  "googleSignIn": "Зареєструватися з GOOGLE",
+  "googleLogIn": "Увійти з GOOGLE",
+  "resendEmail": "Надіслати підтвердження email повторно",
+  "resendEmailMessage": "Будь-ласка, введіть Ваш email",
 
   "forgotPassword": "Скинути пароль",
   "backToLogin": "Повернутися до входу",
@@ -94,7 +98,6 @@
   "emailVerifiedText2": "Тепер ви можете користуватися нашим додатком в повному обсязі",
   "emailVerifiedLoginButton": "Увійти в свій новий аккаунт",
   "emailVerificationToast": "Будь-ласка, переврте свою пошту для веріфікації email",
-  "emailResetToast": "Лист надіслано. Будь ласка, перевірте свою поштову скриньку.",
 
   "toastNotFoundNews": "За вашим запитом нічого не знайдено",
   "toastNotFoundAd": "Не знайдено жодного оголошення",

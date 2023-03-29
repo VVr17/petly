@@ -16,6 +16,7 @@ import Loader from 'components/Loader';
 import { getUserData } from 'api/googleAuth';
 import {
   useLoginGoogleAuthUserMutation,
+  useResendEmailMutation,
   useSignupUserMutation,
 } from 'redux/api/userApi';
 import {
@@ -27,11 +28,15 @@ import {
   Paragraph,
   LoginLink,
   ErrorMessage,
+  ResendEmailStyled,
 } from './RegisterForm.styled';
+import ModalComponent from 'components/Modals/Modal/Modal';
+import { AnimatePresence } from 'framer-motion';
+import ResendEmailFrom from '../ResendEmailForm/ResendEmailForm';
 
 const RegistrationForm = () => {
   const { formatMessage } = useIntl();
-
+  const [isResendEmailOpen, setIsResendEmailOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [signupUser, { isLoading, isError, error }] = useSignupUserMutation();
   const [
@@ -62,6 +67,10 @@ const RegistrationForm = () => {
     setCurrentStep(currentStep - 1);
   };
 
+  const handleCloseResendEmail = () => {
+    setIsResendEmailOpen(false);
+  };
+
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     setSubmitting(false);
 
@@ -77,7 +86,7 @@ const RegistrationForm = () => {
       };
 
       resetForm();
-      const response = await signupUser(credentials);
+      await signupUser(credentials);
       toast.info(formatMessage({ id: 'emailVerificationToast' }));
     }
   };
@@ -132,7 +141,7 @@ const RegistrationForm = () => {
                         }}
                       >
                         <FcGoogle />
-                        Sign in with GOOGLE
+                        <FormattedMessage id="googleSignIn" />
                       </Button>
                     )}
                   </ButtonWrapper>
@@ -146,12 +155,25 @@ const RegistrationForm = () => {
               <FormattedMessage id="login" />
             </LoginLink>
           </Paragraph>
+          <Paragraph>
+            <ResendEmailStyled onClick={() => setIsResendEmailOpen(true)}>
+              <FormattedMessage id="resendEmail" />
+            </ResendEmailStyled>
+          </Paragraph>
+
           {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
           {isGoogleError && (
             <ErrorMessage>{googleError.data.message}</ErrorMessage>
           )}
         </ModalContent>
       </ModalWrapper>
+      <AnimatePresence>
+        {isResendEmailOpen && (
+          <ModalComponent closeModal={handleCloseResendEmail} key="popUp">
+            <ResendEmailFrom onClose={handleCloseResendEmail} />
+          </ModalComponent>
+        )}
+      </AnimatePresence>
     </>
   );
 };
