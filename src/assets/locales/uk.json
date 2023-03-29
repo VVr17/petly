@@ -25,9 +25,14 @@
 
   "forgotPassword": "Скинути пароль",
   "backToLogin": "Повернутися до входу",
+  "enterNewPasswordTitle": "Введіть новий пароль",
+  "newPassword": "Новий пароль",
+  "confirmNewPassword": "Підтвердьте новий пароль",
+  "passwordUpdateSuccessToast": "Ваш пароль успішно оновлено",
+  "emailResetToast": "Електронний лист надіслано. Будь ласка, перевірте свою поштову скриньку.",
 
   "search": "Пошук",
-  "password": "Паспорт",
+  "password": "Пароль",
   "confirmPas": "Підтвердьте пароль",
   "name": "Ім'я",
   "city": "Місто, Область",

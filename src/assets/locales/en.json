@@ -23,8 +23,12 @@
   "resendEmail": "Resend email verification",
   "resendEmailMessage": "Please, enter your email",
 
-  "forgotPassword": "Reset Your Password",
+  "forgotPassword": "Reset your password",
   "backToLogin": "Back to login",
+  "enterNewPasswordTitle": "Enter a new password",
+  "newPassword": "New Password",
+  "confirmNewPassword": "Confirm new password",
+  "passwordUpdateSuccessToast": "Your password has been updated successfully",
 
   "search": "Search",
   "password": "Password",

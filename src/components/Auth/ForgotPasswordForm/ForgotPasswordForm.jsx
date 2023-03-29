@@ -1,9 +1,13 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
+
+import { useForgotPasswordMutation } from 'redux/api/userApi';
+
 import Button from 'components/Ui-Kit/Button';
 import InputField from 'components/Ui-Kit/Input';
-import { toast } from 'react-toastify';
+
 import {
   ModalContent,
   ModalWrapper,
@@ -14,7 +18,7 @@ import {
   Paragraph,
   ErrorMessage
 } from 'components/Auth/RegisterForm/RegisterForm.styled';
-import { useForgotPasswordMutation } from 'redux/api/userApi';
+
 
 const ForgotPasswordForm = () => {
 
@@ -26,10 +30,11 @@ const ForgotPasswordForm = () => {
     const result = await forgotPassword(values.email).unwrap();
     if (result.message === 'Reset email sent') {
       resetForm();
-      toast.info(formatMessage({ id: 'emailResetToast' }));
+      toast.success(formatMessage({ id: 'emailResetToast' }));
     }
   } catch (error) {
      console.log(error);
+     toast.error(formatMessage({ id: 'toastError' }));
   }
   };
 

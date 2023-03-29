@@ -11,3 +11,4 @@ export const User = React.lazy(() => import('pages/UserPage'));
 export const EmailVerified = React.lazy(() => import('pages/EmailVerified'));
 export const NotFound = React.lazy(() => import('pages/NotFound'));
 export const ForgotPassword = React.lazy(() => import('pages/ForgotPassword'));
+export const NewPassword = React.lazy(() => import('pages/NewPassword'));
