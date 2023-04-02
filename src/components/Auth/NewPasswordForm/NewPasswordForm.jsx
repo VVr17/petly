@@ -38,9 +38,8 @@ const NewPasswordForm = () => {
     try {
 
       await newPassword({
-        password: values.password,
-        confirmPassword: values.confirmPassword,
         token: token,
+        newPassword: values.password,
       });
 
       if (result.message === 'Password updated successfully') {
@@ -78,7 +77,7 @@ const NewPasswordForm = () => {
               <InputField
                 type={passwordInputType}
                 {...getFieldProps('password')}
-                placeholder={intl.formatMessage({ id: 'newPassword' })}>
+                placeholder={formatMessage({ id: 'newPassword' })}>
                 <PasswordToggle type="button" onClick={toggleShowPassword}>
                      {showPassword ? <RxEyeOpen /> : <RxEyeClosed />}
                 </PasswordToggle>
@@ -87,7 +86,7 @@ const NewPasswordForm = () => {
               <InputField
                 type="password"
                 {...getFieldProps('confirmPassword')}
-                placeholder={intl.formatMessage({ id: 'confirmNewPassword' })}
+                placeholder={formatMessage({ id: 'confirmNewPassword' })}
               />
                                   
               <ButtonWrapper>
