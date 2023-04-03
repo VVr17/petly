@@ -31,7 +31,7 @@ const NewPasswordForm = () => {
 
   const handleSubmit = async (values, { resetForm }) => {
     try {
-      await newPassword({
+      const result = await newPassword({
         token,
         newPassword: values.password,
       });
