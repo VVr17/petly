@@ -17,6 +17,8 @@ import {
   Register,
   SharedLayout,
   User,
+  ForgotPassword,
+  NewPassword
 } from './lazyLoading';
 import { RestrictedRoute } from 'components/Routes/RestrictedRoute';
 import { PrivateRoute } from 'components/Routes/PrivateRoute';
@@ -94,6 +96,17 @@ const App = () => {
                   element={<EmailVerified />}
                   key={location.key}
                 />
+                <Route
+                  path="/forgot-password"
+                  element={<RestrictedRoute component={ForgotPassword} redirectTo="/login" />}
+                  key={location.key}
+                />
+                <Route
+                  path="/reset-password/:token"
+                  element={<RestrictedRoute component={NewPassword} redirectTo="/login" />}
+                  key={location.key}
+                />
+
                 <Route path="*" element={<NotFound />} key={location.key} />
               </Route>
             </Routes>

@@ -8,6 +8,7 @@
   "submit": "Submit",
   "register": "Register",
   "questionHaveAnAccount": "Don't have an account?",
+  "questionForgotPassword": "Forgot your password?",
   "haveAnAccount": "Already have an account?",
   "account": "Account",
   "next": "Next",
@@ -21,6 +22,13 @@
   "googleLogIn": "Log in with GOOGLE",
   "resendEmail": "Resend email verification",
   "resendEmailMessage": "Please, enter your email",
+
+  "forgotPassword": "Reset your password",
+  "backToLogin": "Back to login",
+  "enterNewPasswordTitle": "Enter a new password",
+  "newPassword": "New Password",
+  "confirmNewPassword": "Confirm new password",
+  "passwordUpdateSuccessToast": "Your password has been updated successfully",
 
   "search": "Search",
   "password": "Password",
@@ -93,6 +101,8 @@
   "emailVerifiedText1": "Your email has been confirmed.",
   "emailVerifiedText2": "You now have access to all functionality of our application",
   "emailVerifiedLoginButton": "Log in to your new account",
+  "emailVerificationToast": "Please, check your inbox and verify your email",
+  "emailResetToast": "An email has been sent. Please check your inbox.",
   "emailVerificationToast": "Verification email has been sent to you. Please, check your inbox and verify your email",
 
   "toastNotFoundNews": "Nothing was found for your request",

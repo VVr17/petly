@@ -36,6 +36,22 @@ export const userApi = createApi({
       },
     }),
 
+    forgotPassword: builder.mutation({
+      query: email => ({
+        url: `${USER_URL}/forgot-password`,
+        method: 'POST',
+        body: { email },
+      }),
+    }),
+    
+    newPassword: builder.mutation({
+      query: ({ token, newPassword }) => ({
+        url: `${USER_URL}/reset-password/${token}`,
+        method: 'PUT',
+        body: { password: newPassword },
+      }),
+    }),
+
     signupUser: builder.mutation({
       query: credentials => ({
         url: `${USER_URL}/signup`,
@@ -134,4 +150,6 @@ export const {
   useUpdateUserMutation,
   useLoginGoogleAuthUserMutation,
   useResendEmailMutation,
+  useForgotPasswordMutation,
+  useNewPasswordMutation,
 } = userApi;

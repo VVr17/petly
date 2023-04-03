@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import {
-  useLoginGoogleAuthUserMutation,
-  useLoginUserMutation,
-} from 'redux/api/userApi';
+import React from 'react';
 import { Formik } from 'formik';
 import { FormattedMessage } from 'react-intl';
 import { useGoogleLogin } from '@react-oauth/google';
 import { FcGoogle } from 'react-icons/fc';
 import { toast } from 'react-toastify';
+
+import {
+  useLoginGoogleAuthUserMutation,
+  useLoginUserMutation,
+} from 'redux/api/userApi';
+
 import LoginInputs from './LoginInputs';
+import Button from 'components/Ui-Kit/Button';
+import Loader from 'components/Loader';
+import { getUserData } from 'api/googleAuth';
+
 import {
   loginInitialValues as initialValues,
   loginValidationSchema as validationSchema,
 } from './LoginValidation';
-import Button from 'components/Ui-Kit/Button';
-import Loader from 'components/Loader';
-import { getUserData } from 'api/googleAuth';
-// styles from RegisterForm
+
 import {
   ModalContent,
   ModalWrapper,
@@ -27,6 +30,7 @@ import {
   Paragraph,
   ErrorMessage,
 } from '../RegisterForm/RegisterForm.styled';
+
 
 // main function
 
@@ -103,6 +107,11 @@ const LoginForm = () => {
               <FormattedMessage id="register" />
             </LoginLink>
           </Paragraph>
+          <Paragraph>
+        <LoginLink to="/forgot-password">
+          <FormattedMessage id="questionForgotPassword" />
+        </LoginLink>
+      </Paragraph>
           {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
           {isGoogleError && (
             <ErrorMessage>{googleError.data.message}</ErrorMessage>
