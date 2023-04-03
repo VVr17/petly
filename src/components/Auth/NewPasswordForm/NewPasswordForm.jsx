@@ -4,11 +4,7 @@ import { useParams } from 'react-router-dom';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
-import {
-  initialValues,
-  validationNewPassword
-} from './Validation';
-
+import { initialValues, validationNewPassword } from './Validation';
 
 import { useNewPasswordMutation } from 'redux/api/userApi';
 
@@ -27,40 +23,37 @@ import {
 } from '../RegisterForm/RegisterForm.styled';
 import { PasswordToggle } from '../RegisterForm/RegStepOne.styled';
 
-
 const NewPasswordForm = () => {
   const [newPassword, { isLoading, error, isError }] = useNewPasswordMutation();
-  const [showPassword, setShowPassword] = useState(false);  
+  const [showPassword, setShowPassword] = useState(false);
   const { formatMessage } = useIntl();
   const { token } = useParams();
-    
+
   const handleSubmit = async (values, { resetForm }) => {
     try {
-
       await newPassword({
-        token: token,
+        token,
         newPassword: values.password,
       });
 
       if (result.message === 'Password updated successfully') {
-      resetForm();
-      toast.success(formatMessage({ id: 'passwordUpdateSuccessToast' }));
-    }
-      
+        resetForm();
+        toast.success(formatMessage({ id: 'passwordUpdateSuccessToast' }));
+      }
     } catch (error) {
       console.log(error);
       toast.error(formatMessage({ id: 'toastError' }));
     }
   };
-    
-    // Function to toggle password visibility
+
+  // Function to toggle password visibility
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
-    // Determine password input type based on password visibility
+  // Determine password input type based on password visibility
   const passwordInputType = showPassword ? 'text' : 'password';
-    
+
   return (
     <ModalWrapper>
       <ModalContent>
@@ -77,24 +70,21 @@ const NewPasswordForm = () => {
               <InputField
                 type={passwordInputType}
                 {...getFieldProps('password')}
-                placeholder={formatMessage({ id: 'newPassword' })}>
+                placeholder={formatMessage({ id: 'newPassword' })}
+              >
                 <PasswordToggle type="button" onClick={toggleShowPassword}>
-                     {showPassword ? <RxEyeOpen /> : <RxEyeClosed />}
+                  {showPassword ? <RxEyeOpen /> : <RxEyeClosed />}
                 </PasswordToggle>
               </InputField>
-            
+
               <InputField
                 type="password"
                 {...getFieldProps('confirmPassword')}
                 placeholder={formatMessage({ id: 'confirmNewPassword' })}
               />
-                                  
+
               <ButtonWrapper>
-                <Button
-                  name="filled"
-                  type="submit"
-                  disabled={isSubmitting}
-                >
+                <Button name="filled" type="submit" disabled={isSubmitting}>
                   <FormattedMessage id="submit" />
                 </Button>
               </ButtonWrapper>

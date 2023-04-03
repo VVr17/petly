@@ -43,12 +43,12 @@ export const userApi = createApi({
         body: { email },
       }),
     }),
-    
+
     newPassword: builder.mutation({
       query: ({ token, newPassword }) => ({
-        url: `${USER_URL}/reset-password/${token}`,
-        method: 'PUT',
-        body: { password: newPassword },
+        url: `${USER_URL}/reset-password`,
+        method: 'POST',
+        body: { newPassword, token },
       }),
     }),
 
