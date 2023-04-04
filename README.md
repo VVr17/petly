@@ -16,23 +16,27 @@ The application allows users to read news, browse notices, and create notices to
 
 # Getting Started
 To use "Petly", you must have Node.js and npm installed on your computer. 
-Clone the repository and install the dependencies:
 
-  * git clone https://github.com/VVr17/petly
-      * cd petly
-      * npm install
+   * Clone the repository and install the dependencies:
+
+          git clone https://github.com/VVr17/petly
+          cd petly
+          npm install
 
   * After installing the dependencies, start the development server:
-      * npm start
+      
+          npm start
 
   * To build the production-ready version of the application, run:
-      * npm run build
+      
+          npm run build
       
 # Technologies Used
-"Ptly" is built using the following technologies:
+  "Petly" is built using the following technologies:
 
   * React
   * Redux Toolkit
+  * RTK Query
   * React Router
   * Styled Components
   * Formik
@@ -55,5 +59,3 @@ If you find a bug or want to contribute to the project, please follow these step
    * Push to the branch (git push origin feature/my-feature)
    * Create a new Pull Request
 
-# License
-"Petly" is released under the MIT License. See LICENSE for more information.
