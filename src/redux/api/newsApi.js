@@ -7,6 +7,7 @@ export const newsApi = createApi({
     baseUrl: BASE_URL,
   }),
   endpoints: builder => ({
+    // Fetches news data from the server
     getNews: builder.query({
       query: () => `${NEWS_URL}`,
       transformResponse: response => response.data,

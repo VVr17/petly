@@ -7,6 +7,7 @@ export const friendsApi = createApi({
     baseUrl: BASE_URL,
   }),
   endpoints: builder => ({
+    // Fetches partners data from the server
     getFriends: builder.query({
       query: () => `${SERVICES_URL}`,
       transformResponse: response => response.data,

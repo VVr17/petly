@@ -8,6 +8,7 @@ export const petsApi = createApi({
   baseQuery,
   tagTypes: [TAGS_TYPES.pet],
   endpoints: builder => ({
+    // Adds a new user's pet.
     addPet: builder.mutation({
       query: newPetData => ({
         url: `${PETS_URL}`,
@@ -16,6 +17,7 @@ export const petsApi = createApi({
       }),
       invalidatesTags: [TAGS_TYPES.pet],
       transformResponse: response => response.data,
+      // This function is triggered when the query is started: invalidate user tag to fetch/update user's data
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled;
@@ -25,6 +27,8 @@ export const petsApi = createApi({
         }
       },
     }),
+
+    // Deletes user's pet.
     deletePet: builder.mutation({
       query: petId => ({
         url: `${PETS_URL}/${petId}`,
@@ -32,6 +36,7 @@ export const petsApi = createApi({
       }),
       invalidatesTags: [TAGS_TYPES.pet],
       transformResponse: response => response.data,
+      // This function is triggered when the query is started: invalidate user tag to fetch/update user's data
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled;

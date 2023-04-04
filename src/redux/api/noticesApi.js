@@ -14,6 +14,7 @@ export const noticesApi = createApi({
   baseQuery,
   tagTypes: [TAGS_TYPES.notice, TAGS_TYPES.favorites],
   endpoints: builder => ({
+    // Gets notices by category name, with optional search parameters and pagination.
     getNoticeByCategory: builder.query({
       query: ({ categoryName, search, page = 1 }) =>
         search
@@ -21,6 +22,8 @@ export const noticesApi = createApi({
           : `${NOTICES_URL}${CATEGORY_URL}/${categoryName}?page=${page}`,
       providesTags: [TAGS_TYPES.notice],
     }),
+
+    // Gets a user's favorite notices, with optional search parameters and pagination.
     getFavoritesNotices: builder.query({
       query: ({ search, page = 1 }) =>
         search
@@ -28,6 +31,8 @@ export const noticesApi = createApi({
           : `${NOTICES_URL}/favorites?&page=${page}`,
       providesTags: [TAGS_TYPES.favorites],
     }),
+
+    // Gets a user's notices, with optional search parameters and pagination.
     getUserNotices: builder.query({
       query: ({ search, page = 1 }) =>
         search
@@ -35,11 +40,15 @@ export const noticesApi = createApi({
           : `${NOTICES_URL}/user?page=${page}`,
       providesTags: [TAGS_TYPES.notice],
     }),
+
+    // Gets a notice by ID.
     getNoticeById: builder.query({
       query: noticeId => `${NOTICES_URL}${ID_URL}/${noticeId}`,
       transformResponse: response => response.data,
       providesTags: [TAGS_TYPES.notice],
     }),
+
+    // Adds a new notice to a specified category.
     addNotice: builder.mutation({
       query: ({ categoryName, noticeData }) => ({
         url: `${NOTICES_URL}${CATEGORY_URL}/${categoryName}`,
@@ -49,6 +58,8 @@ export const noticesApi = createApi({
       transformResponse: response => response.data,
       invalidatesTags: [TAGS_TYPES.notice],
     }),
+
+    // Deletes a notice by ID.
     deleteNotice: builder.mutation({
       query: noticeId => ({
         url: `${NOTICES_URL}${ID_URL}/${noticeId}`,
@@ -57,6 +68,8 @@ export const noticesApi = createApi({
       transformResponse: response => response.data,
       invalidatesTags: [TAGS_TYPES.notice],
     }),
+
+    // Adds a notice to a user's favorites by ID.
     addNoticeToFavorite: builder.mutation({
       query: noticeId => ({
         url: `${NOTICES_URL}${FAVORITES_URL}/${noticeId}`,
@@ -64,7 +77,8 @@ export const noticesApi = createApi({
       }),
       transformResponse: response => response.data,
       invalidatesTags: [TAGS_TYPES.favorites],
-      async onQueryStarted(id, { dispatch, queryFulfilled, getState }) {
+      // This function is triggered when the query is started: dispatches actions to update the Redux store "User's favorite notices" with the data returned by the query.
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           const {
             meta: { response },
@@ -75,6 +89,8 @@ export const noticesApi = createApi({
         }
       },
     }),
+
+    // Removes a notice from a user's favorites by ID.
     removeNoticeFromFavorite: builder.mutation({
       query: noticeId => ({
         url: `${NOTICES_URL}${FAVORITES_URL}/${noticeId}`,
@@ -82,7 +98,8 @@ export const noticesApi = createApi({
       }),
       transformResponse: response => response.data,
       invalidatesTags: [TAGS_TYPES.favorites],
-      async onQueryStarted(id, { dispatch, queryFulfilled, getState }) {
+      // This function is triggered when the query is started: dispatches actions to update the Redux store "User's favorite notices" with the data returned by the query.
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled;
           const {
