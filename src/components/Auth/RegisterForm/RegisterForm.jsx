@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { Formik } from 'formik';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { FcGoogle } from 'react-icons/fc';
 import { toast } from 'react-toastify';
-import { useGoogleLogin } from '@react-oauth/google';
+
+import Button from 'components/Ui-Kit/Button';
 import {
   initialValues,
   validationSchemaStepOne,
   validationSchemaStepTwo,
 } from './Validation';
+import Loader from 'components/Loader';
+import ModalComponent from 'components/Modals/Modal/Modal';
 import RegStepOne from './RegStepOne';
 import RegStepTwo from './RegStepTwo';
-import Button from 'components/Ui-Kit/Button';
-import Loader from 'components/Loader';
-import { getUserData } from 'api/googleAuth';
-import {
-  useLoginGoogleAuthUserMutation,
-  useResendEmailMutation,
-  useSignupUserMutation,
-} from 'redux/api/userApi';
+import ResendEmailFrom from '../ResendEmailForm/ResendEmailForm';
+import { useSignupUserMutation } from 'redux/api/userApi';
+import { useGoogleAuth } from 'hooks/useGoogleAuth';
+
 import {
   ModalContent,
   ModalWrapper,
@@ -30,34 +30,14 @@ import {
   ErrorMessage,
   ResendEmailStyled,
 } from './RegisterForm.styled';
-import ModalComponent from 'components/Modals/Modal/Modal';
-import { AnimatePresence } from 'framer-motion';
-import ResendEmailFrom from '../ResendEmailForm/ResendEmailForm';
 
 const RegistrationForm = () => {
   const { formatMessage } = useIntl();
   const [isResendEmailOpen, setIsResendEmailOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [signupUser, { isLoading, isError, error }] = useSignupUserMutation();
-  const [
-    loginGoogleUser,
-    { isLoading: isGoogleLoading, isError: isGoogleError, error: googleError },
-  ] = useLoginGoogleAuthUserMutation();
-
-  const googleLogin = useGoogleLogin({
-    onSuccess: async codeResponse => {
-      const { user, error } = await getUserData(codeResponse.access_token);
-      if (error) {
-        toast.error('Oops, something went wrong. Please, try again later');
-      }
-
-      loginGoogleUser(user);
-    },
-    onError: error => {
-      console.log('Login Failed:', error);
-      toast.error('Oops, login failed. Please, try again later');
-    },
-  });
+  const [googleAuth, { isGoogleLoading, isGoogleError, googleError }] =
+    useGoogleAuth();
 
   const handleNextClick = () => {
     setCurrentStep(currentStep + 1);
@@ -137,7 +117,7 @@ const RegistrationForm = () => {
                         name="transparent"
                         width="100%"
                         onClick={() => {
-                          googleLogin();
+                          googleAuth();
                         }}
                       >
                         <FcGoogle />

@@ -3,19 +3,21 @@ import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import PartFirst from './PartFirst';
-import PartSecond from './PartSecond';
-import Button from 'components/Ui-Kit/Button';
+
+import { convertToFormData } from 'helpers/convertToFormData';
 import { useAddPetMutation } from 'redux/api/petsApi';
+
+import Button from 'components/Ui-Kit/Button';
+import CommentField from 'components/Notices/AddNoticeForm/AddPetForm/StepTwo/CommentField';
 import Loader from 'components/Loader';
-import { convertDateToString } from 'helpers/date';
 import {
   initialValues,
   validationSchemaPartOne,
   validationSchemaPartTwo,
 } from './Validation';
+import PartFirst from './PartFirst';
+import PartSecond from './PartSecond';
 import UploadImageField from 'components/Ui-Kit/UploadImage/UploadImage';
-import CommentField from 'components/Notices/AddNoticeForm/AddPetForm/StepTwo/CommentField';
 import {
   Container,
   Title,
@@ -35,7 +37,6 @@ const UserAddPetForm = ({ closeModal }) => {
     let fileReader,
       isCancel = false;
     if (file) {
-      console.log('file in pet', file);
       fileReader = new FileReader();
       fileReader.onload = e => {
         const { result } = e.target;
@@ -53,24 +54,18 @@ const UserAddPetForm = ({ closeModal }) => {
     };
   }, [file]);
 
-  function getFullMonth(date) {
-    return date < 10 ? '0' + date : date;
-  }
-
   const handleSubmit = async (values, { setSubmitting }) => {
     if (currentPart < 2) {
       setCurrentPart(currentPart + 1);
     } else {
-      const dateMDY = convertDateToString(values.birthDate);
+      // convert values formData
+      const data = convertToFormData({
+        type: 'petForm',
+        values,
+      });
 
-      const data = new FormData();
-      data.append('name', values.name);
-      data.append('birthDate', dateMDY);
-      data.append('breed', values.breed);
-      data.append('petImage', values.petImage);
-      data.append('comments', values.comments);
       try {
-        const response = await addPetMutation(data);
+        await addPetMutation(data);
         toast.success(formatMessage({ id: 'toastAddedPet' }));
       } catch (error) {
         console.error('Failed to add pet:', error);
@@ -169,17 +164,3 @@ UserAddPetForm.propTypes = {
 };
 
 export default UserAddPetForm;
-
-/* <LabelStyled htmlFor="petImage">
-                    Add photo and some comments
-                    <PetUploadImg
-                      name="petImage"
-                      id="petImage"
-                      fileDataURL={fileDataURL}
-                      handleChange={e => {
-                        setFile(e.currentTarget.files[0]);
-                        setFieldValue('petImage', e.currentTarget.files[0]);
-                        console.log('values', values);
-                      }}
-                    />
-                  </LabelStyled> */

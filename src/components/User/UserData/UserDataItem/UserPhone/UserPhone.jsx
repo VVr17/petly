@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
-import { useUpdateUserMutation } from 'redux/api/userApi';
+import { useSelector } from 'react-redux';
+
+import { noDataFallback } from 'constants/noDataFallback';
 import { validationSchema } from './validation';
+import { selectUserState } from 'redux/user/userSelectors';
+import { useUpdateUserMutation } from 'redux/api/userApi';
+
+import Loader from 'components/Loader';
 import UserUpdateButton from 'components/Ui-Kit/UserupdateButton';
 import UserInput from 'components/Ui-Kit/UserInput';
-import Loader from 'components/Loader';
-import { selectUserState } from 'redux/user/userSelectors';
 import { FieldWrapper } from '../UserDataItem.styled';
-import { noDataFallback } from 'constants/noDataFallback';
 
 const UserPhone = ({ isUpdating, setIsUpdating }) => {
   const { formatMessage } = useIntl();

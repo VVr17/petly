@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NoticeCategoryItem from './NoticeCategoryItem';
-import { GalleryNotices } from './NoticesCategoryList.styled';
 import { LayoutGroup } from 'framer-motion';
+import NoticeCategoryItem from './NoticeCategoryItem';
 import { pageAnimation } from 'constants/animation';
+import { GalleryNotices } from './NoticesCategoryList.styled';
 
 const NoticesCategoryList = ({ notices }) => {
   return (

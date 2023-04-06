@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useField } from 'formik';
-import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
 import Plus from 'assets/images/desktop/plus.svg';
-import { ErrorStyle } from './UploadImage.styled';
 import { Box } from 'components/Box/Box';
+import { ErrorStyle } from './UploadImage.styled';
+import { StyledSpan } from 'components/Ui-Kit/Input/Input.styled';
 import {
   LoadImgLabel,
   LoadImageCont,

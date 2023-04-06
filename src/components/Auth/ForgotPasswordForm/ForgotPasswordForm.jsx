@@ -16,26 +16,25 @@ import {
   FormTitle,
   LoginLink,
   Paragraph,
-  ErrorMessage
+  ErrorMessage,
 } from 'components/Auth/RegisterForm/RegisterForm.styled';
 
-
 const ForgotPasswordForm = () => {
+  const { formatMessage } = useIntl();
+  const [forgotPassword, { isLoading, error, isError }] =
+    useForgotPasswordMutation();
 
-    const { formatMessage } = useIntl();
-    const [forgotPassword, { isLoading, error, isError }] = useForgotPasswordMutation();
-
-  const handleSubmit = async (values, {resetForm}) => {
-   try {
-    const result = await forgotPassword(values.email).unwrap();
-    if (result.message === 'Reset email sent') {
-      resetForm();
-      toast.success(formatMessage({ id: 'emailResetToast' }));
+  const handleSubmit = async (values, { resetForm }) => {
+    try {
+      const result = await forgotPassword(values.email).unwrap();
+      if (result.message === 'Reset email sent') {
+        resetForm();
+        toast.success(formatMessage({ id: 'emailResetToast' }));
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(formatMessage({ id: 'toastError' }));
     }
-  } catch (error) {
-     console.log(error);
-     toast.error(formatMessage({ id: 'toastError' }));
-  }
   };
 
   return (
@@ -44,10 +43,7 @@ const ForgotPasswordForm = () => {
         <FormTitle>
           <FormattedMessage id="forgotPassword" />
         </FormTitle>
-        <Formik
-          initialValues={{ email: '' }}
-          onSubmit={handleSubmit}
-        >
+        <Formik initialValues={{ email: '' }} onSubmit={handleSubmit}>
           {({ isSubmitting, getFieldProps }) => {
             return (
               <FormWrapper>
@@ -57,11 +53,7 @@ const ForgotPasswordForm = () => {
                   placeholder="Email"
                 />
                 <ButtonWrapper>
-                  <Button
-                    name="filled"
-                    type="submit"
-                    disabled={isSubmitting}
-                  >
+                  <Button name="filled" type="submit" disabled={isSubmitting}>
                     <FormattedMessage id="submit" />
                   </Button>
                 </ButtonWrapper>

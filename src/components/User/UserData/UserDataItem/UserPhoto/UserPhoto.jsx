@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
+
 import { validationSchema } from './validation';
 import {
   useUpdateUserMutation,
   useGetCurrentUserQuery,
 } from 'redux/api/userApi';
-import Plus from 'assets/images/desktop/plus.svg';
+
 import Loader from 'components/Loader';
+import Plus from 'assets/images/desktop/plus.svg';
 import {
   ImageBox,
   LoadImgInput,

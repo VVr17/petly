@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import { logout } from 'redux/user/userSlice';
 import { IoLogOutOutline } from 'react-icons/io5';
+import { logout } from 'redux/user/userSlice';
+import { useDispatch } from 'react-redux';
+
 import { Box } from 'components/Box/Box';
 import {
   UserPhoto,

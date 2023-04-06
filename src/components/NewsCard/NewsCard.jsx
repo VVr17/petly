@@ -6,7 +6,6 @@ import {
   Date,
   LinearGradient,
   Link,
-  LinkMore,
   Text,
   Title,
   WrapperCard,

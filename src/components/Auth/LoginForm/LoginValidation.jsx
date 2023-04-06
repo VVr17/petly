@@ -1,7 +1,6 @@
 import * as Yup from 'yup';
 
 // Values for Formik
-
 export const loginInitialValues = {
   email: '',
   password: '',
@@ -9,7 +8,6 @@ export const loginInitialValues = {
 };
 
 // Yup validation
-
 export const loginValidationSchema = Yup.object().shape({
   email: Yup.string()
     .email('Please enter a valid email address, example: "mail@mail.com"')

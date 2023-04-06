@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
-import { useParams } from 'react-router-dom';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { toast } from 'react-toastify';
 import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
+import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { initialValues, validationNewPassword } from './Validation';
 
 import { useNewPasswordMutation } from 'redux/api/userApi';

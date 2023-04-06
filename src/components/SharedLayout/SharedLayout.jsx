@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { Outlet } from 'react-router-dom';
-import { Suspense } from 'react';
-import Header from '../Header';
 import { Box } from 'components/Box/Box';
+import Header from '../Header';
 import Loader from 'components/Loader';
 
 const SharedLayout = ({ handleLocaleChange }) => {

@@ -1,6 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
-import persistReducer from 'redux-persist/es/persistReducer';
 
 const initialState = {
   notices: [],

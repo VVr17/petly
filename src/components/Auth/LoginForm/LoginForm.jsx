@@ -1,19 +1,14 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { FormattedMessage } from 'react-intl';
-import { useGoogleLogin } from '@react-oauth/google';
 import { FcGoogle } from 'react-icons/fc';
-import { toast } from 'react-toastify';
 
-import {
-  useLoginGoogleAuthUserMutation,
-  useLoginUserMutation,
-} from 'redux/api/userApi';
+import { useLoginUserMutation } from 'redux/api/userApi';
+import { useGoogleAuth } from 'hooks/useGoogleAuth';
 
-import LoginInputs from './LoginInputs';
 import Button from 'components/Ui-Kit/Button';
+import LoginInputs from './LoginInputs';
 import Loader from 'components/Loader';
-import { getUserData } from 'api/googleAuth';
 
 import {
   loginInitialValues as initialValues,
@@ -31,37 +26,19 @@ import {
   ErrorMessage,
 } from '../RegisterForm/RegisterForm.styled';
 
-
 // main function
 
 const LoginForm = () => {
   const [loginUser, { isLoading, isError, error }] = useLoginUserMutation();
-  const [
-    loginGoogleUser,
-    { isLoading: isGoogleLoading, isError: isGoogleError, error: googleError },
-  ] = useLoginGoogleAuthUserMutation();
-
-  const googleLogin = useGoogleLogin({
-    onSuccess: async codeResponse => {
-      const { user, error } = await getUserData(codeResponse.access_token);
-      if (error) {
-        toast.error('Oops, something went wrong. Please, try again later');
-      }
-
-      loginGoogleUser(user);
-    },
-    onError: error => {
-      console.log('Login Failed:', error);
-      toast.error('Oops, login failed. Please, try again later');
-    },
-  });
+  const [googleAuth, { isGoogleLoading, isGoogleError, googleError }] =
+    useGoogleAuth();
 
   const handleSubmit = async values => {
     const credentials = {
       email: values.email,
       password: values.password,
     };
-    const response = await loginUser(credentials);
+    await loginUser(credentials);
   };
 
   return (
@@ -90,7 +67,7 @@ const LoginForm = () => {
                       name="transparent"
                       width="100%"
                       onClick={() => {
-                        googleLogin();
+                        googleAuth();
                       }}
                     >
                       <FcGoogle />
@@ -108,10 +85,10 @@ const LoginForm = () => {
             </LoginLink>
           </Paragraph>
           <Paragraph>
-        <LoginLink to="/forgot-password">
-          <FormattedMessage id="questionForgotPassword" />
-        </LoginLink>
-      </Paragraph>
+            <LoginLink to="/forgot-password">
+              <FormattedMessage id="questionForgotPassword" />
+            </LoginLink>
+          </Paragraph>
           {isError && <ErrorMessage>{error.data.message}</ErrorMessage>}
           {isGoogleError && (
             <ErrorMessage>{googleError.data.message}</ErrorMessage>

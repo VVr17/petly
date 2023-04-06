@@ -53,20 +53,9 @@ export const ButtonsContainer = styled.div`
 export const ButtonFilterList = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  gap: 14px;
   ${theme.mq.mobileOnly} {
     max-width: 290px;
-  }
-
-  @media (min-width: ${breakpoints[1]}px) {
-    margin-bottom: 8px;
-  } ;
-`;
-
-export const ButtonFilterItem = styled.li`
-  margin-right: 15px;
-  margin-bottom: 12px;
-  @media (min-width: ${breakpoints[1]}px) {
-    margin-bottom: 0;
   }
 `;
 

@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
+import { Formik, Form } from 'formik';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Formik, Form } from 'formik';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
-import { useUpdateUserMutation } from 'redux/api/userApi';
+
+import { selectUserState } from 'redux/user/userSelectors';
 import { validationSchema } from './validation';
+import { useUpdateUserMutation } from 'redux/api/userApi';
+
+import Loader from 'components/Loader';
 import UserUpdateButton from 'components/Ui-Kit/UserupdateButton';
 import UserInput from 'components/Ui-Kit/UserInput';
-import Loader from 'components/Loader';
-import { selectUserState } from 'redux/user/userSelectors';
 import { FieldWrapper } from '../UserDataItem.styled';
 
 const UserEmail = ({ isUpdating, setIsUpdating }) => {
@@ -40,8 +42,8 @@ const UserEmail = ({ isUpdating, setIsUpdating }) => {
     // create formData
     const data = new FormData();
     data.append('email', values.email);
+
     const { data: response } = await updateUser(data);
-    console.log('response', response);
     if (response.code === 200)
       toast.info(formatMessage({ id: 'toastEmailUpdated' }));
   };

@@ -1,13 +1,14 @@
 import ReactDOM from 'react-dom/client';
 import React from 'react';
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import App from 'components/App/App';
-import { theme } from 'constants/theme';
 import { BrowserRouter } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'styled-components';
+
+import App from 'components/App/App';
 import { persistor, store } from 'redux/store';
+import { theme } from 'constants/theme';
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 

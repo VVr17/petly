@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+
+import { useResendEmailMutation } from 'redux/api/userApi';
+
 import Button from 'components/Ui-Kit/Button';
 import InputField from 'components/Ui-Kit/Input';
 import Loader from 'components/Loader';
-import { useResendEmailMutation } from 'redux/api/userApi';
 import { initialValues, validationSchema } from './Validation';
+
 import {
   ErrorMessage,
   FormContainerStyled,
@@ -23,6 +26,7 @@ const ResendEmailForm = ({ onClose }) => {
     setSubmitting(false);
     resetForm();
     const response = await resendEmail(values.email);
+
     if (!response.error) {
       toast.info(formatMessage({ id: 'emailVerificationToast' }));
       onClose();

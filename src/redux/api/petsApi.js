@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { PETS_URL, TAGS_TYPES } from 'constants/api';
 import baseQuery from 'redux/baseQuery';
+import { PETS_URL, TAGS_TYPES } from 'constants/api';
 import { userApi } from './userApi';
 
 export const petsApi = createApi({

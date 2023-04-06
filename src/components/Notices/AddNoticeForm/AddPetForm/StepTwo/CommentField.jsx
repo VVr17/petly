@@ -11,7 +11,7 @@ import {
 } from '../AddPetForm.styled';
 
 const CommentField = ({ name, form }) => {
-  const [field, meta, helpers] = useField(name);
+  const [field] = useField(name);
   const { formatMessage } = useIntl();
 
   return (

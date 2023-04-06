@@ -3,23 +3,26 @@ import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+
 import Button from 'components/Ui-Kit/Button';
-import StepOne from './StepOne/StepOne';
-import StepTwo from './StepTwo/StepTwo';
+import CommentField from './StepTwo/CommentField';
+import FilterCategory from './FilterCategory';
+import Loader from 'components/Loader';
 import LocationField from './StepTwo/Location';
 import PriceField from './StepTwo/PriceField';
-import CommentField from './StepTwo/CommentField';
-import UploadImageField from 'components/Ui-Kit/UploadImage';
-import FilterCategory from './FilterCategory';
 import SexField from './StepTwo/Sex';
+import StepOne from './StepOne/StepOne';
+import StepTwo from './StepTwo/StepTwo';
+import UploadImageField from 'components/Ui-Kit/UploadImage';
+
+import { convertToFormData } from 'helpers/convertToFormData';
 import { useAddNoticeMutation } from 'redux/api/noticesApi';
+
 import {
   initialValues,
   validationSchemaStepOne,
   validationSchemaStepTwo,
 } from './Validation';
-import Loader from 'components/Loader';
-import { convertDateToString } from 'helpers/date';
 import {
   FormWrapper,
   ButtonsContainer,
@@ -69,26 +72,16 @@ const AddPetForm = ({ onClose }) => {
         toast.error(formatMessage({ id: 'toastAllFieldsFil' }));
         return;
       }
-      // Date converting to string
-      const dateMDY = convertDateToString(values.birthDate);
 
       // define category
       const categoryName = values.category;
 
-      // create formData
-      const data = new FormData();
-
-      data.append('title', values.title);
-      data.append('name', values.name);
-      data.append('birthDate', dateMDY);
-      data.append('breed', values.breed);
-      data.append('sex', values.sex);
-      if (categoryName === 'sell') {
-        data.append('price', values.price);
-      }
-      data.append('location', values.location);
-      data.append('petImage', values.petImage);
-      data.append('comments', values.comments);
+      // convert values formData
+      const data = convertToFormData({
+        type: 'noticeForm',
+        values,
+        categoryName,
+      });
 
       // send FormData to Backend
       onClose();
@@ -115,14 +108,7 @@ const AddPetForm = ({ onClose }) => {
         onSubmit={handleSubmit}
         encType="multipart/form-data"
       >
-        {({
-          isSubmitting,
-          values,
-          setFieldValue,
-          handleBlur,
-          touched,
-          errors,
-        }) => (
+        {({ isSubmitting, values, setFieldValue, touched, errors }) => (
           <FormWrapper>
             {currentStep === 1 && (
               <StepOne>

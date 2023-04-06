@@ -1,8 +1,11 @@
 import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import TimeTable from './TimeTable';
+
 import defaultImage from 'assets/images/mobile/friend-default-image.png';
+import { getNewWorkDays } from 'helpers/getNewWorkDays';
+import TimeTable from './TimeTable';
+
 import {
   FriendTitle,
   FriendContentWrapper,
@@ -15,11 +18,11 @@ import {
   FriendImg,
   FriendContentList,
   TimeBtn,
-} from './FriendItem.styled.jsx';
+} from './FriendItem.styled';
+import { noDataFallback } from 'constants/noDataFallback';
 
 export const FriendItem = ({
   title,
-  url,
   imageUrl,
   addressUrl,
   workDays,
@@ -28,13 +31,7 @@ export const FriendItem = ({
   phone,
 }) => {
   const [isVisible, setIsVisible] = useState(true);
-
-  const weekDays = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
-  const newWorkDays =
-    workDays &&
-    workDays.map((day, index) => {
-      return { day: weekDays[index], ...day };
-    });
+  const newWorkDays = getNewWorkDays(workDays);
 
   return (
     <FriendListItem>
@@ -64,12 +61,12 @@ export const FriendItem = ({
               }, 3000);
             }}
           >
-            {workDays === undefined || workDays === null ? (
+            {!workDays ? (
               <>
                 <FriendText>
                   <FormattedMessage id="time" />:
                 </FriendText>
-                <p>--------------</p>
+                <p>{noDataFallback}</p>
               </>
             ) : (
               <>
@@ -105,7 +102,7 @@ export const FriendItem = ({
                 {address}
               </FriendLink>
             ) : (
-              <p>------------</p>
+              <p>{noDataFallback}</p>
             )}
           </TextWrapper>
 
@@ -114,7 +111,7 @@ export const FriendItem = ({
             {email ? (
               <FriendLink href={`mailto:${email}`}>{email}</FriendLink>
             ) : (
-              <p>------------</p>
+              <p>{noDataFallback}</p>
             )}
           </TextWrapper>
           <TextWrapper>
@@ -124,7 +121,7 @@ export const FriendItem = ({
             {phone ? (
               <FriendLink href={`tel:${phone}`}>{phone}</FriendLink>
             ) : (
-              <p>------------</p>
+              <p>{noDataFallback}</p>
             )}
           </TextWrapper>
         </FriendContentList>

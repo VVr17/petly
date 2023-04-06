@@ -1,22 +1,17 @@
 import React from 'react';
+import { IoIosHeart } from 'react-icons/io';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { IoIosHeart } from 'react-icons/io';
-import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
-import {
-  useAddNoticeToFavoriteMutation,
-  useRemoveNoticeFromFavoriteMutation,
-} from 'redux/api/noticesApi';
+
+import { noDataFallback } from 'constants/noDataFallback';
+import { noImageFallback } from 'constants/noImageFallback';
 import { selectFavoritesState } from 'redux/favorites/favoritesSelector';
-import { selectIsAuthState } from 'redux/user/userSelectors';
-import { selectStatusFilter } from 'redux/filter/filterSelectors';
-import { statusFilter } from 'redux/filter/filterConstans';
 import { useGetNoticeInfo } from 'hooks/useGetNoticeInfo';
+import { useToggleFavorites } from 'hooks/useToggleFavorites';
+
 import Button from 'components/Ui-Kit/Button';
 import Loader from 'components/Loader';
-import { noImageFallback } from 'constants/noImageFallback';
-import { noDataFallback } from 'constants/noDataFallback';
 import {
   ImgWrapper,
   PetsImg,
@@ -34,50 +29,22 @@ import {
   LinkModal,
 } from './ModalNotice.styled';
 
-const ModalNotice = ({ id, onClose }) => {
-  const { noticeInfo, ownerInfo, isFetching, isError, error, generalInfo } =
+const ModalNotice = ({ id }) => {
+  const { noticeInfo, ownerInfo, isFetching, isError, generalInfo } =
     useGetNoticeInfo(id);
-  const currentCategory = useSelector(selectStatusFilter);
   const { formatMessage } = useIntl();
+  const favorites = useSelector(selectFavoritesState);
+  const isFavorite = favorites.includes(id);
+  const [toggleFavorites, { isFavoritesLoading }] = useToggleFavorites();
 
   const onRedirect = () => {
     window.location = `${ownerInfo[1].href}`;
   };
 
-  const isAuth = useSelector(selectIsAuthState);
-  const favorites = useSelector(selectFavoritesState);
-  const isFavorite = favorites.includes(id);
-  const [addNoticeToFavorite, { isLoading: adding }] =
-    useAddNoticeToFavoriteMutation();
-  const [deleteNoticeFromFavorite, { isLoading: removing }] =
-    useRemoveNoticeFromFavoriteMutation();
-
-  const toggleFavorite = async noticeId => {
-    if (!isAuth) {
-      toast.info(formatMessage({ id: 'toastRegisterLogin' }));
-      return;
-    }
-    if (isFavorite) {
-      await deleteNoticeFromFavorite(noticeId);
-      toast.info(formatMessage({ id: 'toastRemovedNotice' }));
-      if (currentCategory === statusFilter.favoriteAds) {
-        document.body.classList.remove('modal-open');
-      }
-      return;
-    }
-    await addNoticeToFavorite(noticeId);
-    toast.info(formatMessage({ id: 'toastAddedNotice' }));
-    if (currentCategory === statusFilter.favoriteAds) {
-      document.body.classList.remove('modal-open');
-    }
-  };
-
-  const isLoading = adding || removing;
-
   return (
     <>
       <NoticeContainer>
-        {(isLoading || isFetching) && <Loader />}
+        {(isFavoritesLoading || isFetching) && <Loader />}
         {isFetching && <Plug />}
         {isError && <div>{isError.message}</div>}
 
@@ -135,7 +102,9 @@ const ModalNotice = ({ id, onClose }) => {
                 name="addToFavorite"
                 type="button"
                 isFavorite={isFavorite}
-                onClick={() => toggleFavorite(id)}
+                onClick={() =>
+                  toggleFavorites({ noticeId: id, modalLearnMoreIsOpen: true })
+                }
               >
                 {!isFavorite
                   ? formatMessage({ id: 'addTo' })

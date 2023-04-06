@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
+import { useSelector } from 'react-redux';
 import { VscMenu } from 'react-icons/vsc';
-import { selectIsAuthState } from 'redux/user/userSelectors';
-import Nav from 'components/Header/Nav';
-import AuthNav from 'components/Header/AuthNav';
-import UserNav from 'components/Header/UserNav';
-import MobMenu from 'components/Header/MobMenu';
-import Container from 'components/Container';
+
 import { pageAnimation } from 'constants/animation';
-import Uk from 'assets/icons/ukraine.svg';
+import { selectIsAuthState } from 'redux/user/userSelectors';
+
+import AuthNav from 'components/Header/AuthNav';
+import Container from 'components/Container';
+import Nav from 'components/Header/Nav';
+import MobMenu from 'components/Header/MobMenu';
+import UserNav from 'components/Header/UserNav';
 import En from 'assets/icons/united.svg';
+import Uk from 'assets/icons/ukraine.svg';
 import {
   Navigation,
   PagesBox,

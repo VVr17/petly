@@ -4,13 +4,15 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
-import { useUpdateUserMutation } from 'redux/api/userApi';
-import { Title } from 'components/Ui-Kit/UserInput/UserInput.styled';
-import { validationSchema } from './validation';
+
 import { convertStringToDate, convertDateToString } from 'helpers/date';
-import UserUpdateButton from 'components/Ui-Kit/UserupdateButton';
-import Loader from 'components/Loader';
 import { selectUserState } from 'redux/user/userSelectors';
+import { useUpdateUserMutation } from 'redux/api/userApi';
+import { validationSchema } from './validation';
+
+import Loader from 'components/Loader';
+import UserUpdateButton from 'components/Ui-Kit/UserupdateButton';
+import { Title } from 'components/Ui-Kit/UserInput/UserInput.styled';
 import {
   FieldWrapper,
   MyDatePickerNew,
@@ -77,7 +79,7 @@ const UserBirthday = ({ isUpdating, setIsUpdating }) => {
     if (values.birthday === user.birthday) {
       return;
     }
-    // console.log(values);
+
     let dateMDY;
     if (values.birthday === null) {
       dateMDY = '00.00.0000';
@@ -88,6 +90,7 @@ const UserBirthday = ({ isUpdating, setIsUpdating }) => {
     // create formData
     const data = new FormData();
     data.append('birthday', dateMDY);
+
     const { data: response } = await updateUser(data);
     if (response.code === 200)
       toast.info(formatMessage({ id: 'toastBirthUpdated' }));

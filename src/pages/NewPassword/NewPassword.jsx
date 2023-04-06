@@ -1,7 +1,7 @@
 import React from 'react';
 import AuthPageContainer from 'components/Auth/AuthPageContainer';
-import Section from 'components/Section';
 import NewPasswordForm from 'components/Auth/NewPasswordForm';
+import Section from 'components/Section';
 
 const NewPassword = () => {
   return (

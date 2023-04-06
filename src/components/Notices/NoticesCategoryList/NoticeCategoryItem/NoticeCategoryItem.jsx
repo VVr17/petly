@@ -1,25 +1,24 @@
-import { useState, React } from 'react';
-import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-import { useIntl } from 'react-intl';
-import { toast } from 'react-toastify';
+import React, { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { IoTrashSharp } from 'react-icons/io5';
 import { IoIosHeart } from 'react-icons/io';
-import {
-  useDeleteNoticeMutation,
-  useAddNoticeToFavoriteMutation,
-  useRemoveNoticeFromFavoriteMutation,
-} from 'redux/api/noticesApi';
-import { selectIsAuthState, selectUserState } from 'redux/user/userSelectors';
+import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import { useIntl } from 'react-intl';
+import { useSelector } from 'react-redux';
+
 import getAge from 'js';
+import { selectUserState } from 'redux/user/userSelectors';
+import { selectFavoritesState } from 'redux/favorites/favoritesSelector';
+import { useDeleteNoticeMutation } from 'redux/api/noticesApi';
+import { useToggleFavorites } from 'hooks/useToggleFavorites';
+import { useGetCategory } from 'hooks/useGetCategory';
+
 import Button from 'components/Ui-Kit/Button';
+import Loader from 'components/Loader';
 import ModalNotice from 'components/Notices/ModalNotice';
 import ModalComponent from 'components/Modals/Modal';
-import Loader from 'components/Loader';
-import { selectFavoritesState } from 'redux/favorites/favoritesSelector';
 import ModalDelete from 'components/Modals/ModalDelete/ModalDelete';
-import { useGetCategory } from 'hooks/useGetCategory';
 import {
   CardNotice,
   ImageBox,
@@ -47,12 +46,11 @@ const NoticeCategoryItem = ({
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [delModalIsOpen, setDelModalIsOpen] = useState(false);
-  const noticeCategory = useGetCategory(category);
-  const isAuth = useSelector(selectIsAuthState);
-  const user = useSelector(selectUserState);
   const favorites = useSelector(selectFavoritesState);
-  const showButtonDelete = user ? owner === user._id : false;
   const { formatMessage } = useIntl();
+  const noticeCategory = useGetCategory(category);
+  const user = useSelector(selectUserState);
+  const showButtonDelete = user ? owner === user._id : false;
 
   const place = location.split(',');
   const city = place[0];
@@ -60,30 +58,13 @@ const NoticeCategoryItem = ({
   const isFavorite = favorites?.includes(_id);
 
   const [deleteNotice, { isLoading: deleting }] = useDeleteNoticeMutation();
-  const [addNoticeToFavorite, { isLoading: adding }] =
-    useAddNoticeToFavoriteMutation();
-
-  const [deleteNoticeFromFavorite, { isLoading: removing }] =
-    useRemoveNoticeFromFavoriteMutation();
+  const [toggleFavorites, { isFavoritesLoading }] = useToggleFavorites();
+  const isLoading = deleting || isFavoritesLoading;
 
   const closeModal = () => {
     setModalIsOpen(false);
     setDelModalIsOpen(false);
     document.body.classList.remove('modal-open');
-  };
-
-  const toggleFavorite = async noticeId => {
-    if (!isAuth) {
-      toast(formatMessage({ id: 'toastRegisterLogin' }));
-      return;
-    }
-    if (isFavorite) {
-      await deleteNoticeFromFavorite(noticeId);
-      toast.info(formatMessage({ id: 'toastRemovedNotice' }));
-      return;
-    }
-    await addNoticeToFavorite(noticeId);
-    toast.info(formatMessage({ id: 'toastAddedNotice' }));
   };
 
   const onDelete = async () => {
@@ -93,8 +74,6 @@ const NoticeCategoryItem = ({
     toast.success(formatMessage({ id: 'toastAdRemoved' }));
     document.body.classList.remove('modal-open');
   };
-
-  const isLoading = deleting || adding || removing;
 
   return (
     <>
@@ -110,7 +89,7 @@ const NoticeCategoryItem = ({
         <ToggleFavoriteButton
           isFavorite={isFavorite}
           type="button"
-          onClick={() => toggleFavorite(_id)}
+          onClick={() => toggleFavorites({ noticeId: _id })}
         >
           {<IoIosHeart size="28px" />}
         </ToggleFavoriteButton>

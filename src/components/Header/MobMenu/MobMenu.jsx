@@ -1,9 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { VscChromeClose } from 'react-icons/vsc';
-import Nav from 'components/Header/Nav';
+
 import AuthNav from 'components/Header/AuthNav';
+import Nav from 'components/Header/Nav';
 import UserNav from 'components/Header/UserNav';
 import Overlay from 'components/Modals/Overlay';
 import { mobileMenuAnimation } from 'constants/animation';

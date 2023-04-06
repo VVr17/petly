@@ -1,6 +1,6 @@
 import React from 'react';
-import { ButtonStyled } from './Button.styled';
 import PropTypes from 'prop-types';
+import { ButtonStyled } from './Button.styled';
 
 // name: 'transparent' | 'filled' | 'learnMore'
 const Button = ({

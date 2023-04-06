@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { TAGS_TYPES, USER_URL } from 'constants/api';
 import baseQuery from 'redux/baseQuery';
+import { TAGS_TYPES, USER_URL } from 'constants/api';
 import { setFavorites } from 'redux/favorites/favoritesSlice';
 import { setUser, setToken, logout, setIsAuth } from '../user/userSlice';
 

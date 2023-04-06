@@ -1,8 +1,8 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
-import { OverlayStyled } from './Overlay.styled';
 import { pageAnimation } from 'constants/animation';
+import { OverlayStyled } from './Overlay.styled';
 
 const modalRoot = document.querySelector('#modal');
 

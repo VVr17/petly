@@ -8,14 +8,15 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { persistedUserReducer } from './user/userSlice';
-import { userApi } from './api/userApi';
+
+import { favoritesReducer } from './favorites/favoritesSlice';
+import { filterReducer } from './filter/filterSlice';
+import { friendsApi } from './api/friendsApi';
 import { newsApi } from './api/newsApi';
 import { noticesApi } from './api/noticesApi';
+import { persistedUserReducer } from './user/userSlice';
 import { petsApi } from './api/petsApi';
-import { friendsApi } from './api/friendsApi';
-import { filterReducer } from './filter/filterSlice';
-import { favoritesReducer } from './favorites/favoritesSlice';
+import { userApi } from './api/userApi';
 
 export const store = configureStore({
   reducer: {

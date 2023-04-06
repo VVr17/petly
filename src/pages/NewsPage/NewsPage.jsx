@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import Loader from 'components/Loader';
 import NewsCard from 'components/NewsCard';
 import Section from 'components/Section';
 import SearchForm from 'components/Ui-Kit/SearchForm';
-import { useGetNewsQuery } from 'redux/api/newsApi';
-import TitlePage from 'components/Ui-Kit/TitlePage';
-import Loader from 'components/Loader';
 import { sortArrayByDate } from 'helpers/sortNewsByDate';
+import TitlePage from 'components/Ui-Kit/TitlePage';
+import { useGetNewsQuery } from 'redux/api/newsApi';
 import { CardList, WrapperTitle } from './News.styled';
 
 const NewsPage = () => {

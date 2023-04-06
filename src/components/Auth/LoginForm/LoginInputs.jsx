@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
+import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
 import InputField from 'components/Ui-Kit/Input';
 import { PasswordToggle } from 'components/Auth/RegisterForm/RegStepOne.styled';
-import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
 
 const LoginInputs = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,6 +12,7 @@ const LoginInputs = () => {
   const { formatMessage } = useIntl();
 
   const passwordInputType = showPassword ? 'text' : 'password';
+
   return (
     <>
       <InputField

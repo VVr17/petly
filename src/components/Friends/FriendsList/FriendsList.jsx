@@ -1,7 +1,7 @@
 import { React } from 'react';
-import { FriendsUl } from './FriendsList.styled.jsx';
 import { FriendItem } from '../FriendItem/FriendItem';
-import { useGetFriendsQuery } from 'redux/api/friendsApi.js';
+import { useGetFriendsQuery } from 'redux/api/friendsApi';
+import { FriendsUl } from './FriendsList.styled';
 
 const FriendsList = () => {
   const { data: friends } = useGetFriendsQuery();
