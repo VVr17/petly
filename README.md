@@ -7,9 +7,12 @@ The application allows users to read news, browse notices, and create notices to
 # Features
   * Read news: Users can read the latest news about pets without registering.
   * Browse notices: Users can browse notices of pets available for adoption or sale without registering.
+  * Partners: Users can find info about our partners (contacts, location, working hours) without registering.
   * Find lost pet: Users can search for lost pets by browsing notices.
   * Adopt/Buy pet: Users can adopt or buy a new pet by browsing notices.
-  * Update account: Registered users can update their account information, including their contact details and preferences.
+  * Sign up with Google Auth.
+  * Sign up with email verification.
+  * Update account: Registered users can update their account information, including their contact details, photo and preferences.
   * Add own pet: Registered users can add their own pets to their account and create notices to sell or give them away.
   * Create notices: Registered users can create notices to sell, give away, or search for their lost pets.
   * Add notices to favorites: Registered users can save notices to their favorites list for later reference.
