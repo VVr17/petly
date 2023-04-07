@@ -34,7 +34,7 @@ const NewPasswordForm = () => {
       const result = await newPassword({
         token,
         newPassword: values.password,
-      });
+      }).unwrap();
       console.log(result);
       if (result.message === 'Password updated successfully') {
         resetForm();
