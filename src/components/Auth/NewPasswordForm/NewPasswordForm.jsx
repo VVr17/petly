@@ -35,7 +35,7 @@ const NewPasswordForm = () => {
         token,
         newPassword: values.password,
       });
-
+      console.log(result);
       if (result.message === 'Password updated successfully') {
         resetForm();
         toast.success(formatMessage({ id: 'passwordUpdateSuccessToast' }));
@@ -78,7 +78,7 @@ const NewPasswordForm = () => {
               </InputField>
 
               <InputField
-                type="password"
+                type={passwordInputType}
                 {...getFieldProps('confirmPassword')}
                 placeholder={formatMessage({ id: 'confirmNewPassword' })}
               />
