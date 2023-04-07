@@ -26,8 +26,9 @@ export const Link = styled(NavLink)`
   border: 2px solid ${theme.colors.accent};
 
   border-radius: 40px;
-  transition: color ${theme.transitionTiming};
-  transition: background-color ${theme.transitionTiming};
+  transition: color ${theme.transitionTiming},
+    background-color ${theme.transitionTiming},
+    border-color ${theme.transitionTiming};
 
   &:not(:last-child) {
     margin-right: 20px;
@@ -38,10 +39,11 @@ export const Link = styled(NavLink)`
     background-color: ${theme.colors.accent};
   }
 
-  &:hover,
+  :hover,
   :focus {
     color: ${theme.colors.lightText};
-    background-color: ${theme.colors.accent};
+    background-color: ${theme.colors.hover};
+    border-color: ${theme.colors.hover};
   }
 
   @media (min-width: ${breakpoints[1]}px) {
