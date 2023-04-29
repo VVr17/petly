@@ -25,6 +25,11 @@ To use "Petly", you must have Node.js and npm installed on your computer.
           git clone https://github.com/VVr17/petly
           cd petly
           npm install
+          
+  * Сreate a .env.local file in the root of the project, with the following environment variables:
+  
+        REACT_APP_GOOGLE_CLIENT_ID=<GOOGLE Auth ID>
+
 
   * After installing the dependencies, start the development server:
       
