@@ -18,6 +18,7 @@ export const authSlice = createSlice({
         user: payload,
       };
     },
+
     setToken: (state, { payload }) => {
       return {
         ...state,
@@ -25,12 +26,14 @@ export const authSlice = createSlice({
         isAuth: true,
       };
     },
+
     setIsAuth: (state, { payload }) => {
       return {
         ...state,
         isAuth: payload,
       };
     },
+
     logout: () => initialState,
   },
 });

@@ -14,6 +14,7 @@ export const userApi = createApi({
       query: () => `${USER_URL}/current`,
       transformResponse: response => response.data,
       providesTags: [TAGS_TYPES.user],
+
       // This function is triggered when the query is started: dispatches actions to update the Redux store with the data returned by the query.
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
@@ -23,6 +24,7 @@ export const userApi = createApi({
             phone: data.phone || '',
             city: data.city || '',
           };
+
           dispatch(setUser(updatedData));
           dispatch(setIsAuth(true));
           dispatch(setFavorites(data.favoriteNotices));
@@ -30,6 +32,7 @@ export const userApi = createApi({
           const {
             error: { status, data },
           } = error;
+
           if (status === 401 && data.message.includes('Token error')) {
             dispatch(setToken(null));
             dispatch(setIsAuth(false));
@@ -84,6 +87,7 @@ export const userApi = createApi({
         body: credentials,
       }),
       invalidatesTags: [TAGS_TYPES.user],
+
       // This function is triggered when the query is started: dispatches actions to update the Redux store with the data returned by the query.
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
@@ -92,7 +96,9 @@ export const userApi = createApi({
           } = await queryFulfilled;
           dispatch(setUser(data.user));
           dispatch(setToken(data.token));
-        } catch (error) {}
+        } catch (error) {
+          console.log('error', error);
+        }
       },
     }),
 
@@ -104,12 +110,14 @@ export const userApi = createApi({
         body: credentials,
       }),
       invalidatesTags: [TAGS_TYPES.user],
+
       // This function is triggered when the query is started: dispatches actions to update the Redux store with the data returned by the query.
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const {
             data: { data },
           } = await queryFulfilled;
+
           dispatch(setUser(data.user));
           dispatch(setToken(data.token));
         } catch (error) {}
@@ -124,6 +132,7 @@ export const userApi = createApi({
         body: credentials,
       }),
       invalidatesTags: [TAGS_TYPES.user],
+
       // This function is triggered when the query is started: dispatches actions to update the Redux store with the data returned by the query.
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
@@ -142,12 +151,14 @@ export const userApi = createApi({
         };
       },
       invalidatesTags: [TAGS_TYPES.user],
+
       // This function is triggered when the query is started: dispatches actions to update the Redux store with the data returned by the query.
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const {
             data: { data },
           } = await queryFulfilled;
+
           dispatch(setUser(data));
           dispatch(setFavorites(data.favoriteNotices));
         } catch (error) {}

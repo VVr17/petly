@@ -15,8 +15,10 @@ export const petsApi = createApi({
         method: 'POST',
         body: newPetData,
       }),
+
       invalidatesTags: [TAGS_TYPES.pet],
       transformResponse: response => response.data,
+
       // This function is triggered when the query is started: invalidate user tag to fetch/update user's data
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
@@ -34,8 +36,10 @@ export const petsApi = createApi({
         url: `${PETS_URL}/${petId}`,
         method: 'DELETE',
       }),
+
       invalidatesTags: [TAGS_TYPES.pet],
       transformResponse: response => response.data,
+
       // This function is triggered when the query is started: invalidate user tag to fetch/update user's data
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {

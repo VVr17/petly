@@ -11,9 +11,11 @@ export const favoritesSlice = createSlice({
     setFavorites: (state, { payload }) => {
       state.notices = payload;
     },
+
     addFavorites: (state, { payload }) => {
       state.notices.push(payload);
     },
+
     removeFavorites: (state, { payload }) => {
       const index = state.notices.indexOf(payload);
       state.notices.splice(index, 1);

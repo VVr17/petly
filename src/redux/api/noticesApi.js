@@ -77,12 +77,14 @@ export const noticesApi = createApi({
       }),
       transformResponse: response => response.data,
       invalidatesTags: [TAGS_TYPES.favorites],
+
       // This function is triggered when the query is started: dispatches actions to update the Redux store "User's favorite notices" with the data returned by the query.
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           const {
             meta: { response },
           } = await queryFulfilled;
+
           if (response.status === 200) dispatch(addFavorites(id));
         } catch (err) {
           console.log('error... ', err);
@@ -98,6 +100,7 @@ export const noticesApi = createApi({
       }),
       transformResponse: response => response.data,
       invalidatesTags: [TAGS_TYPES.favorites],
+
       // This function is triggered when the query is started: dispatches actions to update the Redux store "User's favorite notices" with the data returned by the query.
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
@@ -105,6 +108,7 @@ export const noticesApi = createApi({
           const {
             meta: { response },
           } = await queryFulfilled;
+
           if (response.status === 200) dispatch(removeFavorites(id));
         } catch (err) {
           console.log('error... ', err);
