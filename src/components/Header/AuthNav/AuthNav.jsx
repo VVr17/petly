@@ -11,19 +11,10 @@ const AuthNav = ({ closeMenu }) => {
 
   return (
     <Container>
-      <Link
-        to="/login"
-        onClick={closeMenu}
-        isactive={loginIsFilled ? 1 : 0}
-        class="plausible-event-name=login_click"
-      >
+      <Link to="/login" onClick={closeMenu} isactive={loginIsFilled ? 1 : 0}>
         <FormattedMessage id="login" />
       </Link>
-      <Link
-        to="/register"
-        onClick={closeMenu}
-        class="plausible-event-name=registration_click"
-      >
+      <Link to="/register" onClick={closeMenu}>
         <FormattedMessage id="registration" />
       </Link>
     </Container>

@@ -16,7 +16,11 @@ const AddPetButton = ({ handleClick }) => {
       <Title>
         <FormattedMessage id="addPetBtn" />
       </Title>
-      <Button whileTap={{ scale: 0.95 }} onClick={handleClick}>
+      <Button
+        whileTap={{ scale: 0.95 }}
+        onClick={handleClick}
+        className="plausible-event-name=add_pet_click"
+      >
         <ButtonTitle>
           <FormattedMessage id="addPetBtn" />
         </ButtonTitle>
